@@ -1,0 +1,11 @@
+# En caso de necesitar NFS en modo lectura y escritura con locks, es necesario tener un mecanismo de reloj moderadamente sincronizado
+# Montar un servidor ntp en el nodo maestro es una opción, pero es más que probable que un usuario futuro
+#  únicamente necesite sincronización al segundo como mucho.
+
+# Un método sencillo es instalar cronie, o crear una unit de systemd timers, que ejecute periodicamente el siguiente comando en la rpi0
+
+for i in {1..7}; do
+	ssh mpiuser@rpi$i "date --set=\"$(date)\""
+done
+
+# Para esto, se debe dar con sudo runas (root) para el comando /usr/bin/date (NOPASSWD), tal como se hace con el poweroff

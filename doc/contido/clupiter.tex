@@ -1,0 +1,194 @@
+\chapter{Clúpiter: Conceptos básicos}
+\label{chap:conceptos_basicos}
+
+\lettrine{P}{ara} comprender el objetivo del proyecto y su propuesta de valor, primero es necesario entender sus características, la justificación de las mismas, y el funcionamiento de sus componentes más primitivos.
+
+\section{Nombre y marca corporativa}
+Si bien este no es un elemento altamente importante en un proyecto de ingeniería como este, sí que es conveniente, y nunca está de más, otorgarle personalidad mediante la creación de un nombre e isotipo para el mismo.
+
+El nombre del clúster es \textbf{Clúpiter} (ClúPIter): una mezcla entre las palabras ``Clúster'' y el ``PI'' de la \acrlong{rpi}, que de forma muy conveniente recuerda en su segunda parte a Júpiter. Este es a su vez planeta del sistema solar junto con el (enano) Plutón, nombre del clúster del \acrshort{gac}\footnote{\url{http://pluton.dec.udc.es}} (\acrlong{gac}). Es cuanto menos paradógico que el clúster en miniatura sea Júpiter, y el real sea Plutón\dots
+
+En cuanto a la marca del clúster, éste no puede quedar sin un logo, que se muestra en la Figura \ref{fig:clupiter_logo}.\footnote{El uso del logo de Arch Linux sin autorización explícita está permitido en general para propósitos no comerciales. Clúpiter no tiene ningún tipo de vinculación con la marca Arch Linux (\url{https://wiki.archlinux.org/title/DeveloperWiki:TrademarkPolicy})}
+
+\begin{figure}[h!]
+  \centering
+  \vspace*{0.5cm}
+  \def\svgwidth{0.50\textwidth}
+  \input{pdf_tex/clupiter_logo/clupiter_logo.pdf_tex}
+  \caption{Logo de Clúpiter}
+  \label{fig:clupiter_logo}
+\end{figure}
+
+\section{Clústeres}
+Los clústeres, de los que para este proyecto se tratarán los de alto rendimiento, son conjuntos de ordenadores diseñados para ofrecer altas prestaciones de cálculo.
+
+Estos clústeres pueden ser homogéneos o heterogéneos, siendo compuestos por computadores con la misma arquitectura y capacidades, o con arquitecturas o capacidades diferentes, respectivamente.
+
+En el caso de Clúpiter, éste es un clúster muy homogéneo, ya que está compuesto por ocho mini-computadores exactamente iguales.
+
+Existen multitud de amateurs y amantes de la informática que como proyecto personal deciden montar un clúster de \acrlong{rpi}s, entre los que por ejemplo se encuentra Jeff Geerling\footnote{\url{https://www.youtube.com/user/geerlingguy}}, un famoso YouTuber del cual uno de sus proyectos, similar a Clúpiter, se puede encontrar en la Figura \ref{fig:cluster-pi-ejemplo} \cite{geerling_intro_cluster}.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.75\textwidth]{img/cluster-pi-home.png}
+  \caption{Mini-clúster casero basado en \acrlong{rpi} 3}
+  \label{fig:cluster-pi-ejemplo}
+\end{figure}
+
+Además, en el mundo académico también ha habido aproximaciones similares al trabajo desarrollado, destacando \textit{Wee Archie}, un clúster de 18 \acrlong{rpi} 2 que, como se puede leer en la página web del proyecto \cite{wee_archie_webpage}, pretende emular el comportamiento de un supercomputador real, el supercomputador ARCHER\footnote{\url{https://www.archer.ac.uk}} (Figura \ref{fig:wee_archie_girl}).
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.75\textwidth]{img/wee-girl.jpg}
+  \caption{Mini-supercomputador Wee Archie}
+  \label{fig:wee_archie_girl}
+\end{figure}
+
+\section{Raspberry Pi 4 Model B}
+\label{sec:raspberry_pi_4_model_b}
+Cada aproximadamente dos años, la Raspberry Pi Foundation saca una nueva versión de su compacto y más exitoso producto: la \acrlong{rpi}, o por sus siglas \acrshort{rpi}. Estos pequeños computadores vienen en diversos formatos de forma, pero el que ha catapultado esta plataforma al éxito ha sido el formato que denominan \textit{Standard}\footnote{85.6 mm × 56.5 mm}.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.75\textwidth]{img/rpi_parts/rpi_base.jpg}
+  \caption{\acrlong{rpi} 4 Model B}
+  \label{fig:rpi_base}
+\end{figure}
+
+Siendo cada versión mucho más potente que la anterior, y costando aproximadamente el mismo precio, está claro que la Raspberry Pi Foundation está haciendo un excelente trabajo aportando valor a este segmento del bajo consumo y coste.
+
+La \acrlong{rpi} 4B (4 Model B), que se muestra en la Figura \ref{fig:rpi_base}, es la versión más nueva de formato \textit{Standard}, y por ello ha sido la elección para constituir la base del clúster. A continuación se muestran sus principales características \cite{rpi4b_specifications}:
+
+\subsection{CPU}
+La \acrshort{cpu} (\textit{\acrlong{cpu}} o Unidad de Procesamiento Central) de este nuevo modelo es la \textbf{Broadcom BCM2711}, un procesador con arquitectura ARMv8-A y 4 núcleos Cortex-A72, que funcionan a 1.5GHz.
+
+Estos núcleos cuentan con un \textit{pipeline} de 15 etapas, ejecución OOO (\textit{out-of-order}) y predictor de saltos, entre otros.
+
+Además, cuenta con 48KB de L1I y 32KB de L1D por núcleo, así como 1MB de L2 compartido (256KB por núcleo). Esto emparejado con un único chip de 2GB de memoria LPDDR4-3200, es suficiente para un uso doméstico sencillo, pero quizás no sea la mejor disposición para el cómputo intensivo como se verá más adelante.
+% TODO INSERTAR REF?????
+
+\subsection{GPU/VPU}
+\label{ssec:gpu_vpu}
+A pesar de que el integrado que se muestra en la foto del apartado superior es un \acrshort{soc} (\textit{\acrlong{soc}}), se ha preferido tratar la \acrshort{cpu} y la \acrshort{gpu}/\acrshort{vpu} (\textit{\acrlong{gpu}}/\textit{\acrlong{vpu}}) por separado. Y es que los gráficos integrados de esta última \acrlong{rpi} son una importante mejora sobre la VideoCore IV que equipaban modelos anteriores.
+
+La GPU en la \acrshort{rpi}4 es la VideoCore VI, y cuenta con multitud de soporte para multimedia y una potencia gráfica aceptable. En concreto, acelera por hardware H.265 (4Kp60 decode), H.264 (1080p60 decode, 1080p30 encode), y soporta OpenGL ES, 3.0.
+
+Además, y lo que considero más interesante, es que posteriormente al lanzamiento se comenzó para esta gráfica el desarrollo de un driver de Vulkan: un estándar abierto de última generación para programación de gráficos, pero que también se puede emplear para cómputo. Esto es una fantástica noticia, ya que permite acelerar ciertas cargas de trabajo aprovechando la inmensa capacidad de cómputo paralelo de estos dispositivos, siendo una de las más habituales en estos dispositivos la transformada de Fourier.
+
+Realizar algún tipo de programa para computación \acrshort{gpgpu} (\textit{\acrlong{gpgpu}}) en Vulkan queda fuera de lo que pretende abarcar este trabajo, pero es un interesante proyecto para la realización de alguna otra iteración sobre esta plataforma.
+
+\subsection{E/S}
+En términos de \acrlong{e-s} (\acrshort{e-s}) la \acrshort{rpi}4B cuenta con multitud de puertos, de los que se van a utilizar Gigabit Ethernet y USB 3.0. Sin embargo, éste equipa de serie otros muchos otros puertos en los pines \acrshort{gpio} (\acrlong{gpio}), cuya disposición se puede encontrar en la Figura \ref{fig:rpi_gpio_pinout}, y que es un estándar de-facto, ya que es la misma para todos los modelos de \acrlong{rpi} y otros dispositivos similares, que la adoptan para mayor inter-compatibilidad.
+
+Los puertos y protocolos que integra la \acrlong{rpi} en el \acrshort{gpio} son algunos como I2C (\textit{Inter-Integrated Circuit}), UART (\textit{Universal Asynchronous Receiver-Transmitter}), SPI (\textit{Serial Peripheral Interface}) y video compuesto, así como mútiples pines de alimentación a 5 y 3.3V. Por último, ya en la propia placa, tambien se dispone de un puerto DSI (\textit{Display Serial Interface}) y CSI (\textit{Camera Serial Interface}), y dos salidas de vídeo HDMI.
+
+También cuenta con interfaz de datos inalámbrica, que soporta tecnologías WiFi 802.11.b/g/n/ac y Bluetooth 5.0.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/rpi_parts/rpi_gpio.png}
+  \caption{Pines GPIO de la \acrlong{rpi} 4}
+  \label{fig:rpi_gpio_pinout}
+\end{figure}
+
+\section{MPI}
+Para aprovechar todo el potencial hardware de los supercomputadores y, en general, de los computadores paralelos, existen paradigmas de programación específicos. \acrshort{mpi} (\acrlong{mpi})\footnote{\url{https://www.mpi-forum.org}} es un estándar para la programación de los sistemas paralelos de memoria distribuida como Clúpiter. Es una especificación de paso de mensajes que define la sintaxis y semántica del conjunto de rutinas para comunicar datos entre procesos que exponen las diferentes implementaciones. 
+
+Entre las implementaciones disponibles, las más utilizadas son:
+\begin{itemize}
+  \item\textbf{OpenMPI}\footnote{\url{https://www.open-mpi.org}}: Implementación libre mantenida por un consorcio de académicos, investigadores y socios que ofrece elevada eficiencia y flexibilidad a quien la implementa. Además, es la librería \acrshort{mpi} que ofrece Arch Linux (distribución Linux de Clúpiter) en sus repositorios oficiales, y contra la que se compilan por defecto sus ejecutables.
+  \item\textbf{MPICH}\footnote{\url{https://www.mpich.org}}: Otra implementación libre de MPI muy similar a OpenMPI en rendimiento, flexibilidad y modo de desarrollo.
+  \item\textbf{Intel MPI}\footnote{\url{https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/mpi-library.html}}: Implementación propietaria de \acrshort{mpi} por parte de Intel. Está especializada en productos de la propia marca y optimizada para ellos, por lo que suele arrojar un mayor rendimiento que las contrapartes libres.
+\end{itemize}
+
+La base de \acrshort{mpi} son las primitivas de envío y recepción de datos. Existen dos funciones de envío y recepción \textbf{bloqueantes} (esto es, la llamada a la función solamente termina cuando todos los miembros involucrados en la ejecución de dicha función han terminado):
+\begin{itemize}
+  \item \textbf{MPI\_Send}: Envía un mensaje a destino, y espera a que el receptor esté listo para recibirlo. 
+  \item \textbf{MPI\_Recv}: Espera a que llegue un mensaje del origen, y cuando éste está listo para enviarlo, lo recibe.
+\end{itemize}
+
+Estas funciones tienen su contraparte para programación no bloqueante, que puede arrojar un mayor rendimiento, pero también requiere un extra de complejidad y puede no ser trivial. Las funciones básicas para realizar programación no bloqueante con \acrshort{mpi} son \textbf{MPI\_Isend} y \textbf{MPI\_Irecv}. A su vez son necesarias para chequear el estado de la ejecución las funciones \textbf{MPI\_Test} (no bloqueante) y \textbf{MPI\_Wait} (bloqueante).
+
+Otra funcionalidad de \acrshort{mpi} ampliamente utilizada son las primitivas de grupo u operaciones colectivas, las cuales permiten la comunicación entre más de 2 procesos.
+
+Las colectivas más sencillas y comunes de MPI son las siguientes \cite{cheung_mpi}:
+\begin{itemize}
+  \item \textbf{MPI\_Bcast}: Emite (hace \textit{broadcast}) el mensaje a todos los procesos del comunicador, tal y como se muestra en la Figura \ref{fig:mpi_bcast}.
+  
+  \begin{figure}[H]
+    \vspace*{0.5cm}
+    \centering
+    \resizebox {0.8\textwidth} {!} {
+    \input{pgf/MPI_Bcast.pgf}
+    }
+    \caption{Visualización de MPI\_Bcast}
+    \label{fig:mpi_bcast}
+  \end{figure}
+
+  \item \textbf{MPI\_Scatter}: Distribuye equitativamente el mensaje entre todos los procesos del comunicador, tal y como se muestra en la Figura \ref{fig:mpi_scatter})
+
+  \begin{figure}[H]
+    \vspace*{0.5cm}
+    \centering
+    \resizebox {0.8\textwidth} {!} {
+    \input{pgf/MPI_Scatter.pgf}
+    }
+    \caption{Visualización de MPI\_Scatter}
+    \label{fig:mpi_scatter}
+  \end{figure}
+
+  \item \textbf{MPI\_Gather}: Recoge varios fragmentos de un mensaje y los combina. Es la operación inversa al scatter (Figura \ref{fig:mpi_gather}).
+
+  \begin{figure}[H]
+    \vspace*{0.5cm}
+    \centering
+    \resizebox {0.8\textwidth} {!} {
+    \input{pgf/MPI_Gather.pgf}
+    }
+    \caption{Visualización de MPI\_Gather}
+    \label{fig:mpi_gather}
+  \end{figure}
+
+  \item \textbf{MPI\_Reduce}: Recoge, al igual que en el scatter, los fragmentos del mensaje, pero en lugar de almacenarlos como tal, aplica una operación sobre ellos (Figura \ref{fig:mpi_reduce}).
+
+  \begin{figure}[H]
+    \vspace*{0.5cm}
+    \centering
+    \resizebox {0.8\textwidth} {!} {
+    \input{pgf/MPI_Reduce.pgf}
+    }
+    \caption{Visualización de MPI\_Reduce}
+    \label{fig:mpi_reduce}
+  \end{figure}
+
+\end{itemize}
+
+\subsection{Ejecución de programas MPI}
+\label{sssec:ejecucion_mpi}
+Ejecutar programas de \acrshort{mpi} es moderadamente sencillo. Se debe emplear el comando \texttt{mpirun} \cite{mpi_mpirun}.
+
+La estructura del comando es:
+\begin{lstlisting}[language=bash]
+mpirun [ opciones ] <programa> [ argumentos ]
+\end{lstlisting}
+
+De esta forma, si se quiere ejecutar el archivo \texttt{./mpitest} con 4 procesos, se debe ejecutar:
+\begin{lstlisting}[language=bash]
+mpirun -np 4 ./mpitest
+\end{lstlisting}
+
+
+Existen algunas opciones relevantes a un nivel básico, entre las que se pueden encontrar:
+\begin{itemize}
+  \item\textbf{-{}-oversubscribe}: permite asignar más de un proceso por \acrshort{cpu}.
+  \item\textbf{-{}-hostfile}: permite proporcionar una lista de nodos en los que ejecutar el programa paralelo. Esto será especialmente útil en la ejecución de los benchmarks. No es la única forma de ejecutar un programa \acrshort{mpi} en múltiples computadores, pero sí la que se usará en este trabajo.
+\end{itemize}
+
+% COMPORTAMIENTO DE ORTED
+% El funcionamiento de \texttt{mpirun} es moderadamente sencillo en este caso, por orden:
+% \begin{enumerate}
+%   \item Recibe el comando deseado, así como el número de procesos a ejecutar de dicho programa \acrshort{mpi}.
+%   \item Verifica en el hostfile cuántos slots tiene disponibles cuántos se requieren, y cuál es la forma más óptima de organizar dichos slots.
+%   \item \texttt{mpirun} establece una conexión por \acrshort{ssh} a cada nodo que se ve involucrado en la ejecución del programa, e inicia una instancia de \texttt{orted}\footnote{\url{https://man.archlinux.org/man/extra/openmpi/orted.1.en}}.
+%   \item Finalmente \texttt{orted} recibe los procesos a ejecutar, e inicia los que se han asignado.
+% \end{enumerate}

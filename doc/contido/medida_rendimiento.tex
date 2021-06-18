@@ -1,0 +1,684 @@
+\chapter{Medida del rendimiento}
+\label{chap:medida_rendimiento}
+
+\lettrine{L}{a} medida del rendimiento y el resultado de la misma es una parte fundamental en la evaluación y relevancia de un supercomputador, hasta el punto en el que se compite por ver cuales desarrollan un mejor resultado\footnote{\url{https://www.top500.org}}.
+
+En este caso, si bien el rendimiento no es una prioridad, es conveniente realizar estas pruebas, especialmente para poder observar el impacto que tiene la red de comunicaciones entre los núcleos de una sola CPU, o entre múltiples CPUs y memorias. En resumen, medir la escalabilidad, que como se observa en la Subsección \ref{ssec:resultados} no es en absoluto espectacular.
+
+\section{NAS Parallel Benchmarks}
+Los \acrlong{npb} (\acrshort{npb}) \cite{npb_webpage} son una \textit{suite} de tests de cálculo numérico diseñados por la División de Supercomputación de la NASA para la medida del rendimiento de supercomputadores paralelos.
+
+Estos benchmarks se dividen principalmente en ocho programas o \textit{kernels} (núcleos), teniendo otras adaptaciones para diferentes paradigmas de computación paralela, como puede ser de paralelización híbrida, computación desestructurada, o mallas de computación.
+
+A su vez cada benchmark (\textit{kernel}) tiene múltiples clases, siendo estas \texttt{S}, \texttt{W}, \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, \texttt{E}, y representando cada una un nivel de requerimientos superior, respectivamente. Específicamente, las clases \texttt{A}, \texttt{B} y \texttt{C} suponen cuadruplicar el tamaño con respecto a la anterior, y las \texttt{D}, \texttt{E} y \texttt{F} (para los benchmarks que tienen estas clases disponibles), multiplican por 16 el tamaño del anterior.
+
+En este caso se empleará la clase \texttt{C} para todos los benchmarks, excepto en \texttt{MG} que será clase \texttt{B}, y \texttt{FT}, que será clase \texttt{A}. Esta decisión para ambos benchmarks es así debido a limitaciones de memoria en las ejecuciones en un único nodo.
+
+\subsection{Benchmarks}
+\label{ssec:benchmarks}
+
+Los benchmarks a ejecutar serán \texttt{LU}, \texttt{CG}, \texttt{FT}, \texttt{IS}, \texttt{MG} y \texttt{EP}, es decir, se excluyen \texttt{BT}, \texttt{SP} y \texttt{DT}. Esto es así debido a que los dos primeros requieren un número cuadrado perfecto de procesos, por lo que solo se podría ejecutar en 1, 4, 9, 16\dots\ procesos, y medir su rendimiento sería extraño debido a lo desbalanceado del mismo. En cuanto a \texttt{DT}, requiere una cantidad mínima de procesos en función de la clase del problema, procesos que para clase \texttt{A} y superior no son suficientes, por lo que se ha optado por descartarlo.
+
+En concreto, los requerimientos para el número de procesos son los siguientes\footnote{Contenidos del fichero \texttt{README.install} en \texttt{NPB3.4-MPI}}:
+
+\begin{lstlisting}
+Different benchmark has different requirement for process count,
+as listed below:
+
+  BT, SP         - a square number of processes (1, 4, 9, ...)
+  LU             - 2D (n1 * n2) process grid where n1/2 <= n2 <= n1
+  CG, FT, IS, MG - a power-of-two number of processes (1, 2, 4, ...)
+  EP, DT         - no special requirement
+\end{lstlisting}
+
+A continuación se describen brevemente cada uno de los benchmarks utilizados. Los tamaños de problema en función de la clase se encuentran disponibles en \cite{npb_problem_sizes}, así como una explicación de los mismos en \cite{benchmarks1994technical}. 
+
+\subsubsection{CG - Conjugate Gradient}
+\label{sssec:benchmarks__cg}
+El método del gradiente conjugado es un algoritmo para la resolución numérica de sistemas de ecuaciones lineales de matrices simétricas y definidas positivas. La explicación en profundidad del método se puede encontrar en \cite[2.2.3]{hestenes1952methods}, pero al quedar fuera del objetivo del trabajo, no se tratará en mayor profundidad, quedando como resumen que ``se trata de un método iterativo para resolución de sistemas de ecuaciones lineales'', siendo obvia su utilidad en aeronáutica, y de aquí su aparición en los \acrlong{npb}.
+
+\subsubsection{EP - Embarrassingly Parallel}
+\label{sssec:benchmarks__ep}
+Este kernel ``embarazosamente parelelo'' tiene un nombre bastante descriptivo en cuanto a sus características, pero no en cuanto a su funcionamiento interno. Este programa sirve para estimar un límite superior al rendimiento en coma flotante, al que podrían aproximarse cargas de trabajo sin altos requerimientos de comunicación entre procesadores.
+
+El kernel EP genera pares de números aleatorios siguiendo una distribución gaussiana, y los tabula en función de ciertos criterios que, de nuevo, quedan fuera del alcance de este trabajo, pero que pueden ser consultados por usuarios más expertos en \cite[2.2.1]{benchmarks1994technical}. El patrón de comportamiento de este problema es típico de simulaciones estilo Monte Carlo y únicamente se requieren comunicaciones interprocesador al finalizar la ejecución para la realizacion de las (10) sumas del número de pares tabulados. 
+
+\subsubsection{IS - Integer Sort}
+\label{sssec:benchmarks__is}
+Otro kernel con un nombre descriptivo, y es que hace lo que promete, es un algoritmo paralelo de ordenación de números enteros. Como es evidente, este algoritmo no mide la capacidad en punto flotante del clúster, sino su capacidad de comparación de enteros, y especialmente la velocidad de su memoria debido a la cantidad de permutaciones que ocurren sobre la misma.
+
+En un sistema de memoria compartida, las $N$ claves (es decir, cada número) se almacenan en un espacio de memoria contiguo. Sin embargo, en un espacio de memoria distribuida en $p$ secciones de memoria, se almacenan $N_{p}$ claves por espacio de memoria, siendo $N_{p} = N / p$.
+
+Esta necesidad de ancho de banda a la memoria principal, así como de rápidas comunicaciones entre múltiples nodos se puede observar a la perfección en \nameref{sssec:resultados__is}. Puede leerse con más detalle el funcionamiento del benchmark en \cite[2.2.5]{benchmarks1994technical}.
+
+\subsubsection{LU - Lower-Upper solver}
+\label{sssec:benchmarks__lu}
+La factorización LU es es un método de factorización de una matriz en dos matrices triangulares inferior y superior. Aunque ``factorización de matrices'' pudiera sonar extraño a algún lector, realmente no es nada esotérico: algunas matrices, al igual que algunos números enteros, pueden ser separadas en dos matrices, producto de las cuales se obtiene la matriz original. En la factorización LU de matrices 3$\times$3, éstas tienen una estructura como la que se puede observar en la Figura \ref{fig:factorizacion_lu}.
+
+Esta factorización se emplea en el análisis numérico para la resolución de sistemas de ecuaciones de forma más eficiente, por lo que, de nuevo, se puede apreciar la utilidad de este proceso en aeronáutica.
+
+\begin{figure}[h!]
+  \vspace*{0.5cm}
+  \centering
+  
+    $\begin{pmatrix}
+    a_{11} & a_{12} & a_{13}\\
+    a_{21} & a_{22} & a_{23}\\
+    a_{31} & a_{32} & a_{33}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    1      & 0      & 0\\
+    l_{21} & 1      & 0\\
+    l_{31} & l_{32} & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+    u_{11} & u_{12} & u_{13}\\
+    0      & u_{22} & u_{23}\\
+    0      & 0      & u_{33}
+    \end{pmatrix}
+    $
+
+  \caption{Factorización LU para matrices 3$\times$3}
+  \label{fig:factorizacion_lu}
+  %\vspace*{0.1cm}
+\end{figure}
+
+\subsubsection{FT - 3D FFT PDE (Fourier Transform)}
+Este kernel resuelve numéricamente cierta ecuación en derivadas parciales mediante el uso de transformadas rápidas de Fourier tridimensionales directas (\acrshort{fft} o \acrlong{fft}) e inversas (I\acrshort{fft} o Inverse \acrshort{fft}). Se puede encontrar mayor detalle en esta rama avanzada de las matemáticas en \cite[2.2.4]{benchmarks1994technical}.
+
+La \acrshort{fft} es una implementación eficiente de la transformada discreta de Fourier para computadores, de muy especial utilidad en el tratamiento digital de señales y la resolución de ecuaciones en derivadas parciales, siendo este último el uso que se le da en este benchmark. 
+
+Las \acrshort{fft} en 3D son parte muy importante de aplicaciones en mecánica de fluidos, especialmente en simulaciones de torbellinos. Asimismo, la ejecución de estos algoritmos conlleva una importante comunicación entre procesos, lo cual tiene cierto impacto en las cifras de rendimiento, como se puede observar en \nameref{sssec:resultados__ft}.
+
+\subsubsection{MG - MultiGrid}
+Finalmente, el último benchmark que se ejecuta de esta suite es el multigrid. El proceso consiste en la realización de cuatro iteraciones del algoritmo multigrid de ciclo en V, que se emplean para la obtención de una aproximación a la solución $u$ de una ecuación de Poisson discreta, en una malla 256$\times$256$\times$256. Más información para lectores experimentados en este campo está disponible, de nuevo, en \cite[2.2.2]{benchmarks1994technical}.
+
+Este método multigrid se emplea para la resolución de sistemas de ecuaciones diferenciales, y ha sido ampliamente utilizado para la resolución de otros sistemas de ecuaciones más complicados como las ecuaciones de Lamé o las Navier-Stokes. Ambas estas ecuaciones relacionadas con mecánica de fluidos y, por tanto y de nuevo, resultando sencillo visualizar la interconexión de esta carga de trabajo con aquellas empleadas en el campo de la aerodinámica.  
+
+\section{Instalación de los NPB}
+Para poder realizar las medidas de rendimiento, primero se necesitan tanto las herramientas de compilación como las de ejecución. Estas dependencias se deben satisfacer ejecutando en todos los nodos:
+
+\begin{lstlisting}[language=bash]
+# Se añade la opción --needed debido a que hay paquetes del metapaquete base-devel que ya están instalados, y no es necesario reinstalar.
+# Tras ejecutar el comando se aceptan las opciones por defecto
+pacman -S base-devel openmpi gcc-fortran wget --needed
+\end{lstlisting}
+
+A continuación se deben descargar, configurar, y compilar los \acrlong{npb} únicamente en el nodo maestro. Esto se realizará como \texttt{mpiuser} en la carpeta \texttt{/mpishared} de la siguiente forma:
+
+\begin{lstlisting}[language=bash]
+# Descarga de la última versión de NPB (3.4.2)
+wget https://www.nas.nasa.gov/assets/npb/NPB3.4.2.tar.gz
+
+# Descomprimir el archivo descargado
+tar xzfv NPB3.4.2.tar.gz
+
+# Y entrar en la versión de los NPB con MPI
+cd /mpishared/NPB3.4.2/NPB3.4-MPI
+
+# Copiar los archivos de configuración para la compilación
+#  1- Para el archivo make.def se añaden un par de argumentos a los flags de compilación:
+#   1.1- -fallow-argument-mismatch Esto permite que el código compile en las últimas versiones de gfortran
+#   1.2- -march=native Optimiza para la arquitectura específica de rpi4
+sed 's/^FFLAGS\s*=\s*-O3/FFLAGS  = -O3 -fallow-argument-mismatch -march=native/g' config/make.def.template | sed -e 's/^CFLAGS\s*=\s*-O3/CFLAGS  = -O3 -march=native/g' > config/make.def
+
+#  2- Para el archivo suite.def se hace que todos los tests sean clase C menos FT, que por razones de memoria es clase A, y MG clase B, por los mismos motivos.
+sed 's/S$/C/g' config/suite.def.template | sed -e 's/ft\s*C$/ft\tA/g' | sed -e 's/mg\s*C$/mg\tB/g' > config/suite.def
+
+# Finalmente se compilan todos los tests con make suite (con todas las CPU en paralelo)
+make suite -j4
+\end{lstlisting}
+
+\section{Ejecución de los benchmarks}
+Para la ejecución de los benchmarks de forma paralela se necesita algún método para coordinar la ejecución del programa en todos los nodos.
+
+\begin{itemize}
+    \item Para un solo nodo con múltiples núcleos es sencillo, ya que comparten memoria, usuarios y almacenamiento.
+    \item Para múltiples nodos, sin embargo, es algo más complejo. Como ya se menciona en las Subsecciones \ref{ssec:gen_ssh} y \ref{ssec:serv_nfs}, es necesario disponer de:
+    \begin{itemize}
+        \item Almacenamiento compartido en forma de NFS, SSHFS, o similar para alojar los ejecutables.
+        \item Autenticación y gestión común para el lanzamiento de los programas paralelos en forma de SSH con par de claves.
+    \end{itemize}
+\end{itemize}
+
+A MPI se le indica qué nodos deben ejecutar las tareas mediante un archivo de hosts, o \textit{hostsfile} \cite{mpi_hostfile_option}. Este fichero contiene las direcciones de los diferentes computadores que componen el clúster, así como el número de tareas que pueden ejecutar (habitualmente coincidente con su número de núcleos).
+
+Así, se crea en \texttt{/mpishared} el fichero \texttt{hostfile} con los hostname de todos los nodos:
+
+\begin{lstlisting}[language=bash]
+rpi0 slots=4
+rpi1 slots=4
+rpi2 slots=4
+rpi3 slots=4
+rpi4 slots=4
+rpi5 slots=4
+rpi6 slots=4
+rpi7 slots=4
+\end{lstlisting}
+
+La ejecución de cada uno de los benchmarks se realizará mediante el siguiente comando \textbf{como usuario mpiuser}, en el que se debe especificar el número de procesos a crear, así como el hostfile. La sintaxis de este comando se comenta brevemente en \ref{sssec:ejecucion_mpi}.\footnote{Se añade \texttt{--mca opal\_warn\_on\_missing\_libcuda 0} para evitar una advertencia relacionada con la ausencia de librerías para CUDA, una plataforma de computación paralela desarrollada por Nvidia, que no interesa en la salida por pantalla.}
+
+\begin{lstlisting}[language=bash]
+mpirun -np <NUM_PROCS> --hostfile /mpishared/hostfile --mca opal_warn_on_missing_libcuda 0 /mpishared/NPB3.4.2/NPB3.4-MPI/bin/<KERNEL>.<CLASS>.x
+\end{lstlisting}
+
+Como estos parámetros son fijos, se emplea un script para automatizar la ejecución de los benchmarks, así como la recolección de resultados, siempre y cuando solamente exista una clase por benchmark:
+
+\begin{lstlisting}[language=bash]
+#!/bin/sh
+
+mkdir -p "results"
+
+BENCHMARKS=( lu cg ft is mg ep )
+MPIRUNFLAGS="--mca opal_warn_on_missing_libcuda 0"
+
+for i in "${BENCHMARKS[@]}"
+do
+    for j in 1 2 4 8 16 32
+    do
+        mpirun -np $j --hostfile /mpishared/hostfile $MPIRUNFLAGS /mpishared/NPB3.4.2/NPB3.4-MPI/bin/${i}.*.x | tee -a results/$i.$j.run
+    done
+done
+\end{lstlisting}
+
+Ante diferentes números de procesos, \acrshort{mpi} elige la configuración más óptima, intentando mantener siempre las CPUs lo más cerca posible.
+
+\section{Resultados experimentales}
+\label{sec:medida_rendimiento}
+En esta sección se muestran los resultados obtenidos para cada uno de los benchmarks. El objetivo es medir la escalabilidad del clúster, esto es, la eficacia con la que, aumentando los recursos computacionales, aumenta el rendimiento en la misma medida.
+
+\subsection{Metodología}
+\label{ssec:medida_rendimiento_metodologia}
+Una metodología eficaz y depurada es parte muy importante en cualquier medida y análisis de la realidad, ya que permite filtrar y categorizar datos fidedignos, así como prevenir la aparición de datos erróneos casi por completo. En este caso la metodología a seguir es moderadamente sencilla.
+
+Se han realizado 5 ejecuciones de todos los problemas clase \texttt{C} y 9 ejecuciones de los de clases inferiores (\texttt{A} o \texttt{B}). Esto es así ya que, a menor tiempo de ejecución, mayor probabilidad de obtener un dato atípico. Por suerte, y muy probablemente debido a la instalación mínima del sistema operativo, no ha habido variaciones significativas entre ejecuciones.
+
+Tras la recolección de datos, se realiza la media aritmética de los datos de las $N$ ejecuciones. Los resultados de cada ejecución de los benchmarks pueden encontrarse en el Apéndice \ref{chap:bench_values}.
+
+\subsection{Medida del rendimiento}
+Se muestran a continuación los datos expresados en MOPS (\textbf{M}ega/\textbf{M}illion \textbf{O}perations \textbf{P}er \textbf{S}econd). En función de si estas operaciones son en punto flotante o no, también se podrán llamar \acrshort{mflops} (\textbf{M}ega/\textbf{M}illion \textbf{FL}oating point \textbf{O}perations \textbf{P}er \textbf{S}econd).
+
+Esta métrica, MOPS, indica para cada benchmark el número de operaciones que realiza el kernel, que no el número de operaciones de la propia CPU. Por esta razón los resultados son muy diferentes y variados entre diferentes kernels \cite{mallon2009npb}.
+
+Finalmente aclarar que en las gráficas se puede encontrar una línea vertical discontinua en los 4 núcleos. Esta línea señala la transición de ejecución en un solo computador (memoria compartida por 4 procesos) a ejecución en múltiples computadores, comunicados a través de Gigabit Ethernet (memoria distribuida en $N_{bloques}$ de 4 procesos, tal que $N_{bloques} = N_{procesos} / 4$). Además, debajo de dichas gráficas se encuentran dos medidores, siendo estos capturas de pantalla del \textit{dashboard} de Clúpiter, el cual se explicará en más detalle en el próximo capítulo. La primera de ellas es para la ejecución en un solo nodo, y la segunda para ejecución en multinodo, siendo esta segunda una captura de un nodo al azar diferente al nodo maestro, ya que todos los nodos muestran un gráfico idéntico.
+
+Si uno es perspicaz, puede notar que el tráfico del nodo maestro es superior al del resto de nodos cuando el tráfico es muy reducido. Esto es así porque es el nodo maestro el encargado de alojar la página web interactiva y, por tanto, de recabar y enviar la información de monitorización de todos los nodos y mostrarla al usuario. Así, fijándose en alguna figura de un benchmark donde no haya comunicaciones intensivas (Figura \ref{fig:mops__ep}), se puede comprobar que, si el nodo maestro tiene que recibir información de 7 nodos, y estos generan un tráfico de aproximadamente $60$ kbps (Figura \ref{fig:mops_rev_mn__ep}), se puede ver fácilmente por qué en el nodo maestro (Figura \ref{fig:mops_rev_sn__ep}) existe un tráfico de $416 \approx 420 = 60 \cdot 7$ kbps.
+
+\subsection{Resultados}
+\label{ssec:resultados}
+En esta subsección se muestran los resultados obtenidos de la ejecución de los diferentes kernels de los \acrlong{npb}.
+
+\subsubsection{CG}
+\label{sssec:resultados__cg}
+Como puede apreciarse en la Figura \ref{fig:mops__cg}, el benchnmark CG es un benchmark mixto, en el que se realiza computación y comunicación de forma no diferenciada en el tiempo. Esto no parece ser un problema importante a la hora de entrar en modo de memoria distribuida, donde los MOPS por proceso no solo se estabilizan más o menos en la misma tendencia, sino que debido al dato atípicamente bajo para 4 procesadores en memoria compartida, el rendimiento mejora. Este valor atípicamente bajo podría deberse, como se va a ver posteriormente en múltiples ocasiones, al reducido ancho de banda de la memoria principal.
+
+\subsubsection{EP}
+\label{sssec:resultados__ep}
+Por otro lado, como se puede ver en la Figura \ref{fig:mops__ep}, así como se comenta en \nameref{sssec:benchmarks__ep}, y en anteposición al benchmark discutido anteriormente, EP es un benchmark que realiza toda la computación de forma completamente independiente, y únicamente se comunica al final de la ejecución, siendo esta comunicación muy ligera, e indistinguible del tráfico habitual entre nodos (Figura \ref{fig:mops_rev_mn__ep}). Además, en este benchmark, hay de nuevo un valor atípicamente bajo para 4 procesadores, marcando una tendencia que, como se comenta anteriormente, probablemente sea debida al reducido ancho de banda del único chip de memoria DRAM en la \acrlong{rpi} 4B.
+
+\subsubsection{IS}
+\label{sssec:resultados__is}
+El núcleo (kernel) IS es otro que realiza muy importantes movimientos de datos tanto de lectura como de escritura en memoria. Esto es un problema, como ya se discute previamente, debido al pequeño ancho de banda con la memoria principal. Combinado además con que la arquitectura \acrshort{arm} es del tipo \textit{load-store}, y las operaciones de red no están aceleradas por hardware, apunta a que el resultado probablemente no va a ser espectacular ni en mononodo, ni en multinodo. Esto puede confirmarse observando la Figura \ref{fig:mops__is}.
+
+\subsubsection{LU}
+\label{sssec:resultados__lu}
+En el benchmark LU se aprecia un escalado más normal (Figura \ref{fig:mops__lu}), sin tantos datos atípicos, en donde se puede observar una caída de en torno al $60\textasciitilde70\%$ en MOPS por proceso al aumentar el número de procesos en el mismo nodo. Caída en picado que se vuelve más leve cuando se ejecuta en modo de memoria distribuida (multinodo). De nuevo, esta caída en picado es probablemente por la elevada demanda de ancho de banda a la memoria principal, que no puede ser satisfecha por un solo chip.
+
+\subsubsection{FT}
+\label{sssec:resultados__ft}
+En el benchmark FT, de resolución de ecuaciones en derivadas parciales mediante transformadas de Fourier tridimensionales se sigue la misma tendencia que en el kernel discutido previamente. Los detalles del rendimiento para cada configuración de CPUs se encuentran en la Figura \ref{fig:mops__ft}. Es interesante destacar que este benchmark, a pesar de ser intensivo en comunicaciones, éstas no se dan simultáneamente con el cómputo, sino que se alternan con el mismo, como se puede apreciar en la Figura \ref{fig:mops_rev_mn__ft}.
+
+\subsubsection{MG}
+\label{sssec:resultados__mg}
+Por último, en la Figura \ref{fig:mops__mg}, se expone el rendimiento del benchmark Multigrid (MG), que por las características de su algoritmo, realiza un importante uso de las comunicaciones interprocesador. En este kernel, el uso de RAM es muy intensivo, por lo que en un mismo nodo, al doblar el número de CPUs en uso, los MOPS por procesador se reducen casi a la mitad, obteniendo casi el mismo rendimiento, lo cual resulta bastante decepcionante.
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS total,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,115.37)
+                    (2,158.44)
+                    (4,112.03)
+                    (8,319.65)
+                    (16,565.98)
+                    (32,1534.13)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        % \caption
+        \label{fig:mops_total__cg}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS/proceso,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,115.37)
+                    (2,79.22)
+                    (4,28.01)
+                    (8,39.96)
+                    (16,35.37)
+                    (32,47.94)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        %\caption
+        \label{fig:mops_process__cg}
+    \end{subfigure}
+
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/cg_rev_sn.png}
+        \caption{Utilización de CPU para mononodo}
+        \label{fig:mops_rev_sn__cg}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/cg_rev_mn.png}
+        \caption{Utilización de CPU y red para multinodo}
+        \label{fig:mops_rev_mn__cg}
+    \end{subfigure}
+    \caption{Métricas de rendimiento, CPU y red para el kernel CG}
+    \label{fig:mops__cg}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS total,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,31.91)
+                    (2,62.84)
+                    (4,112.45)
+                    (8,236.25)
+                    (16,446.06)
+                    (32,868.45)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        % \caption
+        \label{fig:mops_total__ep}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS/proceso,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,31.91)
+                    (2,31.42)
+                    (4,28.11)
+                    (8,29.53)
+                    (16,27.88)
+                    (32,27.14)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        %\caption
+        \label{fig:mops_process__ep}
+    \end{subfigure}
+
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/ep_rev_sn.png}
+        \caption{Utilización de CPU para mononodo}
+        \label{fig:mops_rev_sn__ep}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/ep_rev_mn.png}
+        \caption{Utilización de CPU y red para multinodo}
+        \label{fig:mops_rev_mn__ep}
+    \end{subfigure}
+    \caption{Métricas de rendimiento, CPU y red para el kernel EP}
+    \label{fig:mops__ep}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS total,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,38.29)
+                    (2,60.75)
+                    (4,78.42)
+                    (8,54.77)
+                    (16,67.20)
+                    (32,92.70)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        % \caption
+        \label{fig:mops_total__is}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS/proceso,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,38.29)
+                    (2,30.37)
+                    (4,19.60)
+                    (8,6.85)
+                    (16,4.20)
+                    (32,2.90)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        %\caption
+        \label{fig:mops_process__is}
+    \end{subfigure}
+
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/is_rev_sn.png}
+        \caption{Utilización de CPU para mononodo}
+        \label{fig:mops_rev_sn__is}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/is_rev_mn.png}
+        \caption{Utilización de CPU y red para multinodo}
+        \label{fig:mops_rev_mn__is}
+    \end{subfigure}
+    \caption{Métricas de rendimiento, CPU y red para el kernel IS}
+    \label{fig:mops__is}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS total,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,1194.68)
+                    (2,1654.34)
+                    (4,1941.11)
+                    (8,3689.97)
+                    (16,7239.81)
+                    (32,13674.22)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        % \caption
+        \label{fig:mops_total__lu}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS/proceso,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,1194.68)
+                    (2,827.17)
+                    (4,485.28)
+                    (8,461.25)
+                    (16,452.49)
+                    (32,427.32)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        %\caption
+        \label{fig:mops_process__lu}
+    \end{subfigure}
+
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/lu_rev_sn.png}
+        \caption{Utilización de CPU para mononodo}
+        \label{fig:mops_rev_sn__lu}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/lu_rev_mn.png}
+        \caption{Utilización de CPU y red para multinodo}
+        \label{fig:mops_rev_mn__lu}
+    \end{subfigure}
+    \caption{Métricas de rendimiento, CPU y red para el kernel LU}
+    \label{fig:mops__lu}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS total,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,602.08)
+                    (2,804.61)
+                    (4,888.52)
+                    (8,1069.91)
+                    (16,1582.68)
+                    (32,2584.08)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        % \caption
+        \label{fig:mops_total__ft}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS/proceso,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,602.08)
+                    (2,402.31)
+                    (4,222.13)
+                    (8,133.74)
+                    (16,98.92)
+                    (32,80.75)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        %\caption
+        \label{fig:mops_process__ft}
+    \end{subfigure}
+
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/ft_rev_sn.png}
+        \caption{Utilización de CPU para mononodo (Clase A)}
+        \label{fig:mops_rev_sn__ft}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/ft_rev_mn.png}
+        \caption{Utilización de CPU y red para multinodo (Clase C)}
+        \label{fig:mops_rev_mn__ft}
+    \end{subfigure}
+    \caption{Métricas de rendimiento, CPU y red para el kernel FT}
+    \label{fig:mops__ft}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS total,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,609.39)
+                    (2,699.88)
+                    (4,771.88)
+                    (8,1462.09)
+                    (16,2532.57)
+                    (32,4499.23)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        % \caption
+        \label{fig:mops_total__mg}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS/proceso,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+
+                \addplot[udcpink,smooth,very thick,mark=*] coordinates {
+                    (1,609.39)
+                    (2,349.94)
+                    (4,192.97)
+                    (8,182.76)
+                    (16,158.29)
+                    (32,140.60)
+                };
+
+                \vasymptote {4};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        %\caption
+        \label{fig:mops_process__mg}
+    \end{subfigure}
+
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/mg_rev_sn.png}
+        \caption{Utilización de CPU para mononodo (Clase B)}
+        \label{fig:mops_rev_sn__mg}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[c]{0.75\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/mg_rev_mn.png}
+        \caption{Utilización de CPU y red para multinodo (Clase C)}
+        \label{fig:mops_rev_mn__mg}
+    \end{subfigure}
+    \caption{Métricas de rendimiento, CPU y red para el kernel MG}
+    \label{fig:mops__mg}
+\end{figure}
+
+\FloatBarrier
+
+\section{Conclusiones}
+\label{sec:conclusiones_medida_rendimiento}
+Los resultados son en general algo decepcionantes debido principalmente a la limitación de ancho de banda a la memoria principal. Sin embargo, no todo son malas noticias, y es que en todos los casos se ha logrado acelerar la ejecución utilizando varios nodos, lo que de nuevo da que pensar, ya que la memoria ha sido un factor más limitante que la red Ethernet.
+
+Por último destacar que hubiese sido de gran utilidad tener la posibilidad de medir en tiempo real el ancho de banda a la memoria, pero que por falta de herramientas de debug avanzadas para la plataforma \acrshort{arm} de consumo, como la que equipa la \acrlong{rpi} 4, no ha sido posible.
+
+La única medición realizable es la del ancho de banda total, situándose en aproximadamente 4.2GB/s para transferencias de enteros, y 3.95GB/s para transferencias de flotantes en el modelo de 8GB de RAM \cite{tomshardware_rpi4b_ram_bandwidth}, y reduciéndose ligeramente, a menor capacidad tenga el modelo. Como comparación, un ordenador convencional x86 del sector de consumo con una memoria DDR4 a la misma frecuencia cuenta con aproximadamente 25GB/s de ancho de banda a la memoria \textbf{por canal} \cite{intel_ram_bandwidth}.
+
+De todos modos, no se debe perder de vista el objetivo de este trabajo, que es principalmente la divulgación. Que los test funcionen y hayan servido para sacar conclusiones (sean mejores o peores), así como para ilustrar demostraciones en vivo es en sí mismo un éxito.
