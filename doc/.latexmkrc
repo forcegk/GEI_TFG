@@ -9,3 +9,5 @@ sub run_makeglossaries {
     system "makeglossaries '$_[0]'";
   };
 }
+
+$pdflatex = 'pdflatex -interaction=nonstopmode';
