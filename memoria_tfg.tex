@@ -5,18 +5,12 @@
 \documentclass[11pt,a4paper,titlepage,twoside,openright,openbib]{report}
 
 %%% RELACIÓN DE VARIABLES A PERSONALIZAR %%%
-\def\lingua{gal}
-%\def\lingua{esp} % descomenta esta liña se redactarás a memoria en español
-%\def\lingua{eng} % descomenta esta liña se redactarás a memoria en inglés
-\def\nome{Nome Completo}                             % substitúe aquí o teu nome
-\def\nomedirectorA{Outro Nome Completo}             % substitúe aquí o nome de quen dirixe
-\def\titulo{Título completo do traballo fin de grao} % substitúe aquí o título do teu TFG
-\def\mencion{NOME DA MENCIÓN}                        % descomenta a mención correspondente
-%\def\mencion{COMPUTACIÓN}
-%\def\mencion{ENXEÑARÍA DO SOFTWARE}
-%\def\mencion{ENXEÑARÍA DE COMPUTADORES}
-%\def\mencion{SISTEMAS DE INFORMACIÓN}
-%\def\mencion{TECNOLOXÍAS DA INFORMACIÓN}
+\def\lingua{esp} % descomenta esta liña se redactarás a memoria en español
+\def\nome{Alonso Rodriguez Iglesias}                             % substitúe aquí o teu nome
+\def\nomedirectorA{Juan Touriño Domínguez}             % substitúe aquí o nome de quen dirixe
+\def\nomedirectorB{María José Martín Santamaría}             % substitúe aquí o nome de quen dirixe
+\def\titulo{Diseño e implementación hardware y software de un mini-supercomputador con Raspberry Pi} % substitúe aquí o título do teu TFG
+\def\mencion{ENXEÑARÍA DE COMPUTADORES}
 
 %\def\renomearcadros{si} % descomenta esta liña se redactas a memoria en español e prefires que
                          % os "cuadros" e o "índice de cuadros" se renomeen
@@ -80,8 +74,11 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \include{contido/introducion}
- \include{contido/demo}
 %\include{contido/...}
+% Analisis -> Diseño -> Implementación -> Testeo
+ \include{contido/diseño}
+ \include{contido/implementacion}
+ \include{contido/demo}
  \include{contido/conclusions}
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
