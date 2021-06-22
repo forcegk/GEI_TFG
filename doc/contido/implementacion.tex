@@ -9,6 +9,141 @@
 \section{Infraestructura Software}
 \label{sec:impl_infra_software}
 
-\subsection{Instalación del Sistema Operativo}
+\subsection{Instalación Base del Sistema Operativo}
 \label{ssec:instalacion_sistema_operativo}
-Para instalar Arch Linux en las Raspberry Pi 4, deberemos ir a la página web de \hyphenation{ArchLinuxARM}\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. En nuestro caso, al no tener dependencias fuertes en las librerías de 32 bits, optamos por la versión de 64 bits, que nos otorgará mayor rendimiento.
+Para instalar Arch Linux en las Raspberry Pi 4, deberemos ir a la página web de ArchLinuxARM\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. En nuestro caso, al no tener dependencias fuertes en las librerías de 32 bits, optamos por la versión de 64 bits, que nos otorgará mayor rendimiento.
+
+Así, asumiendo que conectamos en \texttt{/dev/sdd} la tarjeta microSD donde flashearemos Arch Linux, primeramente descargaremos el sistema de archivos de Arch
+
+\begin{lstlisting}[language=bash,basicstyle=\scriptsize]
+wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz
+\end{lstlisting}
+
+y tras ello ejecutamos para cada una de las tarjetas:
+
+\begin{lstlisting}[language=bash]
+#!/bin/sh
+
+MICROSD=/dev/sdd
+
+echo "Ejecutando sobre ${MICROSD}"
+
+sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk ${MICROSD}
+    o       # Limpiamos la tabla de particiones
+    n       # Creamos una nueva partición
+    p       #  primaria
+    1       #  número uno
+            #  por defecto al principio del disco
+    +200M   #  y con un tamaño de 200MiB
+    t       # Cambiamos el tipo de la partición
+    c       #  a W95 FAT32 (LBA)
+    n       # Creamos otra partición
+    p       #  primaria
+    2       #  número dos
+            #  a continuación de la primera
+            #  y que ocupe todo el disco
+    w       # Escribmos la tabla de particiones
+EOF
+
+# Creamos carpetas para montar las particiones 1 (boot) y 2 (boot)
+mkdir -p boot root
+
+# Y creamos los sistemas de ficheros
+mkfs.vfat ${MICROSD}1
+mkfs.ext4 ${MICROSD}2
+
+# Montamos las particiones
+mount ${MICROSD}1 boot
+mount ${MICROSD}2 root
+
+# Y extraemos el tarball a root
+bsdtar -xpf ArchLinuxARM-rpi-aarch64-latest.tar.gz -C root
+
+# Movemos el directorio boot a su partición
+mv root/boot/* boot
+
+# Hacemos una modificación en el fstab para adaptarlo a los 64 bits
+sed -i 's/mmcblk0/mmcblk1/g' root/etc/fstab
+
+# Escribimos los datos a la SD y desmontamos las carpetas
+sync
+umount boot root
+\end{lstlisting}
+
+Tras ello conectamos el cluster (desconectando una Raspberry del switch y conectando un cable) a nuestra red ya existente y los encontramos con:
+
+\begin{lstlisting}[language=bash]
+nmap  -sP -PR 192.168.0.*    
+\end{lstlisting}
+
+De esta forma podremos hacer ssh a cada uno de ellos y prepararlos para el uso, actualizandolos y preparándolos para el uso:\footnote{Contraseñas \texttt{alarm:alarm}, \texttt{root:root}}
+
+\begin{lstlisting}[language=bash]
+ssh alarm@<IP>
+su -                # Nos hacemos root
+
+# Inicializamos y poblamos el keyring para el gestor de paquetes
+pacman-key --init
+pacman-key --populate archlinuxarm
+
+# Y actualizamos el sistema a la última versión
+pacman -Syyu
+
+# Aprovechamos para cambiar el hostname del sistema
+#  Seguiremos el esquema de nombres rpiX, siendo la 0 y 1
+#   - rpi0
+#   - rpi1
+echo rpiX > /etc/hostname
+
+# Esto como algo más personal, pero que mejora ligeramente la experiencia en las actualizaciones, editamos el archivo /etc/pacman.conf
+#  Y descomentamos
+#   Color
+#   ParallelDownloads (y lo dejamos al valor predeterminado de 5)
+nano /etc/pacman.conf
+
+# Tras esto el sistema debe reiniciarse para cargar el (más que probable) kernel actualizado
+reboot
+\end{lstlisting}
+
+\subsection{Bridging de Interfaces}
+Como el switch tiene el mismo número de puertos que el número de Raspberries, se necesita una forma de conectar el cluster a un ordenador externo. Para esto se puentea el adaptador USB 3.0 a Gigabit Ethernet que se puede conectar en cualquier puerto del nodo maestro (rpi0).
+
+Las configuraciones a realizar en \texttt{/etc/systemd/network} son las siguientes:
+
+\begin{itemize}
+    \item Desactivamos DHCP en las reglas para ethernet \texttt{en.network} y \texttt{eth.network}:
+\begin{lstlisting}[language=bash]
+...
+
+[Network]
+Bridge=br0
+#DHCP=yes
+#DNSSEC=no
+\end{lstlisting}
+    \item Creamos el network device \texttt{br0.netdev}
+\begin{lstlisting}[language=bash]
+[NetDev]
+Name=br0
+Kind=bridge
+\end{lstlisting}
+    \item Y le asignamos una IP al bridge
+\begin{lstlisting}[language=bash]
+[Match]
+Name=br0
+
+[Network]
+DHCP=yes
+DNSSEC=no
+\end{lstlisting}
+\end{itemize}
+
+Tras realizar estas configuraciones reiniciaremos \texttt{systemd-networkd} con
+\begin{lstlisting}[language=bash]
+systemctl restart systemd-networkd
+\end{lstlisting}
+
+Y volveremos a conectarnos con SSH, ya que al haber cambiado la MAC de la interfaz, el servidor DHCP que estemos usando le habrá cambiado también la IP asignada.
+
+\subsection{Instalación del Servidor DHCP}
+\label{ssec:instalacion_servidor_dhcp}
+A la hora de administrar el cluster necesitamos que las direcciones se asignen de alguna forma, sea esta estática o dinámica. Sin embargo, debido a las características del cluster, y especialmente a que la conexión desde el exterior debe tambien estar en la red interna, pienso que lo más conveniente es configurar un servidor DHCP en \texttt{rpi0} que asigne direcciones IP estáticas a cada uno de los nodos, y a cualquier ordenador externo que se conecte al mismo.
