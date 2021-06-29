@@ -111,7 +111,7 @@ Como el switch tiene el mismo número de puertos que el número de Raspberries, 
 Las configuraciones a realizar en \texttt{/etc/systemd/network} son las siguientes:
 
 \begin{itemize}
-    \item Desactivamos DHCP en las reglas para ethernet \texttt{en.network} y \texttt{eth.network}:
+    \item Desactivar DHCP en las reglas para ethernet \texttt{en.network} y \texttt{eth.network}, y activarles el bridge maestro en \texttt{br0}:
 \begin{lstlisting}[language=bash]
 ...
 
@@ -120,13 +120,13 @@ Bridge=br0
 #DHCP=yes
 #DNSSEC=no
 \end{lstlisting}
-    \item Creamos el network device \texttt{br0.netdev}
+    \item Crear el network device \texttt{br0.netdev}
 \begin{lstlisting}[language=bash]
 [NetDev]
 Name=br0
 Kind=bridge
 \end{lstlisting}
-    \item Y le asignamos una IP al bridge
+    \item Y asignar una IP al bridge en \texttt{br0.network}
 \begin{lstlisting}[language=bash]
 [Match]
 Name=br0
@@ -137,13 +137,145 @@ DNSSEC=no
 \end{lstlisting}
 \end{itemize}
 
-Tras realizar estas configuraciones reiniciaremos \texttt{systemd-networkd} con
+Tras realizar estas configuraciones se reinicia \texttt{systemd-networkd} con
 \begin{lstlisting}[language=bash]
 systemctl restart systemd-networkd
 \end{lstlisting}
 
-Y volveremos a conectarnos con SSH, ya que al haber cambiado la MAC de la interfaz, el servidor DHCP que estemos usando le habrá cambiado también la IP asignada.
+Y (probablemente) se deba reconectar la sesión por SSH, ya que al haber cambiado la MAC de la interfaz, el servidor DHCP en uso le habrá cambiado también la IP asignada a rpi0.
 
-\subsection{Instalación del Servidor DHCP}
-\label{ssec:instalacion_servidor_dhcp}
-A la hora de administrar el cluster necesitamos que las direcciones se asignen de alguna forma, sea esta estática o dinámica. Sin embargo, debido a las características del cluster, y especialmente a que la conexión desde el exterior debe tambien estar en la red interna, pienso que lo más conveniente es configurar un servidor DHCP en \texttt{rpi0} que asigne direcciones IP estáticas a cada uno de los nodos, y a cualquier ordenador externo que se conecte al mismo.
+\subsection{Configuración de Direcciones IP estáticas}
+\label{ssec:configuracion_ip_estaticas}
+A la hora de administrar el cluster es necesario que las direcciones se asignen de alguna forma, sea esta estática o dinámica. Sin embargo, debido a las características del cluster, y especialmente a que la conexión desde el exterior va a ser variable y no siempre va a haber internet, lo más conveniente es configurar direcciones IP estáticas en cada uno de los hosts que componen el cluster, así como una dirección de gateway predeterminada, que algunas veces existirá, y otras no.
+
+Para esto, se han de modificar los archvos ubicados en \texttt{/etc/systemd/network/} de tal forma que:
+
+\begin{itemize}
+    \item Modificar \texttt{eth.network} en las máquinas 1 a 7, y asignarles una IP estática, siendo la X en \texttt{.22X} el número de la máquina, así \texttt{rpi1} sería \texttt{.221}, etc.
+\begin{lstlisting}[language=bash]
+[Match]
+Name=eth*
+
+[Network]
+Address=192.168.0.22X/24
+Gateway=192.168.0.1
+DNS=8.8.8.8
+#DHCP=yes
+#DNSSEC=no
+\end{lstlisting}
+    \item Proceder de igual forma con el bridge en el nodo maestro, asignando una IP estática al bridge en \texttt{br0.network}:
+\begin{lstlisting}[language=bash]
+[Match]
+Name=br0
+
+[Network]
+Address=192.168.0.220/24
+Gateway=192.168.0.1
+DNS=8.8.8.8
+#DHCP=yes
+#DNSSEC=no
+\end{lstlisting}
+\end{itemize}
+
+\subsection{Escritura del fichero /etc/hosts}
+Para hacer referencia al resto de raspberries sin necesidad de escribir su dirección IP (lo que será útil más adelante para la ejecución de tareas con MPI), es conveniente agregar una entrada por raspberry pi a cada una de ellas en el fichero \texttt{/etc/hosts} para poder referenciarlas por su nombre.
+
+De esta manera, ejecutamos
+\begin{lstlisting}[language=bash]
+cat << EOS >> /etc/hosts
+127.0.0.1       localhost
+192.168.0.220   rpi0
+192.168.0.221   rpi1
+192.168.0.222   rpi2
+192.168.0.223   rpi3
+192.168.0.224   rpi4
+192.168.0.225   rpi5
+192.168.0.226   rpi6
+192.168.0.227   rpi7
+EOS
+\end{lstlisting}
+
+\subsection{Creación de usuario mpiuser}
+Actualmente contamos con dos usuarios, \texttt{root} y \texttt{alarm}, ninguno de los cuales es apto para lanzar las tareas mpi: El primero no es recomendable su uso para tareas que no lo requieran así, y el segundo es el que se utiliza como usuario por defecto no privilegiado, por lo que es conveniente crear un tercero que se encargue del lanzamiento de las tareas mpi: \texttt{mpiuser}.
+
+Para ello ejecutamos en todos los nodos
+\begin{lstlisting}[language=bash]
+# Creamos el usuario mpiuser y su carpeta en /home
+useradd -m mpiuser
+# Y le asignamos la contraseña mpi
+echo "mpiuser:mpi" | chpasswd
+\end{lstlisting}
+
+\subsection{Creación de Claves SSH}
+Tras la creación de los usuarios para la ejecución de tareas paralelas con mpi, debemos configurar la autenticación no interactiva mediante SSH. Esto se realiza con autenticación mediante par de claves pública y privada.
+
+Sabiendo esto, deberemos ejecutar en todos los nodos del cluster como usuario \texttt{mpiuser} (\texttt{su - mpiuser})
+\begin{lstlisting}[language=bash]
+ssh-keygen
+\end{lstlisting}
+
+Como será el nodo maestro el que lance las tareas, debemos copiar la clave pública del nodo maestro al resto de nodos, lo cual se puede semi-automatizar con el siguiente comando:
+
+\begin{lstlisting}[language=bash]
+for i in {1..7}; do
+    ssh-copy-id mpiuser@192.168.0.22$i
+done
+\end{lstlisting}
+
+Y comprobaremos que se han copiado satisfactoriamente a todos los nodos con
+\begin{lstlisting}[language=bash]
+for i in {1..7}; do
+    ssh mpiuser@192.168.0.22$i "cat /etc/hostname"
+done
+\end{lstlisting}
+Este último comando debería mostrar los hostnames del resto de nodos del cluster, sin interrumpir al usuario preguntando contraseña, es decir, en modo no-interactivo.
+
+
+\subsection{Servidor NFS}
+Debido a que las llamadas a \texttt{mpirun} con múltiples hosts ejecutan el mismo comando en todos ellos, debemos tener algún tipo de almacenamiento compartido, y bajo el mismo nombre, para que al ejecutar el mismo comando, abran el mismo ejecutable. Por tanto el último paso a realizar para poder comenzar con la ejecución de benchmarks es montar algún tipo de almacenamiento compartido, siendo la elección NFS.
+
+El servidor será el nodo maestro, y el resto serán clientes. Los pasos a realizar en todos los nodos (como root) son los siguientes:
+
+\begin{lstlisting}[language=bash]
+# Instalamos el paquete de NFS en todos los nodos
+pacman -S nfs-utils
+
+# Creamos la carpeta /mpishared
+mkdir -p /mpishared
+chown mpiuser:mpiuser /mpishared
+\end{lstlisting}
+
+A continuación ejecutaremos los siguientes comandos en el nodo maestro:
+
+\begin{lstlisting}[language=bash]
+# Añadimos la carpeta compartida a exports
+echo "/mpishared      192.168.0.0/24(ro,sync,fsid=0)" >> /etc/exports
+
+# Y recargamos los exports
+exportfs -arv
+
+# Tras ello activamos e iniciamos el servidor nfs
+systemctl enable --now nfs-server.service
+\end{lstlisting}
+
+Y añadiremos al fstab del resto de nodos la siguiente línea
+\begin{lstlisting}[language=bash]
+echo "rpi0:/ /mpishared nfs defaults,timeo=900,retrans=5,x-systemd.requires=network-online.target,_netdev 0 0" >> /etc/fstab
+\end{lstlisting}
+
+\subsubsection{Solución de problemas}
+Podría parecer que todo está correcto, pero hay un sutil problema en esta configuración: Dependiendo si rpi0 se apaga primero o no, el resto de nodos pueden quedarse esperando a que responda el share de NFS. Solucionar esto es más sencillo de lo que podría parecer: hemos de establecer un pequeño timeout antes de detener el servidor NFS de, por ejemplo, 5 segundos.
+
+\begin{lstlisting}[language=bash]
+# Extendemos la unit del servidor nfs
+systemctl edit nfs-server.service
+
+# Añadimos en la zona editable
+[Service]
+ExecStop=
+ExecStop=/bin/sleep 5
+ExecStop=/usr/sbin/rpc.nfsd 0
+
+# Salimos y ejecutamos
+systemctl daemon-reload
+\end{lstlisting}

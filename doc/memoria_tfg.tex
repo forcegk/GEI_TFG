@@ -20,6 +20,7 @@
 
 % Lista de paquetes potencialmente interesantes (uso baixo demanda)
 
+\usepackage[all]{nowidow}
 % \usepackage{alltt}       % proporciona o entorno alltt, semellante a verbatim pero que respecta comandos
 % \usepackage{enumitem}    % permite personalizar os entornos de lista
 % \usepackage{eurofont}    % proporciona o comando \euro
@@ -41,62 +42,63 @@
 
 \begin{document}
 
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- % Preliminares do documento            %
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Preliminares do documento            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \include{portada/portada}
- \paxinaenbranco
- \dedicatoria{Dedicatoria} % escribe neste comando o teu texto de dedicatoria
- \paxinaenbranco
- \paxinaenbranco
- \begin{agradecementos}
- \blindtext                % substitúe este comando polo teu texto de agradecementos
- \end{agradecementos}
- \paxinaenbranco
- \include{portada/resumo}
- \paxinaenbranco
+\include{portada/portada}
+\paxinaenbranco
+\dedicatoria{Dedicatoria} % escribe neste comando o teu texto de dedicatoria
+\paxinaenbranco
+\paxinaenbranco
+\begin{agradecementos}
+\blindtext                % substitúe este comando polo teu texto de agradecementos
+\end{agradecementos}
+\paxinaenbranco
+\include{portada/resumo}
+\paxinaenbranco
 
- \pagenumbering{roman}
- \setcounter{page}{1}
- \bstctlcite{IEEEexample:BSTcontrol}
+\pagenumbering{roman}
+\setcounter{page}{1}
+\bstctlcite{IEEEexample:BSTcontrol}
 
- \tableofcontents
- \listoffigures
- \listoftables
- \cleardoublepage
- 
- \pagenumbering{arabic}
- \setcounter{page}{1}
+\tableofcontents
+\listoffigures
+\listoftables
+\cleardoublepage
 
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- % Capítulos                            %
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
- \include{contido/introducion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Capítulos                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{contido/introducion}
 %\include{contido/...}
 % Analisis -> Diseño -> Implementación -> Testeo
- \include{contido/diseño}
- \include{contido/implementacion}
- \include{contido/demo}
- \include{contido/conclusions}
+\include{contido/diseño}
+\include{contido/implementacion}
+\include{contido/medida_rendimiento}
+\include{contido/demo}
+\include{contido/conclusions}
 
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- % Apéndices, glosarios e bibliografía  %
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Apéndices, glosarios e bibliografía  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \appendix
- \appendixpage
- \include{anexos/adicional}
+\appendix
+\appendixpage
+\include{anexos/adicional}
 %\include{anexos/...}
 
- \printglossary[type=\acronymtype,title=\nomeglosarioacronimos]
- \printglossary[title=\nomeglosariotermos]
+\printglossary[type=\acronymtype,title=\nomeglosarioacronimos]
+\printglossary[title=\nomeglosariotermos]
 
- \bibliographystyle{IEEEtranN}
- \bibliography{\bibconfig,bibliografia/bibliografia}
- \cleardoublepage
- 
+\bibliographystyle{IEEEtranN}
+\bibliography{\bibconfig,bibliografia/bibliografia}
+\cleardoublepage
+
 \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
