@@ -1,11 +1,37 @@
 \chapter{Medida del rendimiento}
 \label{chap:medida_rendimiento}
 
-\lettrine{L}{a} medida del rendimiento y el resultado de la misma es una parte fundamental en la evaluación de un supercomputador, hasta el punto en el que se compite por ver qué supercomputador desarrolla mejor resultado\footnote{\url{https://www.top500.org}}.
+\lettrine{L}{a} medida del rendimiento y el resultado de la misma es una parte fundamental en la evaluación y relevancia de un supercomputador, hasta el punto en el que se compite por ver cuales desarrollan un mejor resultado\footnote{\url{https://www.top500.org}}.
 
 En este caso, si bien el rendimiento no es una prioridad, es conveniente realizar estas pruebas, especialmente para poder observar el impacto que tiene la red de comunicaciones entre los núcleos de una sola CPU, o entre múltiples CPUs y memorias. En resumen, medir la escalabilidad.
 
 \section{NAS Parallel Benchmarks}
-Los \acrlong{npb} (\acrshort{npb}) son una \textit{suite} de tests diseñados por la División de Supercomputación de la NASA para la medida del rendimiento de supercomputadores paralelos.
+Los \acrlong{npb} (\acrshort{npb})\footnote{\url{https://www.nas.nasa.gov/software/npb.html}} son una \textit{suite} de tests diseñados por la División de Supercomputación de la NASA para la medida del rendimiento de supercomputadores paralelos.
+
+Estos benchmarks se dividen principalmente ocho benchmarks originales, teniendo otras adaptaciones para diferentes paradigmas de computación paralela, como puede ser de paralelización híbrida, computación desestructurada, o mallas de computación.
+
+A su vez cada benchmark tiene múltiples clases, siendo estas \texttt{S, W, A, B, C, D, E}, y representando cada una un nivel de requerimientos superior, respectivamente.
+
+En este caso se empleará la clase B para todos los benchmarks debido principalmente a limitaciones de memoria cuando se lanzan varios procesos por CPU.
 
 \subsection{Prerrequisitos}
+Para poder realizar las medidas de rendimiento, primero se necesitan tanto las herramientas de compilación como las de ejecución. Estas dependencias se deben satisfacer ejecutando:
+
+\begin{lstlisting}[language=bash]
+# Se añade la opción --needed debido a que hay paquetes del metapaquete base-devel que ya están instalados, y no es necesario reinstalar.
+# Tras ejecutar el comando se aceptan las opciones por defecto
+pacman -S base-devel openmpi gcc-fortran wget --needed
+\end{lstlisting}
+
+\subsection{Instalación de los \acrshort{npb}}
+A continuación se deben descargar, configurar, y compilar los \acrlong{npb} únicamente en el nodo maestro. Esto se realizará como \texttt{mpiuser} y en la carpeta \texttt{/mpishared} de la siguiente forma:
+
+\begin{lstlisting}[language=bash]
+# Descarga de la última versión de NPB (3.4.2)
+wget https://www.nas.nasa.gov/assets/npb/NPB3.4.2.tar.gz
+
+tar xzfv NPB3.4.2.tar.gz
+
+\end{lstlisting}
+
+
