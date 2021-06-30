@@ -218,14 +218,14 @@ Como será el nodo maestro el que lance las tareas, debemos copiar la clave púb
 
 \begin{lstlisting}[language=bash]
 for i in {1..7}; do
-    ssh-copy-id mpiuser@192.168.0.22$i
+    ssh-copy-id mpiuser@rpi$i
 done
 \end{lstlisting}
 
 Y comprobaremos que se han copiado satisfactoriamente a todos los nodos con
 \begin{lstlisting}[language=bash]
 for i in {1..7}; do
-    ssh mpiuser@192.168.0.22$i "cat /etc/hostname"
+    ssh mpiuser@rpi$i "cat /etc/hostname"
 done
 \end{lstlisting}
 Este último comando debería mostrar los hostnames del resto de nodos del cluster, sin interrumpir al usuario preguntando contraseña, es decir, en modo no-interactivo.
