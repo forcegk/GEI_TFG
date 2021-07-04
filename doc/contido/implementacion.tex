@@ -144,7 +144,7 @@ systemctl restart systemd-networkd
 
 Y (probablemente) se deba reconectar la sesión por SSH, ya que al haber cambiado la MAC de la interfaz, el servidor DHCP en uso le habrá cambiado también la IP asignada a rpi0.
 
-\subsection{Configuración de Direcciones IP estáticas}
+\subsection{Configuración de direcciones IP estáticas}
 \label{ssec:configuracion_ip_estaticas}
 A la hora de administrar el cluster es necesario que las direcciones se asignen de alguna forma, sea esta estática o dinámica. Sin embargo, debido a las características del cluster, y especialmente a que la conexión desde el exterior va a ser variable y no siempre va a haber internet, lo más conveniente es configurar direcciones IP estáticas en cada uno de los hosts que componen el cluster, así como una dirección de gateway predeterminada, que algunas veces existirá, y otras no.
 
@@ -195,7 +195,7 @@ cat << EOS >> /etc/hosts
 EOS
 \end{lstlisting}
 
-\subsection{Creación de usuario mpiuser}
+\subsection{Creación del usuario mpiuser}
 Actualmente contamos con dos usuarios, \texttt{root} y \texttt{alarm}, ninguno de los cuales es apto para lanzar las tareas mpi: El primero no es recomendable su uso para tareas que no lo requieran así, y el segundo es el que se utiliza como usuario por defecto no privilegiado, por lo que es conveniente crear un tercero que se encargue del lanzamiento de las tareas mpi: \texttt{mpiuser}.
 
 Para ello ejecutamos en todos los nodos
@@ -206,7 +206,7 @@ useradd -m mpiuser
 echo "mpiuser:mpi" | chpasswd
 \end{lstlisting}
 
-\subsection{Creación de Claves SSH}
+\subsection{Generación de claves SSH}
 Tras la creación de los usuarios para la ejecución de tareas paralelas con mpi, debemos configurar la autenticación no interactiva mediante SSH. Esto se realiza con autenticación mediante par de claves pública y privada.
 
 Sabiendo esto, deberemos ejecutar en todos los nodos del cluster como usuario \texttt{mpiuser} (\texttt{su - mpiuser})
