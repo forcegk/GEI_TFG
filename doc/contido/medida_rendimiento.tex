@@ -42,10 +42,12 @@ cd /mpishared/NPB3.4.2/NPB3.4-MPI
 #   1.2- -march=native Optimiza para la arquitectura específica de rpi4
 sed 's/^FFLAGS\s*=\s*-O3/FFLAGS  = -O3 -fallow-argument-mismatch -march=native/g' config/make.def.template | sed -e 's/^CFLAGS\s*=\s*-O3/CFLAGS  = -O3 -march=native/g' > config/make.def
 
-#  2- Para el archivo suite.def hacemos que todos los tests sean clase C menos DT, que debe ser B
-sed 's/S$/C/g' config/suite.def.template | sed -e 's/dt\s*C$/dt\tB/g' > config/suite.def
+#  2- Para el archivo suite.def hacemos que todos los tests sean clase C menos FT, que por razones de memoria es clase A, y MG clase B, por los mismos motivos.
+sed 's/S$/C/g' config/suite.def.template | sed -e 's/ft\s*C$/ft\tA/g' | sed -e 's/mg\s*C$/mg\tB/g' > config/suite.def
 
 # Finalmente compilamos todos los tests con make suite (con todas las CPU en paralelo)
+
+# TODO REMOVE CLOSING DOLLAR FOR LATEX SYNTAX $
 make suite -j4
 \end{lstlisting}
 
@@ -83,6 +85,25 @@ La ejecución de cada uno de los benchmarks se realizará mediante el siguiente 
 
 \begin{lstlisting}[language=bash]
 mpirun -np <NUM_PROCS> --hostfile /mpishared/hostfile --mca opal_warn_on_missing_libcuda 0 /mpishared/NPB3.4.2/NPB3.4-MPI/bin/<KERNEL>.<CLASS>.x
+\end{lstlisting}
+
+Como estos parámetros son fijos, podemos scriptear la ejecución de los benchmarks, así como la recolección de resultados:
+
+\begin{lstlisting}[language=bash]
+#!/bin/sh
+
+mkdir -p "results"
+
+BENCHMARKS=( lu cg ft is mg ep )
+MPIRUNFLAGS="--mca opal_warn_on_missing_libcuda 0"
+
+for i in "${BENCHMARKS[@]}"
+do
+    for j in 1 2 4 8 16 32
+    do
+        mpirun -np $j --hostfile /mpishared/hostfile $MPIRUNFLAGS /mpishared/NPB3.4.2/NPB3.4-MPI/bin/${i}.*.x | tee -a results/$i.$j.run
+    done
+done
 \end{lstlisting}
 
 \section{Comparación de Resultados}
