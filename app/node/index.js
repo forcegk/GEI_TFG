@@ -7,10 +7,20 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 const { spawn } = require('child_process');
 
+// GET Zone
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/monitoring.html', (req, res) => {
+    res.sendFile(__dirname + '/monitoring.html');
+});
+
+app.get('/style.css' , (req , res)=>{
+    res.sendFile(__dirname + '/style.css');
+})
+
+// Socket handling
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {

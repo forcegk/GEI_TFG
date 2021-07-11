@@ -4,13 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Alonso Rodriguez">
+    <meta name="description" content="Dashboard del cluster para TFG">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="style.css">
     <title>TFG App</title>
 </head>
 <body>
-    <ul id="messages"></ul>
+    <!-- <ul id="messages"></ul>
     <form id="form" action="">
-        <input id="input" autocomplete="off" type="text"/><button>Send</button>
-    </form>
+        <!-- <input id="input" autocomplete="off" type="text"/><button>Send</button>
+        <button id="input" type="submit">Evento 1</button>
+    </form> -->
+
+    <header>
+        <div id="logo"><img src="/logo.png">TFG Dashboard</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/monitoring.html">Monitoring</a></li>
+                <li><a href="/about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <strong>Demonstration of a simple page layout using HTML5 tags: header, nav, section, main, article, aside, footer, address.</strong>
+    </section>
+
+    <section id="pageContent">
+        <main role="main">
+            <article>
+                <h2>Stet facilis ius te</h2>
+                <p>Lorem ipsum dolor sit amet, nonumes voluptatum mel ea, cu case ceteros cum. Novum commodo malorum vix ut. Dolores consequuntur in ius, sale electram dissentiunt quo te. Cu duo omnes invidunt, eos eu mucius fabellas. Stet facilis ius te, quando voluptatibus eos in. Ad vix mundi alterum, integre urbanitas intellegam vix in.</p>
+            </article>
+            <article>
+                <h2>Illud mollis moderatius</h2>
+                <p>Eum facete intellegat ei, ut mazim melius usu. Has elit simul primis ne, regione minimum id cum. Sea deleniti dissentiet ea. Illud mollis moderatius ut per, at qui ubique populo. Eum ad cibo legimus, vim ei quidam fastidii.</p>
+            </article>
+            <article>
+                <h2>Ex ignota epicurei quo</h2>
+                <p>Quo debet vivendo ex. Qui ut admodum senserit partiendo. Id adipiscing disputando eam, sea id magna pertinax concludaturque. Ex ignota epicurei quo, his ex doctus delenit fabellas, erat timeam cotidieque sit in. Vel eu soleat voluptatibus, cum cu exerci mediocritatem. Malis legere at per, has brute putant animal et, in consul utamur usu.</p>
+            </article>
+            <article>
+                <h2>His at autem inani volutpat</h2>
+                <p>Te has amet modo perfecto, te eum mucius conclusionemque, mel te erat deterruisset. Duo ceteros phaedrum id, ornatus postulant in sea. His at autem inani volutpat. Tollit possit in pri, platonem persecuti ad vix, vel nisl albucius gloriatur no.</p>
+            </article>
+        </main>
+    </section>
 
     <!-- JS Script start -->
     <script src="/socket.io/socket.io.js"></script>
@@ -23,11 +64,12 @@
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            if(input.value){
+            /* if(input.value){
                 //socket.emit('chat message', input.value);
                 socket.emit('spawn_1', input.value);
                 input.value = '';
-            }
+            } */
+            socket.emit('spawn_1', input.value);
         });
 
         socket.on('spawn_1', function(msg) {
