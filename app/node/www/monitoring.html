@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Alonso Rodriguez">
+    <meta name="description" content="Dashboard del cluster para TFG">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="style.css">
+    <title>TFG App</title>
+</head>
+<body>
+    <header>
+        <div id="logo"><img src="/logo.png">TFG Dashboard</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/monitoring.html">Monitoring</a></li>
+                <li><a href="/about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <iframe src="/netdata/rpi0.html" width="300" height="300" frameborder="0"></iframe>
+    <iframe src="/netdata/rpi1.html" width="300" height="300" frameborder="0"></iframe>
+</body>
+</html>

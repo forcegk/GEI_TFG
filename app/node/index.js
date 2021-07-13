@@ -8,23 +8,27 @@ const io = new Server(server);
 const { spawn } = require('child_process');
 
 // GET Zone
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/index.html');
+// });
 
-app.get('/monitoring.html', (req, res) => {
-    res.sendFile(__dirname + '/monitoring.html');
-});
+// app.get('/monitoring.html', (req, res) => {
+//     res.sendFile(__dirname + '/monitoring.html');
+// });
 
-app.get('/style.css' , (req , res)=>{
-    res.sendFile(__dirname + '/style.css');
-})
+// app.get('/style.css' , (req , res)=>{
+//     res.sendFile(__dirname + '/style.css');
+// })
+
+// Add webpage dir
+app.use(express.static('www'));
 
 // Socket handling
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {
         console.log('user disconnected');
+        // pkill benchmark
     });
 });
 

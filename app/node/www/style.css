@@ -20,7 +20,7 @@ body,html {
 header {
     background: #AEC6CF;
     padding: 20px 30px;
-    max-width: 940px;
+    max-width: 100%;
     margin: auto;
 }
 nav {
