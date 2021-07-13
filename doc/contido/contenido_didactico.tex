@@ -5,5 +5,28 @@
 
 Para este cometido se desarrolla una aplicación web desde la cual se podrán ejecutar ....
 
-\section{Aplicación de monitorización}
-\subsection{}
+\section{Requisitos}
+Los requisitos son relacionados con docencia, utilidad, tendrán vídeos, será sencillo de usar etc......
+
+\subsection{Requisitos funcionales y no funcionales}
+Requisitos blabla
+
+\subsection{Instalación de Netdata}
+Netdata es el software de monitorización que nos permitirá obtener información del cluster en tiempo real, tanto en el \textit{Dashboard} web que se pone a disposición del usuario en el puerto 19999, como a través de la librería JavaScript que un programador puede importar en su propia página web.
+
+Para emplear los datos que nos proporciona este software, primero debe instalarse y activarse en cada uno de los nodos del cluster, acción que se realiza con los comandos como usuario root.
+
+\begin{lstlisting}[language=bash]
+pacman -S netdata   # Se instala netdata
+# Se activa netdata a través de todas las interfaces
+sed -i 's/bind to = localhost/bind to = 0.0.0.0/g' /etc/netdata/netdata.conf
+# Se activa e inicia netdata
+systemctl enable --now netdata
+
+\end{lstlisting}
+
+
+\section{Diseño}
+Se sigue un proceso de diseño mediante el uso de prototipos (\textit{mockups})... (insertar escaneos de mockups en diseño)
+
+\section{Funcionamiento}
