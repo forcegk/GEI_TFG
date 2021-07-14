@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
         }); */
 
         // mpirun -np 32 --hostfile /mpishared/hostfile --mca opal_warn_on_missing_libcuda 0 /mpishared/NPB3.4.2/NPB3.4-MPI/bin/ft.C.x
-        const cmd = spawn(command, params);
+        const cmd = spawn(command, params, {shell:true});
         cmd.stdout.on('data', (data) => {
             socket.emit('youve_got_mail', utf8.encode(data.toString()));
             //  io.emit // Para enviarlo a todos los usuarios conectados
