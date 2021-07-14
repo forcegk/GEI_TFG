@@ -8,6 +8,7 @@
 <body>
 <div data-netdata="system.cpu"
 data-chart-library="gauge"
+data-dimensions="user"
 data-width="20em"
 data-after="-60"
 data-points="60"
@@ -17,6 +18,21 @@ data-units="%"
 data-colors="#FF5555"
 data-gauge-max-value="100"
 ></div>
+
+<div data-netdata="system.cpu"
+data-dimensions="user"
+data-chart-library="dygraph"
+data-dygraph-theme="sparkline"
+data-width="20em"
+data-height="3em"
+data-after="-60"
+data-points="60"
+data-colors="#FF5555 #FF5555 #FF5555 #FF5555 #FF5555 #FF5555"
+></div>
+
+<div style="display: inline-block;">
+    
+</div>
 
 <!-- Netdata dashboards -->
 <script type="text/javascript" src="http://192.168.0.220:19999/dashboard.js"></script>

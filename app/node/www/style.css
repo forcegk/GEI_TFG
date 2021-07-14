@@ -6,19 +6,25 @@ nav ul{list-style:none}
 blockquote,q{quotes:none}
 blockquote:before,blockquote:after,q:before,q:after{content:none}
 a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}
-ins{background-color:#ff9;color:#000;text-decoration:none}
-mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+ins{background-color:#BBDEFB;color:#212121;text-decoration:none}
+mark{background-color:#BBDEFB;color:#212121;font-style:italic;font-weight:bold}
 del{text-decoration:line-through}
 abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
 table{border-collapse:collapse;border-spacing:0}
 hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
 input,select{vertical-align:middle}
 
-body,html {
-	background-color: #FFF;
+body {
+    min-height: 100%;
 }
+
+body,html {
+    background-color: #FFFFFF;
+}
+
+
 header {
-    background: #AEC6CF;
+    background: #2196F3;
     padding: 20px 30px;
     max-width: 100%;
     margin: auto;
@@ -27,16 +33,18 @@ nav {
     display: inline-block;
 }
 nav ul li a {
-    background: #EEE;
-    padding: 2px 10px;
+    background: #FF4081;
+    padding: 3px 15px;
     font-size: 20px;
     text-decoration: none;
     font-weight: bold;
-    color: #444;
-    border-radius: 10px;
+    color: #FFFFFF;
+    border-radius: 20px;
 }
 nav ul li a:hover {
-	background: #FFF;
+    background: #E91E63;
+    text-decoration: underline; 
+    color: #FFFFFF;
 }
 nav ul li {
     display: inline-block;
@@ -46,20 +54,20 @@ nav ul {
     list-style: none;
 }
 #pageContent {
-    max-width: 1000px;
+    max-width: 75%;
     margin: auto;
     border: none;
 }
 main {
-	float: left;
-	width: 60%;
+    float: left;
+    width: 60%;
 }
 aside {
-	float: right;
-	width: 30%;
+    float: right;
+    width: 30%;
 }
 article {
-    border-bottom: 2px dotted #999;
+    border-bottom: 2px dotted #BDBDBD;
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
@@ -68,28 +76,31 @@ article h2 {
     margin-bottom: 12px;
 }
 article p {
-	
+    
 }
 main section {
-	
+    
 }
 footer {
-	background: #AEC6CF;
-	max-width: 1000px;
-	margin: auto;
-	clear: both;
-	text-align: right;
+    background: #2196F3;
+    max-width: 100%;
+    margin: auto;
+    clear: both;
+    text-align: right;
+    position: relative;
+    height: 100px;
+    margin-top: -100px;
 }
 footer p {
-	padding: 20px;
+    padding: 20px;
 }
 address {
     padding: 10px 20px 30px 10px;
 }
 aside > div {
-	margin: 10px auto;
-	background: #AEC6CF;
-	min-height: 100px;
+    margin: 10px auto;
+    background: #BDBDBD;
+    min-height: 100px;
 }
 #logo {
     display: inline-block;
@@ -97,7 +108,7 @@ aside > div {
     font-size: 30px;
     font-weight: bold;
     margin-right: 75px;
-    color: #FFF;
+    color: #FFFFFF;
 }
 #logo img {
     width: 50px;
@@ -105,26 +116,105 @@ aside > div {
     margin-right: 10px;
 }
 body > section {
-    max-width: 1000px;
+    max-width: 75%;
     margin: auto;
     padding: 30px 0px;
-    border-bottom: 1px solid #999;
-    color: #333;
+    border-bottom: 1px solid #BDBDBD;
+    color: #212121;
 }
 
 @media screen and (max-width: 1000px) {
-	body > section {
-		padding: 30px 20px;
-	}
+    body > section {
+        padding: 30px 20px;
+    }
 }
 @media screen and (max-width: 600px) {
-	main {
-		float: none;
-		width: 100%;
-	}
-	aside {
-		float: none;
-		width: 100%;
-	}
+    main {
+        float: none;
+        width: 100%;
+    }
+    aside {
+        float: none;
+        width: 100%;
+    }
+    
+}
 
+#main_monitor {
+    display: flex;
+    flex-direction: column;
+}
+
+#cpu_monitor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.rpi_block {
+    display: flex;
+    margin-inline: 0.5em;
+    margin-block: 1em;
+}
+
+.rpi_div__zonecpu {
+    display: flex;
+    flex-direction: column;
+}
+
+.rpi_div__zonenet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rpi_div__zonenet__pies {
+    display: flex;
+    flex-direction: row;
+}
+
+
+#terminal_monitor {
+    background-color: #b2ed7b;
+    /* padding: 5em; */
+    height: 61em;
+    max-height: 61em;
+    line-height: 1.5;
+    font-family: monospace;
+    border: 1px solid green;
+    margin-inline: 2.5%;
+    margin-block-end: 3em;
+    outline: none;
+}
+
+
+/* Sección botones */
+#buttons {
+    margin-inline: 2.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.buttons__form-button:hover {
+    background: #E91E63;
+    text-decoration: underline; 
+    color: #FFFFFF;
+}
+
+.buttons__form-button {
+    background: #FF4081;
+    padding: 3px 15px;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 10px;
+    border: none;
+    font-size: x-large;
 }
