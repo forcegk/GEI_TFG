@@ -7,7 +7,6 @@
     <meta name="author" content="Alonso Rodriguez">
     <meta name="description" content="Dashboard del cluster para TFG">
     <meta name="robots" content="noindex">
-    <link rel="stylesheet" href="style.css">
     <title>TFG App</title>
 </head>
 <body>
@@ -21,273 +20,306 @@
             </ul>
         </nav>
     </header>
-    <div id="cpu_monitor" style="display: inline-block;">
-        <!-- data-host="http://192.168.0.220:19999" -->
-        
-        <!-- RPI0 -->
-        <div id=rpi0_div class="rpi_block">
-            <div data-netdata="system.cpu"
-            data-dimensions="user"
-            data-chart-library="gauge"
-            data-width="20em"
-            data-after="-60"
-            data-points="60"
-            data-max="100"
-            data-title="RPI0 CPU Utilisation"
-            data-units="%"
-            data-colors="#FF5555"
-            data-gauge-max-value="100"
-            ></div>
-            <br>
-            <div data-netdata="system.cpu"
-            data-dimensions="user"
-            data-chart-library="dygraph"
-            data-dygraph-theme="sparkline"
-            data-width="20em"
-            data-height="3em"
-            data-after="-60"
-            data-points="60"
-            data-dygraph-valuerange="[0, 100]"
-            data-colors="#FF5555 #FF5555 #FF5555 #FF5555 #FF5555 #FF5555"
-            ></div>
-            <br>
-            <div data-netdata="system.net"
-            data-dimensions="received"
-            data-decimal-digits="0"
-            data-title="Ingoing Traffic"
-            data-chart-library="easypiechart"
-            data-width="10em"
-            data-height="100%"
-            data-after="-60"
-            data-points="60"
-            data-colors="#66A919"
-            ></div>
-            <div data-netdata="system.net"
-            data-dimensions="sent"
-            data-decimal-digits="0"
-            data-title="Outgoing Traffic"
-            data-chart-library="easypiechart"
-            data-width="10em"
-            data-height="100%"
-            data-after="-60"
-            data-points="60"
-            data-colors="#FD3100"
-            ></div>
-            <br>
-            <div data-netdata="system.net"
-            data-chart-library="dygraph"
-            data-dygraph-theme="sparkline"
-            data-width="20em"
-            data-height="3em"
-            data-after="-60"
-            data-points="60"
-            data-colors="#66A919 #FD3100"
-            ></div>
-        </div>
+
+    <div id=main_monitor>
+
+        <div id="cpu_monitor">
+            <!-- data-host="http://192.168.0.220:19999" -->
             
-        <!-- RPI1 -->
-        <div id=rpi1_div class="rpi_block">
-            <div data-netdata="system.cpu"
-            data-dimensions="user"
-            data-host="http://192.168.0.221:19999"
-            data-chart-library="gauge"
-            data-width="20em"
-            data-after="-60"
-            data-points="60"
-            data-max="100"
-            data-title="RPI1 CPU Utilisation"
-            data-units="%"
-            data-colors="#FF5555"
-            data-gauge-max-value="100"
-            ></div>
-            <br>
-            <div data-netdata="system.cpu"
-            data-host="http://192.168.0.221:19999"
-            data-dimensions="user"
-            data-chart-library="dygraph"
-            data-dygraph-theme="sparkline"
-            data-width="20em"
-            data-height="3em"
-            data-after="-60"
-            data-points="60"
-            data-dygraph-valuerange="[0, 100]"
-            data-colors="#FF5555 #FF5555 #FF5555 #FF5555 #FF5555 #FF5555"
-            ></div>
-            <br>
-            <div data-netdata="system.net"
-            data-host="http://192.168.0.221:19999"
-            data-dimensions="received"
-            data-decimal-digits="0"
-            data-title="Ingoing Traffic"
-            data-chart-library="easypiechart"
-            data-width="10em"
-            data-height="100%"
-            data-after="-60"
-            data-points="60"
-            data-colors="#66A919"
-            ></div>
-            <div data-netdata="system.net"
-            data-host="http://192.168.0.221:19999"
-            data-dimensions="sent"
-            data-decimal-digits="0"
-            data-title="Outgoing Traffic"
-            data-chart-library="easypiechart"
-            data-width="10em"
-            data-height="100%"
-            data-after="-60"
-            data-points="60"
-            data-colors="#FD3100"
-            ></div>
-            <br>
-            <div data-netdata="system.net"
-            data-host="http://192.168.0.221:19999"
-            data-chart-library="dygraph"
-            data-dygraph-theme="sparkline"
-            data-width="20em"
-            data-height="3em"
-            data-after="-60"
-            data-points="60"
-            data-colors="#66A919 #FD3100"
-            ></div>
+            <!-- RPI0 -->
+            <div id=rpi0_div class="rpi_block">
+                <div class=rpi_div__zonecpu>
+                    <div data-netdata="system.cpu"
+                    data-dimensions="user"
+                    data-chart-library="gauge"
+                    data-width="20em"
+                    data-after="-60"
+                    data-points="60"
+                    data-max="100"
+                    data-title="RPI0 CPU Utilisation"
+                    data-units="%"
+                    data-colors="#FF5555"
+                    data-gauge-max-value="100"
+                    ></div>
+                    <div data-netdata="system.cpu"
+                    data-dimensions="user"
+                    data-chart-library="dygraph"
+                    data-dygraph-theme="sparkline"
+                    data-width="20em"
+                    data-height="3em"
+                    data-after="-60"
+                    data-points="60"
+                    data-dygraph-valuerange="[0, 100]"
+                    data-colors="#FF5555 #FF5555 #FF5555 #FF5555 #FF5555 #FF5555"
+                    ></div>
+                </div>
+                
+                <div class=rpi_div__zonenet>
+                    <div class=rpi_div__zonenet__pies>
+                        <div data-netdata="system.net"
+                        data-dimensions="received"
+                        data-decimal-digits="0"
+                        data-title="Ingoing Traffic"
+                        data-chart-library="easypiechart"
+                        data-width="10em"
+                        data-height="100%"
+                        data-after="-60"
+                        data-points="60"
+                        data-colors="#66A919"
+                        ></div>
+                        <div data-netdata="system.net"
+                        data-dimensions="sent"
+                        data-decimal-digits="0"
+                        data-title="Outgoing Traffic"
+                        data-chart-library="easypiechart"
+                        data-width="10em"
+                        data-height="100%"
+                        data-after="-60"
+                        data-points="60"
+                        data-colors="#FD3100"
+                        ></div>
+                    </div>
+                    <div data-netdata="system.net"
+                    data-chart-library="dygraph"
+                    data-dygraph-theme="sparkline"
+                    data-width="20em"
+                    data-height="3em"
+                    data-after="-60"
+                    data-points="60"
+                    data-colors="#66A919 #FD3100"
+                    ></div>
+                </div>
+            </div>
+            
+            <!-- RPI1 -->
+            <div id=rpi1_div class="rpi_block">
+                <div class=rpi_div__zonecpu>
+                    <div data-netdata="system.cpu"
+                    data-dimensions="user"
+                    data-host="http://192.168.0.221:19999"
+                    data-chart-library="gauge"
+                    data-width="20em"
+                    data-after="-60"
+                    data-points="60"
+                    data-max="100"
+                    data-title="RPI1 CPU Utilisation"
+                    data-units="%"
+                    data-colors="#FF5555"
+                    data-gauge-max-value="100"
+                    ></div>
+                    <div data-netdata="system.cpu"
+                    data-host="http://192.168.0.221:19999"
+                    data-dimensions="user"
+                    data-chart-library="dygraph"
+                    data-dygraph-theme="sparkline"
+                    data-width="20em"
+                    data-height="3em"
+                    data-after="-60"
+                    data-points="60"
+                    data-dygraph-valuerange="[0, 100]"
+                    data-colors="#FF5555 #FF5555 #FF5555 #FF5555 #FF5555 #FF5555"
+                    ></div>
+                </div>
+                
+                <div class=rpi_div__zonenet>
+                    <div class=rpi_div__zonenet__pies>
+                        <div data-netdata="system.net"
+                        data-host="http://192.168.0.221:19999"
+                        data-dimensions="received"
+                        data-decimal-digits="0"
+                        data-title="Ingoing Traffic"
+                        data-chart-library="easypiechart"
+                        data-width="10em"
+                        data-height="100%"
+                        data-after="-60"
+                        data-points="60"
+                        data-colors="#66A919"
+                        ></div>
+                        <div data-netdata="system.net"
+                        data-host="http://192.168.0.221:19999"
+                        data-dimensions="sent"
+                        data-decimal-digits="0"
+                        data-title="Outgoing Traffic"
+                        data-chart-library="easypiechart"
+                        data-width="10em"
+                        data-height="100%"
+                        data-after="-60"
+                        data-points="60"
+                        data-colors="#FD3100"
+                        ></div>
+                    </div>
+                    <div data-netdata="system.net"
+                    data-host="http://192.168.0.221:19999"
+                    data-chart-library="dygraph"
+                    data-dygraph-theme="sparkline"
+                    data-width="20em"
+                    data-height="3em"
+                    data-after="-60"
+                    data-points="60"
+                    data-colors="#66A919 #FD3100"
+                    ></div>
+                </div>
+            </div>
+            
+            <!-- RPI2 -->
+            <div id=rpi2_div class="rpi_block">
+                <div class=rpi_div__zonecpu>
+                    <div data-netdata="system.cpu"
+                    data-dimensions="user"
+                    data-host="http://192.168.0.222:19999"
+                    data-chart-library="gauge"
+                    data-width="20em"
+                    data-after="-60"
+                    data-points="60"
+                    data-max="100"
+                    data-title="RPI2 CPU Utilisation"
+                    data-units="%"
+                    data-colors="#FF5555"
+                    data-gauge-max-value="100"
+                    ></div>
+                    <div data-netdata="system.cpu"
+                    data-host="http://192.168.0.222:19999"
+                    data-dimensions="user"
+                    data-chart-library="dygraph"
+                    data-dygraph-theme="sparkline"
+                    data-width="20em"
+                    data-height="3em"
+                    data-after="-60"
+                    data-points="60"
+                    data-dygraph-valuerange="[0, 100]"
+                    data-colors="#FF5555 #FF5555 #FF5555 #FF5555 #FF5555 #FF5555"
+                    ></div>
+                </div>
+                
+                <div class=rpi_div__zonenet>
+                    <div class=rpi_div__zonenet__pies>
+                        <div data-netdata="system.net"
+                        data-host="http://192.168.0.222:19999"
+                        data-dimensions="received"
+                        data-decimal-digits="0"
+                        data-title="Ingoing Traffic"
+                        data-chart-library="easypiechart"
+                        data-width="10em"
+                        data-height="100%"
+                        data-after="-60"
+                        data-points="60"
+                        data-colors="#66A919"
+                        ></div>
+                        <div data-netdata="system.net"
+                        data-host="http://192.168.0.222:19999"
+                        data-dimensions="sent"
+                        data-decimal-digits="0"
+                        data-title="Outgoing Traffic"
+                        data-chart-library="easypiechart"
+                        data-width="10em"
+                        data-height="100%"
+                        data-after="-60"
+                        data-points="60"
+                        data-colors="#FD3100"
+                        ></div>
+                    </div>
+                    <div data-netdata="system.net"
+                    data-host="http://192.168.0.222:19999"
+                    data-chart-library="dygraph"
+                    data-dygraph-theme="sparkline"
+                    data-width="20em"
+                    data-height="3em"
+                    data-after="-60"
+                    data-points="60"
+                    data-colors="#66A919 #FD3100"
+                    ></div>
+                </div>
+            </div>
+
+            <!-- RPI3 -->
+            <div id=rpi3_div class="rpi_block">
+                <div class=rpi_div__zonecpu>
+                    <div data-netdata="system.cpu"
+                    data-dimensions="user"
+                    data-host="http://192.168.0.223:19999"
+                    data-chart-library="gauge"
+                    data-width="20em"
+                    data-after="-60"
+                    data-points="60"
+                    data-max="100"
+                    data-title="RPI3 CPU Utilisation"
+                    data-units="%"
+                    data-colors="#FF5555"
+                    data-gauge-max-value="100"
+                    ></div>
+                    <div data-netdata="system.cpu"
+                    data-host="http://192.168.0.223:19999"
+                    data-dimensions="user"
+                    data-chart-library="dygraph"
+                    data-dygraph-theme="sparkline"
+                    data-width="20em"
+                    data-height="3em"
+                    data-after="-60"
+                    data-points="60"
+                    data-dygraph-valuerange="[0, 100]"
+                    data-colors="#FF5555 #FF5555 #FF5555 #FF5555 #FF5555 #FF5555"
+                    ></div>
+                </div>
+                
+                <div class=rpi_div__zonenet>
+                    <div class=rpi_div__zonenet__pies>
+                        <div data-netdata="system.net"
+                        data-host="http://192.168.0.223:19999"
+                        data-dimensions="received"
+                        data-decimal-digits="0"
+                        data-title="Ingoing Traffic"
+                        data-chart-library="easypiechart"
+                        data-width="10em"
+                        data-height="100%"
+                        data-after="-60"
+                        data-points="60"
+                        data-colors="#66A919"
+                        ></div>
+                        <div data-netdata="system.net"
+                        data-host="http://192.168.0.223:19999"
+                        data-dimensions="sent"
+                        data-decimal-digits="0"
+                        data-title="Outgoing Traffic"
+                        data-chart-library="easypiechart"
+                        data-width="10em"
+                        data-height="100%"
+                        data-after="-60"
+                        data-points="60"
+                        data-colors="#FD3100"
+                        ></div>
+                    </div>
+                    <div data-netdata="system.net"
+                    data-host="http://192.168.0.223:19999"
+                    data-chart-library="dygraph"
+                    data-dygraph-theme="sparkline"
+                    data-width="20em"
+                    data-height="3em"
+                    data-after="-60"
+                    data-points="60"
+                    data-colors="#66A919 #FD3100"
+                    ></div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div id="buttons">
+            <button id="buttons__form__lu" class="buttons__form-button" type="submit" onclick="spawn('lu')">LU</button>
+            <button id="buttons__form__cg" class="buttons__form-button" type="submit" onclick="spawn('cg')">CG</button>
+            <button id="buttons__form__ft" class="buttons__form-button" type="submit" onclick="spawn('ft')">FT</button>
+            <button id="buttons__form__is" class="buttons__form-button" type="submit" onclick="spawn('is')">IS</button>
+            <button id="buttons__form__mg" class="buttons__form-button" type="submit" onclick="spawn('mg')">MG</button>
+            <button id="buttons__form__ep" class="buttons__form-button" type="submit" onclick="spawn('ep')">EP</button>
         </div>
 
-        <!-- RPI2 -->
-        <div id=rpi2_div class="rpi_block">
-            <div data-netdata="system.cpu"
-            data-dimensions="user"
-            data-host="http://192.168.0.222:19999"
-            data-chart-library="gauge"
-            data-width="20em"
-            data-after="-60"
-            data-points="60"
-            data-max="100"
-            data-title="RPI2 CPU Utilisation"
-            data-units="%"
-            data-colors="#FF5555"
-            data-gauge-max-value="100"
-            ></div>
-            <br>
-            <div data-netdata="system.cpu"
-            data-host="http://192.168.0.222:19999"
-            data-dimensions="user"
-            data-chart-library="dygraph"
-            data-dygraph-theme="sparkline"
-            data-width="20em"
-            data-height="3em"
-            data-after="-60"
-            data-points="60"
-            data-dygraph-valuerange="[0, 100]"
-            data-colors="#FF5555 #FF5555 #FF5555 #FF5555 #FF5555 #FF5555"
-            ></div>
-            <br>
-            <div data-netdata="system.net"
-            data-host="http://192.168.0.222:19999"
-            data-dimensions="received"
-            data-decimal-digits="0"
-            data-title="Ingoing Traffic"
-            data-chart-library="easypiechart"
-            data-width="10em"
-            data-height="100%"
-            data-after="-60"
-            data-points="60"
-            data-colors="#66A919"
-            ></div>
-            <div data-netdata="system.net"
-            data-host="http://192.168.0.222:19999"
-            data-dimensions="sent"
-            data-decimal-digits="0"
-            data-title="Outgoing Traffic"
-            data-chart-library="easypiechart"
-            data-width="10em"
-            data-height="100%"
-            data-after="-60"
-            data-points="60"
-            data-colors="#FD3100"
-            ></div>
-            <br>
-            <div data-netdata="system.net"
-            data-host="http://192.168.0.222:19999"
-            data-chart-library="dygraph"
-            data-dygraph-theme="sparkline"
-            data-width="20em"
-            data-height="3em"
-            data-after="-60"
-            data-points="60"
-            data-colors="#66A919 #FD3100"
-            ></div>
-        </div>
-
-        <!-- RPI3 -->
-        <div id=rpi3_div class="rpi_block">
-            <div data-netdata="system.cpu"
-            data-dimensions="user"
-            data-host="http://192.168.0.223:19999"
-            data-chart-library="gauge"
-            data-width="20em"
-            data-after="-60"
-            data-points="60"
-            data-max="100"
-            data-title="RPI3 CPU Utilisation"
-            data-units="%"
-            data-colors="#FF5555"
-            data-gauge-max-value="100"
-            ></div>
-            <br>
-            <div data-netdata="system.cpu"
-            data-host="http://192.168.0.223:19999"
-            data-dimensions="user"
-            data-chart-library="dygraph"
-            data-dygraph-theme="sparkline"
-            data-width="20em"
-            data-height="3em"
-            data-after="-60"
-            data-points="60"
-            data-dygraph-valuerange="[0, 100]"
-            data-colors="#FF5555 #FF5555 #FF5555 #FF5555 #FF5555 #FF5555"
-            ></div>
-            <br>
-            <div data-netdata="system.net"
-            data-host="http://192.168.0.223:19999"
-            data-dimensions="received"
-            data-decimal-digits="0"
-            data-title="Ingoing Traffic"
-            data-chart-library="easypiechart"
-            data-width="10em"
-            data-height="100%"
-            data-after="-60"
-            data-points="60"
-            data-colors="#66A919"
-            ></div>
-            <div data-netdata="system.net"
-            data-host="http://192.168.0.223:19999"
-            data-dimensions="sent"
-            data-decimal-digits="0"
-            data-title="Outgoing Traffic"
-            data-chart-library="easypiechart"
-            data-width="10em"
-            data-height="100%"
-            data-after="-60"
-            data-points="60"
-            data-colors="#FD3100"
-            ></div>
-            <br>
-            <div data-netdata="system.net"
-            data-host="http://192.168.0.223:19999"
-            data-chart-library="dygraph"
-            data-dygraph-theme="sparkline"
-            data-width="20em"
-            data-height="3em"
-            data-after="-60"
-            data-points="60"
-            data-colors="#66A919 #FD3100"
-            ></div>
-        </div>
+        <textarea id="terminal_monitor" rows="4" cols="100%" readonly>Console output:</textarea>
         
     </div>
-
-    <!-- Netdata dashboards -->
+        
+        
+        <!-- Netdata dashboards -->
     <script type="text/javascript" src="http://192.168.0.220:19999/dashboard.js"></script>
-
+        
     <script>
         // destroy charts not shown (lowers memory on the browser)
         NETDATA.options.current.destroy_on_hide = true;
@@ -305,5 +337,26 @@
         // always update the charts, even if focus is lost
         NETDATA.options.current.stop_updates_when_focus_is_lost = false;
     </script>
+
+    <!-- JS Script start -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        var textarea = document.getElementById('terminal_monitor');
+
+        function spawn(bench_name) {
+            textarea.innerHTML = 'Console output:';
+            socket.emit('spawn', bench_name);
+        }
+
+        socket.on('youve_got_mail', function(msg) {
+            textarea.innerHTML += msg;
+        });
+    </script>
 </body>
+
+<!-- Tengo que cargar esto aquí para evitar conflicto con el css que carga netdata -->
+<link rel="stylesheet" href="style.css">
+
 </html>

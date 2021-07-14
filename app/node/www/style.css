@@ -44,6 +44,7 @@ nav ul li a {
 nav ul li a:hover {
     background: #E91E63;
     text-decoration: underline; 
+    color: #FFFFFF;
 }
 nav ul li {
     display: inline-block;
@@ -136,9 +137,84 @@ body > section {
         float: none;
         width: 100%;
     }
+    
+}
 
+#main_monitor {
+    display: flex;
+    flex-direction: column;
+}
+
+#cpu_monitor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-grow: 1;
 }
 
 .rpi_block {
+    display: flex;
+    margin-inline: 0.5em;
+    margin-block: 1em;
+}
+
+.rpi_div__zonecpu {
+    display: flex;
+    flex-direction: column;
+}
+
+.rpi_div__zonenet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rpi_div__zonenet__pies {
+    display: flex;
+    flex-direction: row;
+}
+
+
+#terminal_monitor {
+    background-color: #b2ed7b;
+    /* padding: 5em; */
+    height: 61em;
+    max-height: 61em;
+    line-height: 1.5;
+    font-family: monospace;
+    border: 1px solid green;
+    margin-inline: 2.5%;
+    margin-block-end: 3em;
+    outline: none;
+}
+
+
+/* Sección botones */
+#buttons {
+    margin-inline: 2.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.buttons__form-button:hover {
+    background: #E91E63;
+    text-decoration: underline; 
+    color: #FFFFFF;
+}
+
+.buttons__form-button {
+    background: #FF4081;
+    padding: 3px 15px;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-radius: 20px;
     display: inline-block;
+    margin: 10px;
+    border: none;
+    font-size: x-large;
 }

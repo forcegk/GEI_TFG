@@ -11,12 +11,6 @@
     <title>TFG App</title>
 </head>
 <body>
-    <!-- <ul id="messages"></ul>
-    <form id="form" action="">
-        <!-- <input id="input" autocomplete="off" type="text"/><button>Send</button>
-        <button id="input" type="submit">Evento 1</button>
-    </form> -->
-
     <header>
         <div id="logo"><img src="/logo.png">TFG Dashboard</div>
         <nav>
@@ -50,55 +44,7 @@
                 <h2>His at autem inani volutpat</h2>
                 <p>Te has amet modo perfecto, te eum mucius conclusionemque, mel te erat deterruisset. Duo ceteros phaedrum id, ornatus postulant in sea. His at autem inani volutpat. Tollit possit in pri, platonem persecuti ad vix, vel nisl albucius gloriatur no.</p>
             </article>
-            <article>
-                <h2>His at autem inani volutpat</h2>
-                <p>Te has amet modo perfecto, te eum mucius conclusionemque, mel te erat deterruisset. Duo ceteros phaedrum id, ornatus postulant in sea. His at autem inani volutpat. Tollit possit in pri, platonem persecuti ad vix, vel nisl albucius gloriatur no.</p>
-            </article>
-            <article>
-                <h2>His at autem inani volutpat</h2>
-                <p>Te has amet modo perfecto, te eum mucius conclusionemque, mel te erat deterruisset. Duo ceteros phaedrum id, ornatus postulant in sea. His at autem inani volutpat. Tollit possit in pri, platonem persecuti ad vix, vel nisl albucius gloriatur no.</p>
-            </article>
-            <article>
-                <h2>His at autem inani volutpat</h2>
-                <p>Te has amet modo perfecto, te eum mucius conclusionemque, mel te erat deterruisset. Duo ceteros phaedrum id, ornatus postulant in sea. His at autem inani volutpat. Tollit possit in pri, platonem persecuti ad vix, vel nisl albucius gloriatur no.</p>
-            </article>
-            <article>
-                <h2>His at autem inani volutpat</h2>
-                <p>Te has amet modo perfecto, te eum mucius conclusionemque, mel te erat deterruisset. Duo ceteros phaedrum id, ornatus postulant in sea. His at autem inani volutpat. Tollit possit in pri, platonem persecuti ad vix, vel nisl albucius gloriatur no.</p>
-            </article>
-            <article>
-                <h2>His at autem inani volutpat</h2>
-                <p>Te has amet modo perfecto, te eum mucius conclusionemque, mel te erat deterruisset. Duo ceteros phaedrum id, ornatus postulant in sea. His at autem inani volutpat. Tollit possit in pri, platonem persecuti ad vix, vel nisl albucius gloriatur no.</p>
-            </article>
-
         </main>
     </section>
-
-    <!-- JS Script start -->
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var socket = io();
-
-        var messages = document.getElementById('messages');
-        var form = document.getElementById('form');
-        var input = document.getElementById('input');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            /* if(input.value){
-                //socket.emit('chat message', input.value);
-                socket.emit('spawn_1', input.value);
-                input.value = '';
-            } */
-            socket.emit('spawn_1', input.value);
-        });
-
-        socket.on('spawn_1', function(msg) {
-            var item = document.createElement('li');
-            item.textContent = msg;
-            messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
-        });
-    </script>
 </body>
 </html>
