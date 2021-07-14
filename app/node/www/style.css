@@ -188,7 +188,7 @@ body > section {
     margin-inline: 2.5%;
     margin-block-end: 3em;
     outline: none;
-    overflow:hidden;
+    resize:none;
 }
 
 
