@@ -11,6 +11,27 @@ Los requisitos son relacionados con docencia, utilidad, tendrán vídeos, será 
 \subsection{Requisitos funcionales y no funcionales}
 Requisitos blabla
 
+\subsection{Prerrequisitos}
+- Instalar npm
+
+\begin{lstlisting}[language=bash]
+pacman -S npm
+\end{lstlisting}
+
+Una vez instalado npm, se ubica la app en (ruta) y se instalan las dependencias con
+\begin{lstlisting}[language=bash]
+npm install --only=production
+\end{lstlisting}
+
+Se ejecuta una vez de prueba con
+\begin{lstlisting}[language=bash]
+node ./index.js
+\end{lstlisting}
+
+Crear unit systemd
+
+Activar unit
+
 \subsection{Instalación de Netdata}
 Netdata es el software de monitorización que nos permitirá obtener información del cluster en tiempo real, tanto en el \textit{Dashboard} web que se pone a disposición del usuario en el puerto 19999, como a través de la librería JavaScript que un programador puede importar en su propia página web.
 
@@ -27,6 +48,6 @@ systemctl enable --now netdata
 
 
 \section{Diseño}
-Se sigue un proceso de diseño mediante el uso de prototipos (\textit{mockups})... (insertar escaneos de mockups en diseño)
+Se sigue un proceso de diseño mediante el uso de prototipos (\textit{mockups})... (TODO insertar escaneos de mockups en diseño)
 
 \section{Funcionamiento}
