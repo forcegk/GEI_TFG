@@ -363,11 +363,19 @@
             textarea.innerHTML += text;
         }
 
+        function addBlankLineToTextArea() {
+            addTextToTextArea('\n');
+        }
+
         socket.on('youve_got_mail', (msg) => addTextToTextArea(msg));
 
         socket.on('finished_execution', function(msg) {
             toggleButtonActivation(false);
+            addBlankLineToTextArea();
+            addBlankLineToTextArea();
             addTextToTextArea(msg);
+            addBlankLineToTextArea();
+            addBlankLineToTextArea();
         });
     </script>
 </body>
