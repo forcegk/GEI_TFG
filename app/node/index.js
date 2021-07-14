@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
         });
 
         ping.stdout.on('close', (code) => {
-            socket.emit('finished_execution', utf8.encode(`Program exited with code ${code}`));
+            socket.emit('finished_execution', utf8.encode(`Program exited with code ${Number(code)}`));
         });
     });
 
