@@ -43,6 +43,7 @@ io.on('connection', (socket) => {
         
             default:
                 command = 'neofetch';
+                params = [];
                 break;
         }
         
