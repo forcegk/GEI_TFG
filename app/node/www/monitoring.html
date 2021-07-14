@@ -361,6 +361,7 @@
 
         function addTextToTextArea(text) {
             textarea.innerHTML += text;
+            textarea.scrollTop = textarea.scrollHeight;
         }
 
         function addBlankLineToTextArea() {
