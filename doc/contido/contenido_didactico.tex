@@ -12,21 +12,34 @@ Los requisitos son relacionados con docencia, utilidad, tendrán vídeos, será 
 Requisitos blabla
 
 \subsection{Prerrequisitos}
-- Instalar npm
-
+Para desplegar el dashboard es necesario instalar npm y git en el nodo maestro:
 \begin{lstlisting}[language=bash]
-pacman -S npm
+pacman -S npm git
 \end{lstlisting}
 
-Una vez instalado npm, se ubica la app en (ruta) y se instalan las dependencias con
+Tras ello se procede a desplegar la app
 \begin{lstlisting}[language=bash]
+# Se crea el directorio /clupiter_dashboard y se le dan permisos a mpiuser
+mkdir /clupiter_dashboard
+chown -R mpiuser:mpiuser /clupiter_dashboard
+
+# Se inicia sesión como mpiuser
+su - mpiuser
+cd /clupiter_dashboard
+
+# Se descarga la app
+git clone https://github.com/forcegk/GEI_TFG.git
+mv GEI_TFG/app/node/* .
+rm -rf /clupiter_dashboard/GEI_TFG
+
+# Se instalan las dependencias
 npm install --only=production
-\end{lstlisting}
 
-Se ejecuta una vez de prueba con
-\begin{lstlisting}[language=bash]
+# Y se ejecuta manualmente una vez para probar con
 node ./index.js
 \end{lstlisting}
+
+TODO
 
 Crear unit systemd
 
