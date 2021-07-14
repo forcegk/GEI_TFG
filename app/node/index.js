@@ -43,10 +43,14 @@ io.on('connection', (socket) => {
                 command = 'neofetch';
                 break;
         }
-        const ping = spawn('ping', ['www.google.es']);
+        const ping = spawn('ping', ['www.google.es', '-c5']);
         ping.stdout.on('data', (data) => {
             socket.emit('youve_got_mail', utf8.encode(data.toString()));
             //  io.emit // Para enviarlo a todos los usuarios conectados
+        });
+
+        ping.stdout.on('close', (code) => {
+            socket.emit('finished_execution', utf8.encode("Program exited with code "+code));
         });
     });
 

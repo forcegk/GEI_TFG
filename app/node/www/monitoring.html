@@ -345,13 +345,27 @@
 
         var textarea = document.getElementById('terminal_monitor');
 
+        function toggleButtonActivation(disabled){
+            document.getElementsByClassName('buttons__form-button').disabled = disabled;
+        }
+
         function spawn(bench_name) {
+            // TODO desactivar los botones hasta que se haya terminado
+            toggleButtonActivation(true);
+
             textarea.innerHTML = 'Console output:';
             socket.emit('spawn', bench_name);
         }
 
-        socket.on('youve_got_mail', function(msg) {
-            textarea.innerHTML += msg;
+        function addTextToTextArea(text) {
+            textarea.innerHTML += text;
+        }
+
+        socket.on('youve_got_mail', (msg) => addTextToTextArea(msg));
+
+        socket.on('close', function(msg) {
+            toggleButtonActivation(false);
+            addTextToTextArea(msg);
         });
     </script>
 </body>
