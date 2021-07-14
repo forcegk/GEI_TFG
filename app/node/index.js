@@ -29,6 +29,7 @@ io.on('connection', (socket) => {
         // TODO CAMBIAR EN LINUX
         // OJO IMPORTANTE HACER UN SWITCH CON BENCH NAME Y NO METERLO DIRECTO AL COMANDO
         var command;
+        var params;
         switch (bench_name) {
             case 'lu':
             case 'cg':
@@ -36,20 +37,33 @@ io.on('connection', (socket) => {
             case 'is':
             case 'mg':
             case 'ep':
-                command = bench_name;
+                command = 'mpirun';
+                params = ['-np', '32', '--hostfile', '/mpishared/hostfile', '--mca', 'opal_warn_on_missing_libcuda', '0', `/mpishared/NPB3.4.2/NPB3.4-MPI/bin/${bench_name}.*.x`];
                 break;
         
             default:
                 command = 'neofetch';
                 break;
         }
-        const ping = spawn('ping', ['www.google.es', '-c5']);
+        
+        /* const ping = spawn('ping', ['www.google.es', '-c5']);
         ping.stdout.on('data', (data) => {
             socket.emit('youve_got_mail', utf8.encode(data.toString()));
             //  io.emit // Para enviarlo a todos los usuarios conectados
         });
 
         ping.stdout.on('close', (code) => {
+            socket.emit('finished_execution', utf8.encode(`Program exited with code ${Number(code)}`));
+        }); */
+
+        // mpirun -np 32 --hostfile /mpishared/hostfile --mca opal_warn_on_missing_libcuda 0 /mpishared/NPB3.4.2/NPB3.4-MPI/bin/ft.C.x
+        const command = spawn(command, params);
+        command.stdout.on('data', (data) => {
+            socket.emit('youve_got_mail', utf8.encode(data.toString()));
+            //  io.emit // Para enviarlo a todos los usuarios conectados
+        });
+
+        command.stdout.on('close', (code) => {
             socket.emit('finished_execution', utf8.encode(`Program exited with code ${Number(code)}`));
         });
     });
