@@ -58,13 +58,13 @@ io.on('connection', (socket) => {
         }); */
 
         // mpirun -np 32 --hostfile /mpishared/hostfile --mca opal_warn_on_missing_libcuda 0 /mpishared/NPB3.4.2/NPB3.4-MPI/bin/ft.C.x
-        const command = spawn(command, params);
-        command.stdout.on('data', (data) => {
+        const cmd = spawn(command, params);
+        cmd.stdout.on('data', (data) => {
             socket.emit('youve_got_mail', utf8.encode(data.toString()));
             //  io.emit // Para enviarlo a todos los usuarios conectados
         });
 
-        command.stdout.on('close', (code) => {
+        cmd.stdout.on('close', (code) => {
             socket.emit('finished_execution', utf8.encode(`Program exited with code ${Number(code)}`));
         });
     });
