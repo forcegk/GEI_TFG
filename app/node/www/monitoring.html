@@ -346,9 +346,11 @@
         var textarea = document.getElementById('terminal_monitor');
 
         function toggleButtonActivation(disabled){
-            document.getElementsByClassName('buttons__form-button').forEach(element => {
-                element.disabled = disabled;
-            });
+            var buttons = document.getElementsByClassName('buttons__form-button');
+
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = disabled;
+            }
         }
 
         function spawn(bench_name) {
