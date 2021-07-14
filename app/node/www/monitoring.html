@@ -312,7 +312,7 @@
             <button id="buttons__form__ep" class="buttons__form-button" type="submit" onclick="spawn('ep')">EP</button>
         </div>
 
-        <textarea id="terminal_monitor" rows="4" cols="100%" readonly>Console output:</textarea>
+        <textarea id="terminal_monitor" rows="4" cols="100%" readonly></textarea>
         
     </div>
         
@@ -346,14 +346,14 @@
         var textarea = document.getElementById('terminal_monitor');
 
         function toggleButtonActivation(disabled){
-            document.getElementsByClassName('buttons__form-button').disabled = disabled;
+            document.getElementsByClassName('buttons__form-button').forEach(element => {
+                element.disabled = disabled;
+            });
         }
 
         function spawn(bench_name) {
             // TODO desactivar los botones hasta que se haya terminado
             toggleButtonActivation(true);
-
-            textarea.innerHTML = 'Console output:';
             socket.emit('spawn', bench_name);
         }
 
@@ -363,7 +363,7 @@
 
         socket.on('youve_got_mail', (msg) => addTextToTextArea(msg));
 
-        socket.on('close', function(msg) {
+        socket.on('finished_execution', function(msg) {
             toggleButtonActivation(false);
             addTextToTextArea(msg);
         });
