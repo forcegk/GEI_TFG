@@ -193,6 +193,11 @@ body > section {
     transition: all 0.25s;
 }
 
+#terminal_container {
+  position: relative;
+  width: 50%;
+}
+
 #terminal_monitor {
     background-color: #b2ed7b;
     /* padding: 5em; */
