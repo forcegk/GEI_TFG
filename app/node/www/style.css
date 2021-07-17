@@ -195,18 +195,18 @@ body > section {
 
 #terminal_container {
   position: relative;
+  height: 61em;
+  max-height: 61em;
+  margin-inline: 2.5%;
+  margin-block-end: 3em;
 }
 
 #terminal_monitor {
     background-color: #b2ed7b;
     /* padding: 5em; */
-    height: 61em;
-    max-height: 61em;
     line-height: 1.5;
     font-family: monospace;
     border: 1px solid green;
-    margin-inline: 2.5%;
-    margin-block-end: 3em;
     outline: none;
     resize:none;
     width: 100%;
