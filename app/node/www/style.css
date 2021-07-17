@@ -209,6 +209,7 @@ body > section {
     border: 1px solid green;
     outline: none;
     resize:none;
+    height: 100%;
     width: 100%;
 }
 
