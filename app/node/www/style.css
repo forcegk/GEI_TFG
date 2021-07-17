@@ -200,8 +200,7 @@ body > section {
 #terminal_monitor {
     background-color: #b2ed7b;
     /* padding: 5em; */
-    height: 61em;
-    max-height: 61em;
+    height: auto;
     line-height: 1.5;
     font-family: monospace;
     border: 1px solid green;
@@ -209,6 +208,7 @@ body > section {
     margin-block-end: 3em;
     outline: none;
     resize:none;
+    width: 100%;
 }
 
 
