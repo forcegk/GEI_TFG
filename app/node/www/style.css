@@ -247,8 +247,6 @@ body > section {
 
 #button_clear_terminal {
     position: absolute;
-    top: 5%;
-    left: 95%;
-    transform: translate(-5%, -98%);
-    -ms-transform: translate(-5%, -98%);
+    top: 1em;
+    right: 1.5em
 }
