@@ -143,6 +143,8 @@ body > section {
 #main_monitor {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
 #cpu_monitor {
@@ -151,17 +153,24 @@ body > section {
     flex-wrap: wrap;
     justify-content: space-evenly;
     flex-grow: 1;
+    flex-shrink: 1;
+    transition: all 3s;
 }
 
 .rpi_block {
     display: flex;
     margin-inline: 0.5em;
     margin-block: 1em;
+    flex-grow: 1;
+    flex-shrink: 1;
+    transition: all 3s;
 }
 
 .rpi_div__zonecpu {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
 .rpi_div__zonenet {
@@ -169,11 +178,15 @@ body > section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
 .rpi_div__zonenet__pies {
     display: flex;
     flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
 
@@ -198,6 +211,8 @@ body > section {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
 .buttons__form-button:hover {
