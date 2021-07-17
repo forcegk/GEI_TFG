@@ -231,6 +231,12 @@ body > section {
     color: #FFFFFF;
 }
 
+.buttons__form-button:disabled {
+    background: #757575;
+    text-decoration: none; 
+    color: #FFFFFF;
+}
+
 .buttons__form-button {
     background: #FF4081;
     padding: 3px 15px;
