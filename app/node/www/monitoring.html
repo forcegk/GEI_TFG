@@ -594,7 +594,7 @@
 
         <div id="terminal_container">
             <textarea id="terminal_monitor" rows="4" cols="100%" readonly></textarea>
-            <button id="button_clear_terminal" class="buttons__form-button">Clear Terminal</button>
+            <button id="button_clear_terminal" class="buttons__form-button" onclick="clearTextArea()">Clear Terminal</button>
         </div>
         
     </div>
@@ -649,6 +649,11 @@
 
         function addBlankLineToTextArea() {
             addTextToTextArea('\n');
+        }
+
+        function clearTextArea() {
+            textarea.innerHTML = '';
+            addTextToTextArea('');            
         }
 
         socket.on('youve_got_mail', (msg) => addTextToTextArea(msg));
