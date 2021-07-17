@@ -154,7 +154,7 @@ body > section {
     justify-content: space-evenly;
     flex-grow: 1;
     flex-shrink: 1;
-    transition: all 3s;
+    transition: all 0.25s;
 }
 
 .rpi_block {
@@ -163,7 +163,7 @@ body > section {
     margin-block: 1em;
     flex-grow: 1;
     flex-shrink: 1;
-    transition: all 3s;
+    transition: all 0.25s;
 }
 
 .rpi_div__zonecpu {
@@ -171,6 +171,8 @@ body > section {
     flex-direction: column;
     flex-grow: 1;
     flex-shrink: 1;
+    transition: all 0.25s;
+    
 }
 
 .rpi_div__zonenet {
@@ -180,6 +182,7 @@ body > section {
     justify-content: center;
     flex-grow: 1;
     flex-shrink: 1;
+    transition: all 0.25s;
 }
 
 .rpi_div__zonenet__pies {
@@ -187,8 +190,8 @@ body > section {
     flex-direction: row;
     flex-grow: 1;
     flex-shrink: 1;
+    transition: all 0.25s;
 }
-
 
 #terminal_monitor {
     background-color: #b2ed7b;
@@ -213,6 +216,7 @@ body > section {
     justify-content: space-evenly;
     flex-grow: 1;
     flex-shrink: 1;
+    transition: all 0.25s;
 }
 
 .buttons__form-button:hover {
@@ -233,4 +237,12 @@ body > section {
     margin: 10px;
     border: none;
     font-size: x-large;
+}
+
+#button_clear_terminal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
