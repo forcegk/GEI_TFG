@@ -14,10 +14,11 @@ app.use(express.static('www'));
 
 // Socket handling
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('User ' + socket.id + ' connected');
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log('User ' + socket.id + ' disconnected.');
         // Solo funciona en dispositivos *NIX
+        // Esto obviamente está pensado para un solo usuario simultaneamente
         exec('killall mpirun', () => {});
     });
 });
@@ -26,8 +27,6 @@ io.on('connection', (socket) => {
     socket.on('spawn', (bench_name) => {
         console.log('User ' + socket.id + ' called benchmark: ' + bench_name);
 
-        // TODO CAMBIAR EN LINUX
-        // OJO IMPORTANTE HACER UN SWITCH CON BENCH NAME Y NO METERLO DIRECTO AL COMANDO
         var command;
         var params;
         switch (bench_name) {
@@ -46,16 +45,6 @@ io.on('connection', (socket) => {
                 params = ['--stdout'];
                 break;
         }
-        
-        /* const ping = spawn('ping', ['www.google.es', '-c5']);
-        ping.stdout.on('data', (data) => {
-            socket.emit('youve_got_mail', utf8.encode(data.toString()));
-            //  io.emit // Para enviarlo a todos los usuarios conectados
-        });
-
-        ping.stdout.on('close', (code) => {
-            socket.emit('finished_execution', utf8.encode(`Program exited with code ${Number(code)}`));
-        }); */
 
         // mpirun -np 32 --hostfile /mpishared/hostfile --mca opal_warn_on_missing_libcuda 0 /mpishared/NPB3.4.2/NPB3.4-MPI/bin/ft.C.x
         const cmd = spawn(command, params, {shell:true});

@@ -1,7 +1,7 @@
 {
-    "name": "tfg_app",
+    "name": "clupiter_dashboard",
     "version": "0.0.1",
-    "description": "TFG Monitoring App",
+    "description": "Clupiter Didactical and Monitoring Dashboard",
     "dependencies": {
         "express": "^4.17.1",
         "socket.io": "^4.1.3",
