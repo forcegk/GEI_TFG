@@ -167,9 +167,8 @@ body > section {
     justify-content: center;
     text-align: center;
     align-items: center;
-    border-style: solid;
+    border: 10px solid #fe6b46;
     border-radius: 0;
-    border: 1px solid #fe6b46;
 }
 
 .rpi_div__zonecpu {
