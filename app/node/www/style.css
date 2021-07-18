@@ -167,6 +167,7 @@ body > section {
     justify-content: center;
     text-align: center;
     align-items: center;
+    padding: 10px;
     border: 10px solid #fe6b46;
     border-radius: 0;
 }
