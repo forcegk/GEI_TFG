@@ -164,7 +164,7 @@ body > section {
     flex-grow: 1;
     flex-shrink: 1;
     transition: all 0.25s;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .rpi_div__zonecpu {
