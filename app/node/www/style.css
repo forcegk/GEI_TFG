@@ -161,10 +161,9 @@ body > section {
     display: flex;
     margin-inline: 0.5em;
     margin-block: 1em;
-    flex-grow: 1;
-    flex-shrink: 1;
     transition: all 0.25s;
     justify-content: center;
+    align-items: center;
 }
 
 .rpi_div__zonecpu {
