@@ -1,0 +1,47 @@
+\chapter{Análisis y Diseño}
+\label{chap:analisis_diseño}
+
+\lettrine{E}{n} este capítulo se expone brevemente el análisis de requisitos que se ha realizado, así como ya más en profundidad las decisiones tomadas durante el diseño.
+
+\section{Requisitos Hardware}
+\label{sec:requisitos_hardware}
+\subsection{Requisitos Físicos}
+Estos requisitos son de los más importantes debido a que modifican la estructura y limitaciones físicas del proyecto, conteniendo requisitos tanto funcionales como no funcionales, por lo que está en una sección a parte.
+
+Primeramente conviene recordar que este trabajo se lleva a cabo durante la pandemia causada por el COVID-19, por lo que la movilidad es reducida y el teletrabajo desde el domicilio la regla. Bajo estas circunstancias se comienza a realizar un diseño que satisfaga los siguientes requisitos:
+\begin{itemize}
+    \item El cluster debe ser \textbf{pequeño} y \textbf{manejable}: Debido a que el trabajo se realiza desde casa, éste no puede ser muy extenso, ya que el espacio es muy limitado, por lo que se deben descartar estructuras donde los nodos quedan ``libres'' y ``desperdigados'' encima de una grande mesa.
+    \item El cluster debe ser \textbf{visualmente agradable} y \textbf{comprensible}: Debido a que va a ser visto por personas con (posiblemente) escasa formación en \acrshort{hpc}, el cluster ha de tener partes fácilmente identificables, lo más aisladas y señalables posible, y sobre todo no debe abrumar a quien lo ve por primera vez, esto es, no debe sentir que lo que está viendo es ``un montón de cachibaches con cables''.
+\end{itemize}
+
+\subsection{Requisitos funcionales}
+En cuanto a los requisitos funcionales, como este proyecto se centra más en la divulgación que en la búsqueda de la máxima eficiencia, quizás no se tienen unos requisitos funcionales difíciles de satisfacer, pero \textit{grosso modo} podemos identificar:
+
+\begin{itemize}
+    \item En el cluster todos los nodos deben estar conectados entre sí en una topología \textbf{N a N}, es decir, la típica de un switch Ethernet.
+    \item El cluster debe ser capaz de ejecutar en general tareas de \textbf{MPI}, y en particular los \acrlong{npb}. 
+\end{itemize}
+
+\subsection{Requisitos no funcionales}
+En cuanto al resto de requisitos no funcionales, principalmente destacar que:
+\begin{itemize}
+    \item El cluster debe ser \textbf{sensato}: Se debe emplear una calidad y cantidad de materiales adecuada a las expectativas del mismo, esto es que por ejemplo el switch no debería ser el componente más caro de todo el presupuesto, pero tampoco debemos escatimar en él para aprovechar la tarjeta de red Gigabit Ethernet de las Raspberry Pi 4B.
+    \item Enlazando con el requisito superior, los componentes a emplear serán actuales y aportarán una relación \textbf{calidad/precio} lo más \textbf{elevada} posible.
+    \item El cluster debe ser \textbf{extensible} y \textbf{mantenible}: El despliegue hardware debe permitir modificaciones y mantenimientos de forma moderadamente sencilla.
+\end{itemize}
+
+\section{Diseño Hardware}
+\label{sec:diseño_hardware}
+
+\subsection{Elementos Hardware}
+Las piezas
+
+\subsection{Diseño Estructural}
+Planos, aquí va render, etc
+
+\section{Infraestructura Software}
+\label{sec:infra_software}
+
+\subsection{Requisitos funcionales}
+
+\subsection{Requisitos no funcionales}
