@@ -5,6 +5,8 @@
 
 \section{Requisitos Hardware}
 \label{sec:requisitos_hardware}
+En esta sección se analizan los requisitos del proyecto, que han sido divididos en tres secciones en lugar de las tradicionales dos para mayor claridad, ya que el aspecto físico, así como las dimensiones del mismo son un aspecto muy importante a considerar.
+
 \subsection{Requisitos Físicos}
 Estos requisitos son de los más importantes debido a que modifican la estructura y limitaciones físicas del proyecto, conteniendo requisitos tanto funcionales como no funcionales, por lo que está en una sección a parte.
 
@@ -32,13 +34,40 @@ En cuanto al resto de requisitos no funcionales, principalmente destacar que:
 
 \section{Diseño Hardware}
 \label{sec:diseño_hardware}
-
+La etapa de diseño ha consumido una cantidad de tiempo para nada desdeñable, ya que diseñar un sistema que cumpla todos los requisitos no es una labor precisamente trivial. A continuación se exponen los elementos que conforman el ensamblaje del sistema, así como planos que documentan el diseño del mismo.
 
 \subsection{Elementos Hardware}
-Las piezas
+En cuanto a los elementos que conforman el cluster, éste se compone de:
+\begin{itemize}
+    \item 8x Raspberry Pi
+    \item 8x MicroSD 32GB
+    \item 1x Switch 8 puertos
+    \item 1x Tarjeta de red USB 3.0 a Gigabit Ethernet 
+    \item 2x Torres de 4 Raspberry Pi
+    \item 1x Ventilador de 120mm
+    \item 1x DC-DC Step-Up Variable 
+    \item 1x Fuente de alimentación 5V 150W
+    \item 8x Cables USB Type-C
+    \item 8x Latiguillos Ethernet
+\end{itemize}
+
+Como requerimientos especiales de esta lista de componentes, de la cual se puede encontrar el presupuesto anexado en \#REF\# (TODO RECOLOCAR O COMPLETAR), destacar que el switch debe funcionar a 5V para poder ser alimentado directamente por la fuente de alimentación.
+
+Continuando así con el tema de tensiones, el ventilador elegido funciona a 12V, sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. En la primera de ellas, esa regulación de voltaje se realiza informada por la línea de tacómetro. Sin embargo en este caso,  dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible), ignorando la línea de tacómetro. De esta forma el usuario tiene la posibilidad de elevar la potencia en el improbable escenario de que se necesitase más caudal de aire. (Esto ocurriría principalmente si en otra iteración sobre este trabajo se decide hacer overclock al cluster)
+
+%%%                     %%%
+%     INSERTAR IMAGEN     %  Tacómetro y pwm, esquemático de conexión fan
+%%%                     %%%
 
 \subsection{Diseño Estructural}
-Planos, aquí va render, etc
+La estructura que se ha pensado para aprovechar el espacio lo máximo posible consiste en lo que se podría coloquialmente llamar ``un sandwich'', con la fuente de alimentación en la parte baja, las Raspberry Pi en la zona intermedia, siendo refrigeradas por un ventilador posicionado verticalmente, y con el switch en la parte alta, creando cierto encajonamiento al más puro estilo supercomputador, como se muestra en la figura \ref{fig:render_cluster_1}.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{img/render_cluster_1_provisional.png}
+  \caption{Render frontal del cluster}
+  \label{fig:render_cluster_1}
+\end{figure}
 
 \section{Infraestructura Software}
 \label{sec:infra_software}
