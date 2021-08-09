@@ -34,7 +34,7 @@ En cuanto al resto de requisitos no funcionales, principalmente destacar que:
 
 \section{Diseño Hardware}
 \label{sec:diseño_hardware}
-La etapa de diseño ha consumido una cantidad de tiempo para nada desdeñable, ya que diseñar un sistema que cumpla todos los requisitos no es una labor precisamente trivial. A continuación se exponen los elementos que conforman el ensamblaje del sistema, así como planos que documentan el diseño del mismo.
+La etapa de diseño ha consumido una cantidad de tiempo para nada desdeñable, ya que diseñar un sistema que cumpla todos los requisitos no es una labor precisamente trivial. A continuación se exponen los elementos que conforman el ensamblaje del sistema, así como planos que documentan el diseño del mismo.\footnote{El presupuesto, así como otros documentos relativos al presupuestado y compra de materiales se puede encontrar anexado en \#REF\# (TODO RECOLOCAR O COMPLETAR)}
 
 \subsection{Elementos Hardware}
 En cuanto a los elementos que conforman el cluster, éste se compone de:
@@ -102,19 +102,24 @@ Volviendo a hablar de tensiones, el ventilador elegido funciona a 12V. Sin embar
 %%%                     %%%
 
 \subsubsection{Fuente de alimentación 5V 150W}
+La fuente de alimentación es un componente fundamental del cluster, y es que las Raspberry Pi 4 consumen una cantidad de energía nada baja. Solamente el propio dispositivo funcionando a pleno rendimiento consume alrededor de 7.5W, consumo que se dispara si se enchufan periféricos a sus puertos USB. Por esta razón la Raspberry Pi foundation, en lo que debe ser un movimiento para ahorrar problemas a usuarios menos experimentados, recomienda 3A (a 5V) por Raspberry Pi, es decir 15W por dispositivo.
 
+Dadas estas circunstancias, y para ahorrar posibles problemas presentes y futuros, se ha optado por una fuente de alimentación DC de 5V con una potencia de 150W, que sin duda satisface por más del doble los requerimientos energéticos del cluster actual.
+
+% TODO intertar imagen fuente y esquemático conexiones eléctricas (incluir switch y ventilador)
 
 \subsubsection{Cableado Eléctrico y de Red}
+Tras la lista de componentes previamente expuestos, únicamente queda tratar la interconexión de los mismos, un componente que da más problemas de lo que pueda parecer.
 
+En cuanto al cableado Ethernet no hay mucho que clarificar. Los cables de 4 pares trenzados Cat5E se cortan a la longitud necesaria, y se crimpan siguiendo la disposición ANSI/TIA-568B.
 
+El cableado eléctrico ha dado mayores problemas, y es que las Raspberry Pi 4 Model B son alimentadas por USB Tipo-C, teniendo una implementación del mismo un tanto regular, por lo que no cualquier cable funciona como lo esperado, lo que hizo tener que cambiar los cables originalmente planeados.
 
+El cableado eléctrico seleccionado es un cable USB-C con terminación magnética y que soporta una corriente de 3A a 5V. Esto permite abstraer los detalles de implementación a nivel eléctrico del USB Tipo-C (es decir, el puentear los pines necesarios para activar el modo de carga, etc) y expone simplemente los cables de +5V y masa.
 
-El presupuesto, así como otros documentos relativos al presupuestado y comproa de materiales se puede encontrar anexado en \#REF\# (TODO RECOLOCAR O COMPLETAR).
+Un aspecto muy importante a tener en cuenta, y que ha sido un problema que ha ocurrido durante la construcción del cluster, es que debido a la naturaleza de estos cables, el contacto entre la pieza del USB-C y el propio cable debe estar limpio de residuos aislantes, o conductores de un diámetro lo suficientemente grandes que impidan un buen contacto.
 
-Continuando así con el tema de tensiones, el ventilador elegido funciona a 12V, sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. En la primera de ellas, esa regulación de voltaje se realiza informada por la línea de tacómetro. Sin embargo en este caso,  dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible), ignorando la línea de tacómetro. De esta forma el usuario tiene la posibilidad de elevar la potencia en el improbable escenario de que se necesitase más caudal de aire. (Esto ocurriría principalmente si en otra iteración sobre este trabajo se decide hacer overclock al cluster)
-
-% TODO ENTRAR EN DETALLES POR CADA PIEZA
-
+% TODO INSERTAR IMAGENES CABLES USB INALAMBRICOS Y ANSI-TIA
 
 \subsection{Diseño Estructural}
 La estructura que se ha pensado para aprovechar el espacio lo máximo posible consiste en lo que se podría coloquialmente llamar ``un sandwich'': la fuente de alimentación en la parte baja; las Raspberry Pi en la zona intermedia, siendo refrigeradas por un ventilador posicionado verticalmente; y el switch en la parte alta, creando cierto encajonamiento al más puro estilo supercomputador, como se muestra en la figura \ref{fig:render_cluster_1}.
