@@ -51,23 +51,84 @@ En cuanto a los elementos que conforman el cluster, éste se compone de:
     \item 8x Latiguillos Ethernet
 \end{itemize}
 
-Como requerimientos especiales de esta lista de componentes, de la cual se puede encontrar el presupuesto anexado en \#REF\# (TODO RECOLOCAR O COMPLETAR), destacar que el switch debe funcionar a 5V para poder ser alimentado directamente por la fuente de alimentación.
+A continuación se da una explicación detallada de la decisión de estos materiales.
 
-Continuando así con el tema de tensiones, el ventilador elegido funciona a 12V, sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. En la primera de ellas, esa regulación de voltaje se realiza informada por la línea de tacómetro. Sin embargo en este caso,  dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible), ignorando la línea de tacómetro. De esta forma el usuario tiene la posibilidad de elevar la potencia en el improbable escenario de que se necesitase más caudal de aire. (Esto ocurriría principalmente si en otra iteración sobre este trabajo se decide hacer overclock al cluster)
+\subsubsection{Raspberry Pi 4B}
+Este computador, como se comenta previamente en \nameref{sec:motivacion}, destaca por su reducido formato de forma, del tamaño de una tarjeta de crédito, así como por su bajo consumo y coste. Esto lo hace una solución idónea para este proyecto, que no requiere de hardware muy potente, sino más bien de mucho hardware poco potente que permita simular la estructura de un supercomputador.
 
+%% TODO INSERTAR IMAGEN
+
+\subsubsection{MicroSD}
+Una parte que puede pasar desapercibida en una primera aproximación pero que es muy importante son las tarjetas MicroSD, ya que sin ellas las Raspberry Pis no podrán arrancar ningún sistema operativo.\footnote{Desde la versión 2020-09-14 del bootloader se permite el arranque desde dispositivos USB \cite{rpibootloader20200903}}
+
+Se han elegido las tarjetas Samsung Pro Endurance debido a su alta capacidad de escrituras, ya que otros tipos de tarjetas sin este propósito específico podrían sufrir bastante desgaste y llegar al final de su vida útil prematuramente. 
+
+La elección de la versión de 32GB de capacidad, a pesar de que no sean necesarios, es trivial, ya que no existen modelos de menor capacidad y este extra de espacio puede ser bienvenido en hipotéticas futuras iteraciones sobre esta infraestructura.
+
+%% TODO INSERTAR IMAGEN
+
+\subsubsection{Switch Gigabit de 8 puertos}
+Una de las partes más interesantes y a las que más vueltas se le ha dado es cómo hacer para conectar los mini computadores sin que se convierta en un lío de cables y sin que el hardware esté desproporcionado. Primeramente destacar que el switch debe funcionar a 5V para poder ser alimentado directamente por la fuente de alimentación, siendo esto un importante requerimiento.
+Por otro lado, tambien se debe tener en cuenta que normalmente los switches se fabrican con puertos múltiplos de dos, y esto puede no parecer un problema: hay 8 dispositivos a conectar, por tanto un switch de 8 puertos parece hacer un buen trabajo.
+
+% TODO INSERTAR ANOTHER IMAGEN
+
+Sin embargo esta tarea no es tan sencilla, ya que el cluster debe poder ser accedido desde el exterior, lo que hace necesario un switch de 9 puertos. Estos switches, si bien existen son escasos e innecesariamente caros, y comprar la siguiente opción, siendo ésta el switch de 16 puertos no es una opción.
+
+¿La solución? Añadimos un adaptador \nameref{sssec:usb30age}.
+
+\subsubsection{USB 3.0 a Gigabit Ethernet}
+\label{sssec:usb30age}
+Con este adaptador, y puenteando las interfaces Ethernet nativa de una Raspberry y la conectada por USB se puede obtener virtualmente un switch de 9 puertos, cierto es que a expensas de un pequeño coste de CPU para manejar esos paquetes de red, que a la hora de la verdad tendrá un marginal impacto, ya que las comunicaciones intensivas se realizarán dentro del propio cluster.
+
+% TODO INSERTAR ANOTHER IMAGEN Y QUIZÁS UN DIAGRAMA DE SWITCH VIRTUAL DE 9
+
+\subsubsection{Torres de \acrshort{rpi}}
+\label{sssec:torresrpi}
+Las Raspberry Pis se apilan verticalmente como servidores en un rack para poder ser cableadas, accedidas, y refrigeradas de forma sencilla, a resultar visualmente agradables en esta disposición.
+
+Además estos kits incluyen disipadores para RAM, CPU y controlador de USB, así como refrigeración activa, que no se instalará en este caso.
+
+% TODO INSERTAR IMAGEN DE TORRES Y DISIPADORES
+
+\subsubsection{Ventilador de 120mm}
+Como se menciona previamente, las \nameref{sssec:torresrpi} incluyen refrigeración activa, pero se ha optado por no incluirla por el nivel de ruido que hacen, a parte de la poca necesidad de la misma dada la naturaleza del proyecto. Sin embargo para permitir la extensibilidad del proyecto en forma de nuevas iteraciones, se ha añadido un ventilador de 120mm optimizado para presión, que mueve aire de un extremo al otro del cluster, refrigerando los mini computadores con ayuda de los disipadores instalados.
+
+Volviendo a hablar de tensiones, el ventilador elegido funciona a 12V. Sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto, los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. En la primera de ellas, esa regulación de voltaje se realiza informada por la línea de tacómetro. Sin embargo en este caso,  dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible para rebajar el nivel de ruido), ignorando la línea de tacómetro. De esta forma el usuario tiene la posibilidad de elevar la potencia en el improbable escenario de que se necesitase más caudal de aire. (Esto ocurriría principalmente si en otra iteración sobre este trabajo se decide hacer overclock al cluster)
+
+% TODO FOTOS (quizás de la construcción??) tambien incluir fotos del step up
 %%%                     %%%
 %     INSERTAR IMAGEN     %  Tacómetro y pwm, esquemático de conexión fan
 %%%                     %%%
 
+\subsubsection{Fuente de alimentación 5V 150W}
+
+
+\subsubsection{Cableado Eléctrico y de Red}
+
+
+
+
+El presupuesto, así como otros documentos relativos al presupuestado y comproa de materiales se puede encontrar anexado en \#REF\# (TODO RECOLOCAR O COMPLETAR).
+
+Continuando así con el tema de tensiones, el ventilador elegido funciona a 12V, sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. En la primera de ellas, esa regulación de voltaje se realiza informada por la línea de tacómetro. Sin embargo en este caso,  dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible), ignorando la línea de tacómetro. De esta forma el usuario tiene la posibilidad de elevar la potencia en el improbable escenario de que se necesitase más caudal de aire. (Esto ocurriría principalmente si en otra iteración sobre este trabajo se decide hacer overclock al cluster)
+
+% TODO ENTRAR EN DETALLES POR CADA PIEZA
+
+
 \subsection{Diseño Estructural}
-La estructura que se ha pensado para aprovechar el espacio lo máximo posible consiste en lo que se podría coloquialmente llamar ``un sandwich'', con la fuente de alimentación en la parte baja, las Raspberry Pi en la zona intermedia, siendo refrigeradas por un ventilador posicionado verticalmente, y con el switch en la parte alta, creando cierto encajonamiento al más puro estilo supercomputador, como se muestra en la figura \ref{fig:render_cluster_1}.
+La estructura que se ha pensado para aprovechar el espacio lo máximo posible consiste en lo que se podría coloquialmente llamar ``un sandwich'': la fuente de alimentación en la parte baja; las Raspberry Pi en la zona intermedia, siendo refrigeradas por un ventilador posicionado verticalmente; y el switch en la parte alta, creando cierto encajonamiento al más puro estilo supercomputador, como se muestra en la figura \ref{fig:render_cluster_1}.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=\textwidth]{img/render_cluster_1_provisional.png}
+  \includegraphics[width=0.8\textwidth]{img/render_cluster_1_provisional.png}
   \caption{Render frontal del cluster}
   \label{fig:render_cluster_1}
 \end{figure}
+
+El acoplamiento entre las capas se realiza mediante láminas de aluminio, en las que se atornillan las piezas de arriba y de abajo, sirviendo como adaptador.
+
+% TODO QUIZÁS PONER QUE SE ANEXAN PLANOS CAD?
 
 \section{Infraestructura Software}
 \label{sec:infra_software}
