@@ -144,7 +144,19 @@ El acoplamiento entre las capas se realiza mediante láminas de aluminio, en las
 
 \section{Requisitos Software}
 \label{sec:requisitos_software}
+En esta sección se analizan los requisitos software del proyecto. Para el desarrollo del mismo necesitamos dos piezas de software clave: el sistema operativo, y el dashboard.
 
-\subsection{Requisitos funcionales}
+Como se comenta en \nameref{sec:objetivos}, se utilizará Arch Linux como distribución Linux. Esto es así porque siendo un usuario con cierta experiencia, resulta extremadamente cómodo instalar un sistema mínimo basado en esta distribución, así como mantenerlo y ampliarlo, cumpliendo el requisito de extensibilidad del hardware, que también aplica al software. Además, a un hipotético usuario futuro sin tanta experiencia le resultará sencillo habituarse al funcionamiento y configuración de Arch Linux debido a su amplia documentación en la Arch Wiki.\footnote{\url{https://wiki.archlinux.org}. Se anexa una breve guía de mantenimiento básico de Arch Linux en \#REF\# TODO ANEXO}
 
-\subsection{Requisitos no funcionales}
+Por otro lado, se implementará un dashboard web que permita:
+\begin{enumerate}
+    \item Explicar el funcionamiento del cluster, los supercomputadores paralelos, \acrshort{mpi}, y la importancia en el mundo real de los mismos, mediante vídeos pregrabados reproducibles en la página web.
+    \item Monitorizar el estado e histórico del servidor en tiempo real, pudiendo realizar con la ayuda de dicha información explicaciones interactivas acerca del funcionamiento de programas \acrshort{mpi}.
+\end{enumerate}
+
+Esta funcionalidad se proporcionará mediante el uso de la tecnología de WebSockets\footnote{\url{https://socket.io}} y Netdata\footnote{\url{https://www.netdata.cloud}}.
+
+Como principal requisito no funcional, y como ya se menciona previamente:
+\begin{itemize}
+    \item El sistema operativo del cluster debe ser \textbf{extensible} y \textbf{mantenible}: El sistema operativo no debe ser una caja negra inaccesible y difícil de mantener, sino todo lo contrario.
+\end{itemize}
