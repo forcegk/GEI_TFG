@@ -6,7 +6,7 @@
 Como se comenta posteriormente en (TODO \#REF\# metodología), se sigue un modelo basado en prototipos, en el que se realiza un codiseño hardware y software mediante el uso de máquinas virtuales.
 
 \section{Configuración Hardware}
-\label{sec:impl_infra_hardware}
+\label{sec:configuracion_hardware}
 En esta sección se documenta el transcurso del montaje y puesta a punto del hardware del cluster, los errores cometidos, y se muestran fotografías del proceso.
 
 Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir un cluster compacto, y para ello las diferentes partes se ensamblan por separado. Podemos distinguir así cinco fases:
@@ -93,11 +93,12 @@ Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir 
     \label{fig:fotos_estructura}
     \end{figure}
 
-    \item \textbf{Testeo} de correcta \textbf{integración}: Finalmente se debe comprobar que todos los componentes continúan funcionando correctamente una vez instalados. Este paso trajo ciertas complicaciones, ya que durante el montaje se desprendieron pequeñas limaduras de hierro, que si bien se limpiaron a conciencia de las placas y todo circuito eléctrico, los conectores magnéticos USB-C recogieron todo ese residuo, y como se comenta en \nameref{sssec:cableado_electrico_red}, esto dió algunos problemas con malos contactos y caídas de tensión intermitentes y aleatorias. En el proceso de la solución de errores se desmontó de nuevo el cluster para realizar otra limpieza e inspección de cableado, llegando así a la versión actual.
+    \item \textbf{Testeo} de la correcta \textbf{integración}: Finalmente se debe comprobar que todos los componentes continúan funcionando correctamente una vez instalados. Este paso trajo ciertas complicaciones, ya que durante el montaje se desprendieron pequeñas limaduras de hierro, que si bien se limpiaron a conciencia de las placas y todo circuito eléctrico, los conectores magnéticos USB-C recogieron todo ese residuo, y como se comenta en \nameref{sssec:cableado_electrico_red}, esto dió algunos problemas con malos contactos y caídas de tensión intermitentes y aleatorias. En el proceso de la solución de errores se desmontó de nuevo el cluster para realizar otra limpieza e inspección de cableado, llegando así a la versión actual.
 \end{itemize}
 
 \section{Configuración Software}
-\label{sec:impl_infra_software}
+\label{sec:configuracion_software}
+A continuación se documentan los pasos realizados para llevar los nodos del cluster al estado actual. Esta documentación asume cierto conocimiento de comandos de Linux.
 
 \subsection{Instalación Base del Sistema Operativo}
 \label{ssec:instalacion_sistema_operativo}
@@ -238,7 +239,7 @@ Y (probablemente) se deba reconectar la sesión por SSH, ya que al haber cambiad
 \label{ssec:configuracion_ip_estaticas}
 A la hora de administrar el cluster es necesario que las direcciones se asignen de alguna forma, sea esta estática o dinámica. Sin embargo, debido a las características del cluster, y especialmente a que la conexión desde el exterior va a ser variable y no siempre va a haber internet, lo más conveniente es configurar direcciones IP estáticas en cada uno de los hosts que componen el cluster, así como una dirección de gateway predeterminada, que algunas veces existirá, y otras no.
 
-Para esto, se han de modificar los archvos ubicados en \texttt{/etc/systemd/network/} de tal forma que:
+Para esto, se han de modificar los archivos ubicados en \texttt{/etc/systemd/network/} de tal forma que:
 
 \begin{itemize}
     \item Modificar \texttt{eth.network} en las máquinas 1 a 7, y asignarles una IP estática, siendo la X en \texttt{.22X} el número de la máquina, así \texttt{rpi1} sería \texttt{.221}, etc.
