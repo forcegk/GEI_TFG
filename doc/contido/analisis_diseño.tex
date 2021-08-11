@@ -95,7 +95,7 @@ Estos kits incluyen disipadores para RAM, CPU, controlador Ethernet y USB, así 
 \subsubsection{Ventilador de 120mm}
 Como se menciona previamente, las \nameref{sssec:torresrpi} incluyen refrigeración activa, pero se ha optado por no incluirla por el nivel de ruido que hacen, a parte de la poca necesidad de la misma dada la naturaleza del proyecto. Sin embargo, para permitir la extensibilidad del proyecto en forma de nuevas iteraciones, se ha añadido un ventilador de 120mm optimizado para presión, que mueve aire de un extremo al otro del cluster, refrigerando los mini computadores con ayuda de los disipadores instalados.
 
-Volviendo a hablar de tensiones, el ventilador elegido funciona a 12V. Sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto, los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. En la primera de ellas, esa regulación de voltaje se realiza informada por la línea de tacómetro. Sin embargo, en este caso,  dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible para rebajar el nivel de ruido), ignorando la línea de tacómetro. De esta forma el usuario tiene la posibilidad de elevar la potencia en el improbable escenario de que se necesitase más caudal de aire. Esto ocurriría principalmente si en otra iteración sobre este trabajo se decide hacer overclock al cluster.
+Volviendo a hablar de tensiones, el ventilador elegido funciona a 12V. Sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto, los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. En la primera de ellas, esa regulación de voltaje se realiza informada por la línea de tacómetro. Sin embargo, en este caso,  dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable\footnote{Con step-up variable entendemos un circuito que, dada una tensión de entrada, puede ajustarse una tensión de salida igual o superior a la de la entrada en función del valor de la resistencia de un potenciómetro} con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible para rebajar el nivel de ruido), ignorando la línea de tacómetro. De esta forma el usuario tiene la posibilidad de elevar la potencia en el improbable escenario de que se necesitase más caudal de aire. Esto ocurriría principalmente si en otra iteración sobre este trabajo se decide hacer overclock al cluster.
 
 % TODO FOTOS (quizás de la construcción??) tambien incluir fotos del step up
 %%%                     %%%
@@ -110,6 +110,7 @@ Dadas estas circunstancias, y para ahorrar posibles problemas presentes y futuro
 % TODO intertar imagen fuente y esquemático conexiones eléctricas (incluir switch y ventilador)
 
 \subsubsection{Cableado Eléctrico y de Red}
+\label{sssec:cableado_electrico_red}
 Tras la lista de componentes previamente expuestos, únicamente queda tratar la interconexión de los mismos, un componente que da más problemas de lo que pueda parecer.
 
 En cuanto al cableado Ethernet no hay mucho que clarificar. Los cables de 4 pares trenzados Cat5E se cortan a la longitud necesaria, y se crimpan siguiendo la disposición ANSI/TIA-568B.
@@ -139,7 +140,7 @@ La estructura que se ha pensado para aprovechar el espacio lo máximo posible co
   \label{fig:render_cluster_1}
 \end{figure}
 
-El acoplamiento entre las capas se realiza mediante láminas de aluminio, en las que se atornillan las piezas de arriba y de abajo, sirviendo como adaptador.
+El acoplamiento entre las capas se realiza mediante láminas de chapa, en las que se atornillan las piezas de arriba y de abajo, sirviendo como adaptador.
 
 % TODO QUIZÁS PONER QUE SE ANEXAN PLANOS CAD?
 

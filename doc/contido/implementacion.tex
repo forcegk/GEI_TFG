@@ -7,10 +7,11 @@ Como se comenta posteriormente en (TODO \#REF\# metodología), se sigue un model
 
 \section{Configuración Hardware}
 \label{sec:impl_infra_hardware}
-\subsection{Preparación}
+En esta sección se documenta el transcurso del montaje y puesta a punto del hardware del cluster, los errores cometidos, y se muestran fotografías del proceso.
+
 Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir un cluster compacto, y para ello las diferentes partes se ensamblan por separado. Podemos distinguir así cinco fases:
 \begin{itemize}
-    \item Montaje de las torres de Raspberry Pi: Se debe montar cada piso de la torre, acomodando cada Raspberry en cada nivel (es decir, colocando disipadores, anclajes, y conectores magnéticos USB) como se muestra en la figura \ref{fig:modulo_raspi_torre}, donde se ve un módulo de la torre. Asimismo, en la figura \ref{fig:proceso_apilamiento} se puede ver el proceso de apilamiento.
+    \item \textbf{Montaje} de las \textbf{torres} de Raspberry Pi: Se debe montar cada piso de la torre, acomodando cada Raspberry en cada nivel (es decir, colocando disipadores, anclajes, y conectores magnéticos USB) como se muestra en la figura \ref{fig:modulo_raspi_torre}, donde se ve un módulo de la torre. Asimismo, en la figura \ref{fig:proceso_apilamiento} se puede ver el proceso de apilamiento.
 
     \begin{figure}[h!]
     \centering
@@ -46,10 +47,53 @@ Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir 
     \label{fig:proceso_apilamiento}
     \end{figure}
     
-    \item Testeo del correcto funcionamiento
-    \item Cortado de las láminas adaptadoras de aluminio
-    \item Ensamblado final y cableado
-    \item Testeo de correcta integración
+    \item \textbf{Testeo} del correcto funcionamiento de cada \textbf{unidad}: En esta fase se realizan las pruebas básicas para comprobar que todas las placas y componentes se han recibido conforme a los estándares de calidad necesarios y funcionan correctamente. Este test ligero y muy superficial consiste en el arranque del sistema operativo Arch Linux en cada mini computador, testeo de las interfaces de red y USB (figura \ref{fig:testeo_hw_1}), así como el circuito de entrega de potencia mediante un pequeño test de estrés. Finalmente se actualiza el bootloader a la última versión (figura \ref{fig:testeo_hw_2}).
+
+    \begin{figure}[h!]
+    \centering
+    \begin{subfigure}[c]{0.8\textwidth}
+        \includegraphics[width=\textwidth]{img/testeo_hw/infraestructura_testeo.jpg}
+        \caption{Infraestructura mientras se realiza el testeo de una \acrshort{rpi}}
+        \label{fig:testeo_hw_1}
+    \end{subfigure}
+
+    \begin{subfigure}[c]{0.8\textwidth}
+        \includegraphics[width=\textwidth]{img/testeo_hw/update_BL.jpg}
+        \caption{Actualización del Bootloader de una \acrshort{rpi}}
+        \label{fig:testeo_hw_2}
+    \end{subfigure}
+    \caption{Proceso de testeo y puesta a punto de los componentes del cluster}
+    \label{fig:testeo_hw}
+    \end{figure}
+
+    \item \textbf{Cortado} de las \textbf{láminas adaptadoras} de chapa: Ya con las piezas testeadas llega el momento de ensamblar todo el sistema. Para ello se cortan con radial planchas de chapa recicladas de una caja antigua de ordenador, se lijan, pintan, y se realizan los agujeros necesarios para acoplar cada capa con la siguiente. En este aspecto, si bien estéticamente podría haber sido mejorable en caso de haber dispuesto de una plegadora, y dado que este proyecto no es de ingeniería industrial, se considera adecuada la solución construída.
+
+
+    \item \textbf{Ensamblado final} y cableado: Se integran todos los componentes en la estructura, y se realiza el cableado, tanto eléctrico como de red. Este cableado es cortado a medida para un ajuste fino, libre de excedentes que gestionar. (Figura \ref{fig:fotos_estructura})
+
+    \begin{figure}[h!]
+    \centering
+    \begin{subfigure}[c]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{img/fotos_estructura/front.jpg}
+        \caption{Parte frontal}
+        \label{fig:fotos_estructura_front}
+    \end{subfigure}
+    \begin{subfigure}[c]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{img/fotos_estructura/back.jpg}
+        \caption{Parte trasera}
+        \label{fig:fotos_estructura_back}
+    \end{subfigure}
+
+    \begin{subfigure}[c]{0.7\textwidth}
+        \includegraphics[width=\textwidth]{img/fotos_estructura/style.jpg}
+        \caption{Foto de perfil}
+        \label{fig:fotos_estructura_style}
+    \end{subfigure}
+    \caption{Estructura de Clupiter terminada}
+    \label{fig:fotos_estructura}
+    \end{figure}
+
+    \item \textbf{Testeo} de correcta \textbf{integración}: Finalmente se debe comprobar que todos los componentes continúan funcionando correctamente una vez instalados. Este paso trajo ciertas complicaciones, ya que durante el montaje se desprendieron pequeñas limaduras de hierro, que si bien se limpiaron a conciencia de las placas y todo circuito eléctrico, los conectores magnéticos USB-C recogieron todo ese residuo, y como se comenta en \nameref{sssec:cableado_electrico_red}, esto dió algunos problemas con malos contactos y caídas de tensión intermitentes y aleatorias. En el proceso de la solución de errores se desmontó de nuevo el cluster para realizar otra limpieza e inspección de cableado, llegando así a la versión actual.
 \end{itemize}
 
 \section{Configuración Software}
