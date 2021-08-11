@@ -102,97 +102,101 @@ A continuación se documentan los pasos realizados para llevar los nodos del clu
 
 \subsection{Instalación Base del Sistema Operativo}
 \label{ssec:instalacion_sistema_operativo}
-Para instalar Arch Linux en las Raspberry Pi 4, deberemos ir a la página web de ArchLinuxARM\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. En nuestro caso, al no tener dependencias fuertes en las librerías de 32 bits, optamos por la versión de 64 bits, que nos otorgará mayor rendimiento.
+Para instalar Arch Linux en las Raspberry Pi 4, se debe acudir a la página web de ArchLinuxARM\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. En este caso, al no tener dependencias fuertes en las librerías de 32 bits, se ha optado por la versión de 64 bits, que otorgará considerablemente mayor rendimiento.\footnote{\url{https://matteocroce.medium.com/bd5290d48947}}
 
-Así, asumiendo que conectamos en \texttt{/dev/sdd} la tarjeta microSD donde flashearemos Arch Linux, primeramente descargaremos el sistema de archivos de Arch
+Así, se comienza por descargar el sistema de archivos raíz\footnote{\texttt{man hier} para más detalle} (\textit{\gls{rootfs}}) desde la web:
 
 \begin{lstlisting}[language=bash,basicstyle=\scriptsize]
 wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz
 \end{lstlisting}
 
-y tras ello ejecutamos para cada una de las tarjetas:
+A continuación, y asumiendo que se conectarán en \texttt{/dev/sdd} las microSD donde se flasheará Arch Linux, el siguiente script particiona las tarjetas, da formato a las particiones, y se extrae el sistema de archivos sobre ella, permitiendo así el arranque desde la microSD:
 
 \begin{lstlisting}[language=bash]
 #!/bin/sh
 
 MICROSD=/dev/sdd
 
-echo "Ejecutando sobre ${MICROSD}"
+echo "Copiando Arch Linux sobre ${MICROSD}"
 
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk ${MICROSD}
-    o       # Limpiamos la tabla de particiones
-    n       # Creamos una nueva partición
+    o       # Se limpia la tabla de particiones
+    n       # Se crea una nueva partición
     p       #  primaria
     1       #  número uno
             #  por defecto al principio del disco
     +200M   #  y con un tamaño de 200MiB
-    t       # Cambiamos el tipo de la partición
+    t       # Se cambia el tipo de la partición
     c       #  a W95 FAT32 (LBA)
-    n       # Creamos otra partición
+    n       # Se crea otra partición
     p       #  primaria
     2       #  número dos
             #  a continuación de la primera
             #  y que ocupe todo el disco
-    w       # Escribmos la tabla de particiones
+    w       # Se escribe la tabla de particiones
 EOF
 
-# Creamos carpetas para montar las particiones 1 (boot) y 2 (boot)
+# Se crean carpetas para montar las particiones 1 (boot) y 2 (root)
 mkdir -p boot root
 
-# Y creamos los sistemas de ficheros
+# Y se formatean los sistemas de ficheros
 mkfs.vfat ${MICROSD}1
 mkfs.ext4 ${MICROSD}2
 
-# Montamos las particiones
+# Se montan las particiones
 mount ${MICROSD}1 boot
 mount ${MICROSD}2 root
 
-# Y extraemos el tarball a root
+# Y se extrae el tarball a root
 bsdtar -xpf ArchLinuxARM-rpi-aarch64-latest.tar.gz -C root
 
-# Movemos el directorio boot a su partición
+# Se mueve el directorio boot a su partición
 mv root/boot/* boot
 
-# Hacemos una modificación en el fstab para adaptarlo a los 64 bits
+# Se realiza una modificación en el fstab para adaptarlo a 64 bits
 sed -i 's/mmcblk0/mmcblk1/g' root/etc/fstab
 
-# Escribimos los datos a la SD y desmontamos las carpetas
+# Se escriben los datos a la SD y se desmontan las carpetas
 sync
 umount boot root
 \end{lstlisting}
 
-Tras ello conectamos el cluster (desconectando una Raspberry del switch y conectando un cable) a nuestra red ya existente y los encontramos con:
+Tras ello se conecta el cluster (desconectando una Raspberry del switch y conectando un cable al puerto vacío) a la red ya existente y se buscarán las Raspberry Pis con el comando: (nótese que el comando puede variar en función del servidor DHCP de la red)
 
 \begin{lstlisting}[language=bash]
-nmap  -sP -PR 192.168.0.*    
+nmap -sP -PR 192.168.0.*
 \end{lstlisting}
 
-De esta forma podremos hacer ssh a cada uno de ellos y prepararlos para el uso, actualizandolos y preparándolos para el uso:\footnote{Contraseñas \texttt{alarm:alarm}, \texttt{root:root}}
+De esta forma y tras encontrar los dispositivos, se puede hacer ssh a cada uno de ellos, configurarlos, actualizarlos y, en definitiva, prepararlos para el uso.\footnote{Contraseñas \texttt{alarm:alarm}, \texttt{root:root}}
+
+Un dato curioso, y que puede servir como regla mnemotécnica, es el nombre y contraseña del usuario no privilegiado: \texttt{alarm}. Este nombre es una composición de las iniciales \textbf{A}rch \textbf{L}inux \textbf{ARM}. En cuanto a \texttt{root}, este nombre es el habitual del usuario con UID 0 en sistemas *NIX.
+
+Para inicializar los sistemas en las \acrshort{rpi}s se procede con los siguientes comandos:
 
 \begin{lstlisting}[language=bash]
 ssh alarm@<IP>
-su -                # Nos hacemos root
+su -                # Se loguea como root
 
-# Inicializamos y poblamos el keyring para el gestor de paquetes
+# Se inicializa y puebla el keyring para el gestor de paquetes
 pacman-key --init
 pacman-key --populate archlinuxarm
 
-# Y actualizamos el sistema a la última versión
+# Y se actualiza el sistema a la última versión
 pacman -Syyu
 
-# Aprovechamos para cambiar el hostname del sistema
-#  Seguiremos el esquema de nombres rpiX, siendo la 0 y 1
+# Se cambia el hostname del sistema
+#  Se sigue el esquema de nombres rpiX, siendo la 0 y 1
 #   - rpi0
 #   - rpi1
 echo rpiX > /etc/hostname
 
-# Esto como algo más personal, pero que mejora ligeramente la experiencia en las actualizaciones, editamos el archivo /etc/pacman.conf
-#  Y descomentamos
+# Esto es un ajuste algo más personal, pero que mejora la experiencia y velocidad en las actualizaciones: se edita el archivo /etc/pacman.conf
+#  Se descomenta
 #   Color
-#   ParallelDownloads (y lo dejamos al valor predeterminado de 5)
+#   ParallelDownloads (y se deja el valor predeterminado de 5)
 nano /etc/pacman.conf
 
-# Tras esto el sistema debe reiniciarse para cargar el (más que probable) kernel actualizado
+# Tras esto el sistema debe reiniciarse para cargar el kernel (más que probablemente) actualizado
 reboot
 \end{lstlisting}
 
