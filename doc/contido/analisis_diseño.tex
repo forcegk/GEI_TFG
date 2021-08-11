@@ -88,7 +88,7 @@ Con este adaptador, y puenteando las interfaces Ethernet nativa de una Raspberry
 \label{sssec:torresrpi}
 Las Raspberry Pis se apilan verticalmente como servidores en un rack para poder ser cableadas, accedidas, y refrigeradas de forma sencilla, además de resultar visualmente agradables en esta disposición.
 
-Estos kits incluyen disipadores para RAM, CPU y controlador de USB, así como refrigeración activa, que no se instalará en este caso tal como se comenta en la siguiente subsección.
+Estos kits incluyen disipadores para RAM, CPU, controlador Ethernet y USB, así como refrigeración activa, que no se instalará en este caso tal como se comenta en la siguiente subsección.
 
 % TODO INSERTAR IMAGEN DE TORRES Y DISIPADORES
 
@@ -129,6 +129,7 @@ Otra opción que se barajó pero se terminó descartando fue la alimentación di
 % TODO INSERTAR IMAGENES CABLES USB INALAMBRICOS Y ANSI-TIA
 
 \subsection{Diseño Estructural}
+\label{ssec:diseño_estructural}
 La estructura que se ha pensado para aprovechar el espacio lo máximo posible consiste en lo que podría llamarse coloquialmente ``un sandwich'': la fuente de alimentación en la parte baja; las Raspberry Pi en la zona intermedia, siendo refrigeradas por un ventilador posicionado verticalmente; y el switch en la parte alta, creando cierto encajonamiento al más puro estilo supercomputador, como se muestra en la figura \ref{fig:render_cluster_1}.
 
 \begin{figure}[h!]
@@ -150,7 +151,7 @@ Como se comenta en \nameref{sec:objetivos}, se utilizará Arch Linux como distri
 
 Por otro lado, se implementará un dashboard web que permita:
 \begin{enumerate}
-    \item Explicar el funcionamiento del cluster, los supercomputadores paralelos, \acrshort{mpi}, y la importancia en el mundo real de los mismos, mediante vídeos pregrabados reproducibles en la página web.
+    \item Explicar el funcionamiento del cluster, los supercomputadores paralelos, \acrshort{mpi}, y la importancia en el mundo real de los mismos, mediante vídeos reproducibles en la página web.
     \item Monitorizar el estado e histórico del servidor en tiempo real, pudiendo realizar con la ayuda de dicha información explicaciones interactivas acerca del funcionamiento de programas \acrshort{mpi}.
 \end{enumerate}
 
