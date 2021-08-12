@@ -30,22 +30,22 @@ A continuación se deben descargar, configurar, y compilar los \acrlong{npb} ún
 # Descarga de la última versión de NPB (3.4.2)
 wget https://www.nas.nasa.gov/assets/npb/NPB3.4.2.tar.gz
 
-# Descomprimimos el archivo descargado
+# Descomprimir el archivo descargado
 tar xzfv NPB3.4.2.tar.gz
 
-# Y entramos en la versión de los NPB con MPI
+# Y entrar en la versión de los NPB con MPI
 cd /mpishared/NPB3.4.2/NPB3.4-MPI
 
-# Copiamos los archivos de configuración para la compilación
-#  1- Para el archivo make.def añadimos un par de argumentos a los flags de compilación:
+# Copiar los archivos de configuración para la compilación
+#  1- Para el archivo make.def se añaden un par de argumentos a los flags de compilación:
 #   1.1- -fallow-argument-mismatch Esto permite que el código compile en las últimas versiones de gfortran
 #   1.2- -march=native Optimiza para la arquitectura específica de rpi4
 sed 's/^FFLAGS\s*=\s*-O3/FFLAGS  = -O3 -fallow-argument-mismatch -march=native/g' config/make.def.template | sed -e 's/^CFLAGS\s*=\s*-O3/CFLAGS  = -O3 -march=native/g' > config/make.def
 
-#  2- Para el archivo suite.def hacemos que todos los tests sean clase C menos FT, que por razones de memoria es clase A, y MG clase B, por los mismos motivos.
+#  2- Para el archivo suite.def se hace que todos los tests sean clase C menos FT, que por razones de memoria es clase A, y MG clase B, por los mismos motivos.
 sed 's/S$/C/g' config/suite.def.template | sed -e 's/ft\s*C$/ft\tA/g' | sed -e 's/mg\s*C$/mg\tB/g' > config/suite.def
 
-# Finalmente compilamos todos los tests con make suite (con todas las CPU en paralelo)
+# Finalmente se compilan todos los tests con make suite (con todas las CPU en paralelo)
 
 # TODO REMOVE CLOSING DOLLAR FOR LATEX SYNTAX $
 make suite -j4

@@ -1,7 +1,7 @@
 \chapter{Implementación}
 \label{chap:implementacion}
 
-\lettrine{I}{mplementación} es la ejecución o puesta en marcha de una idea programada. Y de ello habla este capítulo: la documentación de la puesta en marcha de lo planeado en el capítulo anterior. Primero se ha de crear el soporte hardware, para posterioremente desplegar el software sobre este mismo.
+\lettrine{I}{mplementación} es la ejecución o puesta en marcha de una idea programada. Y sobre ello versa este capítulo: la documentación de la puesta en marcha de lo planeado en el capítulo anterior. Primero se ha de crear el soporte hardware, para posterioremente desplegar el software sobre este mismo.
 
 Como se comenta posteriormente en (TODO \#REF\# metodología), se sigue un modelo basado en prototipos, en el que se realiza un codiseño hardware y software mediante el uso de máquinas virtuales.
 
@@ -102,7 +102,7 @@ A continuación se documentan los pasos realizados para llevar los nodos del clu
 
 \subsection{Instalación Base del Sistema Operativo}
 \label{ssec:instalacion_sistema_operativo}
-Para instalar Arch Linux en las Raspberry Pi 4, se debe acudir a la página web de ArchLinuxARM\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. En este caso, al no tener dependencias fuertes en las librerías de 32 bits, se ha optado por la versión de 64 bits, que otorgará considerablemente mayor rendimiento.\footnote{\url{https://matteocroce.medium.com/bd5290d48947}}
+Para instalar Arch Linux en las Raspberry Pi 4, se debe acudir a la página web de ArchLinuxARM\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. La instalación, que consiste en la copia del sistema a la microSD, se debe realizar desde un ordenador con Linux. En este caso, al no tener dependencias fuertes en las librerías de 32 bits, se ha optado por la versión de 64 bits, que otorgará considerablemente mayor rendimiento.\footnote{\url{https://matteocroce.medium.com/bd5290d48947}}
 
 Así, se comienza por descargar el sistema de archivos raíz\footnote{\texttt{man hier} para más detalle} (\textit{\gls{rootfs}}) desde la web:
 
