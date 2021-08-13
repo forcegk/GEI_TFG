@@ -303,6 +303,7 @@ echo "mpiuser:mpi" | chpasswd
 \end{lstlisting}
 
 \subsection{Generación de claves \acrshort{ssh}}
+\label{ssec:gen_ssh}
 Tras la creación de los usuarios para la ejecución de programas paralelos con \acrshort{mpi}, es necesario configurar la autenticación no interactiva para \acrshort{ssh}. Esto se realiza mediante el uso de autenticación mediante par de claves pública y privada.
 
 Sabiendo ya la tarea a realizar, ésta se puede llevar a cabo de forma muy sencilla ejecutando en todos los nodos del cluster como usuario \texttt{mpiuser} (\texttt{su - mpiuser}) el siguiente comando. Es importante no establecer \textit{passphrase}, ya que si no se perdería la no-interactividad.
@@ -328,6 +329,7 @@ Este último comando debería mostrar los hostnames del resto de nodos del clust
 
 
 \subsection{Servidor NFS}
+\label{ssec:serv_nfs}
 Debido a que las llamadas a \texttt{mpirun} con múltiples hosts ejecutan el mismo comando en todos ellos, debe existir algún tipo de almacenamiento compartido montado con el mismo nombre en todos los nodos. Para satisfacer, esta necesidad de almacenamiento compartido, la elección es NFS.
 
 El servidor será el nodo maestro, y el resto serán clientes. Los pasos a realizar en todos los nodos (como root) son los siguientes:

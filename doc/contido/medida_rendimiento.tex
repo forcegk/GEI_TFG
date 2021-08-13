@@ -3,16 +3,38 @@
 
 \lettrine{L}{a} medida del rendimiento y el resultado de la misma es una parte fundamental en la evaluación y relevancia de un supercomputador, hasta el punto en el que se compite por ver cuales desarrollan un mejor resultado\footnote{\url{https://www.top500.org}}.
 
-En este caso, si bien el rendimiento no es una prioridad, es conveniente realizar estas pruebas, especialmente para poder observar el impacto que tiene la red de comunicaciones entre los núcleos de una sola CPU, o entre múltiples CPUs y memorias. En resumen, medir la escalabilidad.
+En este caso, si bien el rendimiento no es una prioridad, es conveniente realizar estas pruebas, especialmente para poder observar el impacto que tiene la red de comunicaciones entre los núcleos de una sola CPU, o entre múltiples CPUs y memorias. En resumen, medir la escalabilidad, que como se observa en \nameref{sec:comparacion_resultados} no es en absoluto espectacular.
 
 \section{NAS Parallel Benchmarks}
 Los \acrlong{npb} (\acrshort{npb})\footnote{\url{https://www.nas.nasa.gov/software/npb.html}} son una \textit{suite} de tests diseñados por la División de Supercomputación de la NASA para la medida del rendimiento de supercomputadores paralelos.
 
-Estos benchmarks se dividen principalmente ocho benchmarks originales, teniendo otras adaptaciones para diferentes paradigmas de computación paralela, como puede ser de paralelización híbrida, computación desestructurada, o mallas de computación.
+Estos benchmarks se dividen principalmente ocho benchmarks, teniendo otras adaptaciones para diferentes paradigmas de computación paralela, como puede ser de paralelización híbrida, computación desestructurada, o mallas de computación.
 
-A su vez cada benchmark tiene múltiples clases, siendo estas \texttt{S, W, A, B, C, D, E}, y representando cada una un nivel de requerimientos superior, respectivamente.
+A su vez cada benchmark tiene múltiples clases, siendo estas \texttt{S, W, A, B, C, D, E}, y representando cada una un nivel de requerimientos superior, respectivamente. Específicamente, la las clases A, B y C suponen cuadruplicar el tamaño con respecto a la anterior, y las D, E y F (para los benchmarks que tienen estas clases disponibles), multiplican por 16 el tamaño del anterior.
 
-En este caso se empleará la clase C para todos los benchmarks debido a limitaciones de memoria en los nodos, menos en el benchmark DT, que únicamente permite hasta clase B.
+En este caso se empleará la clase C para todos los benchmarks, excepto en MG que será clase B, y FT, que será clase A debido a limitaciones de memoria en los nodos.
+
+\subsection{Clases y procesos}
+Los benchmarks a ejecutar serán \texttt{LU, CG, FT, IS, MG y EP}, es decir, se excluyen \texttt{BT, SP y DT}. Esto es así debido a que los dos primeros requieren un número cuadrado perfecto de procesos, por lo que solo se podría ejecutar en 1, 4, 9, 16\dots procesos, y medir su rendimiento sería extraño debido a lo desbalanceado del mismo. En cuanto a DT, requiere una cantidad mínima de procesos en función de la clase del problema, procesos que para clase A y superior no son suficientes, por lo que se ha optado por descartarlo.
+
+En concreto, los requerimientos para el número de procesos son los siguientes\footnote{Contenidos del fichero \texttt{README.install} en \texttt{NPB3.4-MPI}}:
+
+\begin{lstlisting}
+Different benchmark has different requirement for process count,
+as listed below:
+
+  BT, SP         - a square number of processes (1, 4, 9, ...)
+  LU             - 2D (n1 * n2) process grid where n1/2 <= n2 <= n1
+  CG, FT, IS, MG - a power-of-two number of processes (1, 2, 4, ...)
+  EP, DT         - no special requirement
+\end{lstlisting}
+
+\subsection{Metodología}
+La metodología es una muy importante parte en cualquier medida y análisis de la realidad, ya que permite filtrar y categorizar datos como más o menos fidedignos. En este caso la metodología a seguir ha sido moderadamente sencilla.
+
+Se han realizado 5 ejecuciones de todos los problemas clase C, y 9 ejecuciones de los clase A o B. Esto es así, ya que a menor tiempo de ejecución, mayor probabilidad de obtener un dato atípico. Por suerte, y muy probablemente debido a la instalación mínima del sistema operativo, no ha habido variaciones significativas entre ejecuciones.
+
+Los resultados de los benchmarks pueden encontrarse anexados en TODO \#REF\# VALUES.
 
 \subsection{Prerrequisitos}
 Para poder realizar las medidas de rendimiento, primero se necesitan tanto las herramientas de compilación como las de ejecución. Estas dependencias se deben satisfacer ejecutando:
@@ -24,7 +46,7 @@ pacman -S base-devel openmpi gcc-fortran wget --needed
 \end{lstlisting}
 
 \subsection{Instalación de los \acrshort{npb}}
-A continuación se deben descargar, configurar, y compilar los \acrlong{npb} únicamente en el nodo maestro. Esto se realizará como \texttt{mpiuser} y en la carpeta \texttt{/mpishared} de la siguiente forma:
+A continuación se deben descargar, configurar, y compilar los \acrlong{npb} únicamente en el nodo maestro. Esto se realizará como \texttt{mpiuser} en la carpeta \texttt{/mpishared} de la siguiente forma:
 
 \begin{lstlisting}[language=bash]
 # Descarga de la última versión de NPB (3.4.2)
@@ -56,7 +78,7 @@ Para la ejecución de los benchmarks de forma paralela se necesita algún métod
 
 \begin{itemize}
     \item Para un solo nodo con múltiples núcleos es sencillo, ya que comparten memoria, usuarios y almacenamiento
-    \item Para múltiples nodos sin embargo es algo más complejo. Necesitamos
+    \item Para múltiples nodos sin embargo es algo más complejo. Como ya se menciona en las Subsecciones \ref{ssec:gen_ssh} y \ref{ssec:serv_nfs}, es necesario disponer de:
     \begin{itemize}
         \item Almacenamiento compartido en forma de NFS para alojar los ejecutables
         \item Autenticación y gestión común para el lanzamiento de los programas paralelos en forma de SSH con par de claves
@@ -79,7 +101,7 @@ rpi7 slots=4
 \end{lstlisting}
 
 \subsection{Ejecución de los benchmarks}
-Ejecutar los benchmarks es moderadamente sencillo: \texttt{mpirun} funciona de la siguiente forma <insertar explicación detallada> (posiblemente reubicar)
+Ejecutar los benchmarks es moderadamente sencillo: \texttt{mpirun} funciona de la siguiente forma <TODO (posiblemente sección MPI) insertar explicación detallada> (posiblemente reubicar)
 
 La ejecución de cada uno de los benchmarks se realizará mediante el siguiente comando \textbf{y como usuario mpiuser}, en el que deberemos especificar el número de procesos que queremos crear.
 
@@ -107,4 +129,5 @@ done
 \end{lstlisting}
 
 \section{Comparación de Resultados}
+\label{sec:comparacion_resultados}
 TODO
