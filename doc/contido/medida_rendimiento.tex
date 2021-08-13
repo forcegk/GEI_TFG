@@ -87,7 +87,7 @@ Para la ejecución de los benchmarks de forma paralela se necesita algún métod
 
 A MPI se le indica qué nodos deben ejecutar las tareas mediante un archivo de hosts, o \textit{hostsfile}\cite{mpi_hostfile_option}. Este fichero contiene las direcciones de los diferentes computadores que componen el cluster, así como el número de tareas que pueden ejecutar (habitualmente coincidente con su número de núcleos)
 
-Así, crearemos en \texttt{/mpishared} el fichero \texttt{hostfile} con los hostname de todos los nodos:
+Así, se crea en \texttt{/mpishared} el fichero \texttt{hostfile} con los hostname de todos los nodos:
 
 \begin{lstlisting}[language=bash]
 rpi0 slots=4
@@ -103,13 +103,13 @@ rpi7 slots=4
 \subsection{Ejecución de los benchmarks}
 Ejecutar los benchmarks es moderadamente sencillo: \texttt{mpirun} funciona de la siguiente forma <TODO (posiblemente sección MPI) insertar explicación detallada> (posiblemente reubicar)
 
-La ejecución de cada uno de los benchmarks se realizará mediante el siguiente comando \textbf{y como usuario mpiuser}, en el que deberemos especificar el número de procesos que queremos crear.
+La ejecución de cada uno de los benchmarks se realizará mediante el siguiente comando \textbf{como usuario mpiuser}, en el que se debe especificar el número de procesos a crear.\footnote{Se añade \texttt{--mca opal\_warn\_on\_missing\_libcuda 0} para evitar una advertencia que no interesa en la salida por pantalla}
 
 \begin{lstlisting}[language=bash]
 mpirun -np <NUM_PROCS> --hostfile /mpishared/hostfile --mca opal_warn_on_missing_libcuda 0 /mpishared/NPB3.4.2/NPB3.4-MPI/bin/<KERNEL>.<CLASS>.x
 \end{lstlisting}
 
-Como estos parámetros son fijos, podemos scriptear la ejecución de los benchmarks, así como la recolección de resultados:
+Como estos parámetros son fijos, es posible scriptear la ejecución de los benchmarks, así como la recolección de resultados, siempre y cuando solamente exista una clase por benchmark:
 
 \begin{lstlisting}[language=bash]
 #!/bin/sh
@@ -128,6 +128,53 @@ do
 done
 \end{lstlisting}
 
+Ante diferentes números de procesos, \acrshort{mpi} elige la configuración más óptima, intentando mantener siempre las CPUs lo más cerca posible.
+
 \section{Comparación de Resultados}
 \label{sec:comparacion_resultados}
-TODO
+La comparación de resultados es precisamente el objetivo de los benchmarks. En este caso interesa medir la escalabilidad del cluster, y no compararlo contra otros. Esto es, medir la eficacia con la que, aumentando los recursos computacionales aumenta el rendimiento en la misma medida.
+
+Se muestran a continuación los datos expresados en MOPS (\textbf{M}ega/\textbf{M}illion \textbf{O}perations \textbf{P}er \textbf{S}econd). En función de si estas operaciones son en punto flotante o no, también se podrán llamar \acrshort{mflops} (\textbf{M}ega/\textbf{M}illion \textbf{FL}oating point \textbf{O}perations \textbf{P}er \textbf{S}econd).
+
+\subsection{CG}
+CG blabla TODO
+
+\begin{tikzpicture}
+\begin{axis}[
+    xmin = 1, xmax = 32, xmode=log, log basis x=2,
+    ymin = 0,
+    width = \textwidth,
+    height = 0.5\textwidth,
+    grid=both,
+]
+\addplot[teal,smooth,mark=o] coordinates {
+    (1,115.37)
+    (2,158.44)
+    (4,112.03)
+    (8,319.65)
+    (16,565.98)
+    (32,1534.13)
+};
+\legend{CG MFLOPS};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[
+    xmin = 1, xmax = 32, xmode=log, log basis x=2,
+    ymin = 0,
+    width = \textwidth,
+    height = 0.5\textwidth,
+    grid=both,
+]
+\addplot[teal,smooth,mark=o] coordinates {
+    (1,115.37)
+    (2,79.22)
+    (4,28.01)
+    (8,39.96)
+    (16,35.37)
+    (32,47.94)
+};
+\legend{CG MFLOPS};
+\end{axis}
+\end{tikzpicture}
