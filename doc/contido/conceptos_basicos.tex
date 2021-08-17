@@ -1,0 +1,25 @@
+\chapter{Conceptos Básicos}
+\label{chap:conceptos_basicos}
+
+\lettrine{P}{ara} comprender el objetivo del proyecto y su propuesta de valor, primero es necesario entender las características y el funcionamiento de sus componentes más primitivos.
+
+\section{Raspberry Pi 4 Model B}
+Cada aproximadamente dos años, la Raspberry Pi Foundation saca una nueva versión de su compacto y más exitoso producto: la \acrlong{rpi}, o por sus siglas \acrshort{rpi}. Estos pequeños computadores vienen en diversos formatos de forma, pero el que ha catapultado esta plataforma al éxito ha sido el formato que denominan \textit{Standard}\footnote{85.6 mm × 56.5 mm}.
+
+% Insertar imagen raspberry pi
+
+Siendo cada versión mucho más potente que la anterior, y costando aproximadamente el mismo precio, está claro que la Raspberry Pi Foundation está haciendo un excelente trabajo aportando valor a este segmento de bajo consumo y coste.
+
+Siendo la Raspberry Pi 4B (4 Model B) la versión más nueva de formato standard, esta ha sido la elección para constituir la base del cluster.
+
+\subsection{Especificaciones}
+La Raspberry Pi 4 Model B que se emplea como base sobre la que desarrollar la mayoría de puntos de este proyecto cuenta con los siguientes componentes:
+
+\subsubsection{CPU}
+La CPU de este nuevo modelo es la \textbf{Broadcom BCM2711}, un procesador con arquitectura ARMv8-A y 4 núcleos Cortex-A72.
+
+Estos núcleos cuentan con un \textit{pipeline} de 15 etapas, ejecución OOO (\textit{out-of-order}) y predictor de saltos, entre otros.
+
+Además, cuenta con 48KB de L1I y 32KB de L1D por núcleo, así como 1MB de L2 compartido. Esto emparejado con un único chip de 2GB de memoria LPDDR4-2400, es suficiente para un uso doméstico sencillo, pero quizás no sea la mejor disposición para el cómputo intensivo como se verá más adelante. % TODO INSERTAR REF?????
+
+HABLAR DE I/O Y MULTIMEDIA

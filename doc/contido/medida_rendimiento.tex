@@ -141,13 +141,13 @@ CG blabla TODO
 
 \begin{tikzpicture}
 \begin{axis}[
-    xmin = 1, xmax = 32, xmode=log, log basis x=2,
-    ymin = 0,
+    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=MFLOPS,
+    ymin = 0, ylabel=\#CPU,
     width = \textwidth,
     height = 0.5\textwidth,
     grid=both,
 ]
-\addplot[teal,smooth,mark=o] coordinates {
+\addplot[teal,smooth,thick,mark=o] coordinates {
     (1,115.37)
     (2,158.44)
     (4,112.03)
@@ -161,13 +161,13 @@ CG blabla TODO
 
 \begin{tikzpicture}
 \begin{axis}[
-    xmin = 1, xmax = 32, xmode=log, log basis x=2,
-    ymin = 0,
+    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=MFLOPS,
+    ymin = 0, ylabel=\#CPU,
     width = \textwidth,
     height = 0.5\textwidth,
     grid=both,
 ]
-\addplot[teal,smooth,mark=o] coordinates {
+\addplot[teal,smooth,thick,mark=o] coordinates {
     (1,115.37)
     (2,79.22)
     (4,28.01)
