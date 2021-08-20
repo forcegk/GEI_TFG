@@ -8,12 +8,12 @@ Si bien este no es un elemento altamente importante en un proyecto de ingenierí
 
 El nombre del clúster es \textbf{Clúpiter} (ClúPIter): una mezcla entre las palabras ``Clúster'' y el ``PI'' de la \acrlong{rpi}, que de forma muy conveniente recuerda en su segunda parte a Júpiter. Este es a su vez planeta del sistema solar junto con el (enano) Plutón, nombre del clúster del GAC\footnote{\url{http://pluton.dec.udc.es}}. Es cuanto menos paradógico que el cluster en miniatura sea Júpiter, y el real sea Plutón\dots
 
-En cuanto a la marca del cluster, éste no puede quedar sin un logo, que se expone a continuación:
+En cuanto a la marca del cluster, éste no puede quedar sin un logo, que se muestra a continuación:
 
 TODO AQUÍ VA EL ISOLOGO %% INSERTAR ISOLOGO
 
 \section{Precedentes}
-Existen multitud de amateurs y amantes de la informática que como proyecto personal deciden montar un clúster de \acrlong{rpi}s, entre los que por ejemplo se encuentran Jeff Geerling\footnote{\url{https://www.youtube.com/user/geerlingguy}}. Además, en el mundo académico también ha habido aproximaciones muy similares, destacando \textit{Wee Archie}, un mini-supercomputador muy similar al de este proyecto de mayor tamaño, que permite explicaciones algo más interesantes con sus pantallas de matriz de LED.
+Existen multitud de amateurs y amantes de la informática que como proyecto personal deciden montar un clúster de \acrlong{rpi}s, entre los que por ejemplo se encuentra Jeff Geerling\footnote{\url{https://www.youtube.com/user/geerlingguy}}. Además, en el mundo académico también ha habido aproximaciones muy similares el trabajo desarrollado, destacando \textit{Wee Archie}, un mini-supercomputador muy similar al de este proyecto de mayor tamaño, que permite explicaciones algo más interesantes con sus pantallas de matriz de LED.
 
 Como se puede leer en la página web del proyecto \cite{wee_archie_webpage}, este es un supercomputador del tamaño de una maleta, que al igual que Clúpiter, sirve para explicar el funcionamiento de su hermano mayor, el supercomputador ARCHER\footnote{\url{https://www.archer.ac.uk}}.
 
@@ -50,9 +50,9 @@ A pesar de que el integrado que se muestra en la foto del apartado superior es u
 
 La GPU en la \acrshort{rpi}4 es la VideoCore VI, y cuenta con multitud de soporte para multimedia y una potencia gráfica aceptable. En concreto, acelera por hardware H.265 (4Kp60 decode), H.264 (1080p60 decode, 1080p30 encode), y soporta OpenGL ES, 3.0.
 
-\begin{wrapfigure}[8]{r}{0.35\textwidth}
+\begin{wrapfigure}[7]{r}{0.32\textwidth}
   \centering
-  \includegraphics[width=0.35\textwidth]{img/vulkan_logo.png}
+  \includegraphics[width=0.32\textwidth]{img/vulkan_logo.png}
   \label{fig:vulkan_logo}
 \end{wrapfigure}
 Además, y lo que considero más interesante, es que posteriormente al lanzamiento se comenzó para esta gráfica el desarrollo de un driver de Vulkan: un estándar abierto de última generación para programación de gráficos, pero que también se puede emplear para cómputo. Esto es una fantástica noticia, ya que permite acelerar ciertas cargas de trabajo aprovechando la inmensa capacidad de cómputo paralelo de estos dispositivos, siendo una de las más habituales en estos dispositivos la transformada de Fourier.
@@ -69,5 +69,21 @@ En términos de entrada/salida la \acrshort{rpi}4B cuenta con multitud de puerto
   \label{fig:rpi_gpio_pinout}
 \end{figure}
 
-\subsection{OpenMPI}
-explicación openmpi
+\subsection{MPI}
+\begin{wrapfigure}[5]{r}{0.19\textwidth}
+  \centering
+  \includegraphics[width=0.19\textwidth]{img/ompi_logo_2.png}
+  \label{fig:rpi_cpu}
+\end{wrapfigure} 
+
+\acrshort{mpi} (\acrlong{mpi})\footnote{\url{https://www.mpi-forum.org}} es un estándar de paso de mensajes diseñado para la computación en arquitecturas paralelas. Esto es, define la sintaxis y semántica de las rutinas que exponen las diferentes implementaciones.
+
+Entre estas implementaciones hay algunas muy importantes y que son estándares de facto, como:
+\begin{itemize}
+  \item\textbf{OpenMPI}\footnote{\url{https://www.open-mpi.org}}: Implementación libre mantenida por un consorcio de académicos, investigadores y socios que ofrece elevada eficiencia y flexibilidad a quien la implementa. Además es la librería \acrshort{mpi} contra la que se compilan por defecto los ejecutables en Arch Linux.
+  \item\textbf{MPICH}\footnote{\url{https://www.mpich.org}}: Otra implementación libre de MPI muy similar a OpenMPI en rendimiento, flexibilidad y modo de desarrollo.
+  \item\textbf{Intel MPI}\footnote{\url{https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/mpi-library.html}}: Implementación propietaria de \acrshort{mpi} por parte de Intel. Está especializada en productos de la propia marca y optimiza para ellos, por lo que suele arrojar un mayor rendimiento que las contrapartes libres.
+\end{itemize}
+
+\subsubsection{Primitivas MPI}
+\url{http://www.mathcs.emory.edu/\~cheung/Courses/355/Syllabus/92-MPI/group-comm.html}
