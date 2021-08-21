@@ -85,5 +85,30 @@ Entre estas implementaciones hay algunas muy importantes y que son estándares d
   \item\textbf{Intel MPI}\footnote{\url{https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/mpi-library.html}}: Implementación propietaria de \acrshort{mpi} por parte de Intel. Está especializada en productos de la propia marca y optimiza para ellos, por lo que suele arrojar un mayor rendimiento que las contrapartes libres.
 \end{itemize}
 
-\subsubsection{Primitivas MPI}
-\url{http://www.mathcs.emory.edu/\~cheung/Courses/355/Syllabus/92-MPI/group-comm.html}
+\subsubsection{Envío de datos en \acrshort{mpi}}
+\acrshort{mpi} funciona mediante el uso de \textbf{primitivas}, es decir, operaciones que realizan algún tipo de cálculo y/o transferencia de datos entre nodos de un mismo \textbf{comunicador}.
+
+La base de \acrshort{mpi} son las primitivas de envío y recepción de datos, y existen dos funciones de envío y recepción \textbf{síncronas} (esto es, la llamada a la función solamente termina cuando todos los miembros involucrados la ejecución de dicha función han terminado).
+\begin{itemize}
+  \item \textbf{MPI\_Send}: Envía un mensaje a destino, y espera a que el receptor esté listo para recibirlo. 
+  \item \textbf{MPI\_Recv}: Espera a que llegue un mensaje del origen, y cuando éste está listo para enviarlo, lo recibe.
+\end{itemize}
+
+Estas funciones tienen su contraparte para programación asíncrona, que puede arrojar un mayor rendimiento, pero también requiere un extra de complejidad y puede no ser trivial. Las funciones básicas para realizar programación asíncrona con \acrshort{mpi} son \textbf{MPI\_Isend} y \textbf{MPI\_Irecv}. A su vez son necesarias para chequear el estado de la ejecución asíncrona las funciones \textbf{MPI\_Test} (asíncrona) y \textbf{MPI\_Wait} (síncrona).
+
+\subsubsection{Primitivas de grupo en \acrshort{mpi}}
+Otra funcionalidad de \acrshort{mpi} ampliamente utilizada son las primitivas de grupo. La mayoría de ellas tienen en común que:
+\begin{itemize}
+  \item Son funciones llamadas por todos los procesos del comunicador.
+  \item La comunicación es síncrona.
+\end{itemize}
+
+Las primitivas más sencillas y comunes de MPI, desde el punto de vista del proceso raíz, son:
+\begin{itemize}
+  \item \textbf{MPI\_Bcast}: Emite (hace \textit{broadcast}) el mensaje a todos los procesos del comunicador.
+  \item \textbf{MPI\_Scatter}: Distribuye equitativamente el mensaje entre todos los procesos del comunicador.
+  \item \textbf{MPI\_Gather}: Recoge varios fragmentos de un mensaje y los combina. Es la operación inversa al scatter.
+  \item \textbf{MPI\_Reduce}: Recoge al igual que en el scatter los fragmentos del mensaje, pero en lugar de almacenarlos como tal, aplica una operación sobre ellos.
+\end{itemize}
+
+%%%% TODO INSERTAR FIGURAS CON TIKZ
