@@ -106,9 +106,54 @@ Otra funcionalidad de \acrshort{mpi} ampliamente utilizada son las primitivas de
 Las primitivas más sencillas y comunes de MPI, desde el punto de vista del proceso raíz, son:
 \begin{itemize}
   \item \textbf{MPI\_Bcast}: Emite (hace \textit{broadcast}) el mensaje a todos los procesos del comunicador.
+  
+  \begin{figure}[H]
+    \vspace*{0.5cm}
+    \centering
+    \resizebox {0.8\textwidth} {!} {
+    \input{pgf/MPI_Bcast.pgf}
+    }
+    \caption{Visualización de MPI\_Bcast \cite{cheung_mpi}}
+    \label{fig:mpi_bcast}
+  \end{figure}
+
   \item \textbf{MPI\_Scatter}: Distribuye equitativamente el mensaje entre todos los procesos del comunicador.
+
+  \begin{figure}[H]
+    \vspace*{0.5cm}
+    \centering
+    \resizebox {0.8\textwidth} {!} {
+    \input{pgf/MPI_Scatter.pgf}
+    }
+    \caption{Visualización de MPI\_Scatter \cite{cheung_mpi}}
+    \label{fig:mpi_scatter}
+  \end{figure}
+
   \item \textbf{MPI\_Gather}: Recoge varios fragmentos de un mensaje y los combina. Es la operación inversa al scatter.
+
+  \begin{figure}[H]
+    \vspace*{0.5cm}
+    \centering
+    \resizebox {0.8\textwidth} {!} {
+    \input{pgf/MPI_Gather.pgf}
+    }
+    \caption{Visualización de MPI\_Gather \cite{cheung_mpi}}
+    \label{fig:mpi_gather}
+  \end{figure}
+
   \item \textbf{MPI\_Reduce}: Recoge al igual que en el scatter los fragmentos del mensaje, pero en lugar de almacenarlos como tal, aplica una operación sobre ellos.
+
+  \begin{figure}[H]
+    \vspace*{0.5cm}
+    \centering
+    \resizebox {0.8\textwidth} {!} {
+    \input{pgf/MPI_Reduce.pgf}
+    }
+    \caption{Visualización de MPI\_Reduce \cite{cheung_mpi}}
+    \label{fig:mpi_reduce}
+  \end{figure}
+
 \end{itemize}
 
 %%%% TODO INSERTAR FIGURAS CON TIKZ
+
