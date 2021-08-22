@@ -55,7 +55,7 @@ En cuanto a los elementos que conforman el cluster, éste se compone de:
 A continuación se da una explicación detallada de la decisión de estos materiales.
 
 \subsubsection{Raspberry Pi 4B}
-Este computador, como se comenta previamente en \nameref{sec:motivacion}, destaca por su reducido formato de forma, (del tamaño de una tarjeta de crédito) así como por su bajo consumo y coste. Esto lo hace una solución idónea para este proyecto, que no requiere de hardware muy potente, sino más bien de mucho hardware poco potente que permita simular la estructura de un supercomputador.
+Este mini-computador, como se comenta previamente, destaca por su reducido formato de forma, (del tamaño de una tarjeta de crédito) así como por su bajo consumo y coste. Esto lo hace una solución idónea para este proyecto, que no requiere de hardware muy potente, sino más bien de mucho hardware poco potente que permita simular la estructura de un supercomputador.
 
 %% TODO INSERTAR IMAGEN
 
@@ -76,11 +76,26 @@ Por otro lado, tambien debe tenerse en cuenta que normalmente los switches se fa
 
 Sin embargo, esta tarea no es tan sencilla, ya que el cluster debe poder ser accedido desde el exterior, lo que hace necesario un switch de 9 puertos. Estos switches, si bien existen, son escasos e innecesariamente caros, y comprar un switch de 16 puertos tampoco es una opción por las previamente mencionadas restricciones de tamaño.
 
-¿La solución? Añadimos un adaptador \nameref{sssec:usb30age}.
+¿La solución? Se añade un adaptador \nameref{sssec:usb30age}.
 
 \subsubsection{USB 3.0 a Gigabit Ethernet}
 \label{sssec:usb30age}
+\begin{wrapfigure}[7]{r}{0.20\textwidth}
+  \vspace*{-1.4cm}
+  \centering
+  \includegraphics[width=0.20\textwidth]{img/tplink-usb-eth.jpg}
+  \label{fig:tplink-usb-eth}
+\end{wrapfigure}
 Con este adaptador, y puenteando las interfaces Ethernet nativa de una Raspberry y la conectada por USB, se puede obtener virtualmente un switch de 9 puertos. (Cierto es que a esto se realiza a expensas de un pequeño coste de CPU para el manejo de los paquetes de red, pero que a la hora de la verdad tendrá un impacto marginal, ya que las comunicaciones intensivas se realizarán dentro del propio cluster)
+
+\begin{figure}[H]
+  \centering
+  \vspace*{0.5cm}
+  \def\svgwidth{0.8\textwidth}
+  \input{pdf_tex/raspi_diagram_eth/raspi_diagram.pdf_tex}
+  \caption{Esquema físico de red de Clúpiter}
+  \label{fig:raspi_diagram_eth}
+\end{figure}
 
 % TODO INSERTAR ANOTHER IMAGEN Y QUIZÁS UN DIAGRAMA DE SWITCH VIRTUAL DE 9
 

@@ -13,11 +13,34 @@ En cuanto a la marca del cluster, éste no puede quedar sin un logo, que se mues
 TODO AQUÍ VA EL ISOLOGO %% INSERTAR ISOLOGO
 
 \section{Precedentes}
-Existen multitud de amateurs y amantes de la informática que como proyecto personal deciden montar un clúster de \acrlong{rpi}s, entre los que por ejemplo se encuentra Jeff Geerling\footnote{\url{https://www.youtube.com/user/geerlingguy}}. Además, en el mundo académico también ha habido aproximaciones muy similares el trabajo desarrollado, destacando \textit{Wee Archie}, un mini-supercomputador muy similar al de este proyecto de mayor tamaño, que permite explicaciones algo más interesantes con sus pantallas de matriz de LED.
+Existen multitud de amateurs y amantes de la informática que como proyecto personal deciden montar un clúster de \acrlong{rpi}s, entre los que por ejemplo se encuentra Jeff Geerling\footnote{\url{https://www.youtube.com/user/geerlingguy}}.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.75\textwidth]{img/cluster-pi-home.png}
+  \caption{Mini-cluster casero basado en \acrlong{rpi} \cite{geerling_intro_cluster}}
+  \label{fig:cluster-pi-ejemplo}
+\end{figure}
+
+Además, en el mundo académico también ha habido aproximaciones muy similares al trabajo desarrollado, destacando \textit{Wee Archie}, un mini-supercomputador muy similar al de este proyecto de mayor tamaño, que permite explicaciones algo más interesantes con sus pantallas de matriz de LED.
 
 Como se puede leer en la página web del proyecto \cite{wee_archie_webpage}, este es un supercomputador del tamaño de una maleta, que al igual que Clúpiter, sirve para explicar el funcionamiento de su hermano mayor, el supercomputador ARCHER\footnote{\url{https://www.archer.ac.uk}}.
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.75\textwidth]{img/wee-girl.jpg}
+  \caption{Mini-supercomputador Wee Archie}
+  \label{fig:wee_archie_girl}
+\end{figure}
+
 \section{Conceptos Básicos}
+\subsection{Clústers}
+Los clústers, en concreto para este proyecto de alto rendimiento, son conjuntos de ordenadores diseñados para ofrecer altas prestaciones de cálculo.
+
+Estos clústers pueden ser homogéneos o heterogéneos, siendo compuestos por computadores con la misma arquitectura y capacidades, o con arquitecturas o capacidades diferentes, respectivamente.
+
+En el caso de Clúpiter, éste es un clúster muy homogéneo, ya que está compuesto por ocho mini-computadores exactamente iguales.
+
 \subsection{Raspberry Pi 4 Model B}
 Cada aproximadamente dos años, la Raspberry Pi Foundation saca una nueva versión de su compacto y más exitoso producto: la \acrlong{rpi}, o por sus siglas \acrshort{rpi}. Estos pequeños computadores vienen en diversos formatos de forma, pero el que ha catapultado esta plataforma al éxito ha sido el formato que denominan \textit{Standard}\footnote{85.6 mm × 56.5 mm}.
 
@@ -73,7 +96,7 @@ En términos de entrada/salida la \acrshort{rpi}4B cuenta con multitud de puerto
 \begin{wrapfigure}[5]{r}{0.19\textwidth}
   \centering
   \includegraphics[width=0.19\textwidth]{img/ompi_logo_2.png}
-  \label{fig:rpi_cpu}
+  \label{fig:ompi_logo}
 \end{wrapfigure} 
 
 \acrshort{mpi} (\acrlong{mpi})\footnote{\url{https://www.mpi-forum.org}} es un estándar de paso de mensajes diseñado para la computación en arquitecturas paralelas. Esto es, define la sintaxis y semántica de las rutinas que exponen las diferentes implementaciones.
@@ -103,7 +126,7 @@ Otra funcionalidad de \acrshort{mpi} ampliamente utilizada son las primitivas de
   \item La comunicación es síncrona.
 \end{itemize}
 
-Las primitivas más sencillas y comunes de MPI, desde el punto de vista del proceso raíz, son:
+Las primitivas más sencillas y comunes de MPI, desde el punto de vista del proceso raíz, son las siguientes:
 \begin{itemize}
   \item \textbf{MPI\_Bcast}: Emite (hace \textit{broadcast}) el mensaje a todos los procesos del comunicador.
   
