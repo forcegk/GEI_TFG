@@ -161,13 +161,14 @@ sync
 umount boot root
 \end{lstlisting}
 
-Tras ello se conecta el cluster a la red ya existente (por ejemplo, desconectando una Raspberry del switch y conectando un cable al puerto vacío) y se buscarán las Raspberry Pis con el comando: (nótese que el comando puede variar en función del servidor DHCP, y por tanto, debe colocarse la dirección de red adecuada)
+Tras ello se conecta el cluster a la red ya existente (por ejemplo, desconectando una Raspberry del switch y conectando un cable al puerto vacío) y se buscarán las Raspberry Pis, que ya vienen preconfiguradas con las interfaces en DHCP, con el comando:
 
 \begin{lstlisting}[language=bash]
 nmap -sP -PR 192.168.0.*
 \end{lstlisting}
+(nótese que el comando puede variar en función de la dirección de red, y por tanto, debe sustituírse una adecuada)
 
-De esta forma y tras encontrar los dispositivos, se puede hacer ssh a cada uno de ellos, configurarlos, actualizarlos, y, en definitiva, ponerlos a punto.\footnote{Contraseñas \texttt{alarm:alarm}, \texttt{root:root}}
+De esta forma y tras encontrar los dispositivos, se puede hacer \acrshort{ssh} a cada uno de ellos, configurarlos, actualizarlos, y, en definitiva, ponerlos a punto.\footnote{Contraseñas \texttt{alarm:alarm}, \texttt{root:root}}
 
 Como dato curioso, y que puede servir como regla mnemotécnica, comentar que el nombre y contraseña del usuario no privilegiado: \texttt{alarm} es una composición de las iniciales \textbf{A}rch \textbf{L}inux \textbf{ARM}. En cuanto a \texttt{root}, este nombre es el habitual del usuario con UID 0 en sistemas *NIX (aunque puede no ser el único).
 

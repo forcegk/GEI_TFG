@@ -64,7 +64,7 @@ Una parte que puede pasar desapercibida en una primera aproximación, pero que e
 
 Se han elegido las tarjetas Samsung Pro Endurance debido a su alta capacidad de escritura, ya que otros tipos de tarjetas sin este propósito específico podrían sufrir bastante desgaste y llegar al final de su vida útil prematuramente. 
 
-La elección de la versión de 32GB de capacidad, a pesar de que no sean necesarios, es trivial, ya que no existen modelos de menor capacidad y este extra de espacio puede ser bienvenido en hipotéticas futuras iteraciones sobre esta infraestructura.
+La elección de la versión de 32GB de capacidad, a pesar de que no sean necesarios, es trivial, ya que no existen modelos de la misma línea de menor capacidad, y este extra de espacio puede ser bienvenido en hipotéticas futuras iteraciones sobre esta infraestructura.
 
 %% TODO INSERTAR IMAGEN
 
@@ -229,16 +229,16 @@ Como principal requisito no funcional, y como ya se menciona previamente:
 La funcionalidad discutida en el apartado anterior se proporcionará mediante el uso de la tecnología de WebSockets\footnote{\url{https://socket.io}} y Netdata\footnote{\url{https://www.netdata.cloud}}.
 
 \subsection{Diseño lógico de red}
-A nivel lógico, la asignación de direcciones IP es muy sencilla. Se opta por la asignación estática de IPs del rango 192.168.0.22X, siendo X el número de \acrlong{rpi} del 0 al 7.
+A nivel lógico, la asignación de direcciones IP es muy sencilla. Se opta por la asignación estática de IPs del rango 192.168.0.22X, siendo X el número de la \acrlong{rpi}, del 0 al 7.
 
-Además, la puerta de enlalce será fija en la dirección 192.168.0.1, pudiendo estar esta presente o no. Esto abre la puerta a tres escenarios:
+Además, la puerta de enlace será fija en la dirección 192.168.0.1, pudiendo estar esta presente o no. Esto abre la puerta a tres escenarios:
 \begin{itemize}
     \item Clúpiter puede ser conectado a un switch que da acceso a una red con puerta de enlace en la dirección 192.168.0.1, y así tener acceso a internet.
     \item Clúpiter puede ser conectado directamente a un ordenador que hace routing, y se asigna en el segmento de red interna del cluster, la IP de gateway, permitiendo también acceso a internet.
     \item Un ordenador se conecta directamente a Clúpiter, con cualquier IP que no esté en conflicto, y puede realizar SSH a cualquier nodo y acceder a todas sus funciones, pero los nodos del clúster no tendrán acceso a internet.
 \end{itemize}
 
-Esto, es posible debido a que virtualmente Clúpiter está conectado a un switch de 9 puertos, como se puede observar en la Figura \ref{fig:raspi_diagram_eth}: \nameref{fig:raspi_diagram_eth}. El esquema lógico de red para el caso en el que existe un host conectado al cluster, en la IP 192.168.0.1, haga de gateway o no (en el diagrama sí es el gateway), es el siguiente:
+Esto es posible debido a que virtualmente Clúpiter está conectado a un switch de 9 puertos, como se puede observar en la Figura \ref{fig:raspi_diagram_eth}: \nameref{fig:raspi_diagram_eth}. El esquema lógico de red para el caso en el que existe un host conectado al cluster, en la IP 192.168.0.1, haga de gateway o no (en el diagrama sí es el gateway), es el siguiente:
 
 \begin{figure}[H]
   \centering

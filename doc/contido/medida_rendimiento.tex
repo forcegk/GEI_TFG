@@ -15,6 +15,7 @@ A su vez cada benchmark tiene múltiples clases, siendo estas \texttt{S, W, A, B
 En este caso se empleará la clase C para todos los benchmarks, excepto en MG que será clase B, y FT, que será clase A debido a limitaciones de memoria en los nodos.
 
 \subsection{Clases y procesos}
+\label{ssec:clases_y_procesos}
 Los benchmarks a ejecutar serán \texttt{LU, CG, FT, IS, MG y EP}, es decir, se excluyen \texttt{BT, SP y DT}. Esto es así debido a que los dos primeros requieren un número cuadrado perfecto de procesos, por lo que solo se podría ejecutar en 1, 4, 9, 16\dots procesos, y medir su rendimiento sería extraño debido a lo desbalanceado del mismo. En cuanto a DT, requiere una cantidad mínima de procesos en función de la clase del problema, procesos que para clase A y superior no son suficientes, por lo que se ha optado por descartarlo.
 
 En concreto, los requerimientos para el número de procesos son los siguientes\footnote{Contenidos del fichero \texttt{README.install} en \texttt{NPB3.4-MPI}}:
@@ -28,6 +29,28 @@ as listed below:
   CG, FT, IS, MG - a power-of-two number of processes (1, 2, 4, ...)
   EP, DT         - no special requirement
 \end{lstlisting}
+
+\subsection{Benchmarks}
+Como se comenta en la subsección \ref{ssec:clases_y_procesos}, únicamente se ejecutarán algunos programas de medida del rendimiento por diversos motivos. Dentro de los que se ejecutan, es conveniente saber qué realiza (en mayor o menor medida debido a la complejidad de los mismos) cada uno de ellos.
+
+\subsubsection{CG}
+cg
+
+\subsubsection{EP}
+ep
+
+\subsubsection{IS}
+is
+
+\subsubsection{LU}
+lu
+
+\subsubsection{FT}
+ft
+
+\subsubsection{MG}
+mg
+
 
 \subsection{Metodología}
 La metodología es una muy importante parte en cualquier medida y análisis de la realidad, ya que permite filtrar y categorizar datos como más o menos fidedignos. En este caso la metodología a seguir ha sido moderadamente sencilla.
@@ -101,9 +124,7 @@ rpi7 slots=4
 \end{lstlisting}
 
 \subsection{Ejecución de los benchmarks}
-Ejecutar los benchmarks es moderadamente sencillo: \texttt{mpirun} funciona de la siguiente forma <TODO (posiblemente sección MPI) insertar explicación detallada> (posiblemente reubicar)
-
-La ejecución de cada uno de los benchmarks se realizará mediante el siguiente comando \textbf{como usuario mpiuser}, en el que se debe especificar el número de procesos a crear.\footnote{Se añade \texttt{--mca opal\_warn\_on\_missing\_libcuda 0} para evitar una advertencia que no interesa en la salida por pantalla}
+La ejecución de cada uno de los benchmarks se realizará mediante el siguiente comando \textbf{como usuario mpiuser}, en el que se debe especificar el número de procesos a crear, así como el hostfile. La sintaxis de este comando se comenta brevemente en \nameref{sssec:ejecucion_mpi}.\footnote{Se añade \texttt{--mca opal\_warn\_on\_missing\_libcuda 0} para evitar una advertencia que no interesa en la salida por pantalla}
 
 \begin{lstlisting}[language=bash]
 mpirun -np <NUM_PROCS> --hostfile /mpishared/hostfile --mca opal_warn_on_missing_libcuda 0 /mpishared/NPB3.4.2/NPB3.4-MPI/bin/<KERNEL>.<CLASS>.x
@@ -137,7 +158,7 @@ La comparación de resultados es precisamente el objetivo de los benchmarks. En 
 Se muestran a continuación los datos expresados en MOPS (\textbf{M}ega/\textbf{M}illion \textbf{O}perations \textbf{P}er \textbf{S}econd). En función de si estas operaciones son en punto flotante o no, también se podrán llamar \acrshort{mflops} (\textbf{M}ega/\textbf{M}illion \textbf{FL}oating point \textbf{O}perations \textbf{P}er \textbf{S}econd).
 
 \subsection{CG}
-CG blabla TODO
+JUNTAR LAS GRAFICAS EN ENTEROS Y FLOTANTES (SI SE PUEDE)
 
 \begin{tikzpicture}
 \begin{axis}[

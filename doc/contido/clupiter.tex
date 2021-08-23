@@ -53,10 +53,10 @@ Cada aproximadamente dos años, la Raspberry Pi Foundation saca una nueva versi�
 
 Siendo cada versión mucho más potente que la anterior, y costando aproximadamente el mismo precio, está claro que la Raspberry Pi Foundation está haciendo un excelente trabajo aportando valor a este segmento del bajo consumo y coste.
 
-La \acrlong{rpi} 4B (4 Model B) es la versión más nueva de formato standard, y por ello ha sido la elección para constituir la base del clúster. Las especificaciones de la misma son:
+La \acrlong{rpi} 4B (4 Model B) es la versión más nueva de formato standard, y por ello ha sido la elección para constituir la base del clúster. Las especificaciones de la misma son: \cite{rpi4b_specifications}
 
 \subsubsection{CPU}
-La CPU de este nuevo modelo es la \textbf{Broadcom BCM2711}, un procesador con arquitectura ARMv8-A y 4 núcleos Cortex-A72.
+La CPU de este nuevo modelo es la \textbf{Broadcom BCM2711}, un procesador con arquitectura ARMv8-A y 4 núcleos Cortex-A72, que funcionan a 1.5GHz.
 
 Estos núcleos cuentan con un \textit{pipeline} de 15 etapas, ejecución OOO (\textit{out-of-order}) y predictor de saltos, entre otros.
 
@@ -65,7 +65,7 @@ Estos núcleos cuentan con un \textit{pipeline} de 15 etapas, ejecución OOO (\t
   \includegraphics[width=0.18\textwidth]{img/rpi_parts/rpi_cpu.jpg}
   \label{fig:rpi_cpu}
 \end{wrapfigure}
-Además, cuenta con 48KB de L1I y 32KB de L1D por núcleo, así como 1MB de L2 compartido (256KB por núcleo). Esto emparejado con un único chip de 2GB de memoria LPDDR4-2400, es suficiente para un uso doméstico sencillo, pero quizás no sea la mejor disposición para el cómputo intensivo como se verá más adelante.
+Además, cuenta con 48KB de L1I y 32KB de L1D por núcleo, así como 1MB de L2 compartido (256KB por núcleo). Esto emparejado con un único chip de 2GB de memoria LPDDR4-3200, es suficiente para un uso doméstico sencillo, pero quizás no sea la mejor disposición para el cómputo intensivo como se verá más adelante.
 % TODO INSERTAR REF?????
 
 \subsubsection{GPU/VPU}
@@ -84,6 +84,8 @@ Realizar algún tipo de programa para computación \acrshort{gpgpu} (\textit{\ac
 
 \subsubsection{E/S}
 En términos de entrada/salida la \acrshort{rpi}4B cuenta con multitud de puertos. Los que se van a usar son Gigabit Ethernet y USB 3.0, sin embargo equipa de serie otros muchos ortos puertos en el \acrshort{gpio} (\acrlong{gpio}), como son DSI (\textit{Display Serial Interface}), CSI (\textit{Camera Serial Interface}), I2C (\textit{Inter-Integrated Circuit}), UART (\textit{Universal Asynchronous Receiver-Transmitter}), SPI (\textit{Serial Peripheral Interface}), y video compuesto, así como dos salidas HDMI.
+
+También cuenta con interfaz de datos inalámbrica, que soporta tecnologías WiFi 802.11.b/g/n/ac y Bluetooth 5.0.
 
 \begin{figure}[h!]
   \centering
@@ -178,5 +180,26 @@ Las primitivas más sencillas y comunes de MPI, desde el punto de vista del proc
 
 \end{itemize}
 
-%%%% TODO INSERTAR FIGURAS CON TIKZ
+\subsubsection{Ejecución de programas MPI}
+\label{sssec:ejecucion_mpi}
+Ejecutar programas de \acrshort{mpi} es moderadamente sencillo. Se debe emplear el comando \texttt{mpirun} \cite{mpi_mpirun}.
 
+\begin{lstlisting}[language=bash]
+# La estructura del comando es la siguiente
+mpirun [ opciones ] <programa> [ argumentos ]
+
+# De esta forma, si se quiere ejecutar el archivo ./mpitest con 4 procesos, se debe ejecutar
+mpirun -np 4 ./mpitest
+
+# Existen algunas opciones interesantes como:
+#    --oversubscribe: permite asignar más de un proceso por CPU
+#    --hostfile: permite proporcionar una lista de nodos en los que ejecutar el programa paralelo. Esto será especialmente útil en la ejecución de los benchmarks. (Aún así no es la única forma de ejecutar un programa en múltiples computadores, pero sí la que se usará en este trabajo) 
+\end{lstlisting}
+
+El funcionamiento de \texttt{mpirun} es moderadamente sencillo en este caso, por orden:
+\begin{enumerate}
+  \item Recibe el comando deseado, así como el número de procesos a ejecutar de dicho programa \acrshort{mpi}.
+  \item Verifica en el hostfile cuántos slots tiene disponibles cuántos se requieren, y cuál es la forma más óptima de organizar dichos slots.
+  \item \texttt{mpirun} establece una conexión por \acrshort{ssh} a cada nodo que se ve involucrado en la ejecución del programa, e inicia una instancia de \texttt{orted}\footnote{\url{https://man.archlinux.org/man/extra/openmpi/orted.1.en}}.
+  \item Finalmente \texttt{orted} recibe los procesos a ejecutar, e inicia los que se han asignado.
+\end{enumerate}
