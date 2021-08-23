@@ -91,7 +91,7 @@ Con este adaptador, y puenteando las interfaces Ethernet nativa de una Raspberry
 \begin{figure}[H]
   \centering
   \vspace*{0.5cm}
-  \def\svgwidth{0.8\textwidth}
+  \def\svgwidth{0.87\textwidth}
   \input{pdf_tex/raspi_diagram_eth/raspi_diagram.pdf_tex}
   \caption{Esquema físico de red de Clúpiter}
   \label{fig:raspi_diagram_eth}
@@ -121,8 +121,7 @@ Estos kits incluyen disipadores para RAM, CPU, controlador Ethernet y USB, así 
 \end{wrapfigure}
 Como se menciona previamente, las \nameref{sssec:torresrpi} incluyen refrigeración activa, pero se ha optado por no incluirla por el nivel de ruido que hacen, a parte de la poca necesidad de la misma dada la naturaleza del proyecto. Sin embargo, para permitir la extensibilidad del proyecto en forma de nuevas iteraciones, se ha añadido un ventilador de 120mm optimizado para presión, que mueve aire de un extremo al otro del cluster, refrigerando los mini computadores con ayuda de los disipadores instalados.
 
-
-Volviendo a hablar de tensiones, el ventilador elegido funciona a 12V. Sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto, los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. En la primera de ellas, esa regulación de voltaje se realiza informada por la línea de tacómetro. Sin embargo, en este caso,  dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable\footnote{Con step-up variable entendemos un circuito que, dada una tensión de entrada, puede ajustarse una tensión de salida igual o superior a la de la entrada en función del valor de la resistencia de un potenciómetro} MT3608 con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible para rebajar el nivel de ruido), ignorando la línea de tacómetro.\begin{wrapfigure}[4]{l}{0.28\textwidth}
+Volviendo a hablar de tensiones, el ventilador elegido funciona a 12V. Sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto, los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. Esta regulación de voltaje se realiza informada por la línea de tacómetro, sin embargo en este caso, dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable\footnote{Con step-up variable entendemos un circuito que, dada una tensión de entrada, puede ajustarse una tensión de salida igual o superior a la de la entrada en función del valor de la resistencia de un potenciómetro} MT3608 con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible para rebajar el nivel de ruido), ignorando la línea de tacómetro.\hfill\ \ \begin{wrapfigure}[4]{l}{0.28\textwidth}
   %\vspace*{-1cm}
   \centering
   \includegraphics[width=0.28\textwidth]{img/step-up.jpg}
@@ -130,11 +129,18 @@ Volviendo a hablar de tensiones, el ventilador elegido funciona a 12V. Sin embar
 \end{wrapfigure}De esta forma el usuario tiene la posibilidad de elevar la potencia en el improbable escenario de que se necesitase más caudal de aire. Esto ocurriría principalmente si en otra iteración sobre este trabajo se decide hacer overclock al cluster.
 
 \subsubsection{Fuente de alimentación 5V 150W}
-La fuente de alimentación es un componente fundamental del cluster, y es que las Raspberry Pi 4 consumen una cantidad de energía nada baja. Solamente el propio dispositivo funcionando a pleno rendimiento consume alrededor de 7.5W, consumo que se dispara si se enchufan periféricos a sus puertos USB. Por esta razón la Raspberry Pi foundation, en lo que debe ser un movimiento para ahorrar problemas a usuarios menos experimentados, recomienda 3A (a 5V) por Raspberry Pi, es decir, 15W por dispositivo.\cite{raspberrypi_power-requirements}
+La fuente de alimentación es un componente fundamental del cluster, y es que las Raspberry Pi 4 consumen una cantidad de energía baja, pero tampoco tan baja como se podría imaginar. Solamente el propio dispositivo funcionando a pleno rendimiento consume alrededor de 7.5W, consumo que se dispara si se enchufan periféricos a sus puertos USB. Por esta razón la Raspberry Pi foundation, en lo que debe ser un movimiento para ahorrar problemas a usuarios menos experimentados, recomienda 3A (a 5V) por Raspberry Pi, es decir, 15W por dispositivo.\cite{raspberrypi_power-requirements}
 
-Dadas estas circunstancias, y para ahorrar posibles problemas presentes y futuros, se ha optado por una fuente de alimentación DC de 5V con una potencia de 150W, que sin duda satisface por más del doble los requerimientos energéticos del cluster actual.
+\begin{figure}[h!]
+  \vspace*{0.5cm}
+  \centering
+  \includegraphics[width=0.65\textwidth]{img/psu.jpg}
+  \caption{Fuente de Alimentación AC-DC SA5C150W5}
+  \label{fig:psu_photo}
+  \vspace*{0.1cm}
+\end{figure}
 
-% TODO intertar imagen fuente y esquemático conexiones eléctricas (incluir switch y ventilador)
+Dadas estas circunstancias, y para ahorrar posibles problemas presentes y futuros, se ha optado por una fuente de alimentación AC-DC de 5V con una potencia de 150W, modelo SA5C150W5 (Figura \ref{fig:psu_photo}), que sin duda satisface por más del doble los requerimientos energéticos de Clúpiter en su estado actual.
 
 \begin{figure}[H]
   \centering
@@ -153,14 +159,29 @@ Dadas estas circunstancias, y para ahorrar posibles problemas presentes y futuro
   \includegraphics[width=0.125\textwidth]{img/TIA-568B.png}
   \label{fig:TIA-568B}
 \end{wrapfigure}
-Tras la lista de componentes previamente expuestos, únicamente queda tratar la interconexión de los mismos, un componente que da más problemas de lo que pueda parecer.
+Tras la lista de componentes previamente expuestos, únicamente queda tratar la interconexión de los mismos, un componente que ha dado más problemas de lo que pueda parecer.
 
 En cuanto al cableado Ethernet no hay mucho que clarificar. Los cables de 4 pares trenzados Cat5E se cortan a la longitud necesaria, y se crimpan siguiendo la disposición ANSI/TIA-568B.
 
 El cableado eléctrico ha creado importantes problemas, y es que las Raspberry Pi 4 Model B son alimentadas por USB Tipo-C, teniendo una implementación del mismo un tanto regular, por lo que no cualquier cable funciona como podría esperarse. Esto provocó el tener que cambiar los cables originalmente planeados.
 
-En un principio se realizó la compra de 4 cables terminados en USB-C en cada extremo, por lo que al cortarlos por la mitad se podrían obtener 8 cables terminados en USB-C. El principial problema con esta compra es que entregar potencia a través del USB-C tiene su propia especificación, USB Power Delivery (USB-PD). Tras descubrir este detalle después de la compra del material, y tras ver que realizando el arreglo, que no resultaría ni caro ni complicado, aún existía la probabilidad de que (debido a la no-estándar implementación de USB-C en este modelo de Raspberry Pi) la entrega de potencia siguiese sin funcionar, se decidió por no seguir por esa vía, y realizar la compra de 8 cables con experiencia positiva previa de otros usuarios. 
+En un principio se realizó la compra de 4 cables terminados en USB-C en cada extremo, por lo que al cortarlos por la mitad se podrían obtener 8 cables terminados en USB-C. El principial problema con esta compra es que entregar potencia a través del USB-C tiene su propia especificación, USB Power Delivery (USB-PD). Tras descubrir este detalle después de la compra del material, y tras ver que realizando el arreglo, que no resultaría ni caro ni complicado, aún existía la probabilidad de que (debido a la no-estándar implementación de USB-C en este modelo de Raspberry Pi) la entrega de potencia siguiese sin funcionar, se decidió por no seguir por esa vía, y realizar la compra de 8 cables con experiencia positiva previa de otros usuarios.
 
+\begin{figure}[h!]
+  \vspace*{0.5cm}
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/usb_pd_schematic.jpg}
+  \caption{Esquemático para USB-C Power Delivery 5V y 3A \cite{usb_pd_techforum}}
+  \label{fig:usb_pd_schematic}
+  \vspace*{0.1cm}
+\end{figure}
+
+\begin{wrapfigure}[8]{r}{0.125\textwidth}
+  \centering
+  \vspace*{-0.3cm}
+  \includegraphics[width=0.11\textwidth]{img/usb_cable.jpg}
+  \label{fig:usb_magnetic_termination}
+\end{wrapfigure}
 Este nuevo (y el actual) cableado eléctrico es un cable USB-C con terminación magnética y que soporta una corriente de 3A a 5V. Esto permite abstraer los detalles de implementación a nivel eléctrico del USB Tipo-C (es decir, el añadir resistencias en los pines necesarios para activar el modo de carga, etc) y expone simplemente los cables de +5V y masa.
 
 Un aspecto muy importante a tener en cuenta, y que ha sido un problema de relevancia durante la construcción del cluster, es que debido a la naturaleza de estos cables, el contacto entre la pieza del USB-C y el propio cable debe estar limpio de residuos aislantes o conductores de un diámetro lo suficientemente grande que impidan un buen contacto.
@@ -198,9 +219,33 @@ Por otro lado, se implementará un dashboard web que permita:
     \item Monitorizar el estado e histórico del servidor en tiempo real, pudiendo realizar con la ayuda de dicha información explicaciones interactivas acerca del funcionamiento de programas \acrshort{mpi}.
 \end{enumerate}
 
-Esta funcionalidad se proporcionará mediante el uso de la tecnología de WebSockets\footnote{\url{https://socket.io}} y Netdata\footnote{\url{https://www.netdata.cloud}}.
-
 Como principal requisito no funcional, y como ya se menciona previamente:
 \begin{itemize}
     \item El sistema operativo del cluster debe ser \textbf{extensible} y \textbf{mantenible}: El sistema operativo no debe ser una caja negra inaccesible y difícil de mantener, sino todo lo contrario.
 \end{itemize}
+
+\section{Diseño Software}
+\subsection{Dashboard}
+La funcionalidad discutida en el apartado anterior se proporcionará mediante el uso de la tecnología de WebSockets\footnote{\url{https://socket.io}} y Netdata\footnote{\url{https://www.netdata.cloud}}.
+
+\subsection{Diseño lógico de red}
+A nivel lógico, la asignación de direcciones IP es muy sencilla. Se opta por la asignación estática de IPs del rango 192.168.0.22X, siendo X el número de \acrlong{rpi} del 0 al 7.
+
+Además, la puerta de enlalce será fija en la dirección 192.168.0.1, pudiendo estar esta presente o no. Esto abre la puerta a tres escenarios:
+\begin{itemize}
+    \item Clúpiter puede ser conectado a un switch que da acceso a una red con puerta de enlace en la dirección 192.168.0.1, y así tener acceso a internet.
+    \item Clúpiter puede ser conectado directamente a un ordenador que hace routing, y se asigna en el segmento de red interna del cluster, la IP de gateway, permitiendo también acceso a internet.
+    \item Un ordenador se conecta directamente a Clúpiter, con cualquier IP que no esté en conflicto, y puede realizar SSH a cualquier nodo y acceder a todas sus funciones, pero los nodos del clúster no tendrán acceso a internet.
+\end{itemize}
+
+Esto, es posible debido a que virtualmente Clúpiter está conectado a un switch de 9 puertos, como se puede observar en la Figura \ref{fig:raspi_diagram_eth}: \nameref{fig:raspi_diagram_eth}. El esquema lógico de red para el caso en el que existe un host conectado al cluster, en la IP 192.168.0.1, haga de gateway o no (en el diagrama sí es el gateway), es el siguiente:
+
+\begin{figure}[H]
+  \centering
+  \vspace*{0.5cm}
+  %\def\svgwidth{0.87\textwidth}
+  \def\svgwidth{\textwidth}
+  \input{pdf_tex/raspi_logical_net/raspi_logical_net.pdf_tex}
+  \caption{Esquema lógico de red de Clúpiter}
+  \label{fig:raspi_diagram_logical}
+\end{figure}
