@@ -16,7 +16,7 @@ En este caso se empleará la clase C para todos los benchmarks, excepto en MG qu
 
 \subsection{Clases y procesos}
 \label{ssec:clases_y_procesos}
-Los benchmarks a ejecutar serán \texttt{LU, CG, FT, IS, MG y EP}, es decir, se excluyen \texttt{BT, SP y DT}. Esto es así debido a que los dos primeros requieren un número cuadrado perfecto de procesos, por lo que solo se podría ejecutar en 1, 4, 9, 16\dots procesos, y medir su rendimiento sería extraño debido a lo desbalanceado del mismo. En cuanto a DT, requiere una cantidad mínima de procesos en función de la clase del problema, procesos que para clase A y superior no son suficientes, por lo que se ha optado por descartarlo.
+Los benchmarks a ejecutar serán \texttt{LU, CG, FT, IS, MG y EP}, es decir, se excluyen \texttt{BT, SP y DT}. Esto es así debido a que los dos primeros requieren un número cuadrado perfecto de procesos, por lo que solo se podría ejecutar en 1, 4, 9, 16\dots\ procesos, y medir su rendimiento sería extraño debido a lo desbalanceado del mismo. En cuanto a DT, requiere una cantidad mínima de procesos en función de la clase del problema, procesos que para clase A y superior no son suficientes, por lo que se ha optado por descartarlo.
 
 En concreto, los requerimientos para el número de procesos son los siguientes\footnote{Contenidos del fichero \texttt{README.install} en \texttt{NPB3.4-MPI}}:
 
@@ -33,22 +33,22 @@ as listed below:
 \subsection{Benchmarks}
 Como se comenta en la subsección \ref{ssec:clases_y_procesos}, únicamente se ejecutarán algunos programas de medida del rendimiento por diversos motivos. Dentro de los que se ejecutan, es conveniente saber qué realiza (en mayor o menor medida debido a la complejidad de los mismos) cada uno de ellos.
 
-\subsubsection{CG}
+\subsubsection{CG - Conjugate Gradient}
 cg
 
-\subsubsection{EP}
+\subsubsection{EP - Embarrassingly Parallel}
 ep
 
-\subsubsection{IS}
+\subsubsection{IS - Integer Sort}
 is
 
-\subsubsection{LU}
+\subsubsection{LU - Lower-Upper solver}
 lu
 
-\subsubsection{FT}
+\subsubsection{FT - 3D FFT PDE (Fourier Transform)}
 ft
 
-\subsubsection{MG}
+\subsubsection{MG - MultiGrid}
 mg
 
 
