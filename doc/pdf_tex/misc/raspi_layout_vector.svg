@@ -1,700 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
    version="1.1"
-   width="538px"
-   height="314px"
-   viewBox="-0.5 -0.5 538 314"
-   content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2021-08-23T11:19:51.831Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.134 Safari/537.36&quot; etag=&quot;AeKMDeyAgFMxyaJY2_43&quot; version=&quot;14.9.8&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;3uYSTgmHzA8rP3m7_jHt&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;"
-   id="svg188"
-   sodipodi:docname="electric_diagram (1).svg"
+   id="svg3423"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="raspi_layout_vector.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+   xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
-     id="namedview190"
+     id="namedview3425"
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="349.6643"
-     inkscape:cy="95.105862"
+     inkscape:zoom="1.5554293"
+     inkscape:cx="341.0634"
+     inkscape:cy="525.57838"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="2552"
      inkscape:window-y="181"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g178" />
+     inkscape:current-layer="layer1" />
   <defs
-     id="defs2" />
+     id="defs3420" />
   <g
-     id="g178">
-    <path
-       d="M 365 192 L 331 192"
-       fill="none"
-       stroke="#f5f500"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="stroke"
-       id="path4" />
-    <path
-       d="M 361 182 L 291 182"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="stroke"
-       id="path6" />
-    <path
-       d="M 291 172 L 361 172"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="stroke"
-       id="path8" />
-    <path
-       d="M 1 82 L 521 82"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="stroke"
-       id="path10" />
-    <path
-       d="M 1 112 L 521 112"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="stroke"
-       id="path12" />
-    <rect
-       x="7"
-       y="137"
-       width="220"
-       height="80"
-       fill="#ffffff"
-       stroke="#000000"
-       stroke-width="2"
-       pointer-events="none"
-       id="rect14" />
-    <g
-       transform="translate(-0.5 -0.5)"
-       id="g20">
-      <switch
-         id="switch18">
-        <foreignObject
-           style="overflow: visible; text-align: left;"
-           pointer-events="none"
-           width="100%"
-           height="100%"
-           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 218px; height: 1px; padding-top: 177px; margin-left: 8px;">
-            <xhtml:div
-               style="box-sizing: border-box; font-size: 0; text-align: center; ">
-              <xhtml:div
-                 style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; font-weight: bold; white-space: normal; word-wrap: normal; ">5VDC 30A</xhtml:div>
-            </xhtml:div>
-          </xhtml:div>
-        </foreignObject>
-        <text
-           x="117"
-           y="182"
-           fill="#000000"
-           font-family="Helvetica"
-           font-size="16px"
-           text-anchor="middle"
-           font-weight="bold"
-           id="text16">5VDC 30A</text>
-      </switch>
-    </g>
-    <g
-       transform="translate(-0.5 -0.5)"
-       id="g26">
-      <switch
-         id="switch24">
-        <foreignObject
-           style="overflow: visible; text-align: left;"
-           pointer-events="none"
-           width="100%"
-           height="100%"
-           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 152px; margin-left: 14px;">
-            <xhtml:div
-               style="box-sizing: border-box; font-size: 0; text-align: center; ">
-              <xhtml:div
-                 style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #FF3333; line-height: 1.2; pointer-events: none; font-weight: bold; white-space: normal; word-wrap: normal; ">+5V</xhtml:div>
-            </xhtml:div>
-          </xhtml:div>
-        </foreignObject>
-        <text
-           x="33"
-           y="157"
-           fill="#FF3333"
-           font-family="Helvetica"
-           font-size="16px"
-           text-anchor="middle"
-           font-weight="bold"
-           id="text22">+5V</text>
-      </switch>
-    </g>
-    <g
-       transform="translate(-0.5 -0.5)"
-       id="g32">
-      <switch
-         id="switch30">
-        <foreignObject
-           style="overflow: visible; text-align: left;"
-           pointer-events="none"
-           width="100%"
-           height="100%"
-           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 152px; margin-left: 182px;">
-            <xhtml:div
-               style="box-sizing: border-box; font-size: 0; text-align: center; ">
-              <xhtml:div
-                 style="display: inline-block; font-size: 16px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; font-weight: bold; white-space: normal; word-wrap: normal; ">GND</xhtml:div>
-            </xhtml:div>
-          </xhtml:div>
-        </foreignObject>
-        <text
-           x="201"
-           y="157"
-           fill="#000000"
-           font-family="Helvetica"
-           font-size="16px"
-           text-anchor="middle"
-           font-weight="bold"
-           id="text28">GND</text>
-      </switch>
-    </g>
-    <path
-       d="M 33 142 L 33 82"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path34" />
-    <path
-       d="M 201 142 L 201 112"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path36" />
-    <path
-       d="M 51 82 L 51 62"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path38" />
-    <path
-       d="M 61 112 L 61 62"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path40" />
-    <path
-       d="M 112.71 82 L 112.71 62"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path42" />
-    <path
-       d="M 122.71 112 L 122.71 62"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path44" />
-    <path
-       d="M 172.71 82 L 172.71 62"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path46" />
-    <path
-       d="M 182.71 112 L 182.71 62"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path48" />
-    <path
-       d="M 232.71 82 L 232.71 62"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path50" />
-    <path
-       d="M 242.71 112 L 242.71 62"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path52" />
-    <path
-       d="M 292.71 82 L 292.71 62"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path54" />
-    <path
-       d="M 302.71 112 L 302.71 62"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path56" />
-    <path
-       d="M 352.71 82 L 352.71 62"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path58" />
-    <path
-       d="M 362.71 112 L 362.71 62"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path60" />
-    <path
-       d="M 412.71 82 L 412.71 62"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path62" />
-    <path
-       d="M 422.71 112 L 422.71 62"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path64" />
-    <path
-       d="M 472.71 82 L 472.71 62"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path66" />
-    <path
-       d="M 482.71 112 L 482.71 62"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path68" />
-    <path
-       d="M 501 132 L 501 112"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path70" />
-    <path
-       d="M 511 132 L 511 82"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path72" />
-    <rect
-       x="251"
-       y="152"
-       width="49"
-       height="45"
-       fill="#ffffff"
-       stroke="#000000"
-       pointer-events="none"
-       id="rect74" />
-    <g
-       transform="translate(-0.5 -0.5)"
-       id="g80">
-      <switch
-         id="switch78">
-        <foreignObject
-           style="overflow: visible; text-align: left;"
-           pointer-events="none"
-           width="100%"
-           height="100%"
-           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 47px; height: 1px; padding-top: 175px; margin-left: 252px;">
-            <xhtml:div
-               style="box-sizing: border-box; font-size: 0; text-align: center; ">
-              <xhtml:div
-                 style="display: inline-block; font-size: 10px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">STEP-UP</xhtml:div>
-            </xhtml:div>
-          </xhtml:div>
-        </foreignObject>
-        <text
-           x="276"
-           y="178"
-           fill="#000000"
-           font-family="Helvetica"
-           font-size="10px"
-           text-anchor="middle"
-           id="text76">STEP-UP</text>
-      </switch>
-    </g>
-    <path
-       d="M 270 152 L 270.3 112"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path82" />
-    <path
-       d="M 280 152 L 280.3 82"
-       fill="none"
-       stroke="#ff3333"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path84" />
-    <g
-       transform="translate(-0.5 -0.5)"
-       id="g90">
-      <switch
-         id="switch88">
-        <foreignObject
-           style="overflow: visible; text-align: left;"
-           pointer-events="none"
-           width="100%"
-           height="100%"
-           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 142px; margin-left: 279px;">
-            <xhtml:div
-               style="box-sizing: border-box; font-size: 0; text-align: center; ">
-              <xhtml:div
-                 style="display: inline-block; font-size: 10px; font-family: Helvetica; color: #FF3333; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">+5VDC</xhtml:div>
-            </xhtml:div>
-          </xhtml:div>
-        </foreignObject>
-        <text
-           x="298"
-           y="145"
-           fill="#FF3333"
-           font-family="Helvetica"
-           font-size="10px"
-           text-anchor="middle"
-           id="text86">+5VDC</text>
-      </switch>
-    </g>
-    <ellipse
-       cx="397.5"
-       cy="174.5"
-       rx="36.5"
-       ry="36.5"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       pointer-events="none"
-       id="ellipse92" />
-    <path
-       d="M 382.9 141.28 L 431.81 162.09 M 382.9 207.72 L 431.81 186.91 M 391.86 164.68 C 395.59 169.08 398.05 173.37 397.5 174.5 C 397.2 175.11 396.06 174.7 394.35 173.37 C 392.64 172.04 390.53 169.92 388.54 167.53 C 384.77 163.04 382.36 158.75 383.08 157.78 C 383.45 157.29 384.6 157.75 386.26 159.05 C 387.91 160.36 389.94 162.39 391.86 164.68 Z M 388.52 181.6 C 390.4 179.36 392.38 177.37 394.02 176.06 C 395.66 174.75 396.82 174.24 397.25 174.64 C 398.15 175.44 395.75 179.81 391.88 184.43 C 390 186.67 388.02 188.66 386.38 189.97 C 384.74 191.28 383.58 191.79 383.15 191.39 C 382.25 190.59 384.65 186.22 388.52 181.6 Z"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       stroke-miterlimit="10"
-       pointer-events="none"
-       id="path94" />
-    <ellipse
-       cx="408.45"
-       cy="174.5"
-       rx="10.95"
-       ry="2.19"
-       fill="none"
-       stroke="#000000"
-       stroke-width="2"
-       pointer-events="none"
-       id="ellipse96" />
-    <g
-       transform="translate(-0.5 -0.5)"
-       id="g102">
-      <switch
-         id="switch100">
-        <foreignObject
-           style="overflow: visible; text-align: left;"
-           pointer-events="none"
-           width="100%"
-           height="100%"
-           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 165px; margin-left: 312px;">
-            <xhtml:div
-               style="box-sizing: border-box; font-size: 0; text-align: center; ">
-              <xhtml:div
-                 style="display: inline-block; font-size: 10px; font-family: Helvetica; color: #FF3333; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">+5~28VDC</xhtml:div>
-            </xhtml:div>
-          </xhtml:div>
-        </foreignObject>
-        <text
-           x="331"
-           y="168"
-           fill="#FF3333"
-           font-family="Helvetica"
-           font-size="10px"
-           text-anchor="middle"
-           id="text98">+5~28VDC</text>
-      </switch>
-    </g>
-    <g
-       transform="translate(-0.5 -0.5)"
-       id="g108">
-      <switch
-         id="switch106">
-        <foreignObject
-           style="overflow: visible; text-align: left;"
-           pointer-events="none"
-           width="100%"
-           height="100%"
-           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-          <xhtml:div
-             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 52px; height: 1px; padding-top: 201px; margin-left: 322px;">
-            <xhtml:div
-               style="box-sizing: border-box; font-size: 0; text-align: center; ">
-              <xhtml:div
-                 style="display: inline-block; font-size: 10px; font-family: Helvetica; color: #F5F500; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">TACH</xhtml:div>
-            </xhtml:div>
-          </xhtml:div>
-        </foreignObject>
-        <text
-           x="348"
-           y="204"
-           fill="#F5F500"
-           font-family="Helvetica"
-           font-size="10px"
-           text-anchor="middle"
-           id="text104">TACH</text>
-      </switch>
-    </g>
-    <path
-       d="M 475.05 131 C 472.82 131 471 132.81 471 135.03 L 471 192.97 C 471 195.19 472.82 197 475.05 197 L 532.95 197 C 535.18 197 537 195.19 537 192.97 L 537 135.03 C 537 132.81 535.18 131 532.95 131 Z"
-       fill="#fafafa"
-       stroke="none"
-       pointer-events="none"
-       id="path110" />
-    <path
-       d="M 501.86 184.48 L 501.86 179.22 L 487.87 179.22 L 487.87 175.07 L 475.96 182.1 L 487.87 189.03 L 487.87 184.48 Z M 508.39 159.33 L 508.39 154.07 L 494.4 154.07 L 494.4 149.91 L 482.49 156.95 L 494.4 163.87 L 494.4 159.33 Z M 500.54 172 L 500.54 166.74 L 514.53 166.74 L 514.53 162.59 L 526.44 169.63 L 514.53 176.55 L 514.53 172 Z M 506.58 147.27 L 506.58 142.01 L 520.57 142.01 L 520.57 137.86 L 532.48 144.89 L 520.57 151.82 L 520.57 147.27 Z M 475.05 131 C 472.82 131 471 132.81 471 135.03 L 471 192.97 C 471 195.19 472.82 197 475.05 197 L 532.95 197 C 535.18 197 537 195.19 537 192.97 L 537 135.03 C 537 132.81 535.18 131 532.95 131 Z M 475.05 132.82 L 532.95 132.82 C 534.2 132.82 535.17 133.79 535.17 135.03 L 535.17 192.97 C 535.17 194.21 534.2 195.18 532.95 195.18 L 475.05 195.18 C 473.8 195.18 472.83 194.21 472.83 192.97 L 472.83 135.03 C 472.83 133.79 473.8 132.82 475.05 132.82 Z"
-       fill="#000000"
-       stroke="none"
-       pointer-events="none"
-       id="path112" />
-    <g
-       fill="#000000"
-       font-family="Helvetica"
-       pointer-events="none"
-       text-anchor="middle"
-       font-size="12px"
-       id="g120">
-      <rect
-         fill="#ffffff"
-         stroke="none"
-         x="54"
-         y="0"
-         width="9"
-         height="15"
-         stroke-width="0"
-         id="rect116" />
-      <text
-         x="57.5"
-         y="10.5"
-         id="text118">0</text>
-    </g>
-    <g
-       fill="#000000"
-       font-family="Helvetica"
-       pointer-events="none"
-       text-anchor="middle"
-       font-size="12px"
-       id="g128">
-      <rect
-         fill="#ffffff"
-         stroke="none"
-         x="114"
-         y="0"
-         width="9"
-         height="15"
-         stroke-width="0"
-         id="rect124" />
-      <text
-         x="117.5"
-         y="10.5"
-         id="text126">1</text>
-    </g>
-    <g
-       fill="#000000"
-       font-family="Helvetica"
-       pointer-events="none"
-       text-anchor="middle"
-       font-size="12px"
-       id="g136">
-      <rect
-         fill="#ffffff"
-         stroke="none"
-         x="174"
-         y="0"
-         width="9"
-         height="15"
-         stroke-width="0"
-         id="rect132" />
-      <text
-         x="177.5"
-         y="10.5"
-         id="text134">2</text>
-    </g>
-    <g
-       fill="#000000"
-       font-family="Helvetica"
-       pointer-events="none"
-       text-anchor="middle"
-       font-size="12px"
-       id="g144">
-      <rect
-         fill="#ffffff"
-         stroke="none"
-         x="234"
-         y="0"
-         width="9"
-         height="15"
-         stroke-width="0"
-         id="rect140" />
-      <text
-         x="237.5"
-         y="10.5"
-         id="text142">3</text>
-    </g>
-    <g
-       fill="#000000"
-       font-family="Helvetica"
-       pointer-events="none"
-       text-anchor="middle"
-       font-size="12px"
-       id="g152">
-      <rect
-         fill="#ffffff"
-         stroke="none"
-         x="294"
-         y="0"
-         width="9"
-         height="15"
-         stroke-width="0"
-         id="rect148" />
-      <text
-         x="297.5"
-         y="10.5"
-         id="text150">4</text>
-    </g>
-    <g
-       fill="#000000"
-       font-family="Helvetica"
-       pointer-events="none"
-       text-anchor="middle"
-       font-size="12px"
-       id="g160">
-      <rect
-         fill="#ffffff"
-         stroke="none"
-         x="354"
-         y="0"
-         width="9"
-         height="15"
-         stroke-width="0"
-         id="rect156" />
-      <text
-         x="357.5"
-         y="10.5"
-         id="text158">5</text>
-    </g>
-    <g
-       fill="#000000"
-       font-family="Helvetica"
-       pointer-events="none"
-       text-anchor="middle"
-       font-size="12px"
-       id="g168">
-      <rect
-         fill="#ffffff"
-         stroke="none"
-         x="414"
-         y="0"
-         width="9"
-         height="15"
-         stroke-width="0"
-         id="rect164" />
-      <text
-         x="417.5"
-         y="10.5"
-         id="text166">6</text>
-    </g>
-    <g
-       fill="#000000"
-       font-family="Helvetica"
-       pointer-events="none"
-       text-anchor="middle"
-       font-size="12px"
-       id="g176">
-      <rect
-         fill="#ffffff"
-         stroke="none"
-         x="474"
-         y="0"
-         width="9"
-         height="15"
-         stroke-width="0"
-         id="rect172" />
-      <text
-         x="477.5"
-         y="10.5"
-         id="text174">7</text>
-    </g>
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
     <g
        id="g594"
-       transform="matrix(0.06981829,0,0,0.06985886,37.462071,15.383337)">
+       transform="matrix(0.01847276,0,0,0.01848349,6.5072414,112.09179)">
       <path
          d="m 158.375,1.65625 c -3.6193,0.1123192 -7.51715,1.4493266 -11.9375,4.9375 C 135.61054,2.4174496 125.11041,0.9665612 115.71875,9.46875 101.22489,7.5879922 96.508461,11.469494 92.9375,16 89.754953,15.934135 69.118652,12.72793 59.65625,26.84375 35.874602,24.030329 28.359472,40.831625 36.875,56.5 c -4.856911,7.518955 -9.889503,14.947226 1.46875,29.28125 -4.018006,7.983514 -1.527431,16.64403 7.9375,27.125 -2.497857,11.2226 2.412077,19.14086 11.21875,25.3125 -1.64709,15.35756 14.083505,24.28743 18.78125,27.46875 1.803677,8.94868 5.56291,17.3927 23.53125,22.0625 2.96323,13.3361 13.76206,15.63906 24.21875,18.4375 -34.561929,20.08954 -64.20067,46.52266 -64,111.375 l -5.0625,9.03125 C 15.337882,350.69604 -20.316547,428.16001 35.4375,491.125 c 3.641871,19.70838 9.749589,33.86396 15.1875,49.53125 8.133834,63.13058 61.21763,92.69161 75.21875,96.1875 20.51653,15.62812 42.36818,30.45672 71.9375,40.84375 27.87515,28.74946 58.07388,39.7064 88.4375,39.6875 0.44515,-2.8e-4 0.89853,0.005 1.34375,0 30.36363,0.0189 60.56235,-10.93804 88.4375,-39.6875 29.56932,-10.38703 51.42097,-25.21563 71.9375,-40.84375 14.00112,-3.49589 67.08492,-33.05692 75.21875,-96.1875 5.43791,-15.66729 11.54562,-29.82287 15.1875,-49.53125 55.75404,-62.96499 20.09961,-140.42896 -19.53125,-164.53125 L 513.75,317.5625 c 0.20067,-64.85234 -29.43807,-91.28546 -64,-111.375 10.45669,-2.79844 21.25552,-5.1014 24.21875,-18.4375 17.96834,-4.6698 21.72758,-13.11382 23.53125,-22.0625 4.69775,-3.18132 20.42834,-12.11119 18.78125,-27.46875 8.80668,-6.17164 13.71661,-14.0899 11.21875,-25.3125 9.46494,-10.48097 11.9555,-19.141487 7.9375,-27.125 C 546.79575,71.447226 541.76316,64.018955 536.90625,56.5 545.42178,40.831625 537.90665,24.030329 514.125,26.84375 504.6626,12.72793 484.0263,15.934135 480.84375,16 477.27279,11.469494 472.55636,7.587992 458.0625,9.46875 448.67084,0.96656132 438.17071,2.41745 427.34375,6.59375 414.48455,-3.5536631 405.97149,4.580454 396.25,7.65625 380.67615,2.568472 377.11698,9.5371578 369.46875,12.375 352.4935,8.7869238 347.33315,16.598532 339.1875,24.84375 l -9.46875,-0.1875 c -25.61054,15.093115 -38.33378,45.825501 -42.84375,61.625 -4.51206,-15.801979 -17.20647,-46.534542 -42.8125,-61.625 l -9.46875,0.1875 C 226.4481,16.598532 221.28775,8.7869235 204.3125,12.375 196.66427,9.5371583 193.1051,2.5684729 177.53125,7.65625 c -6.37973,-2.0184911 -12.24667,-6.2144276 -19.15625,-6 z"
          style="fill:#000000"
@@ -757,7 +103,7 @@
     </g>
     <g
        id="g594-5"
-       transform="matrix(0.06981829,0,0,0.06985886,97.461268,15.369223)">
+       transform="matrix(0.01847276,0,0,0.01848349,22.382029,112.08806)">
       <path
          d="m 158.375,1.65625 c -3.6193,0.1123192 -7.51715,1.4493266 -11.9375,4.9375 C 135.61054,2.4174496 125.11041,0.9665612 115.71875,9.46875 101.22489,7.5879922 96.508461,11.469494 92.9375,16 89.754953,15.934135 69.118652,12.72793 59.65625,26.84375 35.874602,24.030329 28.359472,40.831625 36.875,56.5 c -4.856911,7.518955 -9.889503,14.947226 1.46875,29.28125 -4.018006,7.983514 -1.527431,16.64403 7.9375,27.125 -2.497857,11.2226 2.412077,19.14086 11.21875,25.3125 -1.64709,15.35756 14.083505,24.28743 18.78125,27.46875 1.803677,8.94868 5.56291,17.3927 23.53125,22.0625 2.96323,13.3361 13.76206,15.63906 24.21875,18.4375 -34.561929,20.08954 -64.20067,46.52266 -64,111.375 l -5.0625,9.03125 C 15.337882,350.69604 -20.316547,428.16001 35.4375,491.125 c 3.641871,19.70838 9.749589,33.86396 15.1875,49.53125 8.133834,63.13058 61.21763,92.69161 75.21875,96.1875 20.51653,15.62812 42.36818,30.45672 71.9375,40.84375 27.87515,28.74946 58.07388,39.7064 88.4375,39.6875 0.44515,-2.8e-4 0.89853,0.005 1.34375,0 30.36363,0.0189 60.56235,-10.93804 88.4375,-39.6875 29.56932,-10.38703 51.42097,-25.21563 71.9375,-40.84375 14.00112,-3.49589 67.08492,-33.05692 75.21875,-96.1875 5.43791,-15.66729 11.54562,-29.82287 15.1875,-49.53125 55.75404,-62.96499 20.09961,-140.42896 -19.53125,-164.53125 L 513.75,317.5625 c 0.20067,-64.85234 -29.43807,-91.28546 -64,-111.375 10.45669,-2.79844 21.25552,-5.1014 24.21875,-18.4375 17.96834,-4.6698 21.72758,-13.11382 23.53125,-22.0625 4.69775,-3.18132 20.42834,-12.11119 18.78125,-27.46875 8.80668,-6.17164 13.71661,-14.0899 11.21875,-25.3125 9.46494,-10.48097 11.9555,-19.141487 7.9375,-27.125 C 546.79575,71.447226 541.76316,64.018955 536.90625,56.5 545.42178,40.831625 537.90665,24.030329 514.125,26.84375 504.6626,12.72793 484.0263,15.934135 480.84375,16 477.27279,11.469494 472.55636,7.587992 458.0625,9.46875 448.67084,0.96656132 438.17071,2.41745 427.34375,6.59375 414.48455,-3.5536631 405.97149,4.580454 396.25,7.65625 380.67615,2.568472 377.11698,9.5371578 369.46875,12.375 352.4935,8.7869238 347.33315,16.598532 339.1875,24.84375 l -9.46875,-0.1875 c -25.61054,15.093115 -38.33378,45.825501 -42.84375,61.625 -4.51206,-15.801979 -17.20647,-46.534542 -42.8125,-61.625 l -9.46875,0.1875 C 226.4481,16.598532 221.28775,8.7869235 204.3125,12.375 196.66427,9.5371583 193.1051,2.5684729 177.53125,7.65625 c -6.37973,-2.0184911 -12.24667,-6.2144276 -19.15625,-6 z"
          style="fill:#000000"
@@ -820,7 +166,7 @@
     </g>
     <g
        id="g594-1"
-       transform="matrix(0.06981829,0,0,0.06985886,157.43674,15.369969)">
+       transform="matrix(0.01847276,0,0,0.01848349,38.250539,112.08826)">
       <path
          d="m 158.375,1.65625 c -3.6193,0.1123192 -7.51715,1.4493266 -11.9375,4.9375 C 135.61054,2.4174496 125.11041,0.9665612 115.71875,9.46875 101.22489,7.5879922 96.508461,11.469494 92.9375,16 89.754953,15.934135 69.118652,12.72793 59.65625,26.84375 35.874602,24.030329 28.359472,40.831625 36.875,56.5 c -4.856911,7.518955 -9.889503,14.947226 1.46875,29.28125 -4.018006,7.983514 -1.527431,16.64403 7.9375,27.125 -2.497857,11.2226 2.412077,19.14086 11.21875,25.3125 -1.64709,15.35756 14.083505,24.28743 18.78125,27.46875 1.803677,8.94868 5.56291,17.3927 23.53125,22.0625 2.96323,13.3361 13.76206,15.63906 24.21875,18.4375 -34.561929,20.08954 -64.20067,46.52266 -64,111.375 l -5.0625,9.03125 C 15.337882,350.69604 -20.316547,428.16001 35.4375,491.125 c 3.641871,19.70838 9.749589,33.86396 15.1875,49.53125 8.133834,63.13058 61.21763,92.69161 75.21875,96.1875 20.51653,15.62812 42.36818,30.45672 71.9375,40.84375 27.87515,28.74946 58.07388,39.7064 88.4375,39.6875 0.44515,-2.8e-4 0.89853,0.005 1.34375,0 30.36363,0.0189 60.56235,-10.93804 88.4375,-39.6875 29.56932,-10.38703 51.42097,-25.21563 71.9375,-40.84375 14.00112,-3.49589 67.08492,-33.05692 75.21875,-96.1875 5.43791,-15.66729 11.54562,-29.82287 15.1875,-49.53125 55.75404,-62.96499 20.09961,-140.42896 -19.53125,-164.53125 L 513.75,317.5625 c 0.20067,-64.85234 -29.43807,-91.28546 -64,-111.375 10.45669,-2.79844 21.25552,-5.1014 24.21875,-18.4375 17.96834,-4.6698 21.72758,-13.11382 23.53125,-22.0625 4.69775,-3.18132 20.42834,-12.11119 18.78125,-27.46875 8.80668,-6.17164 13.71661,-14.0899 11.21875,-25.3125 9.46494,-10.48097 11.9555,-19.141487 7.9375,-27.125 C 546.79575,71.447226 541.76316,64.018955 536.90625,56.5 545.42178,40.831625 537.90665,24.030329 514.125,26.84375 504.6626,12.72793 484.0263,15.934135 480.84375,16 477.27279,11.469494 472.55636,7.587992 458.0625,9.46875 448.67084,0.96656132 438.17071,2.41745 427.34375,6.59375 414.48455,-3.5536631 405.97149,4.580454 396.25,7.65625 380.67615,2.568472 377.11698,9.5371578 369.46875,12.375 352.4935,8.7869238 347.33315,16.598532 339.1875,24.84375 l -9.46875,-0.1875 c -25.61054,15.093115 -38.33378,45.825501 -42.84375,61.625 -4.51206,-15.801979 -17.20647,-46.534542 -42.8125,-61.625 l -9.46875,0.1875 C 226.4481,16.598532 221.28775,8.7869235 204.3125,12.375 196.66427,9.5371583 193.1051,2.5684729 177.53125,7.65625 c -6.37973,-2.0184911 -12.24667,-6.2144276 -19.15625,-6 z"
          style="fill:#000000"
@@ -883,7 +229,7 @@
     </g>
     <g
        id="g594-5-6"
-       transform="matrix(0.06981829,0,0,0.06985886,217.43594,15.355855)">
+       transform="matrix(0.01847276,0,0,0.01848349,54.125327,112.08452)">
       <path
          d="m 158.375,1.65625 c -3.6193,0.1123192 -7.51715,1.4493266 -11.9375,4.9375 C 135.61054,2.4174496 125.11041,0.9665612 115.71875,9.46875 101.22489,7.5879922 96.508461,11.469494 92.9375,16 89.754953,15.934135 69.118652,12.72793 59.65625,26.84375 35.874602,24.030329 28.359472,40.831625 36.875,56.5 c -4.856911,7.518955 -9.889503,14.947226 1.46875,29.28125 -4.018006,7.983514 -1.527431,16.64403 7.9375,27.125 -2.497857,11.2226 2.412077,19.14086 11.21875,25.3125 -1.64709,15.35756 14.083505,24.28743 18.78125,27.46875 1.803677,8.94868 5.56291,17.3927 23.53125,22.0625 2.96323,13.3361 13.76206,15.63906 24.21875,18.4375 -34.561929,20.08954 -64.20067,46.52266 -64,111.375 l -5.0625,9.03125 C 15.337882,350.69604 -20.316547,428.16001 35.4375,491.125 c 3.641871,19.70838 9.749589,33.86396 15.1875,49.53125 8.133834,63.13058 61.21763,92.69161 75.21875,96.1875 20.51653,15.62812 42.36818,30.45672 71.9375,40.84375 27.87515,28.74946 58.07388,39.7064 88.4375,39.6875 0.44515,-2.8e-4 0.89853,0.005 1.34375,0 30.36363,0.0189 60.56235,-10.93804 88.4375,-39.6875 29.56932,-10.38703 51.42097,-25.21563 71.9375,-40.84375 14.00112,-3.49589 67.08492,-33.05692 75.21875,-96.1875 5.43791,-15.66729 11.54562,-29.82287 15.1875,-49.53125 55.75404,-62.96499 20.09961,-140.42896 -19.53125,-164.53125 L 513.75,317.5625 c 0.20067,-64.85234 -29.43807,-91.28546 -64,-111.375 10.45669,-2.79844 21.25552,-5.1014 24.21875,-18.4375 17.96834,-4.6698 21.72758,-13.11382 23.53125,-22.0625 4.69775,-3.18132 20.42834,-12.11119 18.78125,-27.46875 8.80668,-6.17164 13.71661,-14.0899 11.21875,-25.3125 9.46494,-10.48097 11.9555,-19.141487 7.9375,-27.125 C 546.79575,71.447226 541.76316,64.018955 536.90625,56.5 545.42178,40.831625 537.90665,24.030329 514.125,26.84375 504.6626,12.72793 484.0263,15.934135 480.84375,16 477.27279,11.469494 472.55636,7.587992 458.0625,9.46875 448.67084,0.96656132 438.17071,2.41745 427.34375,6.59375 414.48455,-3.5536631 405.97149,4.580454 396.25,7.65625 380.67615,2.568472 377.11698,9.5371578 369.46875,12.375 352.4935,8.7869238 347.33315,16.598532 339.1875,24.84375 l -9.46875,-0.1875 c -25.61054,15.093115 -38.33378,45.825501 -42.84375,61.625 -4.51206,-15.801979 -17.20647,-46.534542 -42.8125,-61.625 l -9.46875,0.1875 C 226.4481,16.598532 221.28775,8.7869235 204.3125,12.375 196.66427,9.5371583 193.1051,2.5684729 177.53125,7.65625 c -6.37973,-2.0184911 -12.24667,-6.2144276 -19.15625,-6 z"
          style="fill:#000000"
@@ -946,7 +292,7 @@
     </g>
     <g
        id="g594-9"
-       transform="matrix(0.06981829,0,0,0.06985886,277.42338,15.373859)">
+       transform="matrix(0.01847276,0,0,0.01848349,69.997001,112.08929)">
       <path
          d="m 158.375,1.65625 c -3.6193,0.1123192 -7.51715,1.4493266 -11.9375,4.9375 C 135.61054,2.4174496 125.11041,0.9665612 115.71875,9.46875 101.22489,7.5879922 96.508461,11.469494 92.9375,16 89.754953,15.934135 69.118652,12.72793 59.65625,26.84375 35.874602,24.030329 28.359472,40.831625 36.875,56.5 c -4.856911,7.518955 -9.889503,14.947226 1.46875,29.28125 -4.018006,7.983514 -1.527431,16.64403 7.9375,27.125 -2.497857,11.2226 2.412077,19.14086 11.21875,25.3125 -1.64709,15.35756 14.083505,24.28743 18.78125,27.46875 1.803677,8.94868 5.56291,17.3927 23.53125,22.0625 2.96323,13.3361 13.76206,15.63906 24.21875,18.4375 -34.561929,20.08954 -64.20067,46.52266 -64,111.375 l -5.0625,9.03125 C 15.337882,350.69604 -20.316547,428.16001 35.4375,491.125 c 3.641871,19.70838 9.749589,33.86396 15.1875,49.53125 8.133834,63.13058 61.21763,92.69161 75.21875,96.1875 20.51653,15.62812 42.36818,30.45672 71.9375,40.84375 27.87515,28.74946 58.07388,39.7064 88.4375,39.6875 0.44515,-2.8e-4 0.89853,0.005 1.34375,0 30.36363,0.0189 60.56235,-10.93804 88.4375,-39.6875 29.56932,-10.38703 51.42097,-25.21563 71.9375,-40.84375 14.00112,-3.49589 67.08492,-33.05692 75.21875,-96.1875 5.43791,-15.66729 11.54562,-29.82287 15.1875,-49.53125 55.75404,-62.96499 20.09961,-140.42896 -19.53125,-164.53125 L 513.75,317.5625 c 0.20067,-64.85234 -29.43807,-91.28546 -64,-111.375 10.45669,-2.79844 21.25552,-5.1014 24.21875,-18.4375 17.96834,-4.6698 21.72758,-13.11382 23.53125,-22.0625 4.69775,-3.18132 20.42834,-12.11119 18.78125,-27.46875 8.80668,-6.17164 13.71661,-14.0899 11.21875,-25.3125 9.46494,-10.48097 11.9555,-19.141487 7.9375,-27.125 C 546.79575,71.447226 541.76316,64.018955 536.90625,56.5 545.42178,40.831625 537.90665,24.030329 514.125,26.84375 504.6626,12.72793 484.0263,15.934135 480.84375,16 477.27279,11.469494 472.55636,7.587992 458.0625,9.46875 448.67084,0.96656132 438.17071,2.41745 427.34375,6.59375 414.48455,-3.5536631 405.97149,4.580454 396.25,7.65625 380.67615,2.568472 377.11698,9.5371578 369.46875,12.375 352.4935,8.7869238 347.33315,16.598532 339.1875,24.84375 l -9.46875,-0.1875 c -25.61054,15.093115 -38.33378,45.825501 -42.84375,61.625 -4.51206,-15.801979 -17.20647,-46.534542 -42.8125,-61.625 l -9.46875,0.1875 C 226.4481,16.598532 221.28775,8.7869235 204.3125,12.375 196.66427,9.5371583 193.1051,2.5684729 177.53125,7.65625 c -6.37973,-2.0184911 -12.24667,-6.2144276 -19.15625,-6 z"
          style="fill:#000000"
@@ -1009,7 +355,7 @@
     </g>
     <g
        id="g594-5-1"
-       transform="matrix(0.06981829,0,0,0.06985886,337.42257,15.359745)">
+       transform="matrix(0.01847276,0,0,0.01848349,85.871789,112.08555)">
       <path
          d="m 158.375,1.65625 c -3.6193,0.1123192 -7.51715,1.4493266 -11.9375,4.9375 C 135.61054,2.4174496 125.11041,0.9665612 115.71875,9.46875 101.22489,7.5879922 96.508461,11.469494 92.9375,16 89.754953,15.934135 69.118652,12.72793 59.65625,26.84375 35.874602,24.030329 28.359472,40.831625 36.875,56.5 c -4.856911,7.518955 -9.889503,14.947226 1.46875,29.28125 -4.018006,7.983514 -1.527431,16.64403 7.9375,27.125 -2.497857,11.2226 2.412077,19.14086 11.21875,25.3125 -1.64709,15.35756 14.083505,24.28743 18.78125,27.46875 1.803677,8.94868 5.56291,17.3927 23.53125,22.0625 2.96323,13.3361 13.76206,15.63906 24.21875,18.4375 -34.561929,20.08954 -64.20067,46.52266 -64,111.375 l -5.0625,9.03125 C 15.337882,350.69604 -20.316547,428.16001 35.4375,491.125 c 3.641871,19.70838 9.749589,33.86396 15.1875,49.53125 8.133834,63.13058 61.21763,92.69161 75.21875,96.1875 20.51653,15.62812 42.36818,30.45672 71.9375,40.84375 27.87515,28.74946 58.07388,39.7064 88.4375,39.6875 0.44515,-2.8e-4 0.89853,0.005 1.34375,0 30.36363,0.0189 60.56235,-10.93804 88.4375,-39.6875 29.56932,-10.38703 51.42097,-25.21563 71.9375,-40.84375 14.00112,-3.49589 67.08492,-33.05692 75.21875,-96.1875 5.43791,-15.66729 11.54562,-29.82287 15.1875,-49.53125 55.75404,-62.96499 20.09961,-140.42896 -19.53125,-164.53125 L 513.75,317.5625 c 0.20067,-64.85234 -29.43807,-91.28546 -64,-111.375 10.45669,-2.79844 21.25552,-5.1014 24.21875,-18.4375 17.96834,-4.6698 21.72758,-13.11382 23.53125,-22.0625 4.69775,-3.18132 20.42834,-12.11119 18.78125,-27.46875 8.80668,-6.17164 13.71661,-14.0899 11.21875,-25.3125 9.46494,-10.48097 11.9555,-19.141487 7.9375,-27.125 C 546.79575,71.447226 541.76316,64.018955 536.90625,56.5 545.42178,40.831625 537.90665,24.030329 514.125,26.84375 504.6626,12.72793 484.0263,15.934135 480.84375,16 477.27279,11.469494 472.55636,7.587992 458.0625,9.46875 448.67084,0.96656132 438.17071,2.41745 427.34375,6.59375 414.48455,-3.5536631 405.97149,4.580454 396.25,7.65625 380.67615,2.568472 377.11698,9.5371578 369.46875,12.375 352.4935,8.7869238 347.33315,16.598532 339.1875,24.84375 l -9.46875,-0.1875 c -25.61054,15.093115 -38.33378,45.825501 -42.84375,61.625 -4.51206,-15.801979 -17.20647,-46.534542 -42.8125,-61.625 l -9.46875,0.1875 C 226.4481,16.598532 221.28775,8.7869235 204.3125,12.375 196.66427,9.5371583 193.1051,2.5684729 177.53125,7.65625 c -6.37973,-2.0184911 -12.24667,-6.2144276 -19.15625,-6 z"
          style="fill:#000000"
@@ -1072,7 +418,7 @@
     </g>
     <g
        id="g594-1-2"
-       transform="matrix(0.06981829,0,0,0.06985886,397.39805,15.360491)">
+       transform="matrix(0.01847276,0,0,0.01848349,101.7403,112.08575)">
       <path
          d="m 158.375,1.65625 c -3.6193,0.1123192 -7.51715,1.4493266 -11.9375,4.9375 C 135.61054,2.4174496 125.11041,0.9665612 115.71875,9.46875 101.22489,7.5879922 96.508461,11.469494 92.9375,16 89.754953,15.934135 69.118652,12.72793 59.65625,26.84375 35.874602,24.030329 28.359472,40.831625 36.875,56.5 c -4.856911,7.518955 -9.889503,14.947226 1.46875,29.28125 -4.018006,7.983514 -1.527431,16.64403 7.9375,27.125 -2.497857,11.2226 2.412077,19.14086 11.21875,25.3125 -1.64709,15.35756 14.083505,24.28743 18.78125,27.46875 1.803677,8.94868 5.56291,17.3927 23.53125,22.0625 2.96323,13.3361 13.76206,15.63906 24.21875,18.4375 -34.561929,20.08954 -64.20067,46.52266 -64,111.375 l -5.0625,9.03125 C 15.337882,350.69604 -20.316547,428.16001 35.4375,491.125 c 3.641871,19.70838 9.749589,33.86396 15.1875,49.53125 8.133834,63.13058 61.21763,92.69161 75.21875,96.1875 20.51653,15.62812 42.36818,30.45672 71.9375,40.84375 27.87515,28.74946 58.07388,39.7064 88.4375,39.6875 0.44515,-2.8e-4 0.89853,0.005 1.34375,0 30.36363,0.0189 60.56235,-10.93804 88.4375,-39.6875 29.56932,-10.38703 51.42097,-25.21563 71.9375,-40.84375 14.00112,-3.49589 67.08492,-33.05692 75.21875,-96.1875 5.43791,-15.66729 11.54562,-29.82287 15.1875,-49.53125 55.75404,-62.96499 20.09961,-140.42896 -19.53125,-164.53125 L 513.75,317.5625 c 0.20067,-64.85234 -29.43807,-91.28546 -64,-111.375 10.45669,-2.79844 21.25552,-5.1014 24.21875,-18.4375 17.96834,-4.6698 21.72758,-13.11382 23.53125,-22.0625 4.69775,-3.18132 20.42834,-12.11119 18.78125,-27.46875 8.80668,-6.17164 13.71661,-14.0899 11.21875,-25.3125 9.46494,-10.48097 11.9555,-19.141487 7.9375,-27.125 C 546.79575,71.447226 541.76316,64.018955 536.90625,56.5 545.42178,40.831625 537.90665,24.030329 514.125,26.84375 504.6626,12.72793 484.0263,15.934135 480.84375,16 477.27279,11.469494 472.55636,7.587992 458.0625,9.46875 448.67084,0.96656132 438.17071,2.41745 427.34375,6.59375 414.48455,-3.5536631 405.97149,4.580454 396.25,7.65625 380.67615,2.568472 377.11698,9.5371578 369.46875,12.375 352.4935,8.7869238 347.33315,16.598532 339.1875,24.84375 l -9.46875,-0.1875 c -25.61054,15.093115 -38.33378,45.825501 -42.84375,61.625 -4.51206,-15.801979 -17.20647,-46.534542 -42.8125,-61.625 l -9.46875,0.1875 C 226.4481,16.598532 221.28775,8.7869235 204.3125,12.375 196.66427,9.5371583 193.1051,2.5684729 177.53125,7.65625 c -6.37973,-2.0184911 -12.24667,-6.2144276 -19.15625,-6 z"
          style="fill:#000000"
@@ -1135,7 +481,7 @@
     </g>
     <g
        id="g594-5-6-3"
-       transform="matrix(0.06981829,0,0,0.06985886,457.39724,15.346377)">
+       transform="matrix(0.01847276,0,0,0.01848349,117.61509,112.08201)">
       <path
          d="m 158.375,1.65625 c -3.6193,0.1123192 -7.51715,1.4493266 -11.9375,4.9375 C 135.61054,2.4174496 125.11041,0.9665612 115.71875,9.46875 101.22489,7.5879922 96.508461,11.469494 92.9375,16 89.754953,15.934135 69.118652,12.72793 59.65625,26.84375 35.874602,24.030329 28.359472,40.831625 36.875,56.5 c -4.856911,7.518955 -9.889503,14.947226 1.46875,29.28125 -4.018006,7.983514 -1.527431,16.64403 7.9375,27.125 -2.497857,11.2226 2.412077,19.14086 11.21875,25.3125 -1.64709,15.35756 14.083505,24.28743 18.78125,27.46875 1.803677,8.94868 5.56291,17.3927 23.53125,22.0625 2.96323,13.3361 13.76206,15.63906 24.21875,18.4375 -34.561929,20.08954 -64.20067,46.52266 -64,111.375 l -5.0625,9.03125 C 15.337882,350.69604 -20.316547,428.16001 35.4375,491.125 c 3.641871,19.70838 9.749589,33.86396 15.1875,49.53125 8.133834,63.13058 61.21763,92.69161 75.21875,96.1875 20.51653,15.62812 42.36818,30.45672 71.9375,40.84375 27.87515,28.74946 58.07388,39.7064 88.4375,39.6875 0.44515,-2.8e-4 0.89853,0.005 1.34375,0 30.36363,0.0189 60.56235,-10.93804 88.4375,-39.6875 29.56932,-10.38703 51.42097,-25.21563 71.9375,-40.84375 14.00112,-3.49589 67.08492,-33.05692 75.21875,-96.1875 5.43791,-15.66729 11.54562,-29.82287 15.1875,-49.53125 55.75404,-62.96499 20.09961,-140.42896 -19.53125,-164.53125 L 513.75,317.5625 c 0.20067,-64.85234 -29.43807,-91.28546 -64,-111.375 10.45669,-2.79844 21.25552,-5.1014 24.21875,-18.4375 17.96834,-4.6698 21.72758,-13.11382 23.53125,-22.0625 4.69775,-3.18132 20.42834,-12.11119 18.78125,-27.46875 8.80668,-6.17164 13.71661,-14.0899 11.21875,-25.3125 9.46494,-10.48097 11.9555,-19.141487 7.9375,-27.125 C 546.79575,71.447226 541.76316,64.018955 536.90625,56.5 545.42178,40.831625 537.90665,24.030329 514.125,26.84375 504.6626,12.72793 484.0263,15.934135 480.84375,16 477.27279,11.469494 472.55636,7.587992 458.0625,9.46875 448.67084,0.96656132 438.17071,2.41745 427.34375,6.59375 414.48455,-3.5536631 405.97149,4.580454 396.25,7.65625 380.67615,2.568472 377.11698,9.5371578 369.46875,12.375 352.4935,8.7869238 347.33315,16.598532 339.1875,24.84375 l -9.46875,-0.1875 c -25.61054,15.093115 -38.33378,45.825501 -42.84375,61.625 -4.51206,-15.801979 -17.20647,-46.534542 -42.8125,-61.625 l -9.46875,0.1875 C 226.4481,16.598532 221.28775,8.7869235 204.3125,12.375 196.66427,9.5371583 193.1051,2.5684729 177.53125,7.65625 c -6.37973,-2.0184911 -12.24667,-6.2144276 -19.15625,-6 z"
          style="fill:#000000"
@@ -1197,22 +543,4 @@
          id="path572-7-7-3" />
     </g>
   </g>
-  <switch
-     id="switch186">
-    <g
-       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
-       id="g180" />
-    <a
-       transform="translate(0,-5)"
-       xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems"
-       target="_blank"
-       id="a184">
-      <text
-         text-anchor="middle"
-         font-size="10px"
-         x="50%"
-         y="100%"
-         id="text182">Viewer does not support full SVG 1.1</text>
-    </a>
-  </switch>
 </svg>

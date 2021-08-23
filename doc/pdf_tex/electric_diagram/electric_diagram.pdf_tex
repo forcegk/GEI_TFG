@@ -50,7 +50,7 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.40601119)%
+  \begin{picture}(1,0.40671642)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
@@ -65,21 +65,21 @@
     \put(0.61473881,0.09421642){\color[rgb]{1,0.2,0.2}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\small{+5\textasciitilde 28VDC}\end{tabular}}}}%
     \put(0.64645522,0.02705224){\color[rgb]{0.96078431,0.96078431,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\small{TACH}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
-    \put(0.10541045,0.38712687){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
+    \put(0.10541045,0.38712687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
-    \put(0.21735075,0.38712687){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
+    \put(0.21735075,0.38712687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
-    \put(0.32929104,0.38712687){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
+    \put(0.32929104,0.38712687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
-    \put(0.44123134,0.38712687){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}3\end{tabular}}}}%
+    \put(0.44123134,0.38712687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}3\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
-    \put(0.55317164,0.38712687){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}4\end{tabular}}}}%
+    \put(0.55317164,0.38712687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}4\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
-    \put(0.66511194,0.38712687){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}5\end{tabular}}}}%
+    \put(0.66511194,0.38712687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}5\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
-    \put(0.77705224,0.38712687){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}6\end{tabular}}}}%
+    \put(0.77705224,0.38712687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}6\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
-    \put(0.88899254,0.38712687){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}7\end{tabular}}}}%
+    \put(0.88899254,0.38712687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}7\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
   \end{picture}%
 \endgroup%
