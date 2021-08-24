@@ -33,8 +33,10 @@ as listed below:
 \subsection{Benchmarks}
 Como se comenta en la subsección \ref{ssec:clases_y_procesos}, únicamente se ejecutarán algunos programas de medida del rendimiento por diversos motivos. Dentro de los que se ejecutan, es conveniente saber qué realiza (en mayor o menor medida debido a la complejidad de los mismos) cada uno de ellos.
 
+Los tamaños de problema en función de la clase se encuentran disponibles en \cite{npb_problem_sizes} y una explicación de los mismos en \cite{benchmarks1994technical}. 
+
 \subsubsection{CG - Conjugate Gradient}
-cg
+El método del gradiente conjugado es un algoritmo para la resolución numérica de sistemas de ecuaciones lineales de matrices simétricas y definidas positivas. La explicación en profundidad del método se puede encontrar en \cite{hestenes1952methods}, pero al quedar fuera del objetivo del trabajo, no se tratará en mayor profundidad, quedando como resumen que ``se trata de un método iterativo para resolución de sistemas de ecuaciones lineales'', siendo obvia su utilidad en aeronáutica, y de aquí su aparición en los \acrlong{npb}.
 
 \subsubsection{EP - Embarrassingly Parallel}
 ep
@@ -60,7 +62,7 @@ Se han realizado 5 ejecuciones de todos los problemas clase C, y 9 ejecuciones d
 Los resultados de los benchmarks pueden encontrarse anexados en TODO \#REF\# VALUES.
 
 \subsection{Prerrequisitos}
-Para poder realizar las medidas de rendimiento, primero se necesitan tanto las herramientas de compilación como las de ejecución. Estas dependencias se deben satisfacer ejecutando:
+Para poder realizar las medidas de rendimiento, primero se necesitan tanto las herramientas de compilación como las de ejecución. Estas dependencias se deben satisfacer ejecutando en todos los nodos:
 
 \begin{lstlisting}[language=bash]
 # Se añade la opción --needed debido a que hay paquetes del metapaquete base-devel que ya están instalados, y no es necesario reinstalar.
