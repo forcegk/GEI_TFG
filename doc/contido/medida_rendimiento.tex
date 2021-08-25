@@ -51,21 +51,55 @@ En un sistema de memoria compartida, las $N$ claves (es decir, cada número) se 
 Esta necesidad de ancho de banda a la memoria principal, así como de rápidas comunicaciones entre múltiples nodos se puede observar a la perfección en la sección \ref{sec:comparacion_resultados}. Puede leerse con más detalle el funcionamiento del benchmark en \cite[2.2.5]{benchmarks1994technical} % TODO CAMBIAR A SUBSEC IS 
 
 \subsubsection{LU - Lower-Upper solver}
-La factorización LU es es un método de factorización de una matriz en dos matrices triangulares inferior y superior. Si ``factorización de matrices'' pudiera sonar extraño a algún lector, realmente no es nada esotérico: algunas matrices, al igual que algunos números enteros, pueden ser separadas en dos matrices, producto de las cuales se obtiene la matriz original.   
+La factorización LU es es un método de factorización de una matriz en dos matrices triangulares inferior y superior. Si ``factorización de matrices'' pudiera sonar extraño a algún lector, realmente no es nada esotérico: algunas matrices, al igual que algunos números enteros, pueden ser separadas en dos matrices, producto de las cuales se obtiene la matriz original.
+
+Esta factorización se emplea en el análisis numérico para la resolución de sistemas de ecuaciones de forma más eficiente, por lo que, de nuevo, se puede apreciar la utilidad de este proceso en aeronáutica.
+
+\begin{figure}[h!]
+  \vspace*{0.5cm}
+  \centering
+  
+    $\begin{pmatrix}
+    a_{11} & a_{12} & a_{13}\\
+    a_{21} & a_{22} & a_{23}\\
+    a_{31} & a_{32} & a_{33}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    1      & 0      & 0\\
+    l_{21} & 1      & 0\\
+    l_{31} & l_{32} & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+    u_{11} & u_{12} & u_{13}\\
+    0      & u_{22} & u_{23}\\
+    0      & 0      & u_{33}
+    \end{pmatrix}
+    $
+
+  \caption{Factorización LU para matrices 3x3}
+  \label{fig:factorizacion_lu}
+  %\vspace*{0.1cm}
+\end{figure}
 
 \subsubsection{FT - 3D FFT PDE (Fourier Transform)}
-ft
+Este kernel resuelve numéricamente cierta ecuación en derivadas parciales mediante el uso de transformadas rápidas de Fourier tridimensionales directas (\acrshort{fft} o \acrlong{fft}) e inversas (I\acrshort{fft} o Inverse \acrshort{fft}). Se puede encontrar mayor detalle en esta rama avanzada de las matemáticas en \cite[2.2.4]{benchmarks1994technical}.
+
+La \acrshort{fft} es una implementación eficiente de la transformada discreta de Fourier para computadores, de muy especial utilidad en el tratamiento digital de señales y la resolución de ecuaciones en derivadas parciales, siendo este último el uso que se le da en este benchmark. 
+
+Las \acrshort{fft} en 3D son parte muy importante de aplicaciones en mecánica de fluidos, especialmente en simulaciones de torbellinos. Asimismo, la ejecución de estos algoritmos conlleva una importante comunicación entre procesos, lo cual tiene cierto impacto en las cifras de rendimiento, como se puede observar en \ref{sec:comparacion_resultados}. %TODO CAMBIAR A SUBSEC FT
 
 \subsubsection{MG - MultiGrid}
-mg
+Finalmente, el último benchmark que se ejecuta de esta suite es el multigrid, y de nuevo es de tipo numérico. El proceso consiste en realizar cuatro iteraciones del algoritmo multigrid de ciclo en V, que se emplean para la obtención de una aproximación a la solución $u$ de una ecuación de Poisson discreta, en una malla 256x256x256. Más información para lectores experimentados en este campo puede encontrarse de nuevo en \cite[2.2.2]{benchmarks1994technical}.
 
+Este método multigrid se emplea para la resolución de sistemas de ecuaciones diferenciales, y ha sido ampliamente utilizado para la resolución de otros sistemas de ecuaciones más complicados como las ecuaciones de Lamé o las Navier-Stokes. Ambas estas ecuaciones relacionadas con mecánica de fluidos, y por tanto y de nuevo, resultando sencillo visualizar la interconexión de esta carga de trabajo con aquellas empleadas en el campo de la aerodinámica.  
 
 \subsection{Metodología}
 La metodología es una muy importante parte en cualquier medida y análisis de la realidad, ya que permite filtrar y categorizar datos como más o menos fidedignos. En este caso la metodología a seguir ha sido moderadamente sencilla.
 
 Se han realizado 5 ejecuciones de todos los problemas clase C, y 9 ejecuciones de los clase A o B. Esto es así, ya que a menor tiempo de ejecución, mayor probabilidad de obtener un dato atípico. Por suerte, y muy probablemente debido a la instalación mínima del sistema operativo, no ha habido variaciones significativas entre ejecuciones.
 
-Los resultados de los benchmarks pueden encontrarse anexados en TODO \#REF\# VALUES.
+Los resultados de cada ejecución concreta de los benchmarks pueden encontrarse anexados en TODO \#REF\# VALUES.
 
 \subsection{Prerrequisitos}
 Para poder realizar las medidas de rendimiento, primero se necesitan tanto las herramientas de compilación como las de ejecución. Estas dependencias se deben satisfacer ejecutando en todos los nodos:
