@@ -6,9 +6,9 @@
 En este caso, si bien el rendimiento no es una prioridad, es conveniente realizar estas pruebas, especialmente para poder observar el impacto que tiene la red de comunicaciones entre los núcleos de una sola CPU, o entre múltiples CPUs y memorias. En resumen, medir la escalabilidad, que como se observa en \nameref{sec:comparacion_resultados} no es en absoluto espectacular.
 
 \section{NAS Parallel Benchmarks}
-Los \acrlong{npb} (\acrshort{npb})\footnote{\url{https://www.nas.nasa.gov/software/npb.html}} son una \textit{suite} de tests diseñados por la División de Supercomputación de la NASA para la medida del rendimiento de supercomputadores paralelos.
+Los \acrlong{npb} (\acrshort{npb})\footnote{\url{https://www.nas.nasa.gov/software/npb.html}} son una \textit{suite} de tests de cálculo numérico diseñados por la División de Supercomputación de la NASA para la medida del rendimiento de supercomputadores paralelos.
 
-Estos benchmarks se dividen principalmente ocho benchmarks, teniendo otras adaptaciones para diferentes paradigmas de computación paralela, como puede ser de paralelización híbrida, computación desestructurada, o mallas de computación.
+Estos benchmarks se dividen principalmente en ocho, teniendo otras adaptaciones para diferentes paradigmas de computación paralela, como puede ser de paralelización híbrida, computación desestructurada, o mallas de computación.
 
 A su vez cada benchmark tiene múltiples clases, siendo estas \texttt{S, W, A, B, C, D, E}, y representando cada una un nivel de requerimientos superior, respectivamente. Específicamente, la las clases A, B y C suponen cuadruplicar el tamaño con respecto a la anterior, y las D, E y F (para los benchmarks que tienen estas clases disponibles), multiplican por 16 el tamaño del anterior.
 
@@ -31,7 +31,7 @@ as listed below:
 \end{lstlisting}
 
 \subsection{Benchmarks}
-Como se comenta en la subsección \ref{ssec:clases_y_procesos}, únicamente se ejecutarán algunos programas o kernels de medida del rendimiento por diversos motivos. Dentro de los que se ejecutan, es conveniente saber qué realiza (en mayor o menor medida debido a la complejidad de los mismos) cada uno de ellos.
+Como se comenta en la subsección \ref{ssec:clases_y_procesos}, únicamente se ejecutarán algunos programas o kernels de medida del rendimiento por diversos motivos. Dentro de los que se ejecutan, y sabiendo que son todos de naturaleza numérica, es conveniente saber qué realiza (en mayor o menor medida, debido a la complejidad de los mismos) cada uno de ellos.
 
 Los tamaños de problema en función de la clase se encuentran disponibles en \cite{npb_problem_sizes}, así como una explicación de los mismos en \cite{benchmarks1994technical}. 
 
@@ -48,7 +48,7 @@ Otro kernel con un nombre descriptivo, y es que hace lo que promete: Es un algor
 
 En un sistema de memoria compartida, las $N$ claves (es decir, cada número) se almacenan en un espacio de memoria contiguo. Sin embargo, en un espacio de memoria distribuida en $p$ secciones de memoria, se almacenan $N_{p}$ claves por espacio de memoria, siendo $N_{p} = N / p$.
 
-Esta necesidad de ancho de banda a la memoria principal, así como de rápidas comunicaciones entre múltiples nodos se puede observar a la perfección en la sección \ref{sec:comparacion_resultados}. Puede leerse con más detalle el funcionamiento del benchmark en \cite[2.2.5]{benchmarks1994technical} % TODO CAMBIAR A SUBSEC IS 
+Esta necesidad de ancho de banda a la memoria principal, así como de rápidas comunicaciones entre múltiples nodos se puede observar a la perfección en la sección \ref{ssec:comparacion_resultados__is}. Puede leerse con más detalle el funcionamiento del benchmark en \cite[2.2.5]{benchmarks1994technical}
 
 \subsubsection{LU - Lower-Upper solver}
 La factorización LU es es un método de factorización de una matriz en dos matrices triangulares inferior y superior. Si ``factorización de matrices'' pudiera sonar extraño a algún lector, realmente no es nada esotérico: algunas matrices, al igual que algunos números enteros, pueden ser separadas en dos matrices, producto de las cuales se obtiene la matriz original.
@@ -87,10 +87,10 @@ Este kernel resuelve numéricamente cierta ecuación en derivadas parciales medi
 
 La \acrshort{fft} es una implementación eficiente de la transformada discreta de Fourier para computadores, de muy especial utilidad en el tratamiento digital de señales y la resolución de ecuaciones en derivadas parciales, siendo este último el uso que se le da en este benchmark. 
 
-Las \acrshort{fft} en 3D son parte muy importante de aplicaciones en mecánica de fluidos, especialmente en simulaciones de torbellinos. Asimismo, la ejecución de estos algoritmos conlleva una importante comunicación entre procesos, lo cual tiene cierto impacto en las cifras de rendimiento, como se puede observar en \ref{sec:comparacion_resultados}. %TODO CAMBIAR A SUBSEC FT
+Las \acrshort{fft} en 3D son parte muy importante de aplicaciones en mecánica de fluidos, especialmente en simulaciones de torbellinos. Asimismo, la ejecución de estos algoritmos conlleva una importante comunicación entre procesos, lo cual tiene cierto impacto en las cifras de rendimiento, como se puede observar en \ref{ssec:comparacion_resultados__ft}.
 
 \subsubsection{MG - MultiGrid}
-Finalmente, el último benchmark que se ejecuta de esta suite es el multigrid, y de nuevo es de tipo numérico. El proceso consiste en realizar cuatro iteraciones del algoritmo multigrid de ciclo en V, que se emplean para la obtención de una aproximación a la solución $u$ de una ecuación de Poisson discreta, en una malla 256x256x256. Más información para lectores experimentados en este campo puede encontrarse de nuevo en \cite[2.2.2]{benchmarks1994technical}.
+Finalmente, el último benchmark que se ejecuta de esta suite es el multigrid. El proceso consiste en la realización de cuatro iteraciones del algoritmo multigrid de ciclo en V, que se emplean para la obtención de una aproximación a la solución $u$ de una ecuación de Poisson discreta, en una malla 256x256x256. Más información para lectores experimentados en este campo está disponible, de nuevo, en \cite[2.2.2]{benchmarks1994technical}.
 
 Este método multigrid se emplea para la resolución de sistemas de ecuaciones diferenciales, y ha sido ampliamente utilizado para la resolución de otros sistemas de ecuaciones más complicados como las ecuaciones de Lamé o las Navier-Stokes. Ambas estas ecuaciones relacionadas con mecánica de fluidos, y por tanto y de nuevo, resultando sencillo visualizar la interconexión de esta carga de trabajo con aquellas empleadas en el campo de la aerodinámica.  
 
@@ -199,45 +199,98 @@ La comparación de resultados es precisamente el objetivo de los benchmarks. En 
 
 Se muestran a continuación los datos expresados en MOPS (\textbf{M}ega/\textbf{M}illion \textbf{O}perations \textbf{P}er \textbf{S}econd). En función de si estas operaciones son en punto flotante o no, también se podrán llamar \acrshort{mflops} (\textbf{M}ega/\textbf{M}illion \textbf{FL}oating point \textbf{O}perations \textbf{P}er \textbf{S}econd).
 
+Esta métrica, MOPS, indica para cada benchmark el número de operaciones que realiza el kernel, que no las operaciones de la propia CPU. Por esta razón los resultados son muy diferentes y variados entre diferentes kernels. \cite[V. Performance Evaluation: B. NPB Kernels Performance on the Gigabit Ethernet cluster]{mallon2009npb}
+
+
+\newcommand{\vasymptote}[2][]{
+    \draw [thick,ficblue,densely dashed,#1] ({rel axis cs:0,0} -| {axis cs:#2,0}) -- ({rel axis cs:0,1} -| {axis cs:#2,0});
+}
+
 \subsection{CG}
-JUNTAR LAS GRAFICAS EN ENTEROS Y FLOTANTES (SI SE PUEDE)
+\label{ssec:comparacion_resultados__cg}
+que he hecho tyo para meecer esto
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[c]{0.4\textwidth}
+    % TODO REVISAR
+    \resizebox {\textwidth} {!} {
+        \begin{tikzpicture}
+            \begin{axis}[
+                xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                ymin = 0, ylabel=MOPS total,
+                %width = \textwidth,
+                %height = 0.5\textwidth,
+                grid=both,
+            ]
+            \addplot[udcpink,smooth,very thick,mark=o] coordinates {
+                (1,115.37)
+                (2,158.44)
+                (4,112.03)
+                (8,319.65)
+                (16,565.98)
+                (32,1534.13)
+            };
 
-\begin{tikzpicture}
-\begin{axis}[
-    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=MFLOPS,
-    ymin = 0, ylabel=\#CPU,
-    width = \textwidth,
-    height = 0.5\textwidth,
-    grid=both,
-]
-\addplot[teal,smooth,thick,mark=o] coordinates {
-    (1,115.37)
-    (2,158.44)
-    (4,112.03)
-    (8,319.65)
-    (16,565.98)
-    (32,1534.13)
-};
-\legend{CG MFLOPS};
-\end{axis}
-\end{tikzpicture}
+            \vasymptote {4};
 
-\begin{tikzpicture}
-\begin{axis}[
-    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=MFLOPS,
-    ymin = 0, ylabel=\#CPU,
-    width = \textwidth,
-    height = 0.5\textwidth,
-    grid=both,
-]
-\addplot[teal,smooth,thick,mark=o] coordinates {
-    (1,115.37)
-    (2,79.22)
-    (4,28.01)
-    (8,39.96)
-    (16,35.37)
-    (32,47.94)
-};
-\legend{CG MFLOPS};
-\end{axis}
-\end{tikzpicture}
+            \legend{CG MOPS total};
+            \end{axis}
+        \end{tikzpicture}
+    }
+        % \caption
+        \label{fig:mops_total__cg}
+    \end{subfigure}
+    \begin{subfigure}[c]{0.4\textwidth}
+    \resizebox {\textwidth} {!} {
+        \begin{tikzpicture}
+            \begin{axis}[
+                xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                ymin = 0, ylabel=MOPS/process,
+                %width = \textwidth,
+                %height = 0.5\textwidth,
+                grid=both,
+            ]
+
+            \addplot[udcpink,smooth,very thick,mark=o] coordinates {
+                (1,115.37)
+                (2,79.22)
+                (4,28.01)
+                (8,39.96)
+                (16,35.37)
+                (32,47.94)
+            };
+
+            \vasymptote {4};
+
+            \legend{CG MOPS/process};
+            \end{axis}
+        \end{tikzpicture}
+        % \caption
+        \label{fig:mops_process__cg}
+    }
+    \end{subfigure}
+    \label{fig:mops__cg}
+\end{figure}
+
+
+
+
+\subsection{EP}
+\label{ssec:comparacion_resultados__ep}
+ep
+
+\subsection{IS}
+\label{ssec:comparacion_resultados__is}
+is
+
+\subsection{LU}
+\label{ssec:comparacion_resultados__lu}
+lu
+
+\subsection{FT}
+\label{ssec:comparacion_resultados__ft}
+ft
+
+\subsection{MG}
+\label{ssec:comparacion_resultados__mg}
+mg
