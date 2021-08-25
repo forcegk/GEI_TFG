@@ -31,21 +31,27 @@ as listed below:
 \end{lstlisting}
 
 \subsection{Benchmarks}
-Como se comenta en la subsección \ref{ssec:clases_y_procesos}, únicamente se ejecutarán algunos programas de medida del rendimiento por diversos motivos. Dentro de los que se ejecutan, es conveniente saber qué realiza (en mayor o menor medida debido a la complejidad de los mismos) cada uno de ellos.
+Como se comenta en la subsección \ref{ssec:clases_y_procesos}, únicamente se ejecutarán algunos programas o kernels de medida del rendimiento por diversos motivos. Dentro de los que se ejecutan, es conveniente saber qué realiza (en mayor o menor medida debido a la complejidad de los mismos) cada uno de ellos.
 
-Los tamaños de problema en función de la clase se encuentran disponibles en \cite{npb_problem_sizes} y una explicación de los mismos en \cite{benchmarks1994technical}. 
+Los tamaños de problema en función de la clase se encuentran disponibles en \cite{npb_problem_sizes}, así como una explicación de los mismos en \cite{benchmarks1994technical}. 
 
 \subsubsection{CG - Conjugate Gradient}
-El método del gradiente conjugado es un algoritmo para la resolución numérica de sistemas de ecuaciones lineales de matrices simétricas y definidas positivas. La explicación en profundidad del método se puede encontrar en \cite{hestenes1952methods}, pero al quedar fuera del objetivo del trabajo, no se tratará en mayor profundidad, quedando como resumen que ``se trata de un método iterativo para resolución de sistemas de ecuaciones lineales'', siendo obvia su utilidad en aeronáutica, y de aquí su aparición en los \acrlong{npb}.
+El método del gradiente conjugado es un algoritmo para la resolución numérica de sistemas de ecuaciones lineales de matrices simétricas y definidas positivas. La explicación en profundidad del método se puede encontrar en \cite[2.2.3]{hestenes1952methods}, pero al quedar fuera del objetivo del trabajo, no se tratará en mayor profundidad, quedando como resumen que ``se trata de un método iterativo para resolución de sistemas de ecuaciones lineales'', siendo obvia su utilidad en aeronáutica, y de aquí su aparición en los \acrlong{npb}.
 
 \subsubsection{EP - Embarrassingly Parallel}
-ep
+Este kernel ``embarazosamente parelelo'' tiene un nombre bastante descriptivo en cuanto a sus características, pero no en cuanto a su funcionamiento interno. Este programa sirve para estimar un límite superior al rendimiento en coma flotante, al que podrían aproximarse cargas de trabajo sin altos requerimientos de comunicación entre procesadores.
+
+El kernel EP genera pares de números aleatorios siguiendo una distribución gaussiana, y los tabula en función de ciertos criterios que de nuevo, quedan fuera del alcance de este trabajo, pero que pueden ser consultados por usuarios más expertos en \cite[2.2.1]{benchmarks1994technical}. Este problema es típico de simulaciones estilo Monte Carlo y únicamente se requieren comunicaciones interprocesador al finalizar la ejecución para la realizacion de las (10) sumas del número de pares tabulados. 
 
 \subsubsection{IS - Integer Sort}
-is
+Otro kernel con un nombre descriptivo, y es que hace lo que promete: Es un algoritmo paralelo de ordenación de números enteros. Como es evidente, este algoritmo no mide la capacidad en punto flotante del clúster, sino su capacidad de comparación de enteros, y especialmente la velocidad de su memoria debido a la cantidad de permutaciones que ocurren sobre la misma.
+
+En un sistema de memoria compartida, las $N$ claves (es decir, cada número) se almacenan en un espacio de memoria contiguo. Sin embargo, en un espacio de memoria distribuida en $p$ secciones de memoria, se almacenan $N_{p}$ claves por espacio de memoria, siendo $N_{p} = N / p$.
+
+Esta necesidad de ancho de banda a la memoria principal, así como de rápidas comunicaciones entre múltiples nodos se puede observar a la perfección en la sección \ref{sec:comparacion_resultados}. Puede leerse con más detalle el funcionamiento del benchmark en \cite[2.2.5]{benchmarks1994technical} % TODO CAMBIAR A SUBSEC IS 
 
 \subsubsection{LU - Lower-Upper solver}
-lu
+La factorización LU es es un método de factorización de una matriz en dos matrices triangulares inferior y superior. Si ``factorización de matrices'' pudiera sonar extraño a algún lector, realmente no es nada esotérico: algunas matrices, al igual que algunos números enteros, pueden ser separadas en dos matrices, producto de las cuales se obtiene la matriz original.   
 
 \subsubsection{FT - 3D FFT PDE (Fourier Transform)}
 ft
