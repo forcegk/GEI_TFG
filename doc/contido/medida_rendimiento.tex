@@ -208,66 +208,67 @@ Esta métrica, MOPS, indica para cada benchmark el número de operaciones que re
 
 \subsection{CG}
 \label{ssec:comparacion_resultados__cg}
-que he hecho tyo para meecer esto
+
+El benchnmark CG 
+
 \begin{figure}[h!]
     \centering
-    \begin{subfigure}[c]{0.4\textwidth}
-    % TODO REVISAR
-    \resizebox {\textwidth} {!} {
-        \begin{tikzpicture}
-            \begin{axis}[
-                xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
-                ymin = 0, ylabel=MOPS total,
-                %width = \textwidth,
-                %height = 0.5\textwidth,
-                grid=both,
-            ]
-            \addplot[udcpink,smooth,very thick,mark=o] coordinates {
-                (1,115.37)
-                (2,158.44)
-                (4,112.03)
-                (8,319.65)
-                (16,565.98)
-                (32,1534.13)
-            };
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS total,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+                \addplot[udcpink,smooth,very thick,mark=o] coordinates {
+                    (1,115.37)
+                    (2,158.44)
+                    (4,112.03)
+                    (8,319.65)
+                    (16,565.98)
+                    (32,1534.13)
+                };
 
-            \vasymptote {4};
+                \vasymptote {4};
 
-            \legend{CG MOPS total};
-            \end{axis}
-        \end{tikzpicture}
-    }
+                \legend{CG MOPS total};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
         % \caption
         \label{fig:mops_total__cg}
     \end{subfigure}
-    \begin{subfigure}[c]{0.4\textwidth}
-    \resizebox {\textwidth} {!} {
-        \begin{tikzpicture}
-            \begin{axis}[
-                xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
-                ymin = 0, ylabel=MOPS/process,
-                %width = \textwidth,
-                %height = 0.5\textwidth,
-                grid=both,
-            ]
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS/process,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
 
-            \addplot[udcpink,smooth,very thick,mark=o] coordinates {
-                (1,115.37)
-                (2,79.22)
-                (4,28.01)
-                (8,39.96)
-                (16,35.37)
-                (32,47.94)
-            };
+                \addplot[udcpink,smooth,very thick,mark=o] coordinates {
+                    (1,115.37)
+                    (2,79.22)
+                    (4,28.01)
+                    (8,39.96)
+                    (16,35.37)
+                    (32,47.94)
+                };
 
-            \vasymptote {4};
+                \vasymptote {4};
 
-            \legend{CG MOPS/process};
-            \end{axis}
-        \end{tikzpicture}
+                \legend{CG MOPS/process};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
         % \caption
         \label{fig:mops_process__cg}
-    }
     \end{subfigure}
     \label{fig:mops__cg}
 \end{figure}
