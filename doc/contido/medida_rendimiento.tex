@@ -248,7 +248,7 @@ Como puede apreciarse en la Figura \ref{fig:mops__cg}, el benchnmark CG es un be
             \begin{tikzpicture}
                 \begin{axis}[
                     xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
-                    ymin = 0, ylabel=MOPS/process,
+                    ymin = 0, ylabel=MOPS/proceso,
                     %width = \textwidth,
                     %height = 0.5\textwidth,
                     grid=both,
@@ -265,7 +265,7 @@ Como puede apreciarse en la Figura \ref{fig:mops__cg}, el benchnmark CG es un be
 
                 \vasymptote {4};
 
-                \legend{CG MOPS/process};
+                \legend{CG MOPS/proceso};
                 \end{axis}
             \end{tikzpicture}
         \end{adjustbox}
@@ -329,7 +329,7 @@ Por otro lado, como se puede ver en la Figura \ref{fig:mops__ep}, así como se c
             \begin{tikzpicture}
                 \begin{axis}[
                     xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
-                    ymin = 26, ylabel=MOPS/process,
+                    ymin = 26, ylabel=MOPS/proceso,
                     %width = \textwidth,
                     %height = 0.5\textwidth,
                     grid=both,
@@ -346,7 +346,7 @@ Por otro lado, como se puede ver en la Figura \ref{fig:mops__ep}, así como se c
 
                 \vasymptote {4};
 
-                \legend{EP MOPS/process};
+                \legend{EP MOPS/proceso};
                 \end{axis}
             \end{tikzpicture}
         \end{adjustbox}
@@ -410,7 +410,7 @@ El núcleo (kernel) IS es otro que realiza muy importantes movimientos de datos 
             \begin{tikzpicture}
                 \begin{axis}[
                     xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
-                    ymin = 0, ylabel=MOPS/process,
+                    ymin = 0, ylabel=MOPS/proceso,
                     %width = \textwidth,
                     %height = 0.5\textwidth,
                     grid=both,
@@ -427,7 +427,7 @@ El núcleo (kernel) IS es otro que realiza muy importantes movimientos de datos 
 
                 \vasymptote {4};
 
-                \legend{IS MOPS/process};
+                \legend{IS MOPS/proceso};
                 \end{axis}
             \end{tikzpicture}
         \end{adjustbox}
@@ -491,7 +491,7 @@ De aquí en adelante vemos un escalado más normal (Fig. \ref{fig:mops__lu}), si
             \begin{tikzpicture}
                 \begin{axis}[
                     xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
-                    ymin = 0, ylabel=MOPS/process,
+                    ymin = 0, ylabel=MOPS/proceso,
                     %width = \textwidth,
                     %height = 0.5\textwidth,
                     grid=both,
@@ -508,7 +508,7 @@ De aquí en adelante vemos un escalado más normal (Fig. \ref{fig:mops__lu}), si
 
                 \vasymptote {4};
 
-                \legend{LU MOPS/process};
+                \legend{LU MOPS/proceso};
                 \end{axis}
             \end{tikzpicture}
         \end{adjustbox}
@@ -535,9 +535,7 @@ De aquí en adelante vemos un escalado más normal (Fig. \ref{fig:mops__lu}), si
 
 \subsection{FT}
 \label{ssec:comparacion_resultados__ft}
-En este benchmark de resolución de ecuaciones en derivadas parciales mediante transformadas de Fourier tridimensionales se sigue la misma tendencia que en el kernel discutido previamente. Es interesante destacar que este benchmark, a pesar de ser intensivo en comunicaciones, éstas no se dan simultáneamente con el cómputo, sino que se alternan con el mismo, (Fig. \ref{fig:mops_rev_mn__ft}).
-
-Detalles del rendimiento para cada configuración de CPUs se encuentran en la Figura \ref{fig:mops__ft}.
+En este benchmark de resolución de ecuaciones en derivadas parciales mediante transformadas de Fourier tridimensionales se sigue la misma tendencia que en el kernel discutido previamente. Es interesante destacar que este benchmark, a pesar de ser intensivo en comunicaciones, éstas no se dan simultáneamente con el cómputo, sino que se alternan con el mismo, (Fig. \ref{fig:mops_rev_mn__ft}). Detalles del rendimiento para cada configuración de CPUs se encuentran en la Figura \ref{fig:mops__ft}.
 
 \begin{figure}[h!]
     \centering
@@ -574,7 +572,7 @@ Detalles del rendimiento para cada configuración de CPUs se encuentran en la Fi
             \begin{tikzpicture}
                 \begin{axis}[
                     xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
-                    ymin = 0, ylabel=MOPS/process,
+                    ymin = 0, ylabel=MOPS/proceso,
                     %width = \textwidth,
                     %height = 0.5\textwidth,
                     grid=both,
@@ -591,7 +589,7 @@ Detalles del rendimiento para cada configuración de CPUs se encuentran en la Fi
 
                 \vasymptote {4};
 
-                \legend{FT MOPS/process};
+                \legend{FT MOPS/proceso};
                 \end{axis}
             \end{tikzpicture}
         \end{adjustbox}
@@ -618,4 +616,83 @@ Detalles del rendimiento para cada configuración de CPUs se encuentran en la Fi
 
 \subsection{MG}
 \label{ssec:comparacion_resultados__mg}
-mg
+Por último se expone el rendimiento del benchmark Multigrid, que por las características de su algoritmo, realiza un importante uso de las comunicaciones interprocesador. En este kernel, el uso de RAM es muy intensivo, por lo que en un mismo nodo, al doblar el número de CPUs en uso, los MOPS por procesador se reducen casi a la mitad, obteniendo casi el mismo rendimiento, lo cual resulta bastante decepcionante.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS total,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+                \addplot[udcpink,smooth,very thick,mark=o] coordinates {
+                    (1,609.39)
+                    (2,699.88)
+                    (4,771.88)
+                    (8,1462.09)
+                    (16,2532.57)
+                    (32,4499.23)
+                };
+
+                \vasymptote {4};
+
+                \legend{MG MOPS total};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        % \caption
+        \label{fig:mops_total__mg}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.495\textwidth}
+        \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xmin = 1, xmax = 32, xmode=log, log basis x=2, xticklabels={1,2,4,8,16,32}, xlabel=\#CPU,
+                    ymin = 0, ylabel=MOPS/proceso,
+                    %width = \textwidth,
+                    %height = 0.5\textwidth,
+                    grid=both,
+                ]
+
+                \addplot[udcpink,smooth,very thick,mark=o] coordinates {
+                    (1,609.39)
+                    (2,349.94)
+                    (4,192.97)
+                    (8,182.76)
+                    (16,158.29)
+                    (32,140.60)
+                };
+
+                \vasymptote {4};
+
+                \legend{MG MOPS/proceso};
+                \end{axis}
+            \end{tikzpicture}
+        \end{adjustbox}
+        %\caption
+        \label{fig:mops_process__mg}
+    \end{subfigure}
+
+    \begin{subfigure}[c]{0.9\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/mg_rev_sn.png}
+        \caption{Utilización de CPU para mononodo (Clase B)}
+        \label{fig:mops_rev_sn__mg}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[c]{0.9\textwidth}
+        \includegraphics[width=\textwidth]{img/benchmark_rev/mg_rev_mn.png}
+        \caption{Utilización de CPU y red para multinodo (Clase C)}
+        \label{fig:mops_rev_mn__mg}
+    \end{subfigure}
+    \caption{Métricas de rendimiento, CPU y red para el kernel MG}
+    \label{fig:mops__mg}
+\end{figure}
+
+

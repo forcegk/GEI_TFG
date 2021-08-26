@@ -24,14 +24,14 @@
 % \usepackage{alltt}       % proporciona o entorno alltt, semellante a verbatim pero que respecta comandos
 % \usepackage{enumitem}    % permite personalizar os entornos de lista
 % \usepackage{eurofont}    % proporciona o comando \euro
-% \usepackage{float}       % permite máis opcións para controlar obxectos flotantes (táboas, figuras)
+\usepackage{float}       % permite máis opcións para controlar obxectos flotantes (táboas, figuras)
 % \usepackage{hhline}      % permie personalizar as liñas horizontais en arrays e táboas
 % \usepackage{longtable}   % permite construir táboas que ocupan máis dunha páxina
-% \usepackage{lscape}      % permite colocar partes do documento en orientación apaisada
+\usepackage{lscape}      % permite colocar partes do documento en orientación apaisada
 % \usepackage{moreverb}    % permite personalizar o entorno verbatim
 % \usepackage{multirow}    % permite crear celdas que ocupan varias filas da mesma táboa
-% \usepackage{pdfpages}    % permite insertar ficheiros en PDF no documento
-% \usepackage{rotating}    % permite diferentes tipos de rotacións para figuras e táboas
+\usepackage{pdfpages}    % permite insertar ficheiros en PDF no documento
+\usepackage{rotating}    % permite diferentes tipos de rotacións para figuras e táboas
 % \usepackage{subcaption}  % permite a inclusión de varias subfiguras nunha figura
 % \usepackage{tabu}        % permite táboas flexibles
 % \usepackage{tabularx}    % permite táboas con columnas de anchura determinada
@@ -44,7 +44,6 @@
 \usepackage{etoolbox}
 \BeforeBeginEnvironment{wrapfigure}{\setlength{\intextsep}{0pt}}
 \usepackage{svg}
-\usepackage{float}
 \usepackage{adjustbox}
 \newcommand{\vasymptote}[2][]{
     \draw [thick,ficblue,densely dashed,#1] ({rel axis cs:0,0} -| {axis cs:#2,0}) -- ({rel axis cs:0,1} -| {axis cs:#2,0});
@@ -112,7 +111,8 @@
 
 \appendix
 \appendixpage
-\include{anexos/adicional}
+%\include{anexos/adicional}
+\include{anexos/bench_values}
 %\include{anexos/...}
 
 \printglossary[type=\acronymtype,title=\nomeglosarioacronimos]
