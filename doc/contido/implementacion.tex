@@ -371,7 +371,7 @@ echo "rpi0:/ /mpishared nfs defaults,timeo=900,retrans=5,"\
 \end{lstlisting}
 
 \subsubsection{Solución de problemas}
-Podría parecer que todo está correcto, pero hay un sutil problema en esta configuración: Cuando se apagan todos los nodos a la vez, dependiendo si rpi0 se apaga primero o no, el resto de nodos pueden quedarse esperando a que responda el share de NFS. Solucionar esto es más sencillo de lo que podría parecer: se ha de establecer un pequeño timeout antes de detener el servidor NFS de, por ejemplo, 5 segundos.
+Podría parecer que todo está correcto, pero hay un sutil problema en esta configuración: Cuando se apagan todos los nodos a la vez, dependiendo si rpi0 se apaga primero o no, el resto de nodos pueden quedarse esperando a que responda el share de NFS. Este comportamiento es inofensivo, debido a que eventualmente la espera hace \textit{timeout} y el nodo en espera termina apagándose, pero no se puede negar que esto es molesto. Dar una solución simple a esta problemática es más que conveniente, aunque no sea la más elegante: se establece un pequeño timeout antes de detener el servidor NFS de, por ejemplo, 10 segundos.
 
 \begin{lstlisting}[language=bash]
 # Extender la unit del servidor nfs
@@ -380,7 +380,7 @@ systemctl edit nfs-server.service
 # Se añade en la zona editable
 [Service]
 ExecStop=
-ExecStop=/bin/sleep 5
+ExecStop=/bin/sleep 10
 ExecStop=/usr/sbin/rpc.nfsd 0
 
 # Salir y ejecutar
