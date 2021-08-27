@@ -303,6 +303,13 @@ useradd -m mpiuser
 echo "mpiuser:mpi" | chpasswd
 \end{lstlisting}
 
+\subsubsection{Permisos de mpiuser}
+Para una mejor manejabilidad de Clúpiter, se permite a mpiuser apagar los nodos. Esto se realiza mediante el programa \texttt{sudo}. Para ello, se debe ejecutar, de nuevo, en todos los nodos, el siguiente comando como root\footnote{La sintaxis del fichero escrito se puede encontrar en \url{https://linux.die.net/man/5/sudoers} o ejecutando \texttt{man 5 sudoers}}:
+
+\begin{lstlisting}[language=bash]
+echo "mpiuser ALL=(root) NOPASSWD:/usr/bin/poweroff" > /etc/sudoers.d/mpiuser_poweroff
+\end{lstlisting}
+
 \subsection{Generación de claves \acrshort{ssh}}
 \label{ssec:gen_ssh}
 Tras la creación de los usuarios para la ejecución de programas paralelos con \acrshort{mpi}, es necesario configurar la autenticación no interactiva para \acrshort{ssh}. Esto se realiza mediante el uso de autenticación mediante par de claves pública y privada.
@@ -364,7 +371,7 @@ echo "rpi0:/ /mpishared nfs defaults,timeo=900,retrans=5,"\
 \end{lstlisting}
 
 \subsubsection{Solución de problemas}
-Podría parecer que todo está correcto, pero hay un sutil problema en esta configuración: Dependiendo si rpi0 se apaga primero o no, el resto de nodos pueden quedarse esperando a que responda el share de NFS. Solucionar esto es más sencillo de lo que podría parecer: se ha de establecer un pequeño timeout antes de detener el servidor NFS de, por ejemplo, 5 segundos.
+Podría parecer que todo está correcto, pero hay un sutil problema en esta configuración: Cuando se apagan todos los nodos a la vez, dependiendo si rpi0 se apaga primero o no, el resto de nodos pueden quedarse esperando a que responda el share de NFS. Solucionar esto es más sencillo de lo que podría parecer: se ha de establecer un pequeño timeout antes de detener el servidor NFS de, por ejemplo, 5 segundos.
 
 \begin{lstlisting}[language=bash]
 # Extender la unit del servidor nfs
@@ -379,3 +386,25 @@ ExecStop=/usr/sbin/rpc.nfsd 0
 # Salir y ejecutar
 systemctl daemon-reload
 \end{lstlisting}
+
+\subsection{Apagado}
+El apagado tras la implementación del share NFS se complica un poco, y además no siempre se tiene acceso en paralelo a todos los nodos, sino que lo habitual es que únicamente se acceda al nodo maestro, rpi0.
+
+Por esta razón, es altamente recomendable la creación de un script que permita apagar todos los nodos de forma centralizada. Esto se realiza creando el script \texttt{/usr/local/bin/clupiter\_poweroff} como root, con los comandos:
+
+\begin{lstlisting}[language=bash]
+# Escribir el fichero con el script
+cat << EOS > /usr/local/bin/clupiter_poweroff
+#!/bin/sh
+for i in {1..7}; do
+    ssh mpiuser@rpi\$i "sudo /usr/bin/poweroff"
+done
+
+sudo /usr/bin/poweroff
+EOS
+
+# Darle permisos de ejecución
+chmod +x /usr/local/bin/clupiter_poweroff
+\end{lstlisting}
+
+Tras esto, el usuario mpiuser en el nodo maestro podrá ejecutar \texttt{clupiter\_poweroff} para apagar todos los nodos de forma ordenada y sencilla.

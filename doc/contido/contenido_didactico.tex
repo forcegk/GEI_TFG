@@ -52,8 +52,6 @@ npm install --only=production
 node ./index.js
 \end{lstlisting}
 
-TODO
-
 Si todo ha funcionado correctamente se podrá acceder al \textit{Dashboard} en la dirección
 
 \begin{figure}[H]
@@ -65,15 +63,47 @@ Si todo ha funcionado correctamente se podrá acceder al \textit{Dashboard} en l
 % TODO INSERTAR CAPTURA
 
 \subsubsection{Unit de systemd}
-Crear una unit systemd es necesario para que el la página web se inicie con el nodo maestro. Realizar esto es una operación moderadamente sencilla (si bien no tan sencilla como podría ser en otros programas init\footnote{\url{https://wiki.gentoo.org/wiki/Comparison_of_init_systems}}) 
+Crear una unit de systemd es necesario para que el la página web se inicie con el nodo maestro. Realizar esto es una operación moderadamente sencilla (si bien no tan sencilla como podría ser en otros sistemas de init\footnote{\url{https://wiki.gentoo.org/wiki/Comparison_of_init_systems}}) 
 
-La creación de la unit se realiza mediante la siguiente secuencia de comandos como usuario root:
+La creación de la unit se realiza editando como usuario root el fichero \texttt{/etc/systemd/system/clupiter\_dashboard.service}:
 
-\begin{lstlisting}[language=bash]
-# PONER COSAS
+\begin{lstlisting}[]
+[Unit]
+Description=Service for Clupiter Dashboard
+After=network.target
 
+[Service]
+Type=simple
+User=mpiuser
+WorkingDirectory=/clupiter_dashboard/GEI_TFG/app/node
+ExecStart=/usr/bin/node /clupiter_dashboard/GEI_TFG/app/node/index.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
 \end{lstlisting}
 
+Tras la creación de la unit, se recarga el demonio de systemd, y se inicia el Dashboard, también como root:
+\begin{lstlisting}[language=bash]
+# Se reinicia el demonio
+systemctl daemon-reload
+
+# Se activa e inicia el servicio
+systemctl enable --now clupiter_dashboard.service
+
+# Se puede verificar el correcto inicio del servicio con
+systemctl status clupiter_dashboard.service
+\end{lstlisting}
+
+Si todo ha funcionado correctamente, se debería ver la pantalla mostrada en la Figura \ref{fig:systemd_clupiter_dashboard} al ejecutar el último comando (de la cual se puede salir presionando la letra \texttt{q}).
+
+\begin{figure}[H]
+  \centering
+  \vspace*{0.5cm}
+  \includegraphics[width=0.9\textwidth]{img/systemd_clupiter_dashboard.png}
+  \caption{Servicio \textit{Clupiter Dashboard} ejecutando un benchmark correctamente}
+  \label{fig:systemd_clupiter_dashboard}
+\end{figure}
 
 \section{Diseño}
 Se sigue un proceso de diseño mediante el uso de prototipos (\textit{mockups})... (TODO insertar escaneos de mockups en diseño)
