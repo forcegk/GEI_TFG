@@ -12,9 +12,23 @@ Los requisitos son relacionados con docencia, utilidad, tendrán vídeos, será 
 Requisitos blabla
 
 \subsection{Prerrequisitos}
+\subsubsection{Netdata}
+Netdata es el software de monitorización que nos permitirá obtener información del cluster en tiempo real, tanto en el \textit{Dashboard} web que se pone a disposición del usuario en el puerto 19999, como a través de la librería JavaScript que un programador puede importar en su propia página web.
+
+Para emplear los datos que nos proporciona este software, primero debe instalarse y activarse en cada uno de los nodos del cluster, acción que se realiza con los comandos como usuario root.
+
+\begin{lstlisting}[language=bash]
+pacman -S netdata   # Se instala netdata
+# Se activa netdata a través de todas las interfaces
+sed -i 's/bind to = localhost/bind to = 0.0.0.0/g' /etc/netdata/netdata.conf
+# Se activa e inicia netdata
+systemctl enable --now netdata
+\end{lstlisting}
+
+\subsubsection{Dashboard}
 Para desplegar el dashboard es necesario instalar npm y git en el nodo maestro:
 \begin{lstlisting}[language=bash]
-pacman -S npm git
+pacman -S npm git --needed      # como root
 \end{lstlisting}
 
 Tras ello se procede a desplegar la app
@@ -27,10 +41,9 @@ chown -R mpiuser:mpiuser /clupiter_dashboard
 su - mpiuser
 cd /clupiter_dashboard
 
-# Se descarga la app
+# Se descarga la app y se entra al directorio del servidor
 git clone https://github.com/forcegk/GEI_TFG.git
-mv GEI_TFG/app/node/* .
-rm -rf /clupiter_dashboard/GEI_TFG
+cd GEI_TFG/app/node/
 
 # Se instalan las dependencias
 npm install --only=production
@@ -41,21 +54,23 @@ node ./index.js
 
 TODO
 
-Crear unit systemd
+Si todo ha funcionado correctamente se podrá acceder al \textit{Dashboard} en la dirección
 
-Activar unit
+\begin{figure}[H]
+    \vspace{0.3cm}
+    \centering
+    \url{http://192.168.0.220:3000/monitoring.html}
+\end{figure}
 
-\subsection{Instalación de Netdata}
-Netdata es el software de monitorización que nos permitirá obtener información del cluster en tiempo real, tanto en el \textit{Dashboard} web que se pone a disposición del usuario en el puerto 19999, como a través de la librería JavaScript que un programador puede importar en su propia página web.
+% TODO INSERTAR CAPTURA
 
-Para emplear los datos que nos proporciona este software, primero debe instalarse y activarse en cada uno de los nodos del cluster, acción que se realiza con los comandos como usuario root.
+\subsubsection{Unit de systemd}
+Crear una unit systemd es necesario para que el la página web se inicie con el nodo maestro. Realizar esto es una operación moderadamente sencilla (si bien no tan sencilla como podría ser en otros programas init\footnote{\url{https://wiki.gentoo.org/wiki/Comparison_of_init_systems}}) 
+
+La creación de la unit se realiza mediante la siguiente secuencia de comandos como usuario root:
 
 \begin{lstlisting}[language=bash]
-pacman -S netdata   # Se instala netdata
-# Se activa netdata a través de todas las interfaces
-sed -i 's/bind to = localhost/bind to = 0.0.0.0/g' /etc/netdata/netdata.conf
-# Se activa e inicia netdata
-systemctl enable --now netdata
+# PONER COSAS
 
 \end{lstlisting}
 
