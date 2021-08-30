@@ -304,7 +304,7 @@ echo "mpiuser:mpi" | chpasswd
 \end{lstlisting}
 
 \subsubsection{Permisos de mpiuser}
-Para una mejor manejabilidad de Clúpiter, se permite a mpiuser apagar los nodos. Esto se realiza mediante el programa \texttt{sudo}. Para ello, se debe ejecutar, de nuevo, en todos los nodos, el siguiente comando como root\footnote{La sintaxis del fichero escrito se puede encontrar en \url{https://linux.die.net/man/5/sudoers} o ejecutando \texttt{man 5 sudoers}}:
+Para una mejor manejabilidad del clúster, y debido a la necesidad de que esta operación la realice mpiuser, expuesta en \ref{ssec:apagado_impl}, se permite a mpiuser apagar los nodos. Esto se realiza mediante el programa \texttt{sudo}. Para ello, se debe ejecutar, de nuevo, en todos los nodos, el siguiente comando como root\footnote{La sintaxis del fichero escrito se puede encontrar en \url{https://linux.die.net/man/5/sudoers} o ejecutando \texttt{man 5 sudoers}}:
 
 \begin{lstlisting}[language=bash]
 echo "mpiuser ALL=(root) NOPASSWD:/usr/bin/poweroff" > /etc/sudoers.d/mpiuser_poweroff
@@ -388,6 +388,7 @@ systemctl daemon-reload
 \end{lstlisting}
 
 \subsection{Apagado}
+\label{ssec:apagado_impl}
 El apagado tras la implementación del share NFS se complica un poco, y además no siempre se tiene acceso en paralelo a todos los nodos, sino que lo habitual es que únicamente se acceda al nodo maestro, rpi0.
 
 Por esta razón, es altamente recomendable la creación de un script que permita apagar todos los nodos de forma centralizada. Esto se realiza creando el script \texttt{/usr/local/bin/clupiter\_poweroff} como root, con los comandos:
@@ -407,4 +408,4 @@ EOS
 chmod +x /usr/local/bin/clupiter_poweroff
 \end{lstlisting}
 
-Tras esto, el usuario mpiuser en el nodo maestro podrá ejecutar \texttt{clupiter\_poweroff} para apagar todos los nodos de forma ordenada y sencilla.
+Tras esto, el usuario mpiuser en el nodo maestro podrá ejecutar \texttt{clupiter\_poweroff} para apagar todos los nodos de forma ordenada y sencilla. Que el usuario mpiuser sea capaz de apagar el clúster podría parecer extraño, pero es un comportamiento deseado, ya que permite que éste sea apagado de forma ordenada y sencilla desde la interfaz web.
