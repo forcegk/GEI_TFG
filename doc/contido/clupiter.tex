@@ -1,19 +1,26 @@
-\chapter{Clúpiter}
+\chapter{Clúpiter: Conceptos básicos}
 \label{chap:conceptos_basicos}
 
-\lettrine{P}{ara} comprender el objetivo del proyecto y su propuesta de valor, primero es necesario entender las características del mismo, la justificación de las mismas, y el funcionamiento de sus componentes más primitivos.
+\lettrine{P}{ara} comprender el objetivo del proyecto y su propuesta de valor, primero es necesario entender sus características, la justificación de las mismas, y el funcionamiento de sus componentes más primitivos.
 
 \section{Nombre y Marca Corporativa}
-Si bien este no es un elemento altamente importante en un proyecto de ingeniería como este, si que es conveniente y nunca está de más otorgarle personalidad mediante la creación de un nombre e isotipo para el mismo.
+Si bien este no es un elemento altamente importante en un proyecto de ingeniería como este, si que es conveniente, y nunca está de más, otorgarle personalidad mediante la creación de un nombre e isotipo para el mismo.
 
 El nombre del clúster es \textbf{Clúpiter} (ClúPIter): una mezcla entre las palabras ``Clúster'' y el ``PI'' de la \acrlong{rpi}, que de forma muy conveniente recuerda en su segunda parte a Júpiter. Este es a su vez planeta del sistema solar junto con el (enano) Plutón, nombre del clúster del GAC\footnote{\url{http://pluton.dec.udc.es}}. Es cuanto menos paradógico que el cluster en miniatura sea Júpiter, y el real sea Plutón\dots
 
-En cuanto a la marca del cluster, éste no puede quedar sin un logo, que se muestra a continuación:
+En cuanto a la marca del cluster, éste no puede quedar sin un logo, que se muestra en la Figura \ref{fig:clupiter_logo}.
 
-TODO AQUÍ VA EL ISOLOGO %% INSERTAR ISOLOGO
+\begin{figure}[h!]
+  \centering
+  \vspace*{0.5cm}
+  \def\svgwidth{0.50\textwidth}
+  \input{pdf_tex/clupiter_logo/clupiter_logo.pdf_tex}
+  \caption{Logo de Clúpiter}
+  \label{fig:clupiter_logo}
+\end{figure}
 
 \section{Precedentes}
-Existen multitud de amateurs y amantes de la informática que como proyecto personal deciden montar un clúster de \acrlong{rpi}s, entre los que por ejemplo se encuentra Jeff Geerling\footnote{\url{https://www.youtube.com/user/geerlingguy}}.
+Existen multitud de amateurs y amantes de la informática que como proyecto personal deciden montar un clúster de \acrlong{rpi}s, entre los que por ejemplo se encuentra Jeff Geerling\footnote{\url{https://www.youtube.com/user/geerlingguy}}, un famoso YouTuber del cual uno de sus proyectos se puede encontrar en la Figura \ref{fig:cluster-pi-ejemplo}.
 
 \begin{figure}[h!]
   \centering
@@ -22,9 +29,7 @@ Existen multitud de amateurs y amantes de la informática que como proyecto pers
   \label{fig:cluster-pi-ejemplo}
 \end{figure}
 
-Además, en el mundo académico también ha habido aproximaciones muy similares al trabajo desarrollado, destacando \textit{Wee Archie}, un mini-supercomputador muy similar al de este proyecto de mayor tamaño, que permite explicaciones algo más interesantes con sus pantallas de matriz de LED.
-
-Como se puede leer en la página web del proyecto \cite{wee_archie_webpage}, este es un supercomputador del tamaño de una maleta, que al igual que Clúpiter, sirve para explicar el funcionamiento de su hermano mayor, el supercomputador ARCHER\footnote{\url{https://www.archer.ac.uk}}.
+Además, en el mundo académico también ha habido aproximaciones similares al trabajo desarrollado, destacando \textit{Wee Archie}, un clúster de 18 \acrlong{rpi} 2 que, como se puede leer en la página web del proyecto \cite{wee_archie_webpage}, pretende emular el comportamiento de un supercomputador real, el supercomputador ARCHER\footnote{\url{https://www.archer.ac.uk}} (Fig. \ref{fig:wee_archie_girl}).
 
 \begin{figure}[h!]
   \centering
@@ -53,7 +58,7 @@ Cada aproximadamente dos años, la Raspberry Pi Foundation saca una nueva versi�
 
 Siendo cada versión mucho más potente que la anterior, y costando aproximadamente el mismo precio, está claro que la Raspberry Pi Foundation está haciendo un excelente trabajo aportando valor a este segmento del bajo consumo y coste.
 
-La \acrlong{rpi} 4B (4 Model B) es la versión más nueva de formato standard, y por ello ha sido la elección para constituir la base del clúster. Las especificaciones de la misma son: \cite{rpi4b_specifications}
+La \acrlong{rpi} 4B (4 Model B), que se muestra en la Figura \ref{fig:rpi_base} es la versión más nueva de formato standard, y por ello ha sido la elección para constituir la base del clúster. A continuación se muestran sus principales características: \cite{rpi4b_specifications}
 
 \subsubsection{CPU}
 La CPU de este nuevo modelo es la \textbf{Broadcom BCM2711}, un procesador con arquitectura ARMv8-A y 4 núcleos Cortex-A72, que funcionan a 1.5GHz.
