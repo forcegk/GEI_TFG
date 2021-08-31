@@ -11,11 +11,16 @@ Los requisitos son relacionados con docencia, utilidad, tendrán vídeos, será 
 \subsection{Requisitos funcionales y no funcionales}
 Requisitos blabla
 
-\subsection{Prerrequisitos}
-\subsubsection{Netdata}
-Netdata es el software de monitorización que nos permitirá obtener información del cluster en tiempo real, tanto en el \textit{Dashboard} web que se pone a disposición del usuario en el puerto 19999, como a través de la librería JavaScript que un programador puede importar en su propia página web.
+\section{Diseño}
+Se sigue un proceso de diseño mediante el uso de prototipos (\textit{mockups})... (TODO insertar escaneos de mockups en diseño)
 
-Para emplear los datos que nos proporciona este software, primero debe instalarse y activarse en cada uno de los nodos del cluster, acción que se realiza con los comandos como usuario root.
+\section{Implementación}
+Aquí básicamente se explica un poco cómo se programó (qué tecnologías, etc) el Dashboard, y mueve aquí la sección de Prerrequisitos del apartado de requisitos TODO COMPLETAR
+
+\subsection{Instalación de Netdata}
+Netdata es un software de monitorización de fácil configuración e integración que permite obtener información de los nodos de Clúpiter en tiempo real, tanto en el \textit{Dashboard} web que se pone a disposición del usuario en el puerto 19999, como a través de la librería JavaScript que un programador puede importar en su propia página web.
+
+Para emplear los datos que proporciona este software, primero debe instalarse y activarse en cada uno de los nodos del clúster, acción que se realiza con los comandos como usuario root.
 
 \begin{lstlisting}[language=bash]
 pacman -S netdata   # Se instala netdata
@@ -25,7 +30,7 @@ sed -i 's/bind to = localhost/bind to = 0.0.0.0/g' /etc/netdata/netdata.conf
 systemctl enable --now netdata
 \end{lstlisting}
 
-\subsubsection{Dashboard}
+\subsection{Instalación del dashboard}
 Para desplegar el dashboard es necesario instalar npm y git en el nodo maestro:
 \begin{lstlisting}[language=bash]
 pacman -S npm git --needed      # como root
@@ -52,7 +57,7 @@ npm install --only=production
 node ./index.js
 \end{lstlisting}
 
-Si todo ha funcionado correctamente se podrá acceder al \textit{Dashboard} en la dirección
+Si todo ha funcionado correctamente se podrá acceder al dashboard en la dirección
 
 \begin{figure}[H]
     \vspace{0.3cm}
@@ -62,7 +67,7 @@ Si todo ha funcionado correctamente se podrá acceder al \textit{Dashboard} en l
 
 % TODO INSERTAR CAPTURA
 
-\subsubsection{Unit de systemd}
+\subsection{Unit de systemd}
 Crear una unit de systemd es necesario para que el la página web se inicie con el nodo maestro. Realizar esto es una operación moderadamente sencilla (si bien no tan sencilla como podría ser en otros sistemas de init\footnote{\url{https://wiki.gentoo.org/wiki/Comparison_of_init_systems}}) 
 
 La creación de la unit se realiza editando como usuario root el fichero \texttt{/etc/systemd/system/clupiter\_dashboard.service}:
@@ -105,9 +110,6 @@ Si todo ha funcionado correctamente, se debería ver la pantalla mostrada en la 
   \label{fig:systemd_clupiter_dashboard}
 \end{figure}
 
-\section{Diseño}
-Se sigue un proceso de diseño mediante el uso de prototipos (\textit{mockups})... (TODO insertar escaneos de mockups en diseño)
-
 \section{Funcionamiento}
 
-TODO implementar botón de apagado
+TODO implementar botón de apagado en la web

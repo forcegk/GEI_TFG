@@ -5,13 +5,13 @@
 
 Como se comenta posteriormente en (TODO \#REF\# metodología), se sigue un modelo basado en prototipos, en el que se realiza un codiseño hardware y software mediante el uso de máquinas virtuales.
 
-\section{Configuración Hardware}
+\section{Configuración hardware}
 \label{sec:configuracion_hardware}
-En esta sección se documenta el transcurso del montaje y puesta a punto del hardware del cluster, los errores cometidos, y se muestran fotografías del proceso.
+En esta sección se documenta el transcurso del montaje y puesta a punto del hardware de Clúpiter, los errores cometidos, y se muestran fotografías del proceso.
 
-Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir un cluster compacto, y para ello las diferentes partes se ensamblan por separado. Podemos distinguir así cinco fases:
+Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir un clúster compacto y, para ello, las diferentes partes se ensamblan por separado. Podemos distinguir así cinco fases:
 \begin{itemize}
-    \item \textbf{Montaje} de las \textbf{torres} de Raspberry Pi: Se debe montar cada piso de la torre, acomodando cada Raspberry en cada nivel (es decir, colocando disipadores, anclajes, y conectores magnéticos USB) como se muestra en la figura \ref{fig:modulo_raspi_torre}, donde se ve un módulo de la torre. Asimismo, en la figura \ref{fig:proceso_apilamiento} se puede ver el proceso de apilamiento.
+    \item \textbf{Montaje} de las \textbf{torres} de Raspberry Pi: Se debe montar cada piso de la torre, acomodando cada Raspberry en cada nivel (es decir, colocando disipadores, anclajes, y conectores magnéticos USB) como se muestra en la Figura \ref{fig:modulo_raspi_torre}, donde se ve un módulo de la torre. Asimismo, en la Figura \ref{fig:proceso_apilamiento} se puede ver el proceso de apilamiento.
 
     \begin{figure}[h!]
     \centering
@@ -47,7 +47,7 @@ Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir 
     \label{fig:proceso_apilamiento}
     \end{figure}
     
-    \item \textbf{Testeo} del correcto funcionamiento de cada \textbf{unidad}: En esta fase se realizan las pruebas básicas para comprobar que todas las placas y componentes se han recibido conforme a los estándares de calidad necesarios y funcionan correctamente. Este test ligero y muy superficial consiste en el arranque del sistema operativo Arch Linux en cada mini computador, testeo de las interfaces de red y USB (figura \ref{fig:testeo_hw_1}), así como el circuito de entrega de potencia mediante un pequeño test de estrés. Finalmente se actualiza el bootloader a la última versión (figura \ref{fig:testeo_hw_2}).
+    \item \textbf{Testeo} del correcto funcionamiento de cada \textbf{unidad}: En esta fase se realizan las pruebas básicas para comprobar que todas las placas y componentes se han recibido conforme a los estándares de calidad necesarios y funcionan correctamente. Este test ligero y muy superficial consiste en el arranque del sistema operativo Arch Linux en cada mini computador, testeo de las interfaces de red y USB (Figura \ref{fig:testeo_hw_1}), así como el circuito de entrega de potencia mediante un pequeño test de estrés. Finalmente se actualiza el bootloader a la última versión (Figura \ref{fig:testeo_hw_2}).
 
     \begin{figure}[h!]
     \centering
@@ -62,14 +62,14 @@ Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir 
         \caption{Actualización del Bootloader de una \acrshort{rpi}}
         \label{fig:testeo_hw_2}
     \end{subfigure}
-    \caption{Proceso de testeo y puesta a punto de los componentes del cluster}
+    \caption{Proceso de testeo y puesta a punto de los componentes de Clúpiter}
     \label{fig:testeo_hw}
     \end{figure}
 
-    \item \textbf{Cortado} de las \textbf{láminas adaptadoras} de chapa: Ya con las piezas testeadas llega el momento de ensamblar todo el sistema. Para ello se cortan con radial planchas de chapa recicladas de una caja antigua de ordenador, se lijan, pintan, y se realizan los agujeros necesarios para acoplar cada capa con la siguiente. En este aspecto, si bien estéticamente podría haber sido mejorable en caso de haber dispuesto de una plegadora, y dado que este proyecto no es de ingeniería industrial, se considera adecuada la solución construída.
+    \item \textbf{Cortado} de las \textbf{láminas adaptadoras} de chapa: Ya con las piezas testeadas, llega el momento de ensamblar todo el sistema. Para ello se cortan con radial planchas de chapa recicladas de una caja antigua de ordenador, se lijan, pintan, y se realizan los agujeros necesarios para acoplar cada capa con la siguiente. En este aspecto, si bien estéticamente podría haber sido mejorable en caso de haber dispuesto de una plegadora, y dado que este proyecto no es de ingeniería industrial, se considera adecuada la solución construída.
 
 
-    \item \textbf{Ensamblado final} y cableado: Se integran todos los componentes en la estructura, y se realiza el cableado, tanto eléctrico como de red. Este cableado es cortado a medida para un ajuste fino, libre de excedentes que gestionar. (Figura \ref{fig:fotos_estructura})
+    \item \textbf{Ensamblado final} y cableado: Se integran todos los componentes en la estructura, y se realiza el cableado, tanto eléctrico como de red. Este cableado es cortado a medida para un ajuste fino, libre de excedentes que gestionar (Figura \ref{fig:fotos_estructura}).
 
     \begin{figure}[h!]
     \centering
@@ -93,24 +93,24 @@ Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir 
     \label{fig:fotos_estructura}
     \end{figure}
 
-    \item \textbf{Testeo} de la correcta \textbf{integración}: Finalmente se debe comprobar que todos los componentes continúan funcionando correctamente una vez instalados. Este paso trajo ciertas complicaciones, ya que durante el montaje se desprendieron pequeñas limaduras de hierro, que si bien se limpiaron a conciencia de las placas y todo circuito eléctrico, los conectores magnéticos USB-C recogieron todo ese residuo, y como se comenta en \nameref{sssec:cableado_electrico_red}, esto dió algunos problemas con malos contactos y caídas de tensión intermitentes y aleatorias. En el proceso de la solución de errores se desmontó de nuevo el cluster para realizar otra limpieza e inspección de cableado, llegando así a la versión actual.
+    \item \textbf{Testeo} de la correcta \textbf{integración}: Finalmente se debe comprobar que todos los componentes continúan funcionando correctamente una vez instalados. Este paso trajo ciertas complicaciones, ya que durante el montaje se desprendieron pequeñas limaduras de hierro que, si bien se limpiaron a conciencia de las placas y todo circuito eléctrico, los conectores magnéticos USB-C recogieron todo ese residuo, y como se comenta en \nameref{sssec:cableado_electrico_red}, esto dió algunos problemas con malos contactos y caídas de tensión intermitentes y aleatorias. En el proceso de la solución de errores se desmontó de nuevo el clúster para realizar otra limpieza e inspección de cableado, llegando así a la versión actual.
 \end{itemize}
 
-\section{Configuración Software}
+\section{Configuración software}
 \label{sec:configuracion_software}
-A continuación se documentan los pasos realizados para llevar los nodos del cluster al estado actual. Esta documentación asume cierto conocimiento de comandos de Linux.
+A continuación se documentan los pasos realizados para llevar los nodos de Clúpiter al estado actual de configuración software. Esta documentación asume cierto conocimiento de comandos de Linux.
 
-\subsection{Instalación Base del Sistema Operativo}
+\subsection{Instalación base del sistema operativo}
 \label{ssec:instalacion_sistema_operativo}
-Para instalar Arch Linux en las Raspberry Pi 4, se debe acudir a la página web de ArchLinuxARM\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. La instalación, que consiste en la copia del sistema a la microSD, se debe realizar desde un ordenador con Linux. En este caso, al no tener dependencias fuertes en las librerías de 32 bits, se ha optado por la versión de 64 bits, que otorgará considerablemente mayor rendimiento.\footnote{\url{https://matteocroce.medium.com/bd5290d48947}}
+Para instalar Arch Linux en las Raspberry Pi 4 se debe acudir a la página web de ArchLinuxARM\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. La instalación, que consiste en la copia del sistema a la microSD, se debe realizar desde un ordenador con Linux. En este caso, al no tener dependencias fuertes en las librerías de 32 bits, se ha optado por la versión de 64 bits, que otorgará considerablemente mayor rendimiento.\footnote{\url{https://matteocroce.medium.com/bd5290d48947}}
 
 Así, se comienza por descargar el sistema de archivos raíz\footnote{\texttt{man hier} para más detalle} (\textit{\gls{rootfs}}) desde la web:
 
-\begin{lstlisting}[language=bash,basicstyle=\scriptsize]
+\begin{lstlisting}[language=bash]
 wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz
 \end{lstlisting}
 
-A continuación, y asumiendo que se conectarán en \texttt{/dev/sdd} las microSD donde se flasheará Arch Linux, se ejecutará el siguiente script para cada una de las tarjetas, el cual las particiona, da formato, y extrae el sistema de archivos sobre ellas, permitiendo así el arranque en las Raspberry Pis:
+A continuación, y asumiendo que las microSD donde se flasheará Arch Linux se conectan en \texttt{/dev/sdd}, se ejecutará el siguiente script para cada una de las tarjetas, el cual las particiona, les da formato, y extrae el sistema de archivos sobre ellas, permitiendo así el arranque en las \acrlong{rpi}s:
 
 \begin{lstlisting}[language=bash]
 #!/bin/sh
@@ -161,16 +161,16 @@ sync
 umount boot root
 \end{lstlisting}
 
-Tras ello se conecta el cluster a la red ya existente (por ejemplo, desconectando una Raspberry del switch y conectando un cable al puerto vacío) y se buscarán las Raspberry Pis, que ya vienen preconfiguradas con las interfaces en DHCP, con el comando:
+Tras ello, se conecta el clúster a la red ya existente (por ejemplo, desconectando una Raspberry del switch y conectando un cable al puerto vacío) y se buscarán las Raspberry Pis, que ya vienen preconfiguradas con las interfaces en DHCP, con el comando:
 
 \begin{lstlisting}[language=bash]
 nmap -sP -PR 192.168.0.*
 \end{lstlisting}
-(nótese que el comando puede variar en función de la dirección de red, y por tanto, debe sustituírse una adecuada)
+Nótese que el comando puede variar en función de la dirección de red y, por tanto, debe sustituirse por una adecuada.
 
-De esta forma y tras encontrar los dispositivos, se puede hacer \acrshort{ssh} a cada uno de ellos, configurarlos, actualizarlos, y, en definitiva, ponerlos a punto.\footnote{Contraseñas \texttt{alarm:alarm}, \texttt{root:root}}
+De esta forma, y tras encontrar los dispositivos, se puede hacer \acrshort{ssh} a cada uno de ellos, configurarlos, actualizarlos y, en definitiva, ponerlos a punto.\footnote{Contraseñas \texttt{alarm:alarm}, \texttt{root:root}}
 
-Como dato curioso, y que puede servir como regla mnemotécnica, comentar que el nombre y contraseña del usuario no privilegiado: \texttt{alarm} es una composición de las iniciales \textbf{A}rch \textbf{L}inux \textbf{ARM}. En cuanto a \texttt{root}, este nombre es el habitual del usuario con UID 0 en sistemas *NIX (aunque puede no ser el único).
+Como dato curioso, y que puede servir como regla mnemotécnica, comentar que el nombre y contraseña del usuario no privilegiado, \texttt{alarm}, es una composición de las iniciales \textbf{A}rch \textbf{L}inux \textbf{ARM}. En cuanto a \texttt{root}, este nombre es el habitual del usuario con \acrshort{uid} 0 en sistemas *NIX (aunque puede no ser el único).
 
 Para inicializar los sistemas en las \acrshort{rpi}s se procede con los siguientes comandos:
 
@@ -201,8 +201,8 @@ nano /etc/pacman.conf
 reboot
 \end{lstlisting}
 
-\subsection{Bridging de Interfaces}
-Como el switch tiene el mismo número de puertos que el número de \acrshort{rpi}s, como ya se ha comprobado en el apartado anterior, dada la necesidad de realizar la inicialización de las placas en dos pasos, se necesita una forma de conectar el cluster a un ordenador o red externa. Para ello se puentea el adaptador USB 3.0 a Gigabit Ethernet que se podrá conectar en cualquier puerto USB del nodo maestro (rpi0).
+\subsection{Bridging de interfaces}
+Como el switch tiene el mismo número de puertos que el número de \acrshort{rpi}s, como ya se ha comprobado en el apartado anterior, dada la necesidad de realizar la inicialización de las placas en dos pasos, se necesita una forma de conectar el clúster a un ordenador o red externa. Para ello se puentea el adaptador USB 3.0 a Gigabit Ethernet que se podrá conectar en cualquier puerto USB del nodo maestro (rpi0).
 
 Las configuraciones a realizar en \texttt{/etc/systemd/network} son las siguientes:
 
@@ -238,11 +238,11 @@ Tras realizar estas configuraciones se reinicia \texttt{systemd-networkd} con
 systemctl restart systemd-networkd
 \end{lstlisting}
 
-Por último se deberá reconectar la sesión por SSH, ya que al haber cambiado la MAC de la interfaz\footnote{systemd-networkd assigns a MAC address generated based on the interface name and the machine ID to the bridge. This may cause connection issues, for example in case of routing based on MAC filtering. To circumvent such problems you may assign a MAC address to your bridge, probably the same as your physical device, adding the line \texttt{MACAddress=xx:xx:xx:xx:xx:xx} in the NetDev section above. \cite{archwiki_systemd-networkd}}, salvo en algún extraño caso, el servidor DHCP en uso le habrá cambiado también la IP asignada a \texttt{rpi0}.
+Por último se deberá reconectar la sesión por \acrshort{ssh}, ya que al haber cambiado la \acrshort{mac} de la interfaz, el servidor DHCP en uso le habrá cambiado también la IP asignada a \texttt{rpi0}. Este comportamiento puede cambiarse a preferencia de algún usuario futuro, ya que la dirección \acrshort{mac} que asigna systemd-networkd a la interfaz virtual es personalizable, y por tanto es posible copiar la de la interfaz original \cite[\textbf{Tip}: systemd-networkd assigns a MAC \footnotesize{\lbrack\ldots\rbrack}\normalsize{}]{archwiki_systemd-networkd}.
 
 \subsection{Configuración de direcciones IP estáticas}
 \label{ssec:configuracion_ip_estaticas}
-A la hora de administrar el cluster es necesario que las direcciones se asignen de alguna forma, sea esta estática o dinámica. Sin embargo, debido a las características del cluster, y especialmente a que la conexión desde el exterior va a ser variable y no siempre va a haber internet, lo más conveniente es configurar direcciones IP estáticas en cada uno de los hosts que componen el cluster, así como una dirección de gateway predeterminada, que algunas veces estará up, y otras no.
+A la hora de administrar el clúster es necesario que las direcciones se asignen de alguna forma, sea esta estática o dinámica. Sin embargo, debido a las características del mismo, y especialmente a que la conexión desde el exterior va a ser variable y no siempre va a haber internet, lo más conveniente es configurar direcciones IP estáticas en cada uno de los hosts, así como una dirección de gateway predeterminada, que algunas veces estará up, y otras no.
 
 Para esto, se han de modificar los archivos ubicados en \texttt{/etc/systemd/network/} como se indica a continuación:
 
@@ -259,7 +259,7 @@ DNS=8.8.8.8
 #DHCP=yes
 #DNSSEC=no
 \end{lstlisting}
-    \item Proceder forma similar con el nodo maestro, asignando una IP estática al bridge en \texttt{br0.network}:
+    \item Proceder de forma similar con el nodo maestro, asignando una IP estática al bridge en \texttt{br0.network}:
 \begin{lstlisting}[language=bash]
 [Match]
 Name=br0
@@ -304,17 +304,17 @@ echo "mpiuser:mpi" | chpasswd
 \end{lstlisting}
 
 \subsubsection{Permisos de mpiuser}
-Para una mejor manejabilidad del clúster, y debido a la necesidad de que esta operación la realice mpiuser, expuesta en \ref{ssec:apagado_impl}, se permite a mpiuser apagar los nodos. Esto se realiza mediante el programa \texttt{sudo}. Para ello, se debe ejecutar, de nuevo, en todos los nodos, el siguiente comando como root\footnote{La sintaxis del fichero escrito se puede encontrar en \url{https://linux.die.net/man/5/sudoers} o ejecutando \texttt{man 5 sudoers}}:
+Para una mejor manejabilidad del clúster (ver sección \ref{ssec:apagado_impl}), y debido a la necesidad de que esta operación la realice mpiuser, expuesta en, se permite a mpiuser apagar los nodos. Esto se realiza mediante el programa \texttt{sudo}. Para ello, se debe ejecutar en todos los nodos, el siguiente comando como root\footnote{La sintaxis del fichero escrito se puede encontrar en \url{https://linux.die.net/man/5/sudoers} o ejecutando \texttt{man 5 sudoers}}:
 
 \begin{lstlisting}[language=bash]
 echo "mpiuser ALL=(root) NOPASSWD:/usr/bin/poweroff" > /etc/sudoers.d/mpiuser_poweroff
 \end{lstlisting}
 
-\subsection{Generación de claves \acrshort{ssh}}
+\subsection{Generación de claves SSH}
 \label{ssec:gen_ssh}
-Tras la creación de los usuarios para la ejecución de programas paralelos con \acrshort{mpi}, es necesario configurar la autenticación no interactiva para \acrshort{ssh}. Esto se realiza mediante el uso de autenticación mediante par de claves pública y privada.
+Tras la creación de los usuarios para la ejecución de programas paralelos con \acrshort{mpi}, es necesario configurar la autenticación no interactiva para \acrshort{ssh} mediante el uso de autenticación mediante par de claves pública y privada. La autenticación no interactiva por clave privada es necesaria para que el usuario mpiuser pueda establecer conexiones \acrshort{ssh} de forma desatendida con el resto de nodos durante la ejecución de programas \acrshort{mpi}.
 
-Sabiendo ya la tarea a realizar, ésta se puede llevar a cabo de forma muy sencilla ejecutando en todos los nodos del cluster como usuario \texttt{mpiuser} (\texttt{su - mpiuser}) el siguiente comando. Es importante no establecer \textit{passphrase}, ya que si no se perdería la no-interactividad.
+Sabiendo ya la tarea a realizar, ésta se puede llevar a cabo de forma muy sencilla ejecutando en todos los nodos del clúster como usuario \texttt{mpiuser} (\texttt{su - mpiuser}) el siguiente comando. Es importante no establecer \textit{passphrase}, ya que si no se perdería la no-interactividad.
 \begin{lstlisting}[language=bash]
 ssh-keygen
 \end{lstlisting}
@@ -333,12 +333,12 @@ for i in {1..7}; do
     ssh mpiuser@rpi$i "cat /etc/hostname"
 done
 \end{lstlisting}
-Este último comando debería mostrar los hostnames del resto de nodos del cluster, sin interrumpir al usuario preguntando contraseña, es decir, en modo no-interactivo.
+Este último comando debería mostrar los hostnames del resto de nodos del clúster, sin interrumpir al usuario preguntando contraseña, es decir, en modo no-interactivo.
 
 
 \subsection{Servidor NFS}
 \label{ssec:serv_nfs}
-Debido a que las llamadas a \texttt{mpirun} con múltiples hosts ejecutan el mismo comando en todos ellos, debe existir algún tipo de almacenamiento compartido montado con el mismo nombre en todos los nodos. Para satisfacer, esta necesidad de almacenamiento compartido, la elección es NFS.
+Debido a que las llamadas a \texttt{mpirun} con múltiples hosts ejecutan el mismo comando en todos ellos, debe existir algún tipo de almacenamiento compartido montado con el mismo nombre en todos los nodos. Para satisfacer esta necesidad de almacenamiento compartido, la elección es NFS.
 
 El servidor será el nodo maestro, y el resto serán clientes. Los pasos a realizar en todos los nodos (como root) son los siguientes:
 
@@ -371,7 +371,7 @@ echo "rpi0:/ /mpishared nfs defaults,timeo=900,retrans=5,"\
 \end{lstlisting}
 
 \subsubsection{Solución de problemas}
-Podría parecer que todo está correcto, pero hay un sutil problema en esta configuración: Cuando se apagan todos los nodos a la vez, dependiendo si rpi0 se apaga primero o no, el resto de nodos pueden quedarse esperando a que responda el share de NFS. Este comportamiento es inofensivo, debido a que eventualmente la espera hace \textit{timeout} y el nodo en espera termina apagándose, pero no se puede negar que esto es molesto. Dar una solución simple a esta problemática es más que conveniente, aunque no sea la más elegante: se establece un pequeño timeout antes de detener el servidor NFS de, por ejemplo, 10 segundos.
+Hay un sutil problema en esta configuración, cuando se apagan todos los nodos a la vez, dependiendo si rpi0 se apaga primero o no, el resto de nodos pueden quedarse esperando a que responda el share de NFS. Este comportamiento es inofensivo, debido a que eventualmente la espera hace \textit{timeout} y el nodo en espera termina apagándose, pero no se puede negar que es molesto. Para evitarlo se establece un pequeño timeout antes de detener el servidor NFS de, por ejemplo, 10 segundos. Aunque puede que no sea la solución más elegante, es una solución simple que resuelve el problema cuando todos los nodos se apagan a la vez.
 
 \begin{lstlisting}[language=bash]
 # Extender la unit del servidor nfs
@@ -389,7 +389,7 @@ systemctl daemon-reload
 
 \subsection{Apagado}
 \label{ssec:apagado_impl}
-El apagado tras la implementación del share NFS se complica un poco, y además no siempre se tiene acceso en paralelo a todos los nodos, sino que lo habitual es que únicamente se acceda al nodo maestro, rpi0.
+El apagado tras la implementación del share NFS se complica un poco. Además no siempre se tiene acceso de forma simultánea a todos los nodos, sino que lo habitual es que únicamente se acceda al nodo maestro, rpi0.
 
 Por esta razón, es altamente recomendable la creación de un script que permita apagar todos los nodos de forma centralizada. Esto se realiza creando el script \texttt{/usr/local/bin/clupiter\_poweroff} como root, con los comandos:
 
@@ -408,4 +408,4 @@ EOS
 chmod +x /usr/local/bin/clupiter_poweroff
 \end{lstlisting}
 
-Tras esto, el usuario mpiuser en el nodo maestro podrá ejecutar \texttt{clupiter\_poweroff} para apagar todos los nodos de forma ordenada y sencilla. Que el usuario mpiuser sea capaz de apagar el clúster podría parecer extraño, pero es un comportamiento deseado, ya que permite que éste sea apagado de forma ordenada y sencilla desde la interfaz web.
+Tras esto, el usuario \texttt{mpiuser} en el nodo maestro podrá ejecutar \texttt{clupiter\_poweroff} para apagar todos los nodos de forma ordenada y sencilla. Que el usuario \texttt{mpiuser} tenga el privilegio de apagar el clúster podría parecer extraño, pero es un comportamiento deseado, ya que permite que Clúpiter sea apagado de forma ordenada y sencilla desde la interfaz web o la línea de comandos.

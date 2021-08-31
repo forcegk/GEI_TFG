@@ -8,15 +8,15 @@ En este caso, si bien el rendimiento no es una prioridad, es conveniente realiza
 \section{NAS Parallel Benchmarks}
 Los \acrlong{npb} (\acrshort{npb})\footnote{\url{https://www.nas.nasa.gov/software/npb.html}} son una \textit{suite} de tests de cálculo numérico diseñados por la División de Supercomputación de la NASA para la medida del rendimiento de supercomputadores paralelos.
 
-Estos benchmarks se dividen principalmente en ocho, teniendo otras adaptaciones para diferentes paradigmas de computación paralela, como puede ser de paralelización híbrida, computación desestructurada, o mallas de computación.
+Estos benchmarks se dividen principalmente en ocho programas o \textit{kernels} (núcleos), teniendo otras adaptaciones para diferentes paradigmas de computación paralela, como puede ser de paralelización híbrida, computación desestructurada, o mallas de computación.
 
-A su vez cada benchmark tiene múltiples clases, siendo estas \texttt{S, W, A, B, C, D, E}, y representando cada una un nivel de requerimientos superior, respectivamente. Específicamente, la las clases A, B y C suponen cuadruplicar el tamaño con respecto a la anterior, y las D, E y F (para los benchmarks que tienen estas clases disponibles), multiplican por 16 el tamaño del anterior.
+A su vez cada benchmark (\textit{kernel}) tiene múltiples clases, siendo estas \texttt{S}, \texttt{W}, \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, \texttt{E}, y representando cada una un nivel de requerimientos superior, respectivamente. Específicamente, la las clases \texttt{A}, \texttt{B} y \texttt{C} suponen cuadruplicar el tamaño con respecto a la anterior, y las \texttt{D}, \texttt{E} y \texttt{F} (para los benchmarks que tienen estas clases disponibles), multiplican por 16 el tamaño del anterior.
 
-En este caso se empleará la clase C para todos los benchmarks, excepto en MG que será clase B, y FT, que será clase A debido a limitaciones de memoria en los nodos.
+En este caso se empleará la clase \texttt{C} para todos los benchmarks, excepto en \texttt{MG} que será clase \texttt{B}, y \texttt{FT}, que será clase \texttt{A}. Esta decisión para ambos benchmarks es así debido a limitaciones de memoria en las ejecuciones en un mismo nodo.
 
 \subsection{Clases y procesos}
 \label{ssec:clases_y_procesos}
-Los benchmarks a ejecutar serán \texttt{LU, CG, FT, IS, MG y EP}, es decir, se excluyen \texttt{BT, SP y DT}. Esto es así debido a que los dos primeros requieren un número cuadrado perfecto de procesos, por lo que solo se podría ejecutar en 1, 4, 9, 16\dots\ procesos, y medir su rendimiento sería extraño debido a lo desbalanceado del mismo. En cuanto a DT, requiere una cantidad mínima de procesos en función de la clase del problema, procesos que para clase A y superior no son suficientes, por lo que se ha optado por descartarlo.
+Los benchmarks a ejecutar serán \texttt{LU}, \texttt{CG}, \texttt{FT}, \texttt{IS}, \texttt{MG} y \texttt{EP}, es decir, se excluyen \texttt{BT}, \texttt{SP} y \texttt{DT}. Esto es así debido a que los dos primeros requieren un número cuadrado perfecto de procesos, por lo que solo se podría ejecutar en 1, 4, 9, 16\dots\ procesos, y medir su rendimiento sería extraño debido a lo desbalanceado del mismo. En cuanto a \texttt{DT}, requiere una cantidad mínima de procesos en función de la clase del problema, procesos que para clase \texttt{A} y superior no son suficientes, por lo que se ha optado por descartarlo.
 
 En concreto, los requerimientos para el número de procesos son los siguientes\footnote{Contenidos del fichero \texttt{README.install} en \texttt{NPB3.4-MPI}}:
 
@@ -153,7 +153,7 @@ Para la ejecución de los benchmarks de forma paralela se necesita algún métod
     \end{itemize}
 \end{itemize}
 
-A MPI se le indica qué nodos deben ejecutar las tareas mediante un archivo de hosts, o \textit{hostsfile}\cite{mpi_hostfile_option}. Este fichero contiene las direcciones de los diferentes computadores que componen el cluster, así como el número de tareas que pueden ejecutar (habitualmente coincidente con su número de núcleos)
+A MPI se le indica qué nodos deben ejecutar las tareas mediante un archivo de hosts, o \textit{hostsfile}\cite{mpi_hostfile_option}. Este fichero contiene las direcciones de los diferentes computadores que componen el clúster, así como el número de tareas que pueden ejecutar (habitualmente coincidente con su número de núcleos)
 
 Así, se crea en \texttt{/mpishared} el fichero \texttt{hostfile} con los hostname de todos los nodos:
 
@@ -198,7 +198,7 @@ Ante diferentes números de procesos, \acrshort{mpi} elige la configuración má
 
 \section{Comparación de Resultados}
 \label{sec:comparacion_resultados}
-La comparación de resultados es precisamente el objetivo de los benchmarks. En este caso interesa medir la escalabilidad del cluster, y no compararlo contra otros. Esto es, medir la eficacia con la que, aumentando los recursos computacionales aumenta el rendimiento en la misma medida.
+La comparación de resultados es precisamente el objetivo de los benchmarks. En este caso interesa medir la escalabilidad del clúster, y no compararlo contra otros. Esto es, medir la eficacia con la que, aumentando los recursos computacionales aumenta el rendimiento en la misma medida.
 
 Se muestran a continuación los datos expresados en MOPS (\textbf{M}ega/\textbf{M}illion \textbf{O}perations \textbf{P}er \textbf{S}econd). En función de si estas operaciones son en punto flotante o no, también se podrán llamar \acrshort{mflops} (\textbf{M}ega/\textbf{M}illion \textbf{FL}oating point \textbf{O}perations \textbf{P}er \textbf{S}econd).
 
@@ -292,7 +292,7 @@ Como puede apreciarse en la Figura \ref{fig:mops__cg}, el benchnmark CG es un be
 
 \subsection{EP}
 \label{ssec:comparacion_resultados__ep}
-Por otro lado, como se puede ver en la Figura \ref{fig:mops__ep}, así como se comenta en \ref{sssec:benchmarks__ep}, y en anteposición al benchmark discutido anteriormente, EP es un benchmark que realiza toda la computación de forma completamente independiente, y únicamente se comunica al final de la ejecución, siendo esta comunicación muy ligera, e indistinguible del tráfico habitual entre nodos (Fig. \ref{fig:mops_rev_mn__ep}). Además en este benchmark, hay de nuevo un valor atípicamente bajo para 4 procesadores, marcando una tendencia que, como se comenta anteriormente, probablemente sea debida al reducido ancho de banda del único chip de memoria DRAM en la \acrlong{rpi} 4B.
+Por otro lado, como se puede ver en la Figura \ref{fig:mops__ep}, así como se comenta en \nameref{sssec:benchmarks__ep}, y en anteposición al benchmark discutido anteriormente, EP es un benchmark que realiza toda la computación de forma completamente independiente, y únicamente se comunica al final de la ejecución, siendo esta comunicación muy ligera, e indistinguible del tráfico habitual entre nodos (Fig. \ref{fig:mops_rev_mn__ep}). Además en este benchmark, hay de nuevo un valor atípicamente bajo para 4 procesadores, marcando una tendencia que, como se comenta anteriormente, probablemente sea debida al reducido ancho de banda del único chip de memoria DRAM en la \acrlong{rpi} 4B.
 
 \begin{figure}[h!]
     \centering
