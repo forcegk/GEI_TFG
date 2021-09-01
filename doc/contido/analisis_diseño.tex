@@ -157,7 +157,7 @@ Dadas estas circunstancias, y para ahorrar posibles problemas presentes y futuro
 % \end{wrapfigure}
 Tras la lista de componentes previamente expuestos, únicamente queda tratar la interconexión de los mismos, un componente que ha dado más problemas de lo que pueda parecer.
 
-En cuanto al cableado Ethernet no hay mucho que clarificar. Los cables de 4 pares trenzados Cat5E se cortan a la longitud necesaria, y se crimpan siguiendo la disposición ANSI/TIA-568B (Fig. \ref{fig:TIA-568B-horiz}).
+En cuanto al cableado Ethernet no hay mucho que clarificar. Los cables de 4 pares trenzados Cat5E se cortan a la longitud necesaria, y se crimpan siguiendo la disposición ANSI/TIA-568B (Figura \ref{fig:TIA-568B-horiz}).
 
 \begin{figure}[h!]
   \centering
@@ -168,7 +168,7 @@ En cuanto al cableado Ethernet no hay mucho que clarificar. Los cables de 4 pare
 
 El cableado eléctrico ha creado importantes problemas, y es que las Raspberry Pi 4 Model B son alimentadas por USB Tipo-C, teniendo una implementación del mismo un tanto regular, por lo que no cualquier cable funciona como podría esperarse. Esto provocó el tener que cambiar los cables originalmente planeados.
 
-En un principio se realizó la compra de 4 cables terminados en USB-C en cada extremo, por lo que al cortarlos por la mitad se podrían obtener 8 cables terminados en USB-C. El principial problema con esta compra es que entregar potencia a través del USB-C tiene su propia especificación, USB Power Delivery (USB-PD). Tras descubrir este detalle después de la compra del material, y tras ver que realizando el arreglo (Fig. \ref{fig:usb_pd_schematic} \cite{usb_pd_techforum}), que no resultaría ni caro ni complicado, aún existía la probabilidad de que (debido a la no-estándar implementación de USB-C en este modelo de Raspberry Pi) la entrega de potencia siguiese sin funcionar, se decidió por no seguir por esa vía, y realizar la compra de 8 cables con experiencia positiva previa de otros usuarios.
+En un principio se realizó la compra de 4 cables terminados en USB-C en cada extremo, por lo que al cortarlos por la mitad se podrían obtener 8 cables terminados en USB-C. El principial problema con esta compra es que entregar potencia a través del USB-C tiene su propia especificación, USB Power Delivery (USB-PD). Tras descubrir este detalle después de la compra del material, y tras ver que realizando el arreglo (Figura \ref{fig:usb_pd_schematic} \cite{usb_pd_techforum}), que no resultaría ni caro ni complicado, aún existía la probabilidad de que (debido a la no-estándar implementación de USB-C en este modelo de Raspberry Pi) la entrega de potencia siguiese sin funcionar, se decidió por no seguir por esa vía, y realizar la compra de 8 cables con experiencia positiva previa de otros usuarios.
 
 \begin{figure}[h!]
   \vspace*{0.5cm}
