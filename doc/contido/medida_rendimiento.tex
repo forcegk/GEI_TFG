@@ -671,10 +671,10 @@ Por último, en la Figura \ref{fig:mops__mg}, se expone el rendimiento del bench
 
 \section{Conclusiones}
 \label{sec:conclusiones_medida_rendimiento}
-Los resultados son en general algo decepcionantes debido a la limitación de ancho de banda a la memoria principal. Sin embargo no todo son malas noticias, y es que en todos los casos se ha logrado acelerar la ejecución utilizando varios nodos, lo que de nuevo da que pensar, ya que la memoria ha sido un factor más limitante que la red Ethernet.
+Los resultados son en general algo decepcionantes debido principalmente a la limitación de ancho de banda a la memoria principal. Sin embargo no todo son malas noticias, y es que en todos los casos se ha logrado acelerar la ejecución utilizando varios nodos, lo que de nuevo da que pensar, ya que la memoria ha sido un factor más limitante que la red Ethernet.
 
 Por último destacar que hubiese sido de gran utilidad tener la posibilidad de medir en tiempo real el ancho de banda a la memoria, pero que por falta de herramientas de debug avanzadas para la plataforma \acrshort{arm} de consumo, como la que equipa la \acrlong{rpi} 4, no ha sido posible.
 
-La única medición realizable es la del ancho de banda total, situándose en aproximadamente 4.2GB/s para transferencias de enteros, y 3.95GB/s para transferencias de flotantes en el modelo de 8GB de RAM, y siendo ligeramente en modelos con menor capacidad. Para comparar, un ordenador convencional x86 del sector de consumo cuenta con aproximadamente 25GB/s de ancho de banda a la memoria \textbf{por canal}.
+La única medición realizable es la del ancho de banda total, situándose en aproximadamente 4.2GB/s para transferencias de enteros, y 3.95GB/s para transferencias de flotantes en el modelo de 8GB de RAM \cite{tomshardware_rpi4b_ram_bandwidth}, y siendo ligeramente en modelos con menor capacidad. Para comparar, un ordenador convencional x86 del sector de consumo con una memoria DDR4 a la misma frecuencia cuenta con aproximadamente 25GB/s de ancho de banda a la memoria \textbf{por canal} \cite{intel_ram_bandwidth}.
 
 De todos modos, no se debe perder de vista el objetivo de este trabajo, que es principalmente la divulgación. Que los test funcionen y hayan servido para sacar conclusiones (sean mejores o peores), así como para ilustrar demostraciones en vivo es en sí mismo un éxito.
