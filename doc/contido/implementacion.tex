@@ -398,9 +398,13 @@ Por esta razón, es altamente recomendable la creación de un script que permita
 cat << EOS > /usr/local/bin/clupiter_poweroff
 #!/bin/sh
 for i in {1..7}; do
+    echo "Powering off rpi\$i"
     ssh mpiuser@rpi\$i "sudo /usr/bin/poweroff"
 done
 
+echo "Powering off rpi0"
+echo ""
+echo "Finished poweroff"
 sudo /usr/bin/poweroff
 EOS
 
