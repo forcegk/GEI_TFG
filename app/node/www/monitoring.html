@@ -592,6 +592,7 @@
         <div id="terminal_container">
             <textarea id="terminal_monitor" rows="4" cols="100%" readonly></textarea>
             <button id="button_clear_terminal" class="buttons__form-button" onclick="clearTextArea()">Clear Terminal</button>
+            <button id="button_poweroff" class="buttons__form-button" onclick="clearTextArea()">Poweroff</button>
         </div>
         
     </div>
@@ -650,6 +651,25 @@
         function clearTextArea() {
             textarea.innerHTML = '';
             addTextToTextArea('');            
+        }
+
+        function warnPoweroff() {
+            if(confirm('Are you sure you want to poweroff?\n\nClick again to confirm poweroff')){
+                var button = document.getElementById('button_poweroff');
+
+                button.style.background = '#d82919';
+
+                button.textContent = 'Click again to poweroff'
+                
+                button.onclick = secondStagePoweroff();
+
+                setTimeout(() => {
+                    // si no se hace click en 5 segundos se restablece
+                    button.onclick = warnPoweroff();
+                    button.style.background = '#FF4081';
+                    button.textContent = 'Poweroff';
+                }, 5000);
+            }
         }
 
         socket.on('youve_got_mail', (msg) => addTextToTextArea(msg));

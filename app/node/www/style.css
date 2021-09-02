@@ -263,3 +263,9 @@ body > section {
     top: 1em;
     right: 1.5em
 }
+
+#button_poweroff {
+    position: absolute;
+    top: 1em;
+    right: 2.5em
+}
