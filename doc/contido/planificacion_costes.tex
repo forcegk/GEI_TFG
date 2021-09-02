@@ -1,0 +1,73 @@
+\chapter{Planificación y costes}
+\label{chap:planificacion_costes}
+
+\lettrine{E}{n} este penúltimo capítulo de la memoria se muestra una planificación detallada de la organización del proyecto, detalles acerca del método de trabajo, una lista de tareas, posteriormente ordenadas en un diagrama de Gantt, y un cálculo aproximado del coste humano del proyecto en función de número de horas invertidas en dichas tareas. 
+
+\section{Planificación del proyecto}
+Durante el proceso de desarrollo de Clúpiter se ha seguido un modelo principalente incremental. Las principales fases del proyecto se pueden dividir en las expuestas a continuación. Debe tenerse en cuenta que varias fases pueden solaparse debido a que la implementación hardware puede ir a un ritmo diferente a la software.
+
+\subsection{Fase 1: Aproximación inicial}
+En primer lugar se transmitió la necesidad por parte de la universidad de un proyecto orientado a docencia relacionado con la supercomputación, y un conjunto de ideas a realizar. Dichas ideas fueron combinadas en lo que ahora mismo es Clúpiter, altamente influenciadas por la coyuntura sanitaria causada por el COVID-19.
+
+Tras esta aproximación inicial se elabora el presupuesto del clúster con vistas a la siguiente fase, y se procede a la compra del mismo. Como el tiempo de espera ante una compra por parte de la universidad es moderado, se comienza con la siguiente fase.
+
+\subsection{Fase 2: Codiseño hardware/software}
+Esta fase se puede dividir en dos disciplinas separadas y evientes, diseño hardware y diseño software. El diseño software es el primero en comenzar, realizándose la instalación del sistema Arch Linux en 4 máquinas virtuales que permitan ir testeando y scripteando todo lo requerido, eliminando las sorpresas a la hora de trabajar en infraestructura real. Simultáneamente se diseña un primer prototipo de la aplicación de monitorización en Python con la librería gráfica GTK y Matplotlib (pyplot), pero finalmente se optó por no continuar con su desarrollo en favor de una variante basada en tecnologías web.
+
+Casi de forma simultánea pero ligeramente más tarde se comienza a diseñar en grano fino la estructura física de Clúpiter, realizando planos con medidas exactas, y renders del mismo.
+
+\subsection{Fase 3: Implementación hardware/software}
+Una vez la infraestructura se encuentra prácticamente desplegada al completo en máquinas virtuales, se comienza con el montaje de Clúpiter. Primero se comprueba la calidad de todos los componentes hardware. Tras ello se cortan las planchas de chapa que unen las diferentes secciones verticales del clúster, y finalmente se realiza el ensamblaje final y corte del cableado a medida, tal y como se comenta en \nameref{sec:configuracion_hardware}.
+
+Una vez montado por completo el clúster, se instala ArchLinuxARM en cada uno de los nodos, como se explica previamente en \nameref{sec:configuracion_software}, y se realizan todos los pasos descritos en dicha sección. Este proceso, tal como se comentaba previamente, transcurre sin sorpresas debido a la experiencia previa con las máquinas virtuales, siendo la única diferencia el método de instalación del propio sistema.
+
+Además, durante esta fase se comienza la redacción de la memoria, aprovechando para trasladar las anotaciones y scripts generados en las Fases 2 y 3. Dicha redacción tiene un carácter y lenguaje especializado, únicamente a modo de resumen interno y guía de las partes más importantes. Esto se realiza de esta manera para facilitar la redacción en la Fase 5, así como para no olvidar incluír etapas de la configuración en la memoria.
+
+\subsection{Fase 4: Medida del rendimiento}
+Esta fase también transcurre sin gran cantidad de problemas, puesto que la ejecución de los diversos programas de pruebas, de los cuales se documenta únicamente la de los \acrlong{npb} ya se había realizado previamente en un entorno virtualizado.
+
+El único problema que se ha encontrado, pero que no ha sido de mayor relevancia, ha sido la ejecución de la Phoronix Test Suite. En un principio se querían ejecutar varios benchmarks de dicha suite, pero por complicaciones debido a la arquitectura de Clúpiter, y debido a que realmente la ejecución de dichos benchmarks no aportaba nada especial que no aportasen ya los \acrshort{npb}, se decidió no incluirlos. 
+
+\subsection{Fase 5: Desarrollo del dashboard}
+El desarrollo del \textit{dashboard} ha sido uno de los puntos más difíciles desde el punto de vista del diseño, ya que no es tan sencillo como pueda parecer el pensar cómo se va a explicar a una persona sin grandes conocimientos de informática, cómo funciona un clúster, y por qué es importante. Al final, y tras bastante prototipado y consultas con personas que podrían ser el objetivo de dichas explicaciones, se ha optado por el diseño del \textit{dashboard} discutido en el Capítulo \ref{chap:contenido_didactico}.
+
+\subsection{Fase 6: Documentación y escritura de la memoria}
+Finalmente, y tras ya tener la memoria comenzada a lo largo de las fases anteriores, se procede a darle estructura, esto es:
+\begin{itemize}
+    \item Añadir \textbf{``literatura''}, es decir, cohesionar todo el texto, y explicar de forma más correcta las anotaciones realizadas durante el proceso de desarrollo
+    \item Añadir \textbf{citas} a páginas web y artículos que se leyeron en su momento y fueron consecuentemente guardados en el archivo de bibliografía, así como \textbf{buscar artículos} que sustenten afirmaciones basadas en la experiencia.
+    \item \textbf{Crear figuras} explicativas, así como ordenar las múltiples fotografías tomadas a lo largo del proyecto.
+    \item \textbf{Guionizar} y \textbf{preparar} los \textbf{vídeos} a incluír en el \textit{dashboard}
+\end{itemize}
+
+El sistema de comunicación con los profesores ha sido a través de Microsoft Teams. Las preguntas, dudas y aclaraciones, así como la corrección y comentarios de los diferentes capítulos de esta memoria han sido resueltos de forma asíncrona.
+
+\subsection{Fase 7: Retoques finales}
+En esta fase, siendo con diferencia la más breve de todas, se realizan los últimos retoques y revisiones en la memoria, se termina de refinar el \textit{dashboard} (por ejemplo, traduciendo todo al castellano), y se graban los vídeos que van en el mismo.
+
+
+\section{Métricas del proyecto}
+En esta sección se desglosan las tareas en cada fase, se desarrolla un diagrama de Gantt y, apoyándose en éste, se realiza un cálculo teórico del coste humano.
+
+\subsection{Duración}
+La duración de este proyecto es de casi un año, por lo se puede pensar que se han invertido una enorme cantidad de horas al mismo, pero nada más lejos de la realidad. Durante el curso académico hay escaso tiempo y motivación para dedicarle al \acrshort{tfg}, siendo esta última escasa en una situación de pandemia y teledocencia. Por ello la duración de las tareas en el diagrama de Gantt no se corresponde con el número de h$\times$h (horas por hombre) adjudicadas a las mismas. Esta dilatación temporal en la realización de dichas tareas no es otra cosa que una demora. Además, en lo que no debería ser sorpresa, durante los períodos vacacionales se encuentran concentradas la mayor cantidad de horas de trabajo.
+
+\subsection{Desglose de tareas}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{ |c|c|c| }
+  \hline
+  \textbf{Fase} & \textbf{Tarea} & \textbf{Tiempo} \\ 
+  \hline
+  cell4 & cell5 & cell6 \\  
+  cell7 & cell8 & cell9 \\
+  \hline
+  \end{tabular}
+  \caption{Desglose de tareas por fase, en h$\times$h}
+  \label{tab:desglose_de_tareas}
+\end{table}
+
+
+
+
+(antes del gantt poner algo rollo: el tipo de las dependencias (fin-fin, fin-comienzo, etc) se puede apreciar en el diagrama a continuación)
