@@ -660,11 +660,11 @@
                 // Preparar para segundo click
                 button.style.background = '#fc2600';
                 button.textContent = 'Click again to poweroff'
-                button.onclick = secondStagePoweroff();
+                button.setAttribute( "onClick", "javascript: secondStagePoweroff();" );
 
                 setTimeout(() => {
                     // si no se hace click en 5 segundos se restablece
-                    button.onclick = warnPoweroff();
+                    button.setAttribute( "onClick", "javascript: warnPoweroff();" );
                     button.style.background = '#FF4081';
                     button.textContent = 'Poweroff';
                 }, 5000);
