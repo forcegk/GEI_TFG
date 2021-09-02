@@ -39,6 +39,11 @@ io.on('connection', (socket) => {
                 command = 'mpirun';
                 params = ['-np', '32', '--hostfile', '/mpishared/hostfile', '--mca', 'opal_warn_on_missing_libcuda', '0', `/mpishared/NPB3.4.2/NPB3.4-MPI/bin/${bench_name}.*.x`];
                 break;
+
+            case 'poweroff':
+                command = '/usr/local/bin/clupiter_poweroff';
+                params = [];
+                break;
         
             default:
                 command = 'neofetch';
