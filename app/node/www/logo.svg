@@ -1,19 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
-	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
-	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
-	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
-	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
-	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
-	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
-	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
-]>
-<svg version="1.1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1366 1366"
-	 style="enable-background:new 0 0 1366 1366;" xml:space="preserve">
-<style type="text/css">
+
+<svg
+   version="1.1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 977 741.32001"
+   xml:space="preserve"
+   id="svg116"
+   sodipodi:docname="logo.svg"
+   width="977"
+   height="741.32001"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   inkscape:export-filename="/home/alonso/GEI_TFG/app/node/www/logo.png"
+   inkscape:export-xdpi="100"
+   inkscape:export-ydpi="100"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:i="&amp;ns_ai;"><defs
+   id="defs120" /><sodipodi:namedview
+   id="namedview118"
+   pagecolor="#505050"
+   bordercolor="#eeeeee"
+   borderopacity="1"
+   inkscape:pageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="0"
+   showgrid="false"
+   inkscape:zoom="1.0644217"
+   inkscape:cx="419.47662"
+   inkscape:cy="302.98143"
+   inkscape:window-width="2560"
+   inkscape:window-height="1380"
+   inkscape:window-x="0"
+   inkscape:window-y="32"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg116" />
+<style
+   type="text/css"
+   id="style2">
 	.st0{fill:#1793D1;stroke:#1793D1;stroke-width:10;stroke-miterlimit:10;}
 	.st1{fill:#A19E86;}
 	.st2{fill:#D51E1E;}
@@ -24,97 +52,298 @@
 	.st7{fill:#CCBDA6;}
 	.st8{fill:#931219;}
 </style>
-<switch>
-	<foreignObject requiredExtensions="&ns_ai;" x="0" y="0" width="1" height="1">
-		<i:aipgfRef  xlink:href="#adobe_illustrator_pgf">
+<switch
+   id="switch114"
+   transform="translate(-170,-314.34)">
+	<foreignObject
+   requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/"
+   x="0"
+   y="0"
+   width="1"
+   height="1">
+		<i:aipgfRef
+   xlink:href="#adobe_illustrator_pgf">
 		</i:aipgfRef>
 	</foreignObject>
-	<g i:extraneous="self">
-		<g id="linea_detrás">
-			<line class="st0" x1="868" y1="386" x2="805" y2="399"/>
-			<line class="st0" x1="327" y1="720" x2="373" y2="662"/>
+	<g
+   i:extraneous="self"
+   id="g112">
+		<g
+   id="linea_detrás">
+			<line
+   class="st0"
+   x1="868"
+   y1="386"
+   x2="805"
+   y2="399"
+   id="line4" />
+			<line
+   class="st0"
+   x1="327"
+   y1="720"
+   x2="373"
+   y2="662"
+   id="line6" />
 		</g>
-		<g id="cubo">
-			<path class="st1" d="M834.84,399.67c-4.28-2.15-8.56-4.23-12.84-6.67C826.28,395.44,830.56,397.52,834.84,399.67l-3.87-2.24
-				l-143.47-83.09l-321.25,184.9l-0.49,370.66l320.75,185.76l321.25-184.9l0.49-370.66L834.84,399.67z"/>
-			<g>
-				<g>
-					<polygon class="st2" points="1007.89,634 1008,719.45 933.86,762.27 933.65,676.88 					"/>
-					<polygon class="st2" points="938.83,673.81 938.95,759.26 864.81,802.08 864.59,716.69 					"/>
-					<polygon class="st2" points="903.48,694.14 903.59,779.59 829.45,822.41 829.24,737.02 					"/>
+		<g
+   id="cubo">
+			<path
+   class="st1"
+   d="m 834.84,399.67 c -4.28,-2.15 -8.56,-4.23 -12.84,-6.67 4.28,2.44 8.56,4.52 12.84,6.67 l -3.87,-2.24 -143.47,-83.09 -321.25,184.9 -0.49,370.66 320.75,185.76 321.25,-184.9 0.49,-370.66 z"
+   id="path9" />
+			<g
+   id="g19">
+				<g
+   id="g17">
+					<polygon
+   class="st2"
+   points="933.86,762.27 933.65,676.88 1007.89,634 1008,719.45 "
+   id="polygon11" />
+					<polygon
+   class="st2"
+   points="864.81,802.08 864.59,716.69 938.83,673.81 938.95,759.26 "
+   id="polygon13" />
+					<polygon
+   class="st2"
+   points="829.45,822.41 829.24,737.02 903.48,694.14 903.59,779.59 "
+   id="polygon15" />
 				</g>
 			</g>
-			<g>
-				<g>
-					<polygon class="st2" points="863.85,717.91 863.96,802.77 789.96,845.29 789.75,760.5 					"/>
-					<polygon class="st2" points="794.92,757.45 795.04,842.3 721.03,884.83 720.82,800.03 					"/>
-					<polygon class="st2" points="759.63,777.64 759.75,862.49 685.74,905.02 685.53,820.22 					"/>
+			<g
+   id="g29">
+				<g
+   id="g27">
+					<polygon
+   class="st2"
+   points="789.96,845.29 789.75,760.5 863.85,717.91 863.96,802.77 "
+   id="polygon21" />
+					<polygon
+   class="st2"
+   points="721.03,884.83 720.82,800.03 794.92,757.45 795.04,842.3 "
+   id="polygon23" />
+					<polygon
+   class="st2"
+   points="685.74,905.02 685.53,820.22 759.63,777.64 759.75,862.49 "
+   id="polygon25" />
 				</g>
 			</g>
-			<g>
-				<g>
-					<g>
-						<polygon class="st2" points="366.11,634 366,718.64 439.44,761.05 439.65,676.47 						"/>
-						<polygon class="st2" points="434.51,673.43 434.4,758.07 507.83,800.49 508.05,715.91 						"/>
-						<polygon class="st2" points="469.53,693.57 469.42,778.21 542.85,820.62 543.06,736.04 						"/>
+			<g
+   id="g49">
+				<g
+   id="g47">
+					<g
+   id="g37">
+						<polygon
+   class="st2"
+   points="439.44,761.05 439.65,676.47 366.11,634 366,718.64 "
+   id="polygon31" />
+						<polygon
+   class="st2"
+   points="507.83,800.49 508.05,715.91 434.51,673.43 434.4,758.07 "
+   id="polygon33" />
+						<polygon
+   class="st2"
+   points="542.85,820.62 543.06,736.04 469.53,693.57 469.42,778.21 "
+   id="polygon35" />
 					</g>
-					<g>
-						<polygon class="st2" points="508.72,716.4 508.61,801.03 582.04,843.45 582.25,758.87 						"/>
-						<polygon class="st2" points="577.12,755.83 577,840.47 650.44,882.88 650.65,798.3 						"/>
-						<polygon class="st2" points="612.14,775.96 612.02,860.6 685.46,903.02 685.67,818.44 						"/>
+					<g
+   id="g45">
+						<polygon
+   class="st2"
+   points="582.04,843.45 582.25,758.87 508.72,716.4 508.61,801.03 "
+   id="polygon39" />
+						<polygon
+   class="st2"
+   points="650.44,882.88 650.65,798.3 577.12,755.83 577,840.47 "
+   id="polygon41" />
+						<polygon
+   class="st2"
+   points="685.46,903.02 685.67,818.44 612.14,775.96 612.02,860.6 "
+   id="polygon43" />
 					</g>
 				</g>
 			</g>
-			<polygon class="st3" points="687,722.48 1008,537.37 1008,578.89 687,764 			"/>
-			<g>
-				<path id="path2518" class="st4" d="M780.46,442.8c-26.65,6.76-43.7,11.4-70.63,17.34c-0.6,6.2-0.98,13.61,1.68,23.76
-					c-6.15-9.01-8.83-16.03-9.46-22.07c-33.9,7.28-83.69,16.78-181.16,34.01c42.58,6.05,73.02,12.21,95.93,21.1
-					c2.9-2.62,6.46-5.21,10.7-7.61l0.93-0.5c18.3-10.05,40.87-12.86,50.39-6.27c9.51,6.59,2.37,20.08-15.93,30.12
-					c-3.44,1.89-7.04,3.55-10.67,4.91c15.01,13.2,25.39,30.65,35.6,54.92c4.85-8.73,9.26-16.58,13.46-24.06
-					c-1.26-7.25-1.12-15.66-7.86-28.76c7.34,7.45,11.38,13.48,13.45,18.8C749.86,482.25,757.89,473.46,780.46,442.8z"/>
-				<g id="text2638">
-					<path id="path3940" class="st5" d="M704.37,583.95l4.83-2.78l-1.71-0.99l0.65-0.37l4.11,2.38l-0.65,0.37l-1.72-0.99l-4.83,2.78
-						L704.37,583.95"/>
-					<path id="path3942" class="st5" d="M707.49,585.76l5.47-3.15l1.03,0.6l-2.65,2.94c-0.25,0.27-0.44,0.48-0.56,0.61
-						c0.26-0.08,0.64-0.2,1.15-0.35l5.05-1.47l0.92,0.54l-5.47,3.15l-0.66-0.38l4.58-2.64l-6.09,1.76l-0.62-0.36l3.16-3.55
-						l-4.66,2.68L707.49,585.76"/>
+			<polygon
+   class="st3"
+   points="1008,578.89 687,764 687,722.48 1008,537.37 "
+   id="polygon51" />
+			<g
+   id="g57">
+				<path
+   id="path2518"
+   class="st4"
+   d="m 780.46,442.8 c -26.65,6.76 -43.7,11.4 -70.63,17.34 -0.6,6.2 -0.98,13.61 1.68,23.76 -6.15,-9.01 -8.83,-16.03 -9.46,-22.07 -33.9,7.28 -83.69,16.78 -181.16,34.01 42.58,6.05 73.02,12.21 95.93,21.1 2.9,-2.62 6.46,-5.21 10.7,-7.61 l 0.93,-0.5 c 18.3,-10.05 40.87,-12.86 50.39,-6.27 9.51,6.59 2.37,20.08 -15.93,30.12 -3.44,1.89 -7.04,3.55 -10.67,4.91 15.01,13.2 25.39,30.65 35.6,54.92 4.85,-8.73 9.26,-16.58 13.46,-24.06 -1.26,-7.25 -1.12,-15.66 -7.86,-28.76 7.34,7.45 11.38,13.48 13.45,18.8 42.97,-76.24 51,-85.03 73.57,-115.69 z" />
+				<g
+   id="text2638">
+					<path
+   id="path3940"
+   class="st5"
+   d="m 704.37,583.95 4.83,-2.78 -1.71,-0.99 0.65,-0.37 4.11,2.38 -0.65,0.37 -1.72,-0.99 -4.83,2.78 -0.68,-0.4" />
+					<path
+   id="path3942"
+   class="st5"
+   d="m 707.49,585.76 5.47,-3.15 1.03,0.6 -2.65,2.94 c -0.25,0.27 -0.44,0.48 -0.56,0.61 0.26,-0.08 0.64,-0.2 1.15,-0.35 l 5.05,-1.47 0.92,0.54 -5.47,3.15 -0.66,-0.38 4.58,-2.64 -6.09,1.76 -0.62,-0.36 3.16,-3.55 -4.66,2.68 -0.65,-0.38" />
 				</g>
 			</g>
-			<polygon class="st6" points="687,685 686.51,1055.66 1007.75,870.76 1008.25,500.1 			"/>
-			<g>
-				<polygon class="st3" points="366,578.35 687,764 687,722.23 366,536.58 				"/>
-				<polygon class="st3" points="687,722.23 687,764 1008,578.35 1008,536.58 				"/>
+			<polygon
+   class="st6"
+   points="1007.75,870.76 1008.25,500.1 687,685 686.51,1055.66 "
+   id="polygon59" />
+			<g
+   id="g65">
+				<polygon
+   class="st3"
+   points="687,722.23 366,536.58 366,578.35 687,764 "
+   id="polygon61" />
+				<polygon
+   class="st3"
+   points="1008,578.35 1008,536.58 687,722.23 687,764 "
+   id="polygon63" />
 			</g>
 		</g>
-		<g id="Capa_4">
-			<polygon class="st7" points="686.66,1018.74 1007.92,838.94 1007.89,755.92 686.55,936.23 			"/>
-			<polygon class="st7" points="686.88,1018.48 366,839.16 366.01,756.38 686.74,935.91 			"/>
-			<polygon class="st2" points="686.92,903.02 1008.19,723.22 1008.15,640.2 686.81,820.51 			"/>
+		<g
+   id="Capa_4">
+			<polygon
+   class="st7"
+   points="1007.89,755.92 686.55,936.23 686.66,1018.74 1007.92,838.94 "
+   id="polygon68" />
+			<polygon
+   class="st7"
+   points="366.01,756.38 686.74,935.91 686.88,1018.48 366,839.16 "
+   id="polygon70" />
+			<polygon
+   class="st2"
+   points="1008.15,640.2 686.81,820.51 686.92,903.02 1008.19,723.22 "
+   id="polygon72" />
 		</g>
-		<g id="anillo_bolas">
-			<line class="st0" x1="462" y1="804" x2="284" y2="884"/>
-			<line class="st0" x1="679" y1="857" x2="457" y2="801"/>
-			<circle class="st5" cx="868" cy="386" r="21"/>
-			<circle class="st5" cx="1098.5" cy="382.5" r="33.5"/>
-			<circle class="st5" cx="1093" cy="629" r="54"/>
-			<circle class="st5" cx="897" cy="697" r="34"/>
-			<circle class="st5" cx="678.5" cy="857.5" r="48.5"/>
-			<circle class="st5" cx="284.5" cy="884.5" r="32.5"/>
-			<circle class="st5" cx="462" cy="804" r="39"/>
-			<circle class="st5" cx="192.5" cy="787.5" r="22.5"/>
-			<circle class="st5" cx="327" cy="720" r="20"/>
-			<line class="st0" x1="865" y1="386" x2="1103" y2="380"/>
-			<line class="st0" x1="1099" y1="380" x2="1093" y2="629"/>
-			<line class="st0" x1="1091" y1="629" x2="897" y2="697"/>
-			<line class="st0" x1="897" y1="697" x2="679" y2="857"/>
-			<line class="st0" x1="284" y1="884" x2="192" y2="787"/>
-			<line class="st0" x1="192" y1="787" x2="327" y2="720"/>
+		<g
+   id="anillo_bolas">
+			<line
+   class="st0"
+   x1="462"
+   y1="804"
+   x2="284"
+   y2="884"
+   id="line75" />
+			<line
+   class="st0"
+   x1="679"
+   y1="857"
+   x2="457"
+   y2="801"
+   id="line77" />
+			<circle
+   class="st5"
+   cx="868"
+   cy="386"
+   r="21"
+   id="circle79" />
+			<circle
+   class="st5"
+   cx="1098.5"
+   cy="382.5"
+   r="33.5"
+   id="circle81" />
+			<circle
+   class="st5"
+   cx="1093"
+   cy="629"
+   r="54"
+   id="circle83" />
+			<circle
+   class="st5"
+   cx="897"
+   cy="697"
+   r="34"
+   id="circle85" />
+			<circle
+   class="st5"
+   cx="678.5"
+   cy="857.5"
+   r="48.5"
+   id="circle87" />
+			<circle
+   class="st5"
+   cx="284.5"
+   cy="884.5"
+   r="32.5"
+   id="circle89" />
+			<circle
+   class="st5"
+   cx="462"
+   cy="804"
+   r="39"
+   id="circle91" />
+			<circle
+   class="st5"
+   cx="192.5"
+   cy="787.5"
+   r="22.5"
+   id="circle93" />
+			<circle
+   class="st5"
+   cx="327"
+   cy="720"
+   r="20"
+   id="circle95" />
+			<line
+   class="st0"
+   x1="865"
+   y1="386"
+   x2="1103"
+   y2="380"
+   id="line97" />
+			<line
+   class="st0"
+   x1="1099"
+   y1="380"
+   x2="1093"
+   y2="629"
+   id="line99" />
+			<line
+   class="st0"
+   x1="1091"
+   y1="629"
+   x2="897"
+   y2="697"
+   id="line101" />
+			<line
+   class="st0"
+   x1="897"
+   y1="697"
+   x2="679"
+   y2="857"
+   id="line103" />
+			<line
+   class="st0"
+   x1="284"
+   y1="884"
+   x2="192"
+   y2="787"
+   id="line105" />
+			<line
+   class="st0"
+   x1="192"
+   y1="787"
+   x2="327"
+   y2="720"
+   id="line107" />
 			
-				<ellipse transform="matrix(0.5012 -0.8654 0.8654 0.5012 -199.0105 1205.8063)" class="st8" cx="946.36" cy="775.52" rx="43.3" ry="25"/>
+				<ellipse
+   transform="matrix(0.5012,-0.8654,0.8654,0.5012,-199.0105,1205.8063)"
+   class="st8"
+   cx="946.35999"
+   cy="775.52002"
+   rx="43.299999"
+   ry="25"
+   id="ellipse109" />
 		</g>
 	</g>
 </switch>
-<i:aipgf  id="adobe_illustrator_pgf" i:pgfEncoding="zstd/base64" i:pgfVersion="24">
+<i:aipgf
+   id="adobe_illustrator_pgf"
+   i:pgfEncoding="zstd/base64"
+   i:pgfVersion="24">
 	<![CDATA[
 	KLUv/QBY3OsEDinG8Aw0IBGDQAzAQUiABEgAoSLKHSNyR8SDTslxiDIiHSI2772/pDH+TintlNLS
 UbW8wQF2qheACNEQjwuoC3c1vyqpHJaZJRqTBavj8iOVI81FPcHKtDEO+W4TClblOC6zpu42LTnr
