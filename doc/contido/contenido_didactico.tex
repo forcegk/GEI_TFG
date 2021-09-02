@@ -45,6 +45,7 @@ La elección de socket.io se realiza debido a la sencillez y elegancia que aport
 La página de monitorización es la única que se comunica con Clúpiter. En la parte superior se encuentran los medidores de uso de CPU y tráfico de red de cada uno de los nodos. Debajo de los mismos se encuentran botones para ejecutar cada uno de los benchmarks (en clase \texttt{C}), y observar su salida por terminal en la parte inferior de página, así como ver en tiempo real el impacto que la ejecución de los mismos tiene sobre la carga en los nodos.
 
 \subsection{Comunicación socket.io}
+\label{ssec:socket.io_comm}
 La página web de socket.io contiene una fantástica documentación, pero se va a poner un ejemplo sencillo de cómo se emplea su funcionalidad para el \textit{dashboard}: el proceso de comunicación para la ejecución de un benchmark.
 
 \begin{enumerate}
@@ -94,6 +95,39 @@ socket.on('finished_execution', function(msg) {
     addBlankLineToTextArea();
 });
 \end{lstlisting}
+\end{enumerate}
+
+\subsection{Modularidad}
+Un punto fuerte de esta implementación de terminal es que puede ejecutar cualquier comando de forma segura con poco trabajo y redirigir su salida estándar a la web. Se pone el ejemplo de la implementación de un botón de apagado de Clúpiter:
+
+\begin{enumerate}
+  \item Se añade el botón, su estilo y su comportamiento.
+  \item En la función onClick se llama con la función \texttt{spawn(event)} al evento que se desea ejecutar:
+\begin{lstlisting}[language=java]
+spawn('poweroff');
+\end{lstlisting}
+  \item El backend recibe el evento y lo procesa con la siguiente sentencia switch, a la que se añade el caso `poweroff':
+\begin{lstlisting}[language=java]
+switch (bench_name) {
+    case 'lu':
+    case 'cg':
+    case 'ft':
+    case 'is':
+    case 'mg':
+    case 'ep':
+        command = 'mpirun';
+        params = ['-np', '32', '--hostfile', '/mpishared/hostfile', '--mca', 'opal_warn_on_missing_libcuda', '0', `/mpishared/NPB3.4.2/NPB3.4-MPI/bin/${bench_name}.*.x`];
+        break;
+
+    case 'poweroff':
+        command = '/usr/local/bin/clupiter_poweroff';
+        params = [];
+        break;
+    
+    // [...]
+}
+\end{lstlisting}
+  \item Finalmente el comando junto con sus argumentos se ejecuta, y la salida estándar se redirige a la interfaz web, como se explica en la sección anterior (\ref{ssec:socket.io_comm}).
 \end{enumerate}
 
 \section{Despliegue}
