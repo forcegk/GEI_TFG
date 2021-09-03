@@ -21,7 +21,7 @@ Una vez la infraestructura se encuentra prácticamente desplegada al completo en
 
 Una vez montado por completo el clúster, se instala ArchLinuxARM en cada uno de los nodos, como se explica previamente en \nameref{sec:configuracion_software}, y se realizan todos los pasos descritos en dicha sección. Este proceso, tal como se comentaba previamente, transcurre sin sorpresas debido a la experiencia previa con las máquinas virtuales, siendo la única diferencia el método de instalación del propio sistema.
 
-Además, durante esta fase se comienza la redacción de la memoria, aprovechando para trasladar las anotaciones y scripts generados en las Fases 2 y 3. Dicha redacción tiene un carácter y lenguaje especializado, únicamente a modo de resumen interno y guía de las partes más importantes. Esto se realiza de esta manera para facilitar la redacción en la Fase 5, así como para no olvidar incluír etapas de la configuración en la memoria.
+Además, durante esta fase se comienza la redacción de la memoria, aprovechando para trasladar las anotaciones y scripts generados en las Fases 2 y 3. Dicha redacción tiene un carácter y lenguaje especializado, únicamente a modo de resumen interno y guía de las partes más importantes. Esto se realiza de esta manera para facilitar la redacción en la Fase 6, así como para no olvidar incluír etapas de la configuración en la memoria.
 
 \subsection{Fase 4: Medida del rendimiento}
 Esta fase también transcurre sin gran cantidad de problemas, puesto que la ejecución de los diversos programas de pruebas, de los cuales se documenta únicamente la de los \acrlong{npb} ya se había realizado previamente en un entorno virtualizado.
@@ -53,21 +53,121 @@ En esta sección se desglosan las tareas en cada fase, se desarrolla un diagrama
 La duración de este proyecto es de casi un año, por lo se puede pensar que se han invertido una enorme cantidad de horas al mismo, pero nada más lejos de la realidad. Durante el curso académico hay escaso tiempo y motivación para dedicarle al \acrshort{tfg}, siendo esta última escasa en una situación de pandemia y teledocencia. Por ello la duración de las tareas en el diagrama de Gantt no se corresponde con el número de h$\times$h (horas por hombre) adjudicadas a las mismas. Esta dilatación temporal en la realización de dichas tareas no es otra cosa que una demora. Además, en lo que no debería ser sorpresa, durante los períodos vacacionales se encuentran concentradas la mayor cantidad de horas de trabajo.
 
 \subsection{Desglose de tareas}
+En la tabla \ref{tab:desglose_de_tareas} se puede ver un desglose de tareas según fase, y su coste en h$\times$h. Además, para poder referenciar las tareas en el texto, se asigna un \acrshort{tid} (\textit{\acrlong{tid}}) a cada una de ellas. 
 \begin{table}[h!]
   \centering
-  \begin{tabular}{ |c|c|c| }
+  \begin{tabular}{ |c|c|c|c| }
   \hline
-  \textbf{Fase} & \textbf{Tarea} & \textbf{Tiempo} \\ 
+  \textbf{Fase} & \textbf{TID} & \textbf{Tarea} & \textbf{Tiempo (h)} \\ 
   \hline
-  cell4 & cell5 & cell6 \\  
-  cell7 & cell8 & cell9 \\
+  % Fase 1
+  \multirow{4}{*}{1}        & 1     & {Reunión inicial y exposición de la propuesta}                            & 2 \\\cline{2-4}
+                            & 2     & {Estudio de proyectos similares y estimación inicial}                     & 8 \\\cline{2-4}
+                            & 3     & {Análisis de requisitos}                                                  & 4 \\\cline{2-4}
+                            & 4     & {Presupuestado}                                                           & 2 \\
+  \hline
+  % Fase 2
+  \multirow{5}{*}{2}        & 5     & {Preparación de la infraestructura virtual}                               & 2 \\\cline{2-4}
+                            & 6     & {Investigación en máquinas virtuales}                                     & 20 \\\cline{2-4}
+                            & 7     & {Diseño orientado a docencia}                                             & 8 \\\cline{2-4}
+                            & 8     & {Diseño general y feedback del dashboard}                                 & 8 \\\cline{2-4}
+                            & 9     & {Diseño estructural del hardware}                                         & 2 \\
+  \hline
+  % Fase 3
+  \multirow{5}{*}{3}        & 10    & {Testeo y puesta a punto del hardware}                                    & 8 \\\cline{2-4}
+                            & 11    & {Cortado, lijado y pintado del chasis}                                    & 2 \\\cline{2-4}
+                            & 12    & {Montaje y solución de problemas}                                         & 16 \\\cline{2-4}
+                            & 13    & {Despliegue del sistema}                                                  & 8 \\\cline{2-4}
+                            & 14    & {Adaptación del sistema y solución de problemas}                          & 4 \\
+  \hline
+  % Fase 4
+  \multirow{3}{*}{4}        & 15    & {Investigación acerca de los NPB}                                         & 4 \\\cline{2-4}
+                            & 16    & {Instalación de los NPB}                                                  & 4 \\\cline{2-4}
+                            & 17    & {Medida del rendimiento y obtención de resultados}                        & 24 \\
+  \hline
+  % Fase 5
+  \multirow{4}{*}{5}        & 18    & {Investigación tecnologías web}                                           & 4 \\\cline{2-4}
+                            & 19    & {Diseño web dashboard}                                                    & 4 \\\cline{2-4}
+                            & 20    & {Prototipado dashboard}                                                   & 20 \\\cline{2-4}
+                            & 21    & {Implementación dashboard}                                                & 8 \\
+  \hline
+  % Fase 6
+  \multirow{3}{*}{6}        & 22    & {Escritura superficial de la memora}                                      & 24 \\\cline{2-4}
+                            & 23    & {Redacción de la memoria}                                                 & 100 \\\cline{2-4}
+                            & 24    & {Maquetado y relacionados}                                                & 8 \\
+  \hline
+  % Fase 7
+  \multirow{2}{*}{7}        & 25    & {Grabación de los vídeos}                                      & 12 \\\cline{2-4}
+                            & 26    & {Traducción y puesta a punto del dashboard}                    & 4 \\
   \hline
   \end{tabular}
   \caption{Desglose de tareas por fase, en h$\times$h}
   \label{tab:desglose_de_tareas}
 \end{table}
 
+Además, en la Figura \ref{fig:diagrama_gantt} se puede observar las relaciones de precedencia de dichas tareas.
 
-
-
-(antes del gantt poner algo rollo: el tipo de las dependencias (fin-fin, fin-comienzo, etc) se puede apreciar en el diagrama a continuación)
+\begin{sidewaysfigure}[htbp]
+    \centering
+    \resizebox{0.85\textwidth}{!}{
+        \centering
+        \begin{ganttchart}[
+            time slot format=isodate,
+            hgrid, vgrid={*{4}{draw=none},dotted},
+            x unit=0.1cm,
+            y unit title=1cm,
+            y unit chart=0.6cm,
+            link/.style={-stealth},
+            bar/.style={fill=black!20,draw=black}
+        ]
+                           {2021-2-1}{2021-07-30}
+            \gantttitlecalendar{year, month=name}\\
+            \ganttgroup{Phase 1}{2021-2-2}{2021-2-19}\\
+            \ganttbar[name=a]{Task a}{2021-2-2}{2021-2-19}\\
+            \ganttbar[name=b]{Task b}{2021-2-12}{2021-2-19}\\
+            
+            \ganttgroup{Phase 2}{2021-2-20}{2021-5-2}\\
+            \ganttbar[name=c]{Task c}{2021-2-20}{2021-3-6}\\
+            \ganttbar[name=d]{Task d}{2021-3-7}{2021-3-18}\\
+            \ganttbar[name=e]{Task e}{2021-3-19}{2021-4-2}\\
+            \ganttbar[name=f]{Task f}{2021-4-3}{2021-4-17}\\
+            \ganttbar[name=g]{Task g}{2021-4-18}{2021-5-2}\\
+            
+            \ganttgroup{Phase 3}{2021-3-27}{2021-6-19}\\
+            \ganttbar[name=h]{Task h}{2021-3-27}{2021-4-2}\\
+            \ganttbar[name=i]{Task i}{2021-3-27}{2021-4-2}\\
+            \ganttbar[name=j]{Task j}{2021-4-3}{2021-5-2}\\
+            \ganttbar[name=k]{Task k}{2021-5-3}{2021-6-19}\\
+            
+            \ganttgroup{Phase 4}{2021-2-23}{2021-7-29}\\
+            \ganttbar[name=l]{Task l}{2021-2-23}{2021-4-2}\\
+            \ganttbar[name=m]{Task m}{2021-4-6}{2021-5-2}\\
+            \ganttbar[name=n]{Task n}{2021-6-1}{2021-6-19}\\
+            \ganttbar[name=o]{Task o}{2021-6-20}{2021-7-29}\\
+            
+            \ganttlink[link type=F-S]{a}{c}
+            \ganttlink[link type=F-S]{c}{d}
+            \ganttlink[link type=F-S]{d}{e}
+            \ganttlink[link type=F-S]{f}{g}
+            \ganttlink[link type=F-S]{i}{j}
+            \ganttlink[link type=F-S]{h}{k}
+            \ganttlink[link type=F-S]{j}{k}
+            
+            \ganttlink[link type=S-S]{a}{b}
+            \ganttlink[link type=S-S]{c}{l}
+            \ganttlink[link type=S-S]{f}{m}
+            \ganttlink[link type=S-S]{k}{n}
+            \ganttlink[link type=S-S]{e}{h}
+            \ganttlink[link type=S-S]{e}{i}
+            
+            \ganttlink[link type=F-F]{e}{l}
+            \ganttlink[link type=F-F]{g}{m}
+            \ganttlink[link type=F-F]{k}{n}
+            \ganttlink[link type=F_F]{l}{o}
+            \ganttlink[link type=F_F]{m}{o}
+            \ganttlink[link type=F_F]{n}{o}
+        \end{ganttchart}
+    }
+    \caption{Diagrama de Gantt del desarrollo de Clúpiter}
+    \label{fig:diagrama_gantt}
+\end{sidewaysfigure}

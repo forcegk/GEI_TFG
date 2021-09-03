@@ -38,6 +38,36 @@
 
 \usepackage[scale=MatchLowercase]{sourcecodepro}
 \usepackage{pgfplots}
+\usepackage{pgfgantt}
+\newganttlinktype{F-S}{
+  \ganttsetstartanchor{east}
+  \ganttsetendanchor{west}
+  \draw [/pgfgantt/link] (\xLeft - 0.2,\yUpper) -- (\xRight + 0.2, \yLower);
+}
+
+\newganttlinktype{S-S}{
+  \ganttsetstartanchor{west}
+  \ganttsetendanchor{west}
+  \draw [/pgfgantt/link] (\xLeft + 0.2,\yUpper) |- (\xRight, \yLower);
+}
+
+\newganttlinktype{F-F}{
+  \ganttsetstartanchor{east}
+  \ganttsetendanchor{east}
+  \draw [/pgfgantt/link] (\xLeft - 0.2 ,\yUpper) -- (\xRight - 0.2, \yLower);
+}
+
+\newganttlinktype{F_F}{
+  \ganttsetstartanchor{east}
+  \ganttsetendanchor{east}
+  \draw [/pgfgantt/link] (\xLeft - 0.2 ,\yUpper) -| (\xRight - 0.2, \yLower);
+}
+
+\newganttlinktype{F-S}{
+  \ganttsetstartanchor{east}
+  \ganttsetendanchor{west}
+  \draw [/pgfgantt/link] (\xLeft - 0.2,\yUpper) -| (\xRight + 0.2, \yLower);
+}
 \usepackage{pgfplotstable}
 \pgfplotsset{compat = newest}
 \usepackage{wrapfig}
