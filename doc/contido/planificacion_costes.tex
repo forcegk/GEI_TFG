@@ -1,59 +1,60 @@
 \chapter{Planificación y costes}
 \label{chap:planificacion_costes}
 
-\lettrine{E}{n} este penúltimo capítulo de la memoria se muestra una planificación detallada de la organización del proyecto, detalles acerca del método de trabajo, una lista de tareas, posteriormente ordenadas en un diagrama de Gantt, y un cálculo aproximado del coste humano del proyecto en función de número de horas invertidas en dichas tareas. 
+\lettrine{E}{n} este penúltimo capítulo de la memoria se muestra una planificación detallada de la organización del proyecto, detalles acerca del método de trabajo, una lista de tareas, posteriormente ordenadas en un diagrama de Gantt, y un cálculo aproximado del coste del proyecto teniendo en cuenta el número de horas invertidas en las tareas desarrolladas, así como el coste de los elementos hardware adquiridos.
 
 \section{Planificación del proyecto}
-Durante el proceso de desarrollo de Clúpiter se ha seguido un modelo principalente incremental. Las principales fases del proyecto se pueden dividir en las expuestas a continuación. Debe tenerse en cuenta que varias fases pueden solaparse debido a que la implementación hardware puede ir a un ritmo diferente a la software.
+Durante el proceso de desarrollo de Clúpiter se ha seguido un modelo principalmente incremental. Las principales fases del proyecto se pueden dividir en las expuestas a continuación. Debe tenerse en cuenta que varias fases pueden solaparse debido a que la implementación hardware puede ir a un ritmo diferente a la software.
 
-\subsection{Fase 1: Aproximación inicial}
-En primer lugar se transmitió la necesidad por parte de la universidad de un proyecto orientado a docencia relacionado con la supercomputación, y un conjunto de ideas a realizar. Dichas ideas fueron combinadas en lo que ahora mismo es Clúpiter, altamente influenciadas por la coyuntura sanitaria causada por el COVID-19.
+Salta a la vista la dilatación temporal de este \acrshort{tfg}, y es que la dedicación al mismo es superior en períodos vacacionales, e inferior durante el curso universitario, por evidentes razones. Además, en el agregado de los períodos vacacionales, se suman un total de cuatro semanas de descanso en las que no se ha trabajado en el proyecto. 
+
+El sistema de comunicación con los directores del trabajo ha sido a través de Microsoft Teams. Las preguntas, dudas, aclaraciones, así como la corrección y comentarios de los diferentes capítulos de esta memoria han sido resueltos de forma principalmente asíncrona.
+
+\subsection{Fase 1: Estudio de requisitos y compra de material}
+En primer lugar se transmitió la necesidad por parte delos directores del trabajo de un proyecto orientado a docencia relacionado con la supercomputación, y un conjunto de ideas a realizar. Dichas ideas fueron combinadas en lo que ahora mismo es Clúpiter, altamente influenciadas por la coyuntura sanitaria causada por el COVID-19.
 
 Tras esta aproximación inicial se elabora el presupuesto del clúster con vistas a la siguiente fase, y se procede a la compra del mismo. Como el tiempo de espera ante una compra por parte de la universidad es moderado, se comienza con la siguiente fase.
 
 \subsection{Fase 2: Codiseño hardware/software}
-Esta fase se puede dividir en dos disciplinas separadas y evientes, diseño hardware y diseño software. El diseño software es el primero en comenzar, realizándose la instalación del sistema Arch Linux en 4 máquinas virtuales que permitan ir testeando y scripteando todo lo requerido, eliminando las sorpresas a la hora de trabajar en infraestructura real. Simultáneamente se diseña un primer prototipo de la aplicación de monitorización en Python con la librería gráfica GTK y Matplotlib (pyplot), pero finalmente se optó por no continuar con su desarrollo en favor de una variante basada en tecnologías web.
+Esta fase se puede dividir en dos disciplinas separadas, diseño hardware y diseño software. El diseño software es el primero en comenzar, realizándose la instalación del sistema Arch Linux en 4 máquinas virtuales que permitan ir testeando y scripteando todo lo requerido, eliminando las sorpresas a la hora de trabajar en infraestructura real.
 
-Casi de forma simultánea pero ligeramente más tarde se comienza a diseñar en grano fino la estructura física de Clúpiter, realizando planos con medidas exactas, y renders del mismo.
+Casi de forma simultánea, pero ligeramente más tarde, se comienza a diseñar en grano fino la estructura física de Clúpiter, realizando planos con medidas exactas, y renders del mismo.
 
 \subsection{Fase 3: Implementación hardware/software}
 Una vez la infraestructura se encuentra prácticamente desplegada al completo en máquinas virtuales, se comienza con el montaje de Clúpiter. Primero se comprueba la calidad de todos los componentes hardware. Tras ello se cortan las planchas de chapa que unen las diferentes secciones verticales del clúster, y finalmente se realiza el ensamblaje final y corte del cableado a medida, tal y como se comenta en \nameref{sec:configuracion_hardware}.
 
 Una vez montado por completo el clúster, se instala ArchLinuxARM en cada uno de los nodos, como se explica previamente en \nameref{sec:configuracion_software}, y se realizan todos los pasos descritos en dicha sección. Este proceso, tal como se comentaba previamente, transcurre sin sorpresas debido a la experiencia previa con las máquinas virtuales, siendo la única diferencia el método de instalación del propio sistema.
 
-Además, durante esta fase se comienza la redacción de la memoria, aprovechando para trasladar las anotaciones y scripts generados en las Fases 2 y 3. Dicha redacción tiene un carácter y lenguaje especializado, únicamente a modo de resumen interno y guía de las partes más importantes. Esto se realiza de esta manera para facilitar la redacción en la Fase 6, así como para no olvidar incluír etapas de la configuración en la memoria.
-
 \subsection{Fase 4: Medida del rendimiento}
-Esta fase también transcurre sin gran cantidad de problemas, puesto que la ejecución de los diversos programas de pruebas, de los cuales se documenta únicamente la de los \acrlong{npb} ya se había realizado previamente en un entorno virtualizado.
+En un principio se ejecutan los \acrlong{npb} sobre la infraestructura virtual, por lo que gran parte del camino ya está allanado para la implementación en el hardware final. Por esta razón esta fase también transcurre sin gran cantidad de problemas. Estos pocos problemas que se encontraron, estaban relacionados con limitaciones de espacio en memoria, que se solucionaron bajando la clase del problema, como se discute en el Capítulo \ref{chap:medida_rendimiento}.
 
-El único problema que se ha encontrado, pero que no ha sido de mayor relevancia, ha sido la ejecución de la Phoronix Test Suite. En un principio se querían ejecutar varios benchmarks de dicha suite, pero por complicaciones debido a la arquitectura de Clúpiter, y debido a que realmente la ejecución de dichos benchmarks no aportaba nada especial que no aportasen ya los \acrshort{npb}, se decidió no incluirlos. 
+Para la recolección de datos se programa un script con el que llevar a cabo múltiples ejecuciones de los benchmarks de forma automatizada (las cuales consumen un tiempo importante), y almacenar la salida por pantalla de los mismos. Al terminar se ordenan, procesan e interpretan.
 
 \subsection{Fase 5: Desarrollo del dashboard}
-El desarrollo del dashboard ha sido uno de los puntos más difíciles desde el punto de vista del diseño, ya que no es tan sencillo como pueda parecer el pensar cómo se va a explicar a una persona sin grandes conocimientos de informática, cómo funciona un clúster, y por qué es importante. Al final, y tras bastante prototipado y consultas con personas que podrían ser el objetivo de dichas explicaciones, se ha optado por el diseño del dashboard discutido en el Capítulo \ref{chap:aplicacion_web}.
+El desarrollo del dashboard ha sido uno de los puntos más difíciles desde el punto de vista del diseño, ya que no es tan sencillo como pueda parecer el pensar cómo se va a explicar a una persona sin grandes conocimientos de informática, cómo funciona un clúster, y por qué es importante.
 
-\subsection{Fase 6: Documentación y escritura de la memoria}
-Finalmente, y tras ya tener la memoria comenzada a lo largo de las fases anteriores, se procede a darle estructura, esto es:
+Inicialmente se diseña un primer prototipo de la aplicación de monitorización en Python con la librería gráfica GTK y Matplotlib (pyplot), pero, tras recibir el \textit{feedback} de personas cercanas al desarrollo web, finalmente se opta por no continuar con su desarrollo en favor de una variante basada en tecnologías web.
+
+Al final, tras bastante prototipado y consultas con personas inexpertas, que podrían ser el objetivo de dichas explicaciones, se ha optado por el diseño del dashboard discutido en el Capítulo \ref{chap:aplicacion_web}.
+
+\subsection{Fase 6: Documentación, redacción y retoques}
+La documentación y escritura de la memoria se inicia casi desde el principio del proyecto, ya que, a medida que se va avanzando en el mismo, se van tomando anotaciones que faciliten su posterior escritura, así como para servir de recordatorio de los pasos dados. Una vez finalizado el proyecto, se procede a darle estructura a todas esas anotaciones, esto es:
 \begin{itemize}
-    \item Añadir \textbf{``literatura''}, es decir, cohesionar todo el texto, y explicar de forma más correcta las anotaciones realizadas durante el proceso de desarrollo
+    \item Añadir \textbf{``literatura''}, es decir, cohesionar todo el texto, y explicar de forma más correcta las anotaciones realizadas durante el proceso de desarrollo.
     \item Añadir \textbf{citas} a páginas web y artículos que se leyeron en su momento y fueron consecuentemente guardados en el archivo de bibliografía, así como \textbf{buscar artículos} que sustenten afirmaciones basadas en la experiencia.
     \item \textbf{Crear figuras} explicativas, así como ordenar las múltiples fotografías tomadas a lo largo del proyecto.
-    \item \textbf{Guionizar} y \textbf{preparar} los \textbf{vídeos} a incluír en el dashboard
+    \item \textbf{Guionizar} y \textbf{preparar} los \textbf{vídeos} a incluír en el dashboard.
 \end{itemize}
 
-El sistema de comunicación con los profesores ha sido a través de Microsoft Teams. Las preguntas, dudas y aclaraciones, así como la corrección y comentarios de los diferentes capítulos de esta memoria han sido resueltos de forma asíncrona.
-
-\subsection{Fase 7: Retoques finales}
-En esta fase, siendo con diferencia la más breve de todas, se realizan los últimos retoques y revisiones en la memoria, se termina de refinar el dashboard (por ejemplo, traduciendo todo al castellano), y se graban los vídeos que van en el mismo.
-
+Al finalizar la redacción de la memoria se realizan los últimos retoques y revisiones en la misma, se termina de refinar el dashboard (por ejemplo, traduciendo todo al castellano), y se graban los vídeos que van insertados en el mismo.
 
 \section{Métricas del proyecto}
-En esta sección se desglosan las tareas en cada fase, se desarrolla un diagrama de Gantt y, apoyándose en éste, se realiza un cálculo teórico del coste humano.
-
-\subsection{Duración}
-La duración de este proyecto es de casi un año, por lo se puede pensar que se han invertido una enorme cantidad de horas al mismo, pero nada más lejos de la realidad. Durante el curso académico hay escaso tiempo y motivación para dedicarle al \acrshort{tfg}, siendo esta última escasa en una situación de pandemia y teledocencia. Por ello la duración de las tareas en el diagrama de Gantt no se corresponde con el número de h$\times$h (horas por hombre) adjudicadas a las mismas. Esta dilatación temporal en la realización de dichas tareas no es otra cosa que una demora. Además, en lo que no debería ser sorpresa, durante los períodos vacacionales se encuentran concentradas la mayor cantidad de horas de trabajo.
+En esta sección se desglosan las tareas en cada fase, se desarrolla un diagrama de Gantt y se realiza un cálculo teórico del coste total del proyecto.
 
 \subsection{Desglose de tareas}
-En el Cuadro \ref{tab:desglose_de_tareas} se puede ver un desglose de tareas según fase, y su coste en h$\times$h. Además, para poder referenciar las tareas en el texto, se asigna un \acrshort{tid} (\textit{\acrlong{tid}}) a cada una de ellas. 
+En esta sección se detallan las principales tareas que han sido llevadas a cabo en cada una de estas fases y su coste final en horas. El proyecto está programado para ser ejecutado en alrededor de 300 horas (12 créditos ECTS), distribuídas entre las fases previamente comentadas.
+
+En el Cuadro \ref{tab:desglose_de_tareas} se puede ver el desglose de tareas y su coste en h$\times$h. Además, para poder referenciar las tareas en el texto, se asigna un \acrshort{tid} (\textit{\acrlong{tid}}) alfanumérico a cada una de ellas. 
 \begin{table}[htpb]
   \centering
   \begin{tabular}{ |c|c|c|c| }
@@ -61,53 +62,51 @@ En el Cuadro \ref{tab:desglose_de_tareas} se puede ver un desglose de tareas seg
   \textbf{Fase} & \textbf{TID} & \textbf{Tarea} & \textbf{Tiempo (h)} \\ 
   \hline
   % Fase 1
-  \multirow{4}{*}{1}        & 1     & {Reunión inicial y exposición de la propuesta}                            & 2 \\\cline{2-4}
-                            & 2     & {Estudio de proyectos similares y estimación inicial}                     & 8 \\\cline{2-4}
-                            & 3     & {Análisis de requisitos}                                                  & 8 \\\cline{2-4}
-                            & 4     & {Presupuestado}                                                           & 2 \\
+  \multirow{4}{*}{1}        & a     & {Reunión inicial y exposición de la propuesta}                            & 2 \\\cline{2-4}
+                            & b     & {Estudio de proyectos similares y estimación inicial}                     & 8 \\\cline{2-4}
+                            & c     & {Análisis de requisitos}                                                  & 8 \\\cline{2-4}
+                            & d     & {Presupuestado}                                                           & 2 \\
   \hline
   % Fase 2
-  \multirow{5}{*}{2}        & 5     & {Preparación de la infraestructura virtual}                               & 2 \\\cline{2-4}
-                            & 6     & {Investigación en máquinas virtuales}                                     & 20 \\\cline{2-4}
-                            & 7     & {Diseño orientado a docencia}                                             & 8 \\\cline{2-4}
-                            & 8     & {Diseño general y feedback del dashboard}                                 & 8 \\\cline{2-4}
-                            & 9     & {Diseño estructural del hardware}                                         & 2 \\
+  \multirow{3}{*}{2}        & e     & {Preparación de la infraestructura virtual}                               & 2 \\\cline{2-4}
+                            & f     & {Investigación en máquinas virtuales}                                     & 20 \\\cline{2-4}
+                            & h     & {Diseño estructural del hardware}                                         & 6 \\
   \hline
   % Fase 3
-  \multirow{5}{*}{3}        & 10    & {Testeo y puesta a punto del hardware}                                    & 8 \\\cline{2-4}
-                            & 11    & {Cortado, lijado y pintado del chasis}                                    & 2 \\\cline{2-4}
-                            & 12    & {Montaje y solución de problemas}                                         & 16 \\\cline{2-4}
-                            & 13    & {Despliegue del sistema}                                                  & 8 \\\cline{2-4}
-                            & 14    & {Adaptación del sistema y solución de problemas}                          & 4 \\
+  \multirow{5}{*}{3}        & i     & {Testeo y puesta a punto del hardware}                                     & 8 \\\cline{2-4}
+                            & j     & {Cortado, lijado y pintado del chasis}                                    & 3 \\\cline{2-4}
+                            & k     & {Montaje y solución de problemas}                                         & 16 \\\cline{2-4}
+                            & l     & {Despliegue del sistema}                                                  & 16 \\\cline{2-4}
+                            & m     & {Adaptación del sistema y solución de problemas}                          & 6 \\
   \hline
   % Fase 4
-  \multirow{3}{*}{4}        & 15    & {Investigación acerca de los NPB}                                         & 4 \\\cline{2-4}
-                            & 16    & {Instalación de los NPB}                                                  & 4 \\\cline{2-4}
-                            & 17    & {Medida del rendimiento y obtención de resultados}                        & 24 \\
+  \multirow{3}{*}{4}        & n     & {Investigación y prueba de los NPB}                                       & 8 \\\cline{2-4}
+                            & o     & {Instalación de los NPB}                                                  & 4 \\\cline{2-4}
+                            & p     & {Medida del rendimiento y obtención de resultados}                        & 24 \\
   \hline
   % Fase 5
-  \multirow{4}{*}{5}        & 18    & {Investigación tecnologías web}                                           & 4 \\\cline{2-4}
-                            & 19    & {Diseño web dashboard}                                                    & 4 \\\cline{2-4}
-                            & 20    & {Prototipado dashboard}                                                   & 20 \\\cline{2-4}
-                            & 21    & {Implementación dashboard}                                                & 8 \\
+  \multirow{3}{*}{5}        & g     & {Diseño general y primeros prototipos en papel}                           & 18 \\\cline{2-4}
+                            & q     & {Investigación tecnologías web}                                           & 4 \\\cline{2-4}
+                            & r     & {Diseño e implementación dashboard}                                       & 30 \\
   \hline
   % Fase 6
-  \multirow{3}{*}{6}        & 22    & {Escritura superficial de la memora}                                      & 24 \\\cline{2-4}
-                            & 23    & {Redacción de la memoria}                                                 & 100 \\\cline{2-4}
-                            & 24    & {Maquetado y relacionados}                                                & 8 \\
-  \hline
-  % Fase 7
-  \multirow{2}{*}{7}        & 25    & {Grabación de los vídeos}                                      & 12 \\\cline{2-4}
-                            & 26    & {Traducción y puesta a punto del dashboard}                    & 4 \\
+  \multirow{4}{*}{6}        & s     & {Redacción de la memoria}                                                 & 100 \\\cline{2-4}
+                            & t     & {Maquetado y relacionados}                                                & 12 \\\cline{2-4}
+                            & u     & {Grabación de los vídeos}                                                 & 12 \\\cline{2-4}
+                            & v     & {Traducción y puesta a punto del dashboard}                               & 4 \\
+  \hhline{|=|=|=|=|}
+  \multicolumn{3}{|c|}{\textbf{Total}}                                                                          & \textbf{313}\\
   \hline
   \end{tabular}
-  \caption{Desglose de tareas por fase, en h$\times$h}
+  \caption{Desglose de tareas por fase y coste en h$\times$h}
   \label{tab:desglose_de_tareas}
 \end{table}
 
-Además, en la Figura \ref{fig:diagrama_gantt} se puede observar las relaciones de precedencia de dichas tareas.
+\subsection{Diagrama de Gantt}
+La duración de este proyecto ha sido de poco más de un año natural, debido a que la dedicación en horas/semana ha sido bastante variable. Durante el curso académico hay escaso tiempo y motivación para dedicarle al \acrshort{tfg}, siendo esta última escasa en una situación de pandemia y teledocencia. Por otro lado, durante los períodos vacacionales es donde se encuentran concentradas la mayor cantidad de horas de trabajo. Por ello, la longitud de las tareas en el diagrama de Gantt no es proporcional al número de h$\times$h (horas por hombre) adjudicadas a las mismas si se asumiese una jornada de trabajo estable.
 
-%\begin{sidewaysfigure}[htbp]
+La Figura \ref{fig:diagrama_gantt} muestra el diagrama de Gantt, que ilustra cómo se desarrolló el proyecto en el tiempo y las relaciones de predecencia entre tareas.
+
 \begin{landscape}
 \begin{figure}
     \centering
@@ -115,83 +114,136 @@ Además, en la Figura \ref{fig:diagrama_gantt} se puede observar las relaciones 
         \centering
         \begin{ganttchart}[
             time slot format=isodate,
-            hgrid, vgrid={*{4}{draw=none},dotted},
-            x unit=0.1cm,
+            hgrid, vgrid={*{7}{draw=none},dotted},
+            x unit=0.09cm,
             y unit title=1cm,
-            y unit chart=0.6cm,
+            y unit chart=0.7cm,
+            title/.append style={shape=rectangle, fill=black!10},
+            title height=1,
             link/.append style={-stealth,draw=black},
             group/.append style={fill=ficblue},
-            bar/.append style={fill=udcpink!35,draw=udcpink}
-        ] {2020-8-12}{2021-09-15}
-            \gantttitlecalendar{year, month=name}\\
+            bar/.append style={fill=udcpink!35,draw=udcpink},
+            milestone/.append style={fill=ficblue!35,draw=ficblue,xscale=4}
+        ] {2020-8-12}{2021-09-21}
+            \gantttitlecalendar{year}\\
+            \gantttitlecalendar{month=name}\\
             % Aquí cambio junio por agosto, ya que es poco relevante dejar un mes y medio en blanco porque estuve de vacaciones fuera
-            \ganttgroup{Fase 1}{2020-8-15}{2021-2-19}\\
+            \ganttgroup{Fase 1}{2020-8-15}{2020-8-25}\\
             % reunion
-            \ganttbar[name=1]{Tarea 1}{2020-8-15}{2020-8-15}\\
+            \ganttbar[name=a]{Tarea a}{2020-8-15}{2020-8-15}\\
             % estudio de proyectos similares
-            \ganttbar[name=2]{Tarea 2}{2020-8-16}{2020-8-21}\\
+            \ganttbar[name=b]{Tarea b}{2020-8-16}{2020-8-21}\\
             % analisis de requisitos
-            \ganttbar[name=3]{Tarea 3}{2020-8-22}{2020-8-24}\\
+            \ganttbar[name=c]{Tarea c}{2020-8-22}{2020-8-24}\\
             % presupuestado
-            \ganttbar[name=4]{Tarea 4}{2020-8-25}{2020-8-25}\\
+            \ganttbar[name=d]{Tarea d}{2020-8-25}{2020-8-25}\\
 
+            \ganttgroup{Fase 2}{2020-8-30}{2020-10-1}\\
             % preparación vm
-            \ganttbar[name=5]{Tarea 5}{2020-8-30}{2020-9-1}\\
+            \ganttbar[name=e]{Tarea e}{2020-8-30}{2020-9-1}\\
             % investigación en vm
-            \ganttbar[name=6]{Tarea 6}{2020-9-2}{2020-9-15}\\
+            \ganttbar[name=f]{Tarea f}{2020-9-2}{2020-9-15}\\
+            % diseño estructural del hardware
+            \ganttbar[name=h]{Tarea h}{2020-9-25}{2020-10-1}\\
+
+
+            % HITO recepción material
+            \ganttmilestone[name=rec_material]{Recepción del material}{2020-10-6}\\
+
+
+            \ganttgroup{Fase 3}{2020-11-5}{2021-6-26}\\
+            % testeo y puesta a punto del hardware
+            \ganttbar[name=i]{Tarea i}{2020-11-5}{2020-11-7}\\
+            % cortado, lijado y pintado del chasis
+            \ganttbar[name=j]{Tarea j}{2020-11-8}{2020-11-8}\\
+            % montaje y solución de problemas
+            \ganttbar[name=k]{Tarea k}{2021-1-3}{2021-1-10}\\
+            % despliegue del sistema
+            \ganttbar[name=l]{Tarea l}{2021-6-21}{2021-6-23}\\
+            % adaptación del sistema
+            \ganttbar[name=m]{Tarea m}{2021-6-24}{2021-6-26}\\
+
+
+            \ganttgroup{Fase 4}{2021-4-25}{2021-7-15}\\
+            % investigación acerca de los npb
+            \ganttbar[name=n]{Tarea n}{2021-4-25}{2021-5-10}\\
+            % instalación de los npb
+            \ganttbar[name=o]{Tarea o}{2021-6-29}{2021-7-2}\\
+            % medida del rendimiento y obtención de resultados
+            \ganttbar[name=p]{Tarea p}{2021-7-4}{2021-7-15}\\
+
+            \ganttgroup{Fase 5}{2020-9-10}{2021-7-18}\\
+            % diseño general y primeros prototipos
+            \ganttbar[name=g]{Tarea g}{2020-9-10}{2020-10-15}\\
+            % investigación tecnologías web
+            \ganttbar[name=q]{Tarea q}{2021-7-3}{2021-7-4}\\
+            % diseño e implementación dashboard
+            \ganttbar[name=r]{Tarea r}{2021-7-5}{2021-7-18}\\
+
+            \ganttgroup{Fase 6}{2021-6-18}{2021-9-11}\\
+            % redacción de la memoria
+            \ganttbar[name=s]{Tarea s}{2021-6-18}{2021-9-5}\\
+            % maquetado y relacionados
+            \ganttbar[name=t]{Tarea t}{2021-9-6}{2021-9-11}\\
+            % grabación de los vídeos
+            \ganttbar[name=u]{Tarea u}{2021-9-8}{2021-9-10}\\
+            % traducción y puesta a punto del dashboard
+            \ganttbar[name=v]{Tarea v}{2021-9-9}{2021-9-11}\\
+
 
             
-            \ganttgroup{Phase 2}{2021-2-20}{2021-5-2}\\
-            \ganttbar[name=c]{Task c}{2021-2-20}{2021-3-6}\\
-            \ganttbar[name=d]{Task d}{2021-3-7}{2021-3-18}\\
-            \ganttbar[name=e]{Task e}{2021-3-19}{2021-4-2}\\
-            \ganttbar[name=f]{Task f}{2021-4-3}{2021-4-17}\\
-            \ganttbar[name=g]{Task g}{2021-4-18}{2021-5-2}\\
-            
-            \ganttgroup{Phase 3}{2021-3-27}{2021-6-19}\\
-            \ganttbar[name=h]{Task h}{2021-3-27}{2021-4-2}\\
-            \ganttbar[name=i]{Task i}{2021-3-27}{2021-4-2}\\
-            \ganttbar[name=j]{Task j}{2021-4-3}{2021-5-2}\\
-            \ganttbar[name=k]{Task k}{2021-5-3}{2021-6-19}\\
-            
-            \ganttgroup{Phase 4}{2021-2-23}{2021-7-29}\\
-            \ganttbar[name=l]{Task l}{2021-2-23}{2021-4-2}\\
-            \ganttbar[name=m]{Task m}{2021-4-6}{2021-5-2}\\
-            \ganttbar[name=n]{Task n}{2021-6-1}{2021-6-19}\\
-            \ganttbar[name=o]{Task o}{2021-6-20}{2021-7-29}\\
-            
-            \ganttlink[link type=F-S]{1}{2}
-            \ganttlink[link type=F-S]{2}{3}
-            \ganttlink[link type=F-S]{3}{4}
+            % GANTTLINKS
 
-            \ganttlink[link type=F-S]{3}{5}
-            \ganttlink[link type=F-S]{5}{6}
+            \ganttlink[link type=F-S]{a}{b}
+            \ganttlink[link type=F-S]{b}{c}
+            \ganttlink[link type=F-S]{c}{d}
 
-            %\ganttlink[link type=F-S]{1}{c}
-            %\ganttlink[link type=F-S]{c}{d}
-            %\ganttlink[link type=F-S]{d}{e}
-            %\ganttlink[link type=F-S]{f}{g}
-            %\ganttlink[link type=F-S]{i}{j}
-            %\ganttlink[link type=F-S]{h}{k}
-            %\ganttlink[link type=F-S]{j}{k}
-            %
-            %\ganttlink[link type=S-S]{1}{b}
-            %\ganttlink[link type=S-S]{c}{l}
-            %\ganttlink[link type=S-S]{f}{m}
-            %\ganttlink[link type=S-S]{k}{n}
-            %\ganttlink[link type=S-S]{e}{h}
-            %\ganttlink[link type=S-S]{e}{i}
-            %
-            %\ganttlink[link type=F-F]{e}{l}
-            %\ganttlink[link type=F-F]{g}{m}
-            %\ganttlink[link type=F-F]{k}{n}
-            %\ganttlink[link type=F-F]{l}{o}
-            %\ganttlink[link type=F-F]{m}{o}
-            %\ganttlink[link type=F-F]{n}{o}
+            \ganttlink[link type=F-S]{c}{e}
+            \ganttlink[link type=F-S]{e}{f}
+            \ganttlink[link type=F-S]{e}{n}
+            \ganttlink[link type=F-S]{f}{l}
+
+            \ganttlink[link type=F-S]{c}{g}
+            \ganttlink[link type=F-S]{h}{rec_material}
+
+            \ganttlink[link type=F_S]{d}{h}
+
+            \ganttlink[link type=F-S]{d}{rec_material}
+
+            \ganttlink[link type=F-S]{rec_material}{i}
+            \ganttlink[link type=F-S]{rec_material}{j}
+
+            \ganttlink[link type=F-S]{i}{k}
+            \ganttlink[link type=F-S]{j}{k}
+
+            \ganttlink[link type=F-S]{k}{l}
+            \ganttlink[link type=F-S]{l}{m}
+
+            \ganttlink[link type=F_S]{m}{o}
+            \ganttlink[link type=F_S]{m}{r}
+
+
+            \ganttlink[link type=F-S]{n}{o}
+            \ganttlink[link type=F-S]{o}{p}
+
+
+            \ganttlink[link type=F-S]{g}{q}
+            \ganttlink[link type=F-S]{q}{r}
+
+
+            \ganttlink[link type=F-S]{s}{t}
+
+            \ganttlink[link type=S-S]{u}{v}
+            \ganttlink[link type=F-S]{s}{u}
+
+
+            \ganttlink[link type=F-F]{p}{s}
+            \ganttlink[link type=F-F]{r}{s}
+            \ganttlink[link type=F-F]{v}{t}
+            \ganttlink[link type=F-F]{u}{v}
         \end{ganttchart}
     }
     \caption{Diagrama de Gantt del desarrollo de Clúpiter}
     \label{fig:diagrama_gantt}
-%\end{sidewaysfigure}
 \end{figure}
 \end{landscape}
