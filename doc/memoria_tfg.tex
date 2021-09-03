@@ -46,6 +46,12 @@
   \draw [/pgfgantt/link] (\xLeft - 0.2,\yUpper) -- (\xRight + 0.2, \yLower);
 }
 
+\newganttlinktype{F_S}{
+  \ganttsetstartanchor{east}
+  \ganttsetendanchor{west}
+  \draw [/pgfgantt/link] (\xLeft - 0.2,\yUpper) |- (\xRight + 0.2, \yLower);
+}
+
 \newganttlinktype{S-S}{
   \ganttsetstartanchor{west}
   \ganttsetendanchor{west}

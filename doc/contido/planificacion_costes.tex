@@ -63,7 +63,7 @@ En el Cuadro \ref{tab:desglose_de_tareas} se puede ver un desglose de tareas seg
   % Fase 1
   \multirow{4}{*}{1}        & 1     & {Reunión inicial y exposición de la propuesta}                            & 2 \\\cline{2-4}
                             & 2     & {Estudio de proyectos similares y estimación inicial}                     & 8 \\\cline{2-4}
-                            & 3     & {Análisis de requisitos}                                                  & 4 \\\cline{2-4}
+                            & 3     & {Análisis de requisitos}                                                  & 8 \\\cline{2-4}
                             & 4     & {Presupuestado}                                                           & 2 \\
   \hline
   % Fase 2
@@ -122,11 +122,24 @@ Además, en la Figura \ref{fig:diagrama_gantt} se puede observar las relaciones 
             link/.append style={-stealth,draw=black},
             group/.append style={fill=ficblue},
             bar/.append style={fill=udcpink!35,draw=udcpink}
-        ] {2020-6-12}{2021-09-15}
+        ] {2020-8-12}{2021-09-15}
             \gantttitlecalendar{year, month=name}\\
-            \ganttgroup{Fase 1}{2020-6-15}{2021-2-19}\\
-            \ganttbar[name=1]{Tarea 1}{2020-6-15}{2020-6-15}\\
-            \ganttbar[name=2]{Tarea 2}{2020-6-16}{2020-6-20}\\
+            % Aquí cambio junio por agosto, ya que es poco relevante dejar un mes y medio en blanco porque estuve de vacaciones fuera
+            \ganttgroup{Fase 1}{2020-8-15}{2021-2-19}\\
+            % reunion
+            \ganttbar[name=1]{Tarea 1}{2020-8-15}{2020-8-15}\\
+            % estudio de proyectos similares
+            \ganttbar[name=2]{Tarea 2}{2020-8-16}{2020-8-21}\\
+            % analisis de requisitos
+            \ganttbar[name=3]{Tarea 3}{2020-8-22}{2020-8-24}\\
+            % presupuestado
+            \ganttbar[name=4]{Tarea 4}{2020-8-25}{2020-8-25}\\
+
+            % preparación vm
+            \ganttbar[name=5]{Tarea 5}{2020-8-30}{2020-9-1}\\
+            % investigación en vm
+            \ganttbar[name=6]{Tarea 6}{2020-9-2}{2020-9-15}\\
+
             
             \ganttgroup{Phase 2}{2021-2-20}{2021-5-2}\\
             \ganttbar[name=c]{Task c}{2021-2-20}{2021-3-6}\\
@@ -148,6 +161,11 @@ Además, en la Figura \ref{fig:diagrama_gantt} se puede observar las relaciones 
             \ganttbar[name=o]{Task o}{2021-6-20}{2021-7-29}\\
             
             \ganttlink[link type=F-S]{1}{2}
+            \ganttlink[link type=F-S]{2}{3}
+            \ganttlink[link type=F-S]{3}{4}
+
+            \ganttlink[link type=F-S]{3}{5}
+            \ganttlink[link type=F-S]{5}{6}
 
             %\ganttlink[link type=F-S]{1}{c}
             %\ganttlink[link type=F-S]{c}{d}
