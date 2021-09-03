@@ -107,9 +107,11 @@ En el Cuadro \ref{tab:desglose_de_tareas} se puede ver un desglose de tareas seg
 
 Además, en la Figura \ref{fig:diagrama_gantt} se puede observar las relaciones de precedencia de dichas tareas.
 
-\begin{sidewaysfigure}[htbp]
+%\begin{sidewaysfigure}[htbp]
+\begin{landscape}
+\begin{figure}
     \centering
-    \resizebox{0.85\textwidth}{!}{
+    \resizebox{\linewidth}{!}{
         \centering
         \begin{ganttchart}[
             time slot format=isodate,
@@ -117,14 +119,14 @@ Además, en la Figura \ref{fig:diagrama_gantt} se puede observar las relaciones 
             x unit=0.1cm,
             y unit title=1cm,
             y unit chart=0.6cm,
-            link/.style={-stealth},
-            bar/.style={fill=black!20,draw=black}
-        ]
-                           {2021-2-1}{2021-07-30}
+            link/.append style={-stealth,draw=black},
+            group/.append style={fill=ficblue},
+            bar/.append style={fill=udcpink!35,draw=udcpink}
+        ] {2020-6-12}{2021-09-15}
             \gantttitlecalendar{year, month=name}\\
-            \ganttgroup{Phase 1}{2021-2-2}{2021-2-19}\\
-            \ganttbar[name=a]{Task a}{2021-2-2}{2021-2-19}\\
-            \ganttbar[name=b]{Task b}{2021-2-12}{2021-2-19}\\
+            \ganttgroup{Fase 1}{2020-6-15}{2021-2-19}\\
+            \ganttbar[name=1]{Tarea 1}{2020-6-15}{2020-6-15}\\
+            \ganttbar[name=2]{Tarea 2}{2020-6-16}{2020-6-20}\\
             
             \ganttgroup{Phase 2}{2021-2-20}{2021-5-2}\\
             \ganttbar[name=c]{Task c}{2021-2-20}{2021-3-6}\\
@@ -145,29 +147,33 @@ Además, en la Figura \ref{fig:diagrama_gantt} se puede observar las relaciones 
             \ganttbar[name=n]{Task n}{2021-6-1}{2021-6-19}\\
             \ganttbar[name=o]{Task o}{2021-6-20}{2021-7-29}\\
             
-            \ganttlink[link type=F-S]{a}{c}
-            \ganttlink[link type=F-S]{c}{d}
-            \ganttlink[link type=F-S]{d}{e}
-            \ganttlink[link type=F-S]{f}{g}
-            \ganttlink[link type=F-S]{i}{j}
-            \ganttlink[link type=F-S]{h}{k}
-            \ganttlink[link type=F-S]{j}{k}
-            
-            \ganttlink[link type=S-S]{a}{b}
-            \ganttlink[link type=S-S]{c}{l}
-            \ganttlink[link type=S-S]{f}{m}
-            \ganttlink[link type=S-S]{k}{n}
-            \ganttlink[link type=S-S]{e}{h}
-            \ganttlink[link type=S-S]{e}{i}
-            
-            \ganttlink[link type=F-F]{e}{l}
-            \ganttlink[link type=F-F]{g}{m}
-            \ganttlink[link type=F-F]{k}{n}
-            \ganttlink[link type=F_F]{l}{o}
-            \ganttlink[link type=F_F]{m}{o}
-            \ganttlink[link type=F_F]{n}{o}
+            \ganttlink[link type=F-S]{1}{2}
+
+            %\ganttlink[link type=F-S]{1}{c}
+            %\ganttlink[link type=F-S]{c}{d}
+            %\ganttlink[link type=F-S]{d}{e}
+            %\ganttlink[link type=F-S]{f}{g}
+            %\ganttlink[link type=F-S]{i}{j}
+            %\ganttlink[link type=F-S]{h}{k}
+            %\ganttlink[link type=F-S]{j}{k}
+            %
+            %\ganttlink[link type=S-S]{1}{b}
+            %\ganttlink[link type=S-S]{c}{l}
+            %\ganttlink[link type=S-S]{f}{m}
+            %\ganttlink[link type=S-S]{k}{n}
+            %\ganttlink[link type=S-S]{e}{h}
+            %\ganttlink[link type=S-S]{e}{i}
+            %
+            %\ganttlink[link type=F-F]{e}{l}
+            %\ganttlink[link type=F-F]{g}{m}
+            %\ganttlink[link type=F-F]{k}{n}
+            %\ganttlink[link type=F-F]{l}{o}
+            %\ganttlink[link type=F-F]{m}{o}
+            %\ganttlink[link type=F-F]{n}{o}
         \end{ganttchart}
     }
     \caption{Diagrama de Gantt del desarrollo de Clúpiter}
     \label{fig:diagrama_gantt}
-\end{sidewaysfigure}
+%\end{sidewaysfigure}
+\end{figure}
+\end{landscape}

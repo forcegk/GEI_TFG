@@ -35,6 +35,7 @@
 % \usepackage{subcaption}  % permite a inclusión de varias subfiguras nunha figura
 % \usepackage{tabu}        % permite táboas flexibles
 % \usepackage{tabularx}    % permite táboas con columnas de anchura determinada
+\usepackage{pdflscape}
 
 \usepackage[scale=MatchLowercase]{sourcecodepro}
 \usepackage{pgfplots}
@@ -52,12 +53,6 @@
 }
 
 \newganttlinktype{F-F}{
-  \ganttsetstartanchor{east}
-  \ganttsetendanchor{east}
-  \draw [/pgfgantt/link] (\xLeft - 0.2 ,\yUpper) -- (\xRight - 0.2, \yLower);
-}
-
-\newganttlinktype{F_F}{
   \ganttsetstartanchor{east}
   \ganttsetendanchor{east}
   \draw [/pgfgantt/link] (\xLeft - 0.2 ,\yUpper) -| (\xRight - 0.2, \yLower);
