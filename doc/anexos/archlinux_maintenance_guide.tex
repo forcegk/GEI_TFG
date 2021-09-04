@@ -18,7 +18,6 @@ Ante cualquier duda, consulta, o problema, se debe acudir a la wiki de Arch Linu
     \item Configuraciones para \acrlong{rpi}: \\\url{https://archlinuxarm.org/wiki/Raspberry_Pi}.
 
     \item Manual de pacman, el gestor de paquetes de Arch Linux: \\\url{https://wiki.archlinux.org/title/General_recommendations}
-    \item Reflector, un script para manejo de mirrors empleado más adelante: \\\url{https://wiki.archlinux.org/title/Reflector}.
 \end{itemize}
 
 Para un usuario más novato esto podría parecer abrumados en un principio, pero desde mi punto de vista esta la mejor forma de aprender, y el espíritu que promueve Arch Linux. 
@@ -30,9 +29,8 @@ Como Clúpiter probablemente se actualice muy de vez en cuando, es necesario tom
 
 \begin{enumerate}
     \item Hacerse superusuario.
-    \item Actualizar los mirrors con el comando:
 \begin{lstlisting}[language=bash]
-reflector --verbose --latest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+su -
 \end{lstlisting}
     \item Actualizar la base de datos de pacman:
 \begin{lstlisting}[language=bash]
@@ -46,6 +44,8 @@ pacman -S archlinux-keyring archlinuxarm-keyring
 \begin{lstlisting}[language=bash]
 pacman -Syu
 \end{lstlisting}
+    \textbf{NOTA:} Los servidores de ArchLinuxARM no parecen ser los mejores, por lo que a veces puede dar error al descargar algún archivo. En ese caso, no hay de qué preocuparse: \texttt{pacman -Syu} es idempotente, y se puede ejecutar todas las veces requeridas hasta que se descarguen todos los paquetes. Aún así, es conveniente esperar un pequeño tiempo por si el servidor está experimentando dificultades técnicas transitorias.
+    
     \item Verificar las versiones de las actualizaciones, \textbf{especialmente las que cambien de versión mayor}, esto es, de php 7 a php 8, por ejemplo. Si hubiera alguna actualización mayor, es conveniente hacer una búsqueda en internet para verificar que no haya incompatibilidades.
     Por ejemplo, en el caso de php, se buscaría ``php 8 update arch linux'', y entre los primeros resultados se encuentra: \\\footnotesize\url{https://archlinux.org/news/php-80-and-php-7-legacy-packages-are-available/}\normalsize
 
@@ -55,6 +55,11 @@ pacman -Syu
 \end{enumerate}
 
 \subsection{Asciinema}
-En en enlace a continuación se puede ver el proceso de actualiación de uno de los nodos de Clúpiter. Recordar que esta acción debe llevarse a cabo simultáneamente en todos los nodos. El archivo grabado se puede encontrar en el repositorio del proyecto bajo la carpeta \texttt{doc/asciinema}
+En la dirección \url{https://asciinema.org/a/434085}, se puede ver el proceso de actualización de uno de los nodos de Clúpiter. Recordar que esta acción debe llevarse a cabo simultáneamente en todos los nodos, por ejemplo, con el programa terminator, como se ve en la Figura \ref{fig:terminator_update}. Además, el archivo grabado se puede encontrar en el repositorio del proyecto bajo la carpeta \texttt{doc/asciinema}, y se puede reproducir con el comando \texttt{asciinema play archlinux-update.cast}.
 
-TODO GRABAR E INSERTAR ASCIINEMA
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{img/terminator_update.png}
+  \caption{Operación en paralelo de Clúpiter con terminator}
+  \label{fig:terminator_update}
+\end{figure}
