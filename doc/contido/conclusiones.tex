@@ -20,7 +20,7 @@ Por otro lado, también es positiva la dinámica que imbuye la carrera en los es
 \section{Trabajo futuro}
 Como se viene comentando a lo largo de todo el documento, hay múltiples líneas de trabajo con las que continuar. Estas posibles ``iteraciones'' adicionales deberían seguir en sí mismas un ciclo de vida incremental, dando así un ciclo de vida incremental al propio Clúpiter, siendo esta la versión 1.0, por ejemplo.
 
-En un ánimo de proponer mejoras que realizar en hipotéticas iteraciones futuras, se pueden encontrar:
+En un ánimo de proponer mejoras o modificaciones que realizar en hipotéticas iteraciones futuras, se pueden encontrar:
 \begin{itemize}
     \item Mejora del rendimiento de la CPU mediante \gls{overclock}.
     \item Mejora del ancho de banda de la memoria principal, tambien mediante \gls{overclock}.
@@ -28,6 +28,7 @@ En un ánimo de proponer mejoras que realizar en hipotéticas iteraciones futura
     \item Mejora y automatización de la mantenibilidad del sistema.
     \item Mejora del chasis, especialmente mediante el uso de una plegadora en el cortado de las planchas.
     \item Mejora del dashboard, preferiblemente extendiendo su funcionalidad y no modificándola.
+    \item Implementar sincronización precisa de la hora. Esto podría ser necesario ya que ahora mismo se restaura la hora del último apagado, permitiendo hasta un máximo de 2 minutos de desfase entre relojes por apagado. Esto es inofensivo debido a que no se emplea SSL/TLS, ni hay bloqueo de archivos en NFS, ya que es solo lectura para los clientes. Sin embargo, en un futuro podría cambiarse esto, y debe ser un punto a tener en cuenta.
 \end{itemize}
 
-Finalmente, una iteración que personalmente me haría ilusión que alguien realizase, consistiría en acelerar el rendimiento de algún programa computacionalmente exigente mediante la GPU/VPU VideoCore VI (\ref{ssec:gpu_vpu}). Esto, que requiere una investigación más en profundidad por parte de un hipotético interesado, quizás podría realizarse mediante Vulkan Compute Shaders, OpenCL si este estuviese disponible en ese momento, o empleando alguna librería como py-videocore6\footnote{\url{https://github.com/Idein/py-videocore6}}, pareciéndome la opción más interesante la primera.
+Finalmente, una iteración que personalmente me haría ilusión que alguien realizase, consistiría en acelerar el rendimiento de algún programa computacionalmente exigente mediante la GPU/VPU VideoCore VI (\ref{ssec:gpu_vpu}). Esto, que requiere una investigación más en profundidad por parte de un hipotético interesado, quizás podría realizarse mediante Vulkan Compute Shaders, OpenCL si este estuviese disponible en ese momento, o empleando alguna librería como py-videocore6\footnote{\url{https://github.com/Idein/py-videocore6}}, pareciéndome la primera la opción más interesante.
