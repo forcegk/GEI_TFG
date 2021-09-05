@@ -119,9 +119,16 @@ Muchas gracias.
 Alonso
 \end{flushright}
 \end{agradecementos}
+% Ugly hack to fix random pagenumber %%%%%%
+\pagenumbering{gobble}
+\pagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paxinaenbranco
 \include{portada/resumo}
-\paxinaenbranco
+%\paxinaenbranco
+%Restore thinges %%%
+\pagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%
 
 \pagenumbering{roman}
 \setcounter{page}{1}
