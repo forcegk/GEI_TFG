@@ -1,7 +1,7 @@
 \chapter{Aplicación web}
 \label{chap:aplicacion_web}
 
-\lettrine{U}{na} importante faceta de este proyecto es la forma en la que sirve para explicar el funcionamiento del mismo, así como realizar demostraciones prácticas tanto en directo como mediante vídeos de dicho funcionamiento.
+\lettrine{U}{na} importante faceta de este proyecto es la forma en la que sirve para explicar el funcionamiento de un sistema paralelo, así como realizar demostraciones prácticas, tanto en directo como mediante vídeos, de dicho funcionamiento.
 
 Para este cometido se desarrolla una aplicación web, el \textit{dashboard} de ahora en adelante, desde la cual se podrán ejecutar los benchmarks discutidos en el Capítulo \ref{chap:medida_rendimiento}. En este capítulo se discuten las etapas, desde el análisis hasta la implementación, y se proporcionan explicaciones sencillas acerca de su funcionamiento interno y externo.
 
@@ -19,13 +19,13 @@ Los principales requisitos del dashboard son los siguientes:
 
 \section{Diseño}
 \label{sec:contenido_didactico__diseño}
-Para la etapa de diseño se sigue un ciclo diseño basado en el propotipado, hasta dar con una solución que convenza al cliente, la cual se continúa con un modelo de desarrollo incremental. En este caso dado que el cliente es la misma persona que el diseñador, se ha consultado a terceras personas para la obtención de críticas y otras aportaciones, especialmente desde el punto de vista de la funcionalidad, estética, y sencillez.
+Para esta etapa se sigue un diseño basado en el propotipado, hasta dar con una solución que convenza al cliente. Tras ello, en la siguiente fase de implementación, se continúa ciclo de vida puramente incremental. En este caso dado que el cliente es la misma persona que el diseñador, se ha consultado a terceras personas para la obtención de críticas y otras aportaciones, especialmente desde el punto de vista de la funcionalidad, estética, y sencillez.
 
-No se cuenta con versiones digitales de dichos \textit{mockups}, debido a que la mayoría surgen en un contexto de informalidad debido al trato con dichas terceras personas y, por tanto son en papel escrito. Sin embargo, las ideas para implementar en la aplicación, por orden de ocurrencia son:
+No se cuenta con versiones digitales de dichos \textit{mockups}, debido a que la mayoría surgen en un contexto de informalidad debido al trato con dichas terceras personas y, por tanto, son en papel escrito. Sin embargo, las ideas para implementar en la aplicación, por orden de ocurrencia son:
 
 \begin{itemize}
   \item Implementación de un \textbf{sistema de monitorización interactivo} de Clúpiter.
-  \item Refinamiento de la interactividad del anterior sistema, introduciendo la posibilidad de \textbf{ejecución de benchmarks}, así como de la \textbf{visualización} de su \textbf{salida por terminal}, desde la propia aplicación.
+  \item Refinamiento de la interactividad del anterior sistema, introduciendo la posibilidad de \textbf{ejecución de benchmarks}, así como de la \textbf{visualización} de su \textbf{salida por terminal} desde la propia aplicación.
   \item \textbf{Inclusión de vídeos} animados demostrativos.
   \item Sólo se programará para soportar \textbf{un usuario de forma concurrente}, ya que sería raro el caso en el que haya dos o más usuarios conectados, y tendría más bien poco sentido la ejecución simultánea de más de un benchmark.
 \end{itemize}
@@ -35,9 +35,11 @@ Finalmente, una decisión de diseño muy importante es la de implementar dicha a
 \section{Implementación}
 La tecnología sobre la que se programa el \textit{\gls{backend}} de la aplicación web es nodejs, en concreto expressjs\footnote{\url{https://expressjs.com/es/}}, y se hace uso de las \acrshort{api}s de Netdata y socket.io.
 
-La elección de socket.io se realiza debido a la sencillez y elegancia que aporta al código, el cual se puede programar mediante ``eventos''. Esto es algo fantástico, ya que desde la propia aplicación web se pueden hacer llamadas con el mismo estilo de programación que en Android al \textit{backend}, resultando familiar y sencillo.
+La elección de socket.io se realiza debido a la sencillez y elegancia que aporta al código, el cual se puede programar mediante ``eventos''. Esto es algo fantástico, ya que desde la propia aplicación web se pueden hacer llamadas al \textit{\gls{backend}} con el mismo estilo de programación que en Android, resultando familiar y sencillo.
 
-La página de monitorización es la única que se comunica con Clúpiter. En la parte superior se encuentran los medidores de uso de CPU y tráfico de red de cada uno de los nodos. Debajo de los mismos se encuentran botones para ejecutar cada uno de los benchmarks (en clase \texttt{C}), y observar su salida por terminal, así como ver en tiempo real el impacto que la ejecución de los mismos tiene sobre la carga en los nodos.
+La página de monitorización (Figura \ref{fig:pagina_monitorizacion}) es la única que se comunica con Clúpiter. En la parte superior se encuentran los medidores de uso de CPU y tráfico de red de cada uno de los nodos. Estos medidores son los que se utilizaron en el capítulo anterior para estudiar el comportamiento de los NPB (Figuras \ref{fig:mops__cg}\textasciitilde\ref{fig:mops__mg}). Debajo de los mismos se encuentran botones para ejecutar cada uno de los benchmarks (en clase \texttt{C}), y observar su salida por terminal, así como ver en tiempo real el impacto que la ejecución de los mismos tiene sobre la carga en los nodos.
+
+TODO INCLUIR UNA CAPTURA CUANDO ESTÉ LA WEB TRADUCIDA (ref fig:pagina\_monitorizacion)
 
 \subsection{Comunicación socket.io}
 \label{ssec:socket.io_comm}
@@ -130,7 +132,7 @@ switch (bench_name) {
 En esta sección se muestran los comandos a ejecutar para el despliegue y configuración del dashboard y sus dependencias.
 
 \subsection{Instalación de Netdata}
-Netdata es un software de monitorización de fácil configuración e integración que permite obtener información de los nodos de Clúpiter en tiempo real, tanto en el Dashboard web que se pone a disposición del usuario en el puerto 19999, como a través de la librería JavaScript que un programador puede importar en su propia página web.
+Netdata es un software de monitorización de fácil configuración e integración que permite obtener información de los nodos de Clúpiter en tiempo real, tanto en el dashboard web que se pone a disposición del usuario en el puerto 19999, como a través de la librería JavaScript que un programador puede importar en su propia página web.
 
 Para emplear los datos que proporciona este software, primero debe instalarse y activarse en cada uno de los nodos del clúster, acción que se realiza con los siguientes comandos, ejecutados como usuario root:
 
@@ -169,11 +171,11 @@ npm install --only=production
 node ./index.js
 \end{lstlisting}
 
-Si todo ha funcionado correctamente se podrá acceder al dashboard en la dirección web \url{http://192.168.0.220:3000/monitoring.html}.
+Si todo ha funcionado correctamente se podrá acceder a la página principal del dashboard en la dirección web \url{http://192.168.0.220:3000}.
 
 % TODO INSERTAR CAPTURA
 
-TODO INSERTAR CAPTURA DASHBOARD
+TODO INSERTAR CAPTURAS PRINCIPAL, DASHBOARD, ABOUT
 
 \subsection{Creación de unidad de systemd}
 Crear una unidad (o \textit{unit}) de systemd es necesario para que el dashboard se inicie con el nodo maestro. Realizar esto es una operación moderadamente sencilla (si bien no tan sencilla como podría ser en otros sistemas de init\footnote{\url{https://wiki.gentoo.org/wiki/Comparison_of_init_systems}}). 

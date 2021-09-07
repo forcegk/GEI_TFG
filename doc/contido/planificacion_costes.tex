@@ -6,7 +6,7 @@
 \section{Planificación del proyecto}
 Durante el proceso de desarrollo de Clúpiter se ha seguido un modelo principalmente incremental. Las principales fases del proyecto se pueden dividir en las expuestas a continuación. Debe tenerse en cuenta que varias fases pueden solaparse debido a que la implementación hardware puede ir a un ritmo diferente a la software.
 
-Salta a la vista la dilatación temporal de este \acrshort{tfg}, y es que la dedicación al mismo es superior en períodos vacacionales, e inferior durante el curso universitario, por evidentes razones. Además, en el agregado de los períodos vacacionales, se suman un total de cuatro semanas de descanso en las que no se ha trabajado en el proyecto. 
+Salta a la vista la dilatación temporal de este \acrshort{tfg}, que ha ocupado poco más de un año completo, y es que la dedicación al mismo es superior en períodos vacacionales, e inferior durante el curso universitario, por evidentes razones. Además, en el agregado de los períodos vacacionales, se suman un total de cuatro semanas de descanso en las que no se ha trabajado en el proyecto. 
 
 El sistema de comunicación con los directores del trabajo ha sido a través de Microsoft Teams. Las preguntas, dudas, aclaraciones, así como la corrección y comentarios de los diferentes capítulos de esta memoria han sido resueltos de forma principalmente asíncrona.
 
@@ -52,7 +52,16 @@ Al finalizar la redacción de la memoria se realizan los últimos retoques y rev
 En esta sección se desglosan las tareas en cada fase, se desarrolla un diagrama de Gantt y se realiza un cálculo teórico del coste total del proyecto.
 
 \subsection{Desglose de tareas}
-En esta sección se detallan las principales tareas que han sido llevadas a cabo en cada una de estas fases y su coste final en horas. El proyecto está programado para ser ejecutado en alrededor de 300 horas (12 créditos ECTS), distribuídas entre las fases previamente comentadas.
+En esta sección se detallan las principales tareas que llevadas a cabo en cada una de esas fases y su coste final en horas. El proyecto estaba programado para ser ejecutado en  300 horas (12 créditos ECTS), distribuídas entre las fases previamente comentadas de la siguiente manera:
+
+\begin{enumerate}
+  \item Estudio de requisitos y compra de material: \textbf{20 h}.
+  \item Codiseño hardware/software: \textbf{30 h}.
+  \item Implementación hardware/software: \textbf{50 h}.
+  \item Medida del rendimiento: \textbf{30 h}.
+  \item Desarrollo del dashboard: \textbf{50 h}.
+  \item Documentación y escritura de la memoria: \textbf{120 h}.
+\end{enumerate}
 
 En la Tabla \ref{tab:desglose_de_tareas} se puede ver el desglose de tareas y su coste en h$\times$h. Además, para poder referenciar las tareas en el texto, se asigna un \acrshort{tid} (\textit{\acrlong{tid}}) alfanumérico a cada una de ellas. 
 \begin{table}[htpb]
@@ -103,16 +112,16 @@ En la Tabla \ref{tab:desglose_de_tareas} se puede ver el desglose de tareas y su
 \end{table}
 
 \subsection{Diagrama de Gantt}
-La duración de este proyecto ha sido de poco más de un año natural, debido a que la dedicación en horas/semana ha sido bastante variable. Durante el curso académico hay escaso tiempo y motivación para dedicarle al \acrshort{tfg}, siendo esta última escasa en una situación de pandemia y teledocencia. Por otro lado, durante los períodos vacacionales es donde se encuentran concentradas la mayor cantidad de horas de trabajo. Por ello, la longitud de las tareas en el diagrama de Gantt no es proporcional al número de h$\times$h (horas por hombre) adjudicadas a las mismas si se asumiese una jornada de trabajo estable.
-
 La Figura \ref{fig:diagrama_gantt} muestra el diagrama de Gantt, que ilustra cómo se desarrolló el proyecto en el tiempo y las relaciones de predecencia entre tareas.
+
+La duración de este proyecto ha sido de poco más de un año natural, debido a que la dedicación en horas/semana ha sido bastante variable. Durante el curso académico hay escaso tiempo y motivación para dedicarle al \acrshort{tfg}, siendo esta última escasa en una situación de pandemia y teledocencia. Por otro lado, durante los períodos vacacionales es donde se encuentran concentradas la mayor cantidad de horas de trabajo. Por ello, la longitud de las tareas en el diagrama de Gantt no es proporcional al número de h$\times$h adjudicadas a las mismas si se asumiese una jornada de trabajo estable.
 
 \subsection{Presupuesto}
 Durante el desarrollo del proyecto han realizado diferentes trabajos tres personas: el estudiante, encargado de la gestión del ciclo de vida del proyecto y de llevar todas sus fases a cabo, y los dos tutores, encargados de la proposición del proto-proyecto y de la supervisión durante el desarrollo del mismo.
 
 En la Tabla \ref{tab:horas_recurso} se puede encontrar una relación aproximada de las horas invertidas en el proyecto por cada recurso involucrado en el desarrollo y supervisión del mismo.
 
-\begin{table}[h!]
+\begin{table}[H]
   \centering
   \begin{tabular}{ |c|c| }
   \hline
@@ -129,9 +138,9 @@ En la Tabla \ref{tab:horas_recurso} se puede encontrar una relación aproximada 
   \label{tab:horas_recurso}
 \end{table}
 
-Por último, en la Tabla \ref{tab:coste_total} puede encontrarse la suma de tanto los costes humanos, como los del equipamiento hardware adquirido.
+Por último, en la Tabla \ref{tab:coste_total} puede encontrarse la suma tanto de los costes humanos, como del equipamiento hardware adquirido.
 
-\begin{table}[h!]
+\begin{table}[H]
   \centering
   \begin{tabular}{ |c|c|c|c| }
   \hline
@@ -145,7 +154,7 @@ Por último, en la Tabla \ref{tab:coste_total} puede encontrarse la suma de tant
   \hhline{|=|=|=|=|}
   \multicolumn{3}{|c|}{\textbf{Material}} & \textbf{--}\\
   \hline
-  \multicolumn{3}{|c|}{Prespuesto inicial} & 841.68\\
+  \multicolumn{3}{|c|}{Presupuesto inicial\tablefootnote{Puede encontrarse un desglose de los componentes que conforman el presupuesto en el Apéndice \ref{chap:presupuesto_clupiter}}} & 841.68\\
   \hline
   \multicolumn{3}{|c|}{Cables USB-C magnéticos} & 26.16\\
   \hline
@@ -165,7 +174,7 @@ Por último, en la Tabla \ref{tab:coste_total} puede encontrarse la suma de tant
         \centering
         \begin{ganttchart}[
             time slot format=isodate,
-            hgrid, vgrid={*{7}{draw=none},dotted},
+            hgrid,
             x unit=0.09cm,
             y unit title=1cm,
             y unit chart=0.7cm,
@@ -173,7 +182,7 @@ Por último, en la Tabla \ref{tab:coste_total} puede encontrarse la suma de tant
             title height=1,
             link/.append style={-stealth,draw=black},
             group/.append style={fill=ficblue},
-            bar/.append style={fill=udcpink!35,draw=udcpink},
+            bar/.append style={fill=udcpink!35,draw=udcpink,yscale=1.2},
             milestone/.append style={fill=ficblue!35,draw=ficblue,xscale=4}
         ] {2020-8-12}{2021-09-21}
             \gantttitlecalendar{year}\\

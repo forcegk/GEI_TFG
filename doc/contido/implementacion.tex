@@ -1,7 +1,7 @@
-\chapter{Implementación}
+\chapter{Configuración hardware y software}
 \label{chap:implementacion}
 
-\lettrine{I}{mplementación} es la ejecución o puesta en marcha de una idea programada. Y sobre ello versa este capítulo: la documentación de la puesta en marcha de lo planeado en el capítulo anterior. Primero se ha de crear el soporte hardware, para posterioremente desplegar el software sobre este mismo.
+\lettrine{E}{ste} capítulo documenta la puesta en marcha de lo planeado en el capítulo anterior. Primero se ha de crear el soporte hardware, para posterioremente desplegar el software sobre este mismo.
 
 Como se comenta posteriormente en el Capítulo \ref{chap:planificacion_costes}, durante el transcurso del proyecto se sigue un modelo incremental, en el que se realiza un codiseño hardware y software mediante el uso de máquinas virtuales.
 
@@ -11,7 +11,7 @@ En esta sección se documenta el transcurso del montaje y puesta a punto del har
 
 Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir un clúster compacto y, para ello, las diferentes partes se ensamblan por separado. Podemos distinguir así cinco fases:
 \begin{itemize}
-    \item \textbf{Montaje} de las \textbf{torres} de Raspberry Pi: Se debe montar cada piso de la torre, acomodando cada Raspberry en cada nivel (es decir, colocando disipadores, anclajes, y conectores magnéticos USB) como se muestra en la Figura \ref{fig:modulo_raspi_torre}, donde se ve un módulo de la torre. Asimismo, en la Figura \ref{fig:proceso_apilamiento} se puede ver el proceso de apilamiento.
+    \item \textbf{Montaje} de las \textbf{torres} de Raspberry Pi. Se debe montar cada piso de la torre, acomodando cada Raspberry en cada nivel (es decir, colocando disipadores, anclajes, y conectores magnéticos USB) como se muestra en la Figura \ref{fig:modulo_raspi_torre}, donde se ve un módulo de la torre. Asimismo, en la Figura \ref{fig:proceso_apilamiento} se puede ver el proceso de apilamiento.
 
     \begin{figure}[h!]
     \centering
@@ -47,7 +47,7 @@ Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir 
     \label{fig:proceso_apilamiento}
     \end{figure}
     
-    \item \textbf{Testeo} del correcto funcionamiento de cada \textbf{unidad}: En esta fase se realizan las pruebas básicas para comprobar que todas las placas y componentes se han recibido conforme a los estándares de calidad necesarios y funcionan correctamente. Este test ligero y muy superficial consiste en el arranque del sistema operativo Arch Linux en cada mini computador, testeo de las interfaces de red y USB (Figura \ref{fig:testeo_hw_1}), así como el circuito de entrega de potencia mediante un pequeño test de estrés. Finalmente se actualiza el bootloader a la última versión (Figura \ref{fig:testeo_hw_2}).
+    \item \textbf{Testeo} del correcto funcionamiento de cada \textbf{unidad}. En esta fase se realizan las pruebas básicas para comprobar que todas las placas y componentes se han recibido conforme a los estándares de calidad necesarios y funcionan correctamente. Este test ligero y muy superficial consiste en el arranque del sistema operativo Arch Linux en cada mini computador, testeo de las interfaces de red y USB (Figura \ref{fig:testeo_hw_1}), así como el circuito de entrega de potencia mediante un pequeño test de estrés. Finalmente se actualiza el bootloader a la última versión (Figura \ref{fig:testeo_hw_2}).
 
     \begin{figure}[h!]
     \centering
@@ -66,10 +66,10 @@ Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir 
     \label{fig:testeo_hw}
     \end{figure}
 
-    \item \textbf{Cortado} de las \textbf{láminas adaptadoras} de chapa: Ya con las piezas testeadas, llega el momento de ensamblar todo el sistema. Para ello se cortan con radial planchas de chapa recicladas de una caja antigua de ordenador, se lijan, pintan, y se realizan los agujeros necesarios para acoplar cada capa con la siguiente. En este aspecto, si bien estéticamente podría haber sido mejorable en caso de haber dispuesto de una plegadora, y dado que este proyecto no es de ingeniería industrial, se considera adecuada la solución construída.
+    \item \textbf{Cortado} de las \textbf{láminas adaptadoras} de chapa. Ya con las piezas testeadas, llega el momento de ensamblar todo el sistema. Para ello se cortan con radial planchas de chapa recicladas de una caja antigua de ordenador, se lijan, pintan, y se realizan los agujeros necesarios para acoplar cada capa con la siguiente. En este aspecto, si bien estéticamente podría haber sido mejorable en caso de haber dispuesto de una plegadora, y dado que este proyecto no es de ingeniería industrial, se considera adecuada la solución construída.
 
 
-    \item \textbf{Ensamblado final} y cableado: Se integran todos los componentes en la estructura, y se realiza el cableado, tanto eléctrico como de red. Este cableado es cortado a medida para un ajuste fino, libre de excedentes que gestionar (Figura \ref{fig:fotos_estructura}).
+    \item \textbf{Ensamblado final} y cableado. Se integran todos los componentes en la estructura y se realiza el cableado, tanto eléctrico como de red. Este cableado es cortado a medida para un ajuste fino, libre de excedentes que gestionar (Figura \ref{fig:fotos_estructura}).
 
     \begin{figure}[h!]
     \centering
@@ -93,7 +93,7 @@ Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir 
     \label{fig:fotos_estructura}
     \end{figure}
 
-    \item \textbf{Testeo} de la correcta \textbf{integración}: Finalmente se debe comprobar que todos los componentes continúan funcionando correctamente una vez instalados. Este paso trajo ciertas complicaciones, ya que durante el montaje se desprendieron pequeñas limaduras de hierro que, si bien se limpiaron a conciencia de las placas y todo circuito eléctrico, los conectores magnéticos USB-C recogieron todo ese residuo, y como se comenta en \nameref{sssec:cableado_electrico_red}, esto dió algunos problemas con malos contactos y caídas de tensión intermitentes y aleatorias. En el proceso de la solución de errores se desmontó de nuevo el clúster para realizar otra limpieza e inspección de cableado, llegando así a la versión actual.
+    \item \textbf{Testeo} de la correcta \textbf{integración}. Finalmente se debe comprobar que todos los componentes continúan funcionando correctamente una vez instalados. Este paso trajo ciertas complicaciones, ya que durante el montaje se desprendieron pequeñas limaduras de hierro que, si bien se limpiaron a conciencia de las placas y todo circuito eléctrico, los conectores magnéticos USB-C recogieron todo ese residuo, y como se comenta en \nameref{sssec:cableado_electrico_red}, esto dió algunos problemas con malos contactos y caídas de tensión intermitentes y aleatorias. En el proceso de la solución de errores se desmontó de nuevo el clúster para realizar otra limpieza e inspección de cableado, llegando así a la versión actual.
 \end{itemize}
 
 \section{Configuración software}
@@ -217,13 +217,13 @@ Bridge=br0
 #DHCP=yes
 #DNSSEC=no
 \end{lstlisting}
-    \item Crear el network device \texttt{br0.netdev}
+    \item Crear el network device \texttt{br0.netdev}:
 \begin{lstlisting}[language=bash]
 [NetDev]
 Name=br0
 Kind=bridge
 \end{lstlisting}
-    \item Y asignar una IP al bridge en \texttt{br0.network}
+    \item Y asignar una IP al bridge en \texttt{br0.network}:
 \begin{lstlisting}[language=bash]
 [Match]
 Name=br0
@@ -234,12 +234,12 @@ DNSSEC=no
 \end{lstlisting}
 \end{itemize}
 
-Tras realizar estas configuraciones se reinicia \texttt{systemd-networkd} con
+Tras realizar estas configuraciones se reinicia \texttt{systemd-networkd} con:
 \begin{lstlisting}[language=bash]
 systemctl restart systemd-networkd
 \end{lstlisting}
 
-Por último se deberá reconectar la sesión por \acrshort{ssh}, ya que al haber cambiado la \acrshort{mac} de la interfaz, el servidor DHCP en uso le habrá cambiado también la IP asignada a \texttt{rpi0}. Este comportamiento puede cambiarse a preferencia de algún usuario futuro, ya que la dirección \acrshort{mac} que asigna systemd-networkd a la interfaz virtual es personalizable, y por tanto es posible copiar la de la interfaz original \cite[\textbf{Tip}: systemd-networkd assigns a MAC \footnotesize{\lbrack\ldots\rbrack}\normalsize{}]{archwiki_systemd-networkd}.
+Por último, se deberá reconectar la sesión por \acrshort{ssh}, ya que al haber cambiado la \acrshort{mac} de la interfaz, el servidor DHCP en uso le habrá cambiado también la IP asignada a \texttt{rpi0}. Este comportamiento puede cambiarse a preferencia de algún usuario futuro, ya que la dirección \acrshort{mac} que asigna systemd-networkd a la interfaz virtual es personalizable, y por tanto es posible copiar la de la interfaz original \cite{archwiki_systemd-networkd}.
 
 \subsection{Configuración de direcciones IP estáticas}
 \label{ssec:configuracion_ip_estaticas}
@@ -248,7 +248,7 @@ A la hora de administrar el clúster es necesario que las direcciones se asignen
 Para esto, se han de modificar los archivos ubicados en \texttt{/etc/systemd/network/} como se indica a continuación:
 
 \begin{itemize}
-    \item Modificar \texttt{eth.network} en las máquinas 1 a 7, y asignarles una IP estática, siendo la X en \texttt{.22X} el número de la máquina, así \texttt{rpi1} sería \texttt{.221}, etc.
+    \item Modificar \texttt{eth.network} en las máquinas 1 a 7, y asignarles una IP estática, siendo la X en \texttt{.22X} el número de la máquina, así \texttt{rpi1} sería \texttt{.221}, etc:
 \begin{lstlisting}[language=bash]
 [Match]
 Name=eth*
@@ -277,7 +277,7 @@ DNS=8.8.8.8
 \subsection{Escritura del fichero /etc/hosts}
 Para hacer referencia al resto de \acrshort{rpi}s sin necesidad de escribir su dirección IP (lo que será útil más adelante para la ejecución de programas \acrshort{mpi}), es conveniente agregar una entrada por dispositivo a cada una de ellas en el fichero \texttt{/etc/hosts} para poder referenciarlas por su nombre, sin necesidad de configurar un servidor DNS propio.
 
-De esta manera, se ejecuta en cada nodo:
+De esta manera, se ejecuta como root en cada nodo:
 \begin{lstlisting}[language=bash]
 cat << EOS >> /etc/hosts
 127.0.0.1       localhost
@@ -305,7 +305,7 @@ echo "mpiuser:mpi" | chpasswd
 \end{lstlisting}
 
 \subsubsection{Permisos de mpiuser}
-Para una mejor manejabilidad del clúster (ver sección \ref{ssec:apagado_impl}), y debido a la necesidad de que esta operación la realice mpiuser, expuesta en, se permite a mpiuser apagar los nodos. Esto se realiza mediante el programa \texttt{sudo}. Para ello, se debe ejecutar en todos los nodos, el siguiente comando como root\footnote{La sintaxis del fichero escrito se puede encontrar en \url{https://linux.die.net/man/5/sudoers} o ejecutando \texttt{man 5 sudoers}}:
+Para una mejor manejabilidad del clúster (ver sección \ref{ssec:apagado_impl}), el usuario \texttt{mpiuser} debe tener permiso para apagar los nodos. Este permiso es posible otorgárselo mediante el programa \texttt{sudo}. Para ello, se debe ejecutar en todos los nodos el siguiente comando como root\footnote{La sintaxis del fichero escrito se puede encontrar en \url{https://linux.die.net/man/5/sudoers} o ejecutando \texttt{man 5 sudoers}}:
 
 \begin{lstlisting}[language=bash]
 echo "mpiuser ALL=(root) NOPASSWD:/usr/bin/poweroff" > /etc/sudoers.d/mpiuser_poweroff

@@ -1,4 +1,4 @@
-\chapter{Clúpiter: conceptos básicos}
+\chapter{Clúpiter: Conceptos básicos}
 \label{chap:conceptos_basicos}
 
 \lettrine{P}{ara} comprender el objetivo del proyecto y su propuesta de valor, primero es necesario entender sus características, la justificación de las mismas, y el funcionamiento de sus componentes más primitivos.
@@ -6,7 +6,7 @@
 \section{Nombre y marca corporativa}
 Si bien este no es un elemento altamente importante en un proyecto de ingeniería como este, si que es conveniente, y nunca está de más, otorgarle personalidad mediante la creación de un nombre e isotipo para el mismo.
 
-El nombre del clúster es \textbf{Clúpiter} (ClúPIter): una mezcla entre las palabras ``Clúster'' y el ``PI'' de la \acrlong{rpi}, que de forma muy conveniente recuerda en su segunda parte a Júpiter. Este es a su vez planeta del sistema solar junto con el (enano) Plutón, nombre del clúster del GAC\footnote{\url{http://pluton.dec.udc.es}}. Es cuanto menos paradógico que el clúster en miniatura sea Júpiter, y el real sea Plutón\dots
+El nombre del clúster es \textbf{Clúpiter} (ClúPIter): una mezcla entre las palabras ``Clúster'' y el ``PI'' de la \acrlong{rpi}, que de forma muy conveniente recuerda en su segunda parte a Júpiter. Este es a su vez planeta del sistema solar junto con el (enano) Plutón, nombre del clúster del \acrshort{gac}\footnote{\url{http://pluton.dec.udc.es}} (\acrlong{gac}). Es cuanto menos paradógico que el clúster en miniatura sea Júpiter, y el real sea Plutón\dots
 
 En cuanto a la marca del clúster, éste no puede quedar sin un logo, que se muestra en la Figura \ref{fig:clupiter_logo}.\footnote{El uso del logo de Arch Linux sin autorización explícita está permitido en general para propósitos no comerciales. Clúpiter no tiene ningún tipo de vinculación con la marca Arch Linux (\url{https://wiki.archlinux.org/title/DeveloperWiki:TrademarkPolicy})}
 
@@ -57,10 +57,10 @@ Cada aproximadamente dos años, la Raspberry Pi Foundation saca una nueva versi�
 
 Siendo cada versión mucho más potente que la anterior, y costando aproximadamente el mismo precio, está claro que la Raspberry Pi Foundation está haciendo un excelente trabajo aportando valor a este segmento del bajo consumo y coste.
 
-La \acrlong{rpi} 4B (4 Model B), que se muestra en la Figura \ref{fig:rpi_base}, es la versión más nueva de formato standard, y por ello ha sido la elección para constituir la base del clúster. A continuación se muestran sus principales características: \cite{rpi4b_specifications}
+La \acrlong{rpi} 4B (4 Model B), que se muestra en la Figura \ref{fig:rpi_base}, es la versión más nueva de formato \textit{Standard}, y por ello ha sido la elección para constituir la base del clúster. A continuación se muestran sus principales características \cite{rpi4b_specifications}:
 
 \subsection{CPU}
-La CPU de este nuevo modelo es la \textbf{Broadcom BCM2711}, un procesador con arquitectura ARMv8-A y 4 núcleos Cortex-A72, que funcionan a 1.5GHz.
+La \acrshort{cpu} (\textit{\acrlong{cpu}} o Unidad de Procesamiento Central) de este nuevo modelo es la \textbf{Broadcom BCM2711}, un procesador con arquitectura ARMv8-A y 4 núcleos Cortex-A72, que funcionan a 1.5GHz.
 
 Estos núcleos cuentan con un \textit{pipeline} de 15 etapas, ejecución OOO (\textit{out-of-order}) y predictor de saltos, entre otros.
 
@@ -69,7 +69,7 @@ Además, cuenta con 48KB de L1I y 32KB de L1D por núcleo, así como 1MB de L2 c
 
 \subsection{GPU/VPU}
 \label{ssec:gpu_vpu}
-A pesar de que el integrado que se muestra en la foto del apartado superior es un \acrshort{soc} (\textit{\acrlong{soc}}), se ha preferido tratar la CPU y la GPU/VPU por separado. Y es que los gráficos integrados de esta última \acrlong{rpi} son una importante mejora sobre la VideoCore IV que equipaban modelos anteriores.
+A pesar de que el integrado que se muestra en la foto del apartado superior es un \acrshort{soc} (\textit{\acrlong{soc}}), se ha preferido tratar la \acrshort{cpu} y la \acrshort{gpu}/\acrshort{vpu} (\textit{\acrlong{gpu}}/\textit{\acrlong{vpu}}) por separado. Y es que los gráficos integrados de esta última \acrlong{rpi} son una importante mejora sobre la VideoCore IV que equipaban modelos anteriores.
 
 La GPU en la \acrshort{rpi}4 es la VideoCore VI, y cuenta con multitud de soporte para multimedia y una potencia gráfica aceptable. En concreto, acelera por hardware H.265 (4Kp60 decode), H.264 (1080p60 decode, 1080p30 encode), y soporta OpenGL ES, 3.0.
 
@@ -78,7 +78,7 @@ Además, y lo que considero más interesante, es que posteriormente al lanzamien
 Realizar algún tipo de programa para computación \acrshort{gpgpu} (\textit{\acrlong{gpgpu}}) en Vulkan queda fuera de lo que pretende abarcar este trabajo, pero es un interesante proyecto para la realización de alguna otra iteración sobre esta plataforma.
 
 \subsection{E/S}
-En términos de entrada/salida la \acrshort{rpi}4B cuenta con multitud de puertos, de los que se van a utilizar Gigabit Ethernet y USB 3.0. Sin embargo éste equipa de serie otros muchos otros puertos en los pines \acrshort{gpio} (\acrlong{gpio}), cuya disposición se puede encontrar en la Figura \ref{fig:rpi_gpio_pinout}, y que es un estándar de-facto, ya que es la misma para todos los modelos de \acrlong{rpi} y otros dispositivos similares, que la adoptan mara mayor inter-compatibilidad.
+En términos de \acrlong{e-s} (\acrshort{e-s}) la \acrshort{rpi}4B cuenta con multitud de puertos, de los que se van a utilizar Gigabit Ethernet y USB 3.0. Sin embargo, éste equipa de serie otros muchos otros puertos en los pines \acrshort{gpio} (\acrlong{gpio}), cuya disposición se puede encontrar en la Figura \ref{fig:rpi_gpio_pinout}, y que es un estándar de-facto, ya que es la misma para todos los modelos de \acrlong{rpi} y otros dispositivos similares, que la adoptan para mayor inter-compatibilidad.
 
 Los puertos y protocolos que integra la \acrlong{rpi} en el \acrshort{gpio} son algunos como I2C (\textit{Inter-Integrated Circuit}), UART (\textit{Universal Asynchronous Receiver-Transmitter}), SPI (\textit{Serial Peripheral Interface}) y video compuesto, así como mútiples pines de alimentación a 5 y 3.3V. Por último, ya en la propia placa, tambien se dispone de un puerto DSI (\textit{Display Serial Interface}) y CSI (\textit{Camera Serial Interface}), y dos salidas de vídeo HDMI.
 
@@ -98,10 +98,10 @@ Entre las implementaciones disponibles, las más utilizadas son:
 \begin{itemize}
   \item\textbf{OpenMPI}\footnote{\url{https://www.open-mpi.org}}: Implementación libre mantenida por un consorcio de académicos, investigadores y socios que ofrece elevada eficiencia y flexibilidad a quien la implementa. Además, es la librería \acrshort{mpi} que ofrece Arch Linux (distribución Linux de Clúpiter) en sus repositorios oficiales, y contra la que se compilan por defecto sus ejecutables.
   \item\textbf{MPICH}\footnote{\url{https://www.mpich.org}}: Otra implementación libre de MPI muy similar a OpenMPI en rendimiento, flexibilidad y modo de desarrollo.
-  \item\textbf{Intel MPI}\footnote{\url{https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/mpi-library.html}}: Implementación propietaria de \acrshort{mpi} por parte de Intel. Está especializada en productos de la propia marca y optimiza para ellos, por lo que suele arrojar un mayor rendimiento que las contrapartes libres.
+  \item\textbf{Intel MPI}\footnote{\url{https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/mpi-library.html}}: Implementación propietaria de \acrshort{mpi} por parte de Intel. Está especializada en productos de la propia marca y optimizaza para ellos, por lo que suele arrojar un mayor rendimiento que las contrapartes libres.
 \end{itemize}
 
-La base de \acrshort{mpi} son las primitivas de envío y recepción de datos. Existen dos funciones de envío y recepción \textbf{síncronas} (esto es, la llamada a la función solamente termina cuando todos los miembros involucrados en la ejecución de dicha función han terminado).
+La base de \acrshort{mpi} son las primitivas de envío y recepción de datos. Existen dos funciones de envío y recepción \textbf{síncronas} (esto es, la llamada a la función solamente termina cuando todos los miembros involucrados en la ejecución de dicha función han terminado):
 \begin{itemize}
   \item \textbf{MPI\_Send}: Envía un mensaje a destino, y espera a que el receptor esté listo para recibirlo. 
   \item \textbf{MPI\_Recv}: Espera a que llegue un mensaje del origen, y cuando éste está listo para enviarlo, lo recibe.
@@ -111,9 +111,9 @@ Estas funciones tienen su contraparte para programación asíncrona, que puede a
 
 Otra funcionalidad de \acrshort{mpi} ampliamente utilizada son las primitivas de grupo u operaciones colectivas, las cuales permiten la comunicación entre más de 2 procesos.
 
-Las colectivas más sencillas y comunes de MPI son las siguientes: (Figuras de \cite{cheung_mpi})
+Las colectivas más sencillas y comunes de MPI son las siguientes \cite{cheung_mpi}:
 \begin{itemize}
-  \item \textbf{MPI\_Bcast}: Emite (hace \textit{broadcast}) el mensaje a todos los procesos del comunicador. (Figura \ref{fig:mpi_bcast})
+  \item \textbf{MPI\_Bcast}: Emite (hace \textit{broadcast}) el mensaje a todos los procesos del comunicador, tal y como se muestra en la Figura \ref{fig:mpi_bcast}.
   
   \begin{figure}[H]
     \vspace*{0.5cm}
@@ -125,7 +125,7 @@ Las colectivas más sencillas y comunes de MPI son las siguientes: (Figuras de \
     \label{fig:mpi_bcast}
   \end{figure}
 
-  \item \textbf{MPI\_Scatter}: Distribuye equitativamente el mensaje entre todos los procesos del comunicador. (Figura \ref{fig:mpi_scatter})
+  \item \textbf{MPI\_Scatter}: Distribuye equitativamente el mensaje entre todos los procesos del comunicador, tal y como se muestra en la Figura \ref{fig:mpi_scatter})
 
   \begin{figure}[H]
     \vspace*{0.5cm}
@@ -137,7 +137,7 @@ Las colectivas más sencillas y comunes de MPI son las siguientes: (Figuras de \
     \label{fig:mpi_scatter}
   \end{figure}
 
-  \item \textbf{MPI\_Gather}: Recoge varios fragmentos de un mensaje y los combina. Es la operación inversa al scatter.  (Figura \ref{fig:mpi_gather})
+  \item \textbf{MPI\_Gather}: Recoge varios fragmentos de un mensaje y los combina. Es la operación inversa al scatter (Figura \ref{fig:mpi_gather}).
 
   \begin{figure}[H]
     \vspace*{0.5cm}
@@ -149,7 +149,7 @@ Las colectivas más sencillas y comunes de MPI son las siguientes: (Figuras de \
     \label{fig:mpi_gather}
   \end{figure}
 
-  \item \textbf{MPI\_Reduce}: Recoge al igual que en el scatter los fragmentos del mensaje, pero en lugar de almacenarlos como tal, aplica una operación sobre ellos. (Figura \ref{fig:mpi_reduce})
+  \item \textbf{MPI\_Reduce}: Recoge, al igual que en el scatter, los fragmentos del mensaje, pero en lugar de almacenarlos como tal, aplica una operación sobre ellos (Figura \ref{fig:mpi_reduce}).
 
   \begin{figure}[H]
     \vspace*{0.5cm}
@@ -180,8 +180,8 @@ mpirun -np 4 ./mpitest
 
 Existen algunas opciones relevantes a un nivel básico, entre las que se pueden encontrar:
 \begin{itemize}
-  \item\textbf{-{}-oversubscribe}: permite asignar más de un proceso por CPU
-  \item\textbf{-{}-hostfile}: permite proporcionar una lista de nodos en los que ejecutar el programa paralelo. Esto será especialmente útil en la ejecución de los benchmarks. (Aún así no es la única forma de ejecutar un programa en múltiples computadores, pero sí la que se usará en este trabajo) 
+  \item\textbf{-{}-oversubscribe}: permite asignar más de un proceso por \acrshort{cpu}.
+  \item\textbf{-{}-hostfile}: permite proporcionar una lista de nodos en los que ejecutar el programa paralelo. Esto será especialmente útil en la ejecución de los benchmarks. No es la única forma de ejecutar un programa \acrshort{mpi} en múltiples computadores, pero sí la que se usará en este trabajo.
 \end{itemize}
 
 % COMPORTAMIENTO DE ORTED

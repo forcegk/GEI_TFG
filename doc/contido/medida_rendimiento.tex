@@ -10,9 +10,9 @@ Los \acrlong{npb} (\acrshort{npb}) \cite{npb_webpage} son una \textit{suite} de 
 
 Estos benchmarks se dividen principalmente en ocho programas o \textit{kernels} (núcleos), teniendo otras adaptaciones para diferentes paradigmas de computación paralela, como puede ser de paralelización híbrida, computación desestructurada, o mallas de computación.
 
-A su vez cada benchmark (\textit{kernel}) tiene múltiples clases, siendo estas \texttt{S}, \texttt{W}, \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, \texttt{E}, y representando cada una un nivel de requerimientos superior, respectivamente. Específicamente, la las clases \texttt{A}, \texttt{B} y \texttt{C} suponen cuadruplicar el tamaño con respecto a la anterior, y las \texttt{D}, \texttt{E} y \texttt{F} (para los benchmarks que tienen estas clases disponibles), multiplican por 16 el tamaño del anterior.
+A su vez cada benchmark (\textit{kernel}) tiene múltiples clases, siendo estas \texttt{S}, \texttt{W}, \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, \texttt{E}, y representando cada una un nivel de requerimientos superior, respectivamente. Específicamente, las clases \texttt{A}, \texttt{B} y \texttt{C} suponen cuadruplicar el tamaño con respecto a la anterior, y las \texttt{D}, \texttt{E} y \texttt{F} (para los benchmarks que tienen estas clases disponibles), multiplican por 16 el tamaño del anterior.
 
-En este caso se empleará la clase \texttt{C} para todos los benchmarks, excepto en \texttt{MG} que será clase \texttt{B}, y \texttt{FT}, que será clase \texttt{A}. Esta decisión para ambos benchmarks es así debido a limitaciones de memoria en las ejecuciones en un mismo nodo.
+En este caso se empleará la clase \texttt{C} para todos los benchmarks, excepto en \texttt{MG} que será clase \texttt{B}, y \texttt{FT}, que será clase \texttt{A}. Esta decisión para ambos benchmarks es así debido a limitaciones de memoria en las ejecuciones en un único nodo.
 
 \subsection{Benchmarks}
 \label{ssec:benchmarks}
@@ -33,27 +33,27 @@ as listed below:
 
 A continuación se describen brevemente cada uno de los benchmarks utilizados. Los tamaños de problema en función de la clase se encuentran disponibles en \cite{npb_problem_sizes}, así como una explicación de los mismos en \cite{benchmarks1994technical}. 
 
-\subsection{CG - Conjugate Gradient}
+\subsubsection{CG - Conjugate Gradient}
 \label{sssec:benchmarks__cg}
 El método del gradiente conjugado es un algoritmo para la resolución numérica de sistemas de ecuaciones lineales de matrices simétricas y definidas positivas. La explicación en profundidad del método se puede encontrar en \cite[2.2.3]{hestenes1952methods}, pero al quedar fuera del objetivo del trabajo, no se tratará en mayor profundidad, quedando como resumen que ``se trata de un método iterativo para resolución de sistemas de ecuaciones lineales'', siendo obvia su utilidad en aeronáutica, y de aquí su aparición en los \acrlong{npb}.
 
-\subsection{EP - Embarrassingly Parallel}
+\subsubsection{EP - Embarrassingly Parallel}
 \label{sssec:benchmarks__ep}
 Este kernel ``embarazosamente parelelo'' tiene un nombre bastante descriptivo en cuanto a sus características, pero no en cuanto a su funcionamiento interno. Este programa sirve para estimar un límite superior al rendimiento en coma flotante, al que podrían aproximarse cargas de trabajo sin altos requerimientos de comunicación entre procesadores.
 
-El kernel EP genera pares de números aleatorios siguiendo una distribución gaussiana, y los tabula en función de ciertos criterios que, de nuevo, quedan fuera del alcance de este trabajo, pero que pueden ser consultados por usuarios más expertos en \cite[2.2.1]{benchmarks1994technical}. Este problema es típico de simulaciones estilo Monte Carlo y únicamente se requieren comunicaciones interprocesador al finalizar la ejecución para la realizacion de las (10) sumas del número de pares tabulados. 
+El kernel EP genera pares de números aleatorios siguiendo una distribución gaussiana, y los tabula en función de ciertos criterios que, de nuevo, quedan fuera del alcance de este trabajo, pero que pueden ser consultados por usuarios más expertos en \cite[2.2.1]{benchmarks1994technical}. El patrón de comportamiento de este problema es típico de simulaciones estilo Monte Carlo y únicamente se requieren comunicaciones interprocesador al finalizar la ejecución para la realizacion de las (10) sumas del número de pares tabulados. 
 
-\subsection{IS - Integer Sort}
+\subsubsection{IS - Integer Sort}
 \label{sssec:benchmarks__is}
 Otro kernel con un nombre descriptivo, y es que hace lo que promete, es un algoritmo paralelo de ordenación de números enteros. Como es evidente, este algoritmo no mide la capacidad en punto flotante del clúster, sino su capacidad de comparación de enteros, y especialmente la velocidad de su memoria debido a la cantidad de permutaciones que ocurren sobre la misma.
 
 En un sistema de memoria compartida, las $N$ claves (es decir, cada número) se almacenan en un espacio de memoria contiguo. Sin embargo, en un espacio de memoria distribuida en $p$ secciones de memoria, se almacenan $N_{p}$ claves por espacio de memoria, siendo $N_{p} = N / p$.
 
-Esta necesidad de ancho de banda a la memoria principal, así como de rápidas comunicaciones entre múltiples nodos se puede observar a la perfección en la sección \ref{ssec:comparacion_resultados__is}. Puede leerse con más detalle el funcionamiento del benchmark en \cite[2.2.5]{benchmarks1994technical}
+Esta necesidad de ancho de banda a la memoria principal, así como de rápidas comunicaciones entre múltiples nodos se puede observar a la perfección en \nameref{sssec:resultados__is}. Puede leerse con más detalle el funcionamiento del benchmark en \cite[2.2.5]{benchmarks1994technical}.
 
-\subsection{LU - Lower-Upper solver}
+\subsubsection{LU - Lower-Upper solver}
 \label{sssec:benchmarks__lu}
-La factorización LU es es un método de factorización de una matriz en dos matrices triangulares inferior y superior. Si ``factorización de matrices'' pudiera sonar extraño a algún lector, realmente no es nada esotérico: algunas matrices, al igual que algunos números enteros, pueden ser separadas en dos matrices, producto de las cuales se obtiene la matriz original.
+La factorización LU es es un método de factorización de una matriz en dos matrices triangulares inferior y superior. Aunque ``factorización de matrices'' pudiera sonar extraño a algún lector, realmente no es nada esotérico: algunas matrices, al igual que algunos números enteros, pueden ser separadas en dos matrices, producto de las cuales se obtiene la matriz original. En la factorización LU de matrices 3x3, éstas tienen una estructura como la que se puede observar en la Figura \ref{fig:factorizacion_lu}.
 
 Esta factorización se emplea en el análisis numérico para la resolución de sistemas de ecuaciones de forma más eficiente, por lo que, de nuevo, se puede apreciar la utilidad de este proceso en aeronáutica.
 
@@ -84,14 +84,14 @@ Esta factorización se emplea en el análisis numérico para la resolución de s
   %\vspace*{0.1cm}
 \end{figure}
 
-\subsection{FT - 3D FFT PDE (Fourier Transform)}
+\subsubsection{FT - 3D FFT PDE (Fourier Transform)}
 Este kernel resuelve numéricamente cierta ecuación en derivadas parciales mediante el uso de transformadas rápidas de Fourier tridimensionales directas (\acrshort{fft} o \acrlong{fft}) e inversas (I\acrshort{fft} o Inverse \acrshort{fft}). Se puede encontrar mayor detalle en esta rama avanzada de las matemáticas en \cite[2.2.4]{benchmarks1994technical}.
 
 La \acrshort{fft} es una implementación eficiente de la transformada discreta de Fourier para computadores, de muy especial utilidad en el tratamiento digital de señales y la resolución de ecuaciones en derivadas parciales, siendo este último el uso que se le da en este benchmark. 
 
-Las \acrshort{fft} en 3D son parte muy importante de aplicaciones en mecánica de fluidos, especialmente en simulaciones de torbellinos. Asimismo, la ejecución de estos algoritmos conlleva una importante comunicación entre procesos, lo cual tiene cierto impacto en las cifras de rendimiento, como se puede observar en \ref{ssec:comparacion_resultados__ft}.
+Las \acrshort{fft} en 3D son parte muy importante de aplicaciones en mecánica de fluidos, especialmente en simulaciones de torbellinos. Asimismo, la ejecución de estos algoritmos conlleva una importante comunicación entre procesos, lo cual tiene cierto impacto en las cifras de rendimiento, como se puede observar en \nameref{sssec:resultados__ft}.
 
-\subsection{MG - MultiGrid}
+\subsubsection{MG - MultiGrid}
 Finalmente, el último benchmark que se ejecuta de esta suite es el multigrid. El proceso consiste en la realización de cuatro iteraciones del algoritmo multigrid de ciclo en V, que se emplean para la obtención de una aproximación a la solución $u$ de una ecuación de Poisson discreta, en una malla 256x256x256. Más información para lectores experimentados en este campo está disponible, de nuevo, en \cite[2.2.2]{benchmarks1994technical}.
 
 Este método multigrid se emplea para la resolución de sistemas de ecuaciones diferenciales, y ha sido ampliamente utilizado para la resolución de otros sistemas de ecuaciones más complicados como las ecuaciones de Lamé o las Navier-Stokes. Ambas estas ecuaciones relacionadas con mecánica de fluidos y, por tanto y de nuevo, resultando sencillo visualizar la interconexión de esta carga de trabajo con aquellas empleadas en el campo de la aerodinámica.  
@@ -135,7 +135,7 @@ Para la ejecución de los benchmarks de forma paralela se necesita algún métod
 
 \begin{itemize}
     \item Para un solo nodo con múltiples núcleos es sencillo, ya que comparten memoria, usuarios y almacenamiento.
-    \item Para múltiples nodos sin embargo es algo más complejo. Como ya se menciona en las Subsecciones \ref{ssec:gen_ssh} y \ref{ssec:serv_nfs}, es necesario disponer de:
+    \item Para múltiples nodos, sin embargo, es algo más complejo. Como ya se menciona en las Subsecciones \ref{ssec:gen_ssh} y \ref{ssec:serv_nfs}, es necesario disponer de:
     \begin{itemize}
         \item Almacenamiento compartido en forma de NFS, SSHFS, o similar para alojar los ejecutables.
         \item Autenticación y gestión común para el lanzamiento de los programas paralelos en forma de SSH con par de claves.
@@ -157,13 +157,13 @@ rpi6 slots=4
 rpi7 slots=4
 \end{lstlisting}
 
-La ejecución de cada uno de los benchmarks se realizará mediante el siguiente comando \textbf{como usuario mpiuser}, en el que se debe especificar el número de procesos a crear, así como el hostfile. La sintaxis de este comando se comenta brevemente en \nameref{sssec:ejecucion_mpi}.\footnote{Se añade \texttt{--mca opal\_warn\_on\_missing\_libcuda 0} para evitar una advertencia relacionada con la ausencia de librerías para CUDA, una plataforma de computación paralela desarrollada por Nvidia, que no interesa en la salida por pantalla}
+La ejecución de cada uno de los benchmarks se realizará mediante el siguiente comando \textbf{como usuario mpiuser}, en el que se debe especificar el número de procesos a crear, así como el hostfile. La sintaxis de este comando se comenta brevemente en \ref{sssec:ejecucion_mpi}.\footnote{Se añade \texttt{--mca opal\_warn\_on\_missing\_libcuda 0} para evitar una advertencia relacionada con la ausencia de librerías para CUDA, una plataforma de computación paralela desarrollada por Nvidia, que no interesa en la salida por pantalla.}
 
 \begin{lstlisting}[language=bash]
 mpirun -np <NUM_PROCS> --hostfile /mpishared/hostfile --mca opal_warn_on_missing_libcuda 0 /mpishared/NPB3.4.2/NPB3.4-MPI/bin/<KERNEL>.<CLASS>.x
 \end{lstlisting}
 
-Como estos parámetros son fijos, es posible scriptear la ejecución de los benchmarks, así como la recolección de resultados, siempre y cuando solamente exista una clase por benchmark:
+Como estos parámetros son fijos, se emplea un script para automatizar la ejecución de los benchmarks, así como la recolección de resultados, siempre y cuando solamente exista una clase por benchmark:
 
 \begin{lstlisting}[language=bash]
 #!/bin/sh
@@ -185,7 +185,7 @@ done
 Ante diferentes números de procesos, \acrshort{mpi} elige la configuración más óptima, intentando mantener siempre las CPUs lo más cerca posible.
 
 \section{Resultados experimentales}
-\label{sec:comparacion_resultados}
+\label{sec:medida_rendimiento}
 En esta sección se muestran los resultados obtenidos para cada uno de los benchmarks. El objetivo es medir la escalabilidad del clúster, esto es, la eficacia con la que, aumentando los recursos computacionales, aumenta el rendimiento en la misma medida.
 
 \subsection{Metodología}
@@ -196,7 +196,7 @@ Se han realizado 5 ejecuciones de todos los problemas clase C y 9 ejecuciones de
 
 Tras la recolección de datos, se realiza la media aritmética de los datos de las $N$ ejecuciones. Los resultados de cada ejecución de los benchmarks pueden encontrarse en el Apéndice \ref{chap:bench_values}.
 
-\subsection{Expresión de las mediciones}
+\subsection{Medida del rendimiento}
 Se muestran a continuación los datos expresados en MOPS (\textbf{M}ega/\textbf{M}illion \textbf{O}perations \textbf{P}er \textbf{S}econd). En función de si estas operaciones son en punto flotante o no, también se podrán llamar \acrshort{mflops} (\textbf{M}ega/\textbf{M}illion \textbf{FL}oating point \textbf{O}perations \textbf{P}er \textbf{S}econd).
 
 Esta métrica, MOPS, indica para cada benchmark el número de operaciones que realiza el kernel, que no el número de operaciones de la propia CPU. Por esta razón los resultados son muy diferentes y variados entre diferentes kernels \cite{mallon2009npb}.
@@ -205,12 +205,35 @@ Finalmente aclarar que en las gráficas se puede encontrar una línea vertical d
 
 Si uno es perspicaz, puede notar que el tráfico del nodo maestro es superior al del resto de nodos cuando el tráfico es muy reducido. Esto es así porque es el nodo maestro el encargado de alojar la página web interactiva y, por tanto, de recabar y enviar la información de monitorización de todos los nodos y mostrarla al usuario. Así, fijándose en alguna figura de un benchmark donde no haya comunicaciones intensivas (Figura \ref{fig:mops__ep}), se puede comprobar que, si el nodo maestro tiene que recibir información de 7 nodos, y estos generan un tráfico de aproximadamente $60$ kbps (Figura \ref{fig:mops_rev_mn__ep}), se puede ver fácilmente por qué en el nodo maestro (Figura \ref{fig:mops_rev_sn__ep}) existe un tráfico de $416 \approx 420 = 60 \cdot 7$ kbps.
 
-\subsection{CG}
-\label{ssec:comparacion_resultados__cg}
+\subsection{Resultados}
+\label{ssec:resultados}
+En esta subsección se muestran los resultados obtenidos de la ejecución de los diferentes kernels de los \acrlong{npb}.
 
+\subsubsection{CG}
+\label{sssec:resultados__cg}
 Como puede apreciarse en la Figura \ref{fig:mops__cg}, el benchnmark CG es un benchmark mixto, en el que se realiza computación y comunicación de forma no diferenciada en el tiempo. Esto no parece ser un problema importante a la hora de entrar en modo de memoria distribuída, donde los MOPS por proceso no solo se estabilizan más o menos en la misma tendencia, sino que debido al dato atípicamente bajo para 4 procesadores en memoria compartida, el rendimiento mejora. Este valor atípicamente bajo podría deberse, como se va a ver posteriormente en múltiples ocasiones, al reducido ancho de banda de la memoria principal.
 
-\begin{figure}[h!]
+\subsubsection{EP}
+\label{sssec:resultados__ep}
+Por otro lado, como se puede ver en la Figura \ref{fig:mops__ep}, así como se comenta en \nameref{sssec:benchmarks__ep}, y en anteposición al benchmark discutido anteriormente, EP es un benchmark que realiza toda la computación de forma completamente independiente, y únicamente se comunica al final de la ejecución, siendo esta comunicación muy ligera, e indistinguible del tráfico habitual entre nodos (Figura \ref{fig:mops_rev_mn__ep}). Además, en este benchmark, hay de nuevo un valor atípicamente bajo para 4 procesadores, marcando una tendencia que, como se comenta anteriormente, probablemente sea debida al reducido ancho de banda del único chip de memoria DRAM en la \acrlong{rpi} 4B.
+
+\subsubsection{IS}
+\label{sssec:resultados__is}
+El núcleo (kernel) IS es otro que realiza muy importantes movimientos de datos tanto de lectura como de escritura en memoria. Esto es un problema, como ya se discute previamente, debido al pequeño ancho de banda con la memoria principal. Combinado además con que la arquitectura \acrshort{arm} es del tipo \textit{load-store}, y las operaciones de red no están aceleradas por hardware, apunta a que el resultado probablemente no va a ser espectacular ni en mononodo, ni en multinodo. Esto puede confirmarse observando la Figura \ref{fig:mops__is}.
+
+\subsubsection{LU}
+\label{sssec:resultados__lu}
+En el benchmark LU se aprecia un escalado más normal (Figura \ref{fig:mops__lu}), sin tantos datos atípicos, en donde se puede observar una caída de en torno al $60\textasciitilde70\%$ en MOPS por proceso al aumentar el número de procesos en el mismo nodo. Caída en picado que se vuelve más leve cuando se ejecuta en modo de memoria distribuída (multinodo). De nuevo, esta caída en picado es probablemente por la elevada demanda de ancho de banda a la memoria principal, que no puede ser satisfecha por un solo chip.
+
+\subsubsection{FT}
+\label{sssec:resultados__ft}
+En el benchmark FT, de resolución de ecuaciones en derivadas parciales mediante transformadas de Fourier tridimensionales se sigue la misma tendencia que en el kernel discutido previamente. Los detalles del rendimiento para cada configuración de CPUs se encuentran en la Figura \ref{fig:mops__ft}. Es interesante destacar que este benchmark, a pesar de ser intensivo en comunicaciones, éstas no se dan simultáneamente con el cómputo, sino que se alternan con el mismo, como se puede apreciar en la Figura \ref{fig:mops_rev_mn__ft}.
+
+\subsubsection{MG}
+\label{sssec:resultados__mg}
+Por último, en la Figura \ref{fig:mops__mg}, se expone el rendimiento del benchmark Multigrid (MG), que por las características de su algoritmo, realiza un importante uso de las comunicaciones interprocesador. En este kernel, el uso de RAM es muy intensivo, por lo que en un mismo nodo, al doblar el número de CPUs en uso, los MOPS por procesador se reducen casi a la mitad, obteniendo casi el mismo rendimiento, lo cual resulta bastante decepcionante.
+
+\begin{figure}[htpb]
     \centering
     \begin{subfigure}[b]{0.495\textwidth}
         \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
@@ -283,11 +306,7 @@ Como puede apreciarse en la Figura \ref{fig:mops__cg}, el benchnmark CG es un be
     \label{fig:mops__cg}
 \end{figure}
 
-\subsection{EP}
-\label{ssec:comparacion_resultados__ep}
-Por otro lado, como se puede ver en la Figura \ref{fig:mops__ep}, así como se comenta en \ref{sssec:benchmarks__ep}, y en anteposición al benchmark discutido anteriormente, EP es un benchmark que realiza toda la computación de forma completamente independiente, y únicamente se comunica al final de la ejecución, siendo esta comunicación muy ligera, e indistinguible del tráfico habitual entre nodos (Figura \ref{fig:mops_rev_mn__ep}). Además, en este benchmark, hay de nuevo un valor atípicamente bajo para 4 procesadores, marcando una tendencia que, como se comenta anteriormente, probablemente sea debida al reducido ancho de banda del único chip de memoria DRAM en la \acrlong{rpi} 4B.
-
-\begin{figure}[h!]
+\begin{figure}[htpb]
     \centering
     \begin{subfigure}[b]{0.495\textwidth}
         \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
@@ -360,11 +379,7 @@ Por otro lado, como se puede ver en la Figura \ref{fig:mops__ep}, así como se c
     \label{fig:mops__ep}
 \end{figure}
 
-\subsection{IS}
-\label{ssec:comparacion_resultados__is}
-El núcleo (kernel) IS es otro que realiza muy importantes movimientos de datos tanto de lectura como de escritura en memoria. Esto es un problema, como ya se discute previamente, debido al pequeño ancho de banda con la memoria principal. Combinado además con que la arquitectura \acrshort{arm} es del tipo \textit{load-store}, y las operaciones de red no están aceleradas por hardware, apunta a que el resultado probablemente no va a ser espectacular ni en mononodo, ni en multinodo. Esto puede confirmarse observando la Figura \ref{fig:mops__is}.
-
-\begin{figure}[h!]
+\begin{figure}[htpb]
     \centering
     \begin{subfigure}[b]{0.495\textwidth}
         \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
@@ -437,11 +452,7 @@ El núcleo (kernel) IS es otro que realiza muy importantes movimientos de datos 
     \label{fig:mops__is}
 \end{figure}
 
-\subsection{LU}
-\label{ssec:comparacion_resultados__lu}
-De aquí en adelante se aprecia un escalado más normal (Figura \ref{fig:mops__lu}), sin tantos datos atípicos, en donde se puede observar una caída de en torno al $60\textasciitilde70\%$ en MOPS por proceso al aumentar el número de procesos en el mismo nodo. Caída en picado que se vuelve más leve cuando se ejecuta en modo de memoria distribuída (multinodo). De nuevo, esta caída en picado es probablemente por la elevada demanda de ancho de banda a la memoria principal, que no puede ser satisfecha por un solo chip.
-
-\begin{figure}[h!]
+\begin{figure}[htpb]
     \centering
     \begin{subfigure}[b]{0.495\textwidth}
         \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
@@ -514,13 +525,7 @@ De aquí en adelante se aprecia un escalado más normal (Figura \ref{fig:mops__l
     \label{fig:mops__lu}
 \end{figure}
 
-\subsection{FT}
-\label{ssec:comparacion_resultados__ft}
-En este benchmark de resolución de ecuaciones en derivadas parciales mediante transformadas de Fourier tridimensionales se sigue la misma tendencia que en el kernel discutido previamente. Los detalles del rendimiento para cada configuración de CPUs se encuentran en la Figura \ref{fig:mops__ft}. 
-
-Es interesante destacar que este benchmark, a pesar de ser intensivo en comunicaciones, éstas no se dan simultáneamente con el cómputo, sino que se alternan con el mismo, como se puede apreciar en la Figura \ref{fig:mops_rev_mn__ft}.
-
-\begin{figure}[h!]
+\begin{figure}[htpb]
     \centering
     \begin{subfigure}[b]{0.495\textwidth}
         \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
@@ -593,11 +598,7 @@ Es interesante destacar que este benchmark, a pesar de ser intensivo en comunica
     \label{fig:mops__ft}
 \end{figure}
 
-\subsection{MG}
-\label{ssec:comparacion_resultados__mg}
-Por último, en la Figura \ref{fig:mops__mg}, se expone el rendimiento del benchmark Multigrid, que por las características de su algoritmo, realiza un importante uso de las comunicaciones interprocesador. En este kernel, el uso de RAM es muy intensivo, por lo que en un mismo nodo, al doblar el número de CPUs en uso, los MOPS por procesador se reducen casi a la mitad, obteniendo casi el mismo rendimiento, lo cual resulta bastante decepcionante.
-
-\begin{figure}[h!]
+\begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.495\textwidth}
         \begin{adjustbox}{width=\linewidth,height=0.8\linewidth}   
@@ -670,12 +671,14 @@ Por último, en la Figura \ref{fig:mops__mg}, se expone el rendimiento del bench
     \label{fig:mops__mg}
 \end{figure}
 
+\FloatBarrier
+
 \section{Conclusiones}
 \label{sec:conclusiones_medida_rendimiento}
-Los resultados son en general algo decepcionantes debido principalmente a la limitación de ancho de banda a la memoria principal. Sin embargo no todo son malas noticias, y es que en todos los casos se ha logrado acelerar la ejecución utilizando varios nodos, lo que de nuevo da que pensar, ya que la memoria ha sido un factor más limitante que la red Ethernet.
+Los resultados son en general algo decepcionantes debido principalmente a la limitación de ancho de banda a la memoria principal. Sin embargo, no todo son malas noticias, y es que en todos los casos se ha logrado acelerar la ejecución utilizando varios nodos, lo que de nuevo da que pensar, ya que la memoria ha sido un factor más limitante que la red Ethernet.
 
 Por último destacar que hubiese sido de gran utilidad tener la posibilidad de medir en tiempo real el ancho de banda a la memoria, pero que por falta de herramientas de debug avanzadas para la plataforma \acrshort{arm} de consumo, como la que equipa la \acrlong{rpi} 4, no ha sido posible.
 
-La única medición realizable es la del ancho de banda total, situándose en aproximadamente 4.2GB/s para transferencias de enteros, y 3.95GB/s para transferencias de flotantes en el modelo de 8GB de RAM \cite{tomshardware_rpi4b_ram_bandwidth}, y siendo ligeramente menor en modelos con menor capacidad. Para comparar, un ordenador convencional x86 del sector de consumo con una memoria DDR4 a la misma frecuencia cuenta con aproximadamente 25GB/s de ancho de banda a la memoria \textbf{por canal} \cite{intel_ram_bandwidth}.
+La única medición realizable es la del ancho de banda total, situándose en aproximadamente 4.2GB/s para transferencias de enteros, y 3.95GB/s para transferencias de flotantes en el modelo de 8GB de RAM \cite{tomshardware_rpi4b_ram_bandwidth}, y reduciéndose ligeramente, a menor capacidad tenga el modelo. Como comparación, un ordenador convencional x86 del sector de consumo con una memoria DDR4 a la misma frecuencia cuenta con aproximadamente 25GB/s de ancho de banda a la memoria \textbf{por canal} \cite{intel_ram_bandwidth}.
 
 De todos modos, no se debe perder de vista el objetivo de este trabajo, que es principalmente la divulgación. Que los test funcionen y hayan servido para sacar conclusiones (sean mejores o peores), así como para ilustrar demostraciones en vivo es en sí mismo un éxito.

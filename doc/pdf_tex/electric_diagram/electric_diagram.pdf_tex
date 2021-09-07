@@ -62,8 +62,8 @@
     \put(0,0){\includegraphics[width=\unitlength,page=3]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
     \put(0.55317164,0.13712687){\color[rgb]{1,0.2,0.2}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\ \ \ \ +5VDC\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
-    \put(0.61473881,0.09421642){\color[rgb]{1,0.2,0.2}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\small{+5\textasciitilde 28VDC}\end{tabular}}}}%
-    \put(0.64645522,0.02705224){\color[rgb]{0.96078431,0.96078431,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\small{TACH}\end{tabular}}}}%
+    \put(0.61473881,0.09421642){\color[rgb]{1,0.2,0.2}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\footnotesize{+5\textasciitilde 28VDC}\end{tabular}}}}%
+    \put(0.64645522,0.02705224){\color[rgb]{0.96078431,0.96078431,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\footnotesize{TACH}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{pdf_tex/electric_diagram/electric_diagram.pdf}}%
     \put(0.10541045,0.38712687){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{pdf_tex/electric_diagram/electric_diagram.pdf}}%

@@ -25,14 +25,14 @@ En cuanto a los requisitos funcionales, como este proyecto se centra más en la 
 \subsection{Requisitos no funcionales}
 En cuanto al resto de requisitos no funcionales, principalmente destacar que:
 \begin{itemize}
-    \item El clúster debe ser \textbf{sensato}: Se debe emplear una calidad y cantidad de materiales adecuada a las expectativas del mismo. Esto es que, por ejemplo, el switch no debería ser el componente más caro de todo el presupuesto, pero tampoco debemos escatimar en él para aprovechar la tarjeta de red Gigabit Ethernet de las Raspberry Pi 4B.
+    \item El clúster debe ser \textbf{sensato}: se debe emplear una calidad y cantidad de materiales adecuada a las expectativas del mismo. Esto es que, por ejemplo, el switch no debería ser el componente más caro de todo el presupuesto, pero tampoco debemos escatimar en él para aprovechar la tarjeta de red Gigabit Ethernet de las Raspberry Pi 4B.
     \item Enlazando con el requisito superior, los componentes a emplear serán actuales y aportarán una relación \textbf{calidad/precio} lo más \textbf{elevada} posible.
-    \item El clúster debe ser \textbf{extensible} y \textbf{mantenible}: El despliegue hardware debe permitir modificaciones y mantenimientos de forma moderadamente sencilla.
+    \item El clúster debe ser \textbf{extensible} y \textbf{mantenible}: el despliegue hardware debe permitir modificaciones y mantenimientos de forma moderadamente sencilla.
 \end{itemize}
 
 \section{Diseño hardware}
 \label{sec:diseño_hardware}
-La etapa de diseño ha consumido una cantidad de tiempo para nada desdeñable, ya que diseñar un sistema que cumpla todos los requisitos no es una labor precisamente trivial. A continuación se exponen los elementos que conforman el ensamblaje del sistema, así como planos que documentan el diseño del mismo.\footnote{El presupuesto, así como otros documentos relativos al presupuestado y compra de materiales se puede encontrar en el Apéndice \ref{chap:presupuesto_clupiter}}
+La etapa de diseño ha consumido una cantidad de tiempo para nada desdeñable, ya que diseñar un sistema que cumpla todos los requisitos no es una labor precisamente trivial. A continuación se exponen los elementos que conforman el ensamblaje del sistema, así como esquemas que documentan el diseño del mismo.
 
 \subsection{Elementos hardware}
 
@@ -55,7 +55,7 @@ En cuanto a los elementos que conforman Clúpiter, éste se compone de:
 A continuación se da una explicación detallada de la decisión de estos materiales.
 
 \subsubsection{Raspberry Pi 4B}
-Este mini-computador, como se comenta previamente en \ref{sec:raspberry_pi_4_model_b}, destaca por su reducido formato de forma (del tamaño de una tarjeta de crédito) así como por su bajo consumo y coste. Esto lo hace una solución idónea para este proyecto, que no requiere de hardware muy potente, sino más bien de mucho hardware poco potente que permita simular la estructura de un supercomputador.
+Este mini-computador, como se comenta previamente en \ref{sec:raspberry_pi_4_model_b}, destaca por su reducido formato de forma (del tamaño de una tarjeta de crédito), así como por su bajo consumo y coste. Esto lo hace una solución idónea para este proyecto, que no requiere de hardware muy potente, sino más bien de mucho hardware poco potente que permita simular la estructura de un supercomputador.
 
 \subsubsection{MicroSD}
 Una parte que puede pasar desapercibida en una primera aproximación, pero que es muy importante, son las tarjetas MicroSD, ya que sin ellas las Raspberry Pis no podrán arrancar ningún sistema operativo.\footnote{Desde la versión 2020-09-14 del bootloader se permite el arranque desde dispositivos USB \cite{rpibootloader20200903}}
@@ -67,8 +67,8 @@ La elección de la versión de 32GB de capacidad, a pesar de que no sean necesar
 %% TODO INSERTAR IMAGEN
 
 \subsubsection{Switch Gigabit de 8 puertos}
-Una de las partes más interesantes y a las que más vueltas se le ha dado es cómo hacer para conectar los mini computadores sin que se convierta en un lío de cables y sin que el hardware esté desproporcionado. Primeramente conviene destacar que el switch debe funcionar a 5V para poder ser alimentado directamente por la fuente de alimentación, siendo esto un importante requerimiento.
-Por otro lado, también debe tenerse en cuenta que normalmente los switches se fabrican con puertos múltiplos de dos. Aunque esto pueda no parecer un problema (hay tienen 8 dispositivos a conectar, por tanto un switch de 8 puertos parece una buena opción), hay que tener en cuenta que el clúster debe poder ser accedido desde el exterior, lo que hace necesario un switch de 9 puertos. Estos switches, si bien existen, son escasos e innecesariamente caros, y comprar un switch de 16 puertos tampoco es una opción por las previamente mencionadas restricciones de tamaño. Para solucionar este inconveniente se añade un adaptador \nameref{sssec:usb30_gbe}.
+Una de las partes más interesantes, y a las que más vueltas se le ha dado, es cómo hacer para conectar los mini computadores sin que se convierta en un lío de cables y sin que el hardware esté desproporcionado. Primeramente conviene destacar que el switch debe funcionar a 5V para poder ser alimentado directamente por la fuente de alimentación, siendo esto un importante requerimiento.
+Por otro lado, también debe tenerse en cuenta que normalmente los switches se fabrican con puertos múltiplos de dos. Aunque esto pueda no parecer un problema (hay 8 dispositivos a conectar, por lo que switch de 8 puertos parece una buena opción), es conveniente tener en cuenta que el clúster debe poder ser accedido desde el exterior, lo que hace necesario un switch de 9 puertos. Estos switches, si bien existen, son escasos e innecesariamente caros, y comprar un switch de 16 puertos tampoco es una opción por las previamente mencionadas restricciones de tamaño. Para solucionar este inconveniente se añade un adaptador \nameref{sssec:usb30_gbe}.
 
 \subsubsection{USB 3.0 a Gigabit Ethernet}
 \label{sssec:usb30_gbe}
@@ -78,14 +78,14 @@ Por otro lado, también debe tenerse en cuenta que normalmente los switches se f
 %   \includegraphics[width=0.20\textwidth]{img/tplink-usb-eth.jpg}
 %   \label{fig:tplink-usb-eth}
 % \end{wrapfigure}
-Con este adaptador, y puenteando la interfaz Ethernet nativa de una Raspberry y la conectada por USB, se puede obtener virtualmente un switch de 9 puertos. (Figura \ref{fig:raspi_diagram_eth})
+Con este adaptador, y puenteando la interfaz Ethernet nativa de una Raspberry y la conectada por USB, se puede obtener virtualmente un switch de 9 puertos (Figura \ref{fig:raspi_diagram_eth}).
 
 Esto se realiza a expensas de un pequeño coste de CPU para el manejo de los paquetes de red, que a la hora de la verdad tendrá un impacto marginal, ya que las comunicaciones intensivas se realizarán dentro del propio clúster.
 
 \begin{figure}[h!]
   \centering
-  %\vspace*{0.5cm}
-  \def\svgwidth{\textwidth}
+  \vspace{0.15cm}
+  \def\svgwidth{0.9\textwidth}
   \input{pdf_tex/raspi_diagram_eth/raspi_diagram.pdf_tex}
   \caption{Esquema físico de red de Clúpiter}
   \label{fig:raspi_diagram_eth}
@@ -115,7 +115,7 @@ Estos kits incluyen disipadores para RAM, CPU, controlador Ethernet y USB, así 
 % \end{wrapfigure}
 Como se menciona previamente, las \nameref{sssec:torresrpi} incluyen refrigeración activa, pero se ha optado por no incluirla por el nivel de ruido que hacen, a parte de la poca necesidad de la misma dada la naturaleza del proyecto. Sin embargo, para permitir la extensibilidad del proyecto en forma de nuevas iteraciones, se ha añadido un ventilador de 120mm optimizado para presión, que mueve aire de un extremo al otro del clúster, refrigerando los mini computadores con ayuda de los disipadores instalados.
 
-Volviendo a hablar de tensiones, el ventilador elegido funciona a 12V. Sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto, los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. Esta regulación de voltaje se realiza informada por la línea de tacómetro, sin embargo en este caso, dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable\footnote{Con step-up variable entendemos un circuito que, dada una tensión de entrada, puede ajustarse una tensión de salida igual o superior a la de la entrada en función del valor de la resistencia de un potenciómetro} MT3608 con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible para rebajar el nivel de ruido), ignorando la línea de tacómetro.
+Volviendo a hablar de tensiones, el ventilador elegido funciona a 12V. Sin embargo, alimentarlo a esa tensión haría que funcionase a máxima potencia constantemente. Para evitar esto, los fabricantes de ventiladores utilizan principalmente dos aproximaciones: regulación de voltaje y modulación por ancho de pulsos, o \acrshort{pwm}. Esta regulación de voltaje se realiza informada por la línea de tacómetro, sin embargo, en este caso, dados los requerimientos térmicos de los mini computadores empleados, únicamente se empleará un step-up variable\footnote{Con step-up variable entendemos un circuito que, dada una tensión de entrada, puede ajustarse una tensión de salida igual o superior a la de la entrada en función del valor de la resistencia de un potenciómetro} MT3608 con el que se mantiene el ventilador a una velocidad fija (y lo más baja posible para rebajar el nivel de ruido), ignorando la línea de tacómetro.
 % \hfill\ \ \begin{wrapfigure}[4]{l}{0.28\textwidth}
 %   %\vspace*{-1cm}
 %   \centering
@@ -130,7 +130,7 @@ La fuente de alimentación es un componente fundamental del clúster, y es que l
 \begin{figure}[h!]
   \vspace*{0.5cm}
   \centering
-  \includegraphics[width=0.65\textwidth]{img/psu.jpg}
+  \includegraphics[width=0.60\textwidth]{img/psu.jpg}
   \caption{Fuente de Alimentación AC-DC SA5C150W5}
   \label{fig:psu_photo}
   \vspace*{0.1cm}
@@ -141,7 +141,7 @@ Dadas estas circunstancias, y para ahorrar posibles problemas presentes y futuro
 \begin{figure}[h!]
   \centering
   \vspace*{0.5cm}
-  \def\svgwidth{\textwidth}
+  \def\svgwidth{0.9\textwidth}
   \input{pdf_tex/electric_diagram/electric_diagram.pdf_tex}
   \caption{Diagrama eléctrico de Clúpiter}
   \label{fig:raspi_electric_diagram}
@@ -166,7 +166,7 @@ En cuanto al cableado Ethernet no hay mucho que clarificar. Los cables de 4 pare
   \label{fig:TIA-568B-horiz}
 \end{figure}
 
-El cableado eléctrico ha creado importantes problemas, y es que las Raspberry Pi 4 Model B son alimentadas por USB Tipo-C, teniendo una implementación del mismo un tanto regular, por lo que no cualquier cable funciona como podría esperarse. Esto provocó el tener que cambiar los cables originalmente planeados.
+El cableado eléctrico ha creado importantes problemas, y es que las Raspberry Pi 4 Model B son alimentadas por USB Tipo-C, teniendo una implementación del mismo un tanto particular, por lo que no cualquier cable funciona como podría esperarse. Esto provocó el tener que cambiar los cables originalmente planeados.
 
 En un principio se realizó la compra de 4 cables terminados en USB-C en cada extremo, por lo que al cortarlos por la mitad se podrían obtener 8 cables terminados en USB-C. El principial problema con esta compra es que entregar potencia a través del USB-C tiene su propia especificación, USB Power Delivery (USB-PD). Tras descubrir este detalle después de la compra del material, y tras ver que realizando el arreglo (Figura \ref{fig:usb_pd_schematic} \cite{usb_pd_techforum}), que no resultaría ni caro ni complicado, aún existía la probabilidad de que (debido a la no-estándar implementación de USB-C en este modelo de Raspberry Pi) la entrega de potencia siguiese sin funcionar, se decidió por no seguir por esa vía, y realizar la compra de 8 cables con experiencia positiva previa de otros usuarios.
 
@@ -191,7 +191,7 @@ Otra opción que se barajó pero se terminó descartando fue la alimentación di
 
 \subsection{Diseño estructural}
 \label{ssec:diseño_estructural}
-La estructura que se ha pensado para aprovechar el espacio lo máximo posible consiste en lo que podría llamarse coloquialmente ``un sandwich'': la fuente de alimentación en la parte baja; las Raspberry Pi en la zona intermedia, siendo refrigeradas por un ventilador posicionado verticalmente; y el switch en la parte alta, creando cierto encajonamiento al más puro estilo supercomputador, como se muestra en la figura \ref{fig:render_cluster_1}.
+La estructura que se ha pensado para aprovechar el espacio lo máximo posible consiste en lo que podría llamarse coloquialmente ``un sandwich'': la fuente de alimentación en la parte baja; las Raspberry Pi en la zona intermedia, siendo refrigeradas por un ventilador posicionado verticalmente; y el switch en la parte alta, creando cierto encajonamiento al más puro estilo supercomputador, como se muestra en la Figura \ref{fig:render_cluster_1}.
 
 \begin{figure}[h!]
   \centering
@@ -206,11 +206,11 @@ El acoplamiento entre las capas se realiza mediante láminas de chapa, en las qu
 
 \section{Requisitos software}
 \label{sec:requisitos_software}
-En esta sección se analizan los requisitos software del proyecto. Para el desarrollo del mismo necesitamos dos piezas de software clave: el sistema operativo, y el dashboard.
+En esta sección se analizan los requisitos software del proyecto. Para el desarrollo del mismo necesitamos dos piezas de software clave: el sistema operativo, y la aplicación web.
 
 Como se comenta en \nameref{sec:objetivos}, se utilizará Arch Linux como distribución Linux. Esto es así porque siendo un usuario con cierta experiencia, resulta extremadamente cómodo instalar un sistema mínimo basado en esta distribución, así como mantenerlo y ampliarlo, cumpliendo el requisito de extensibilidad del hardware, que también aplica al software. Además, a un hipotético usuario futuro sin tanta experiencia le resultará sencillo habituarse al funcionamiento y configuración de Arch Linux debido a su amplia documentación en la Arch Wiki.\footnote{\url{https://wiki.archlinux.org}. Se puede consultar una breve guía de mantenimiento básico de Arch Linux en el Apéndice \ref{chap:archlinux_maintenance_guide}}
 
-Por otro lado, se implementará un dashboard web que permita:
+Por otro lado, se implementará una aplicación web (\textit{dashboard}) que permita:
 \begin{enumerate}
     \item \textbf{Explicar el funcionamiento} de Clúpiter, los supercomputadores paralelos, \acrshort{mpi}, y la importancia en el mundo real de los mismos, mediante vídeos reproducibles en la página web.
     \item \textbf{Monitorizar el estado} e histórico del servidor en tiempo real, pudiendo realizar con la ayuda de dicha información explicaciones interactivas acerca del funcionamiento de programas \acrshort{mpi}.
@@ -218,7 +218,7 @@ Por otro lado, se implementará un dashboard web que permita:
 
 Como principal requisito no funcional, y como ya se menciona previamente:
 \begin{itemize}
-    \item El sistema operativo de Clúpiter debe ser \textbf{extensible} y \textbf{mantenible}: El sistema operativo no debe ser una caja negra inaccesible y difícil de mantener, sino todo lo contrario.
+    \item El sistema operativo de Clúpiter debe ser \textbf{extensible} y \textbf{mantenible}. El sistema operativo no debe ser una caja negra inaccesible y difícil de mantener, sino todo lo contrario.
 \end{itemize}
 
 \section{Diseño software}
@@ -243,7 +243,7 @@ Esto es posible debido a que virtualmente Clúpiter está conectado a un switch 
   \centering
   \vspace*{0.5cm}
   %\def\svgwidth{0.87\textwidth}
-  \def\svgwidth{\textwidth}
+  \def\svgwidth{0.9\textwidth}
   \input{pdf_tex/raspi_logical_net/raspi_logical_net.pdf_tex}
   \caption{Esquema lógico de red de Clúpiter}
   \label{fig:raspi_diagram_logical}
