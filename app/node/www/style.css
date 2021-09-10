@@ -1,5 +1,5 @@
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
-body{line-height:1; font-family: arial;}
+body{line-height:1.2; font-family: arial;}
 h1{font-size: 25px;}h2{font-size: 21px;}h3{font-size: 18px;}h4{font-size: 16px;}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
 nav ul{list-style:none}
@@ -60,24 +60,31 @@ nav ul {
 }
 main {
     float: left;
-    width: 60%;
+    width: 100%;
 }
 aside {
     float: right;
     width: 30%;
 }
 article {
+    text-indent: 1em;
     border-bottom: 2px dotted #BDBDBD;
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
 article h2 {
+    text-indent: 0;
     font-weight: normal;
     margin-bottom: 12px;
 }
 article p {
     
 }
+
+.continue {
+    border-bottom: none;
+}
+
 main section {
     
 }
@@ -121,8 +128,12 @@ body > section {
     max-width: 75%;
     margin: auto;
     padding: 30px 0px;
-    border-bottom: 1px solid #BDBDBD;
+    border-bottom: 4px solid #BDBDBD;
     color: #212121;
+}
+
+body > section > strong {
+    font-size: x-large;
 }
 
 @media screen and (max-width: 1000px) {
@@ -270,4 +281,10 @@ body > section {
     position: absolute;
     top: 3.25em;
     right: 1.5em
+}
+
+article > video {
+    height: 100%;
+    width: 55em;
+    margin: 1em;
 }
