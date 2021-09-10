@@ -39,7 +39,13 @@ La elección de socket.io se realiza debido a la sencillez y elegancia que aport
 
 La página de monitorización (Figura \ref{fig:pagina_monitorizacion}) es la única que se comunica con Clúpiter. En la parte superior se encuentran los medidores de uso de CPU y tráfico de red de cada uno de los nodos. Estos medidores son los que se utilizaron en el capítulo anterior para estudiar el comportamiento de los NPB (Figuras \ref{fig:mops__cg}\textasciitilde\ref{fig:mops__mg}). Debajo de los mismos se encuentran botones para ejecutar cada uno de los benchmarks (en clase \texttt{C}), y observar su salida por terminal, así como ver en tiempo real el impacto que la ejecución de los mismos tiene sobre la carga en los nodos.
 
-TODO INCLUIR UNA CAPTURA CUANDO ESTÉ LA WEB TRADUCIDA (ref fig:pagina\_monitorizacion)
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{img/dashboard/monitoring.png}
+  \caption{Página de monitorización de Clúpiter}
+  \label{fig:pagina_monitorizacion}
+\end{figure}
 
 \subsection{Comunicación socket.io}
 \label{ssec:socket.io_comm}
@@ -153,7 +159,7 @@ pacman -S npm git --needed      # como root
 Tras ello se procede a desplegar la aplicación web:
 \begin{lstlisting}[language=bash]
 # Se crea el directorio /clupiter_dashboard y se le dan permisos a mpiuser
-mkdir /clupiter_dashboard
+mkdir -p /clupiter_dashboard
 chown -R mpiuser:mpiuser /clupiter_dashboard
 
 # Se inicia sesión como mpiuser
@@ -174,11 +180,21 @@ cat www/video/vid_1.mp4__* > www/video/vid_1.mp4
 node ./index.js
 \end{lstlisting}
 
-Si todo ha funcionado correctamente se podrá acceder a la página principal del dashboard en la dirección web \url{http://192.168.0.220:3000}.
+Si todo ha funcionado correctamente se podrá acceder a la página principal del dashboard en la dirección web \url{http://192.168.0.220:3000}.\footnote{Si se desea actualizar el software se debe eliminar el directorio del dashboard con \texttt{rm -rf /clupiter\_dashboard}, ejecutar estos comandos de nuevo, y reiniciar la unidad de systemd} En ella, se podrán ver todas las páginas, incluyendo la de inicio (Figura \ref{fig:inicio_clupiter}), monitorización (Figura \ref{fig:pagina_monitorizacion}), y el acerca de (Figura \ref{fig:acercade_clupiter}).
 
-% TODO INSERTAR CAPTURA
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/dashboard/inicio.png}
+  \caption{Página de inicio de Clúpiter}
+  \label{fig:inicio_clupiter}
+\end{figure}
 
-TODO INSERTAR CAPTURAS PRINCIPAL, DASHBOARD, ABOUT
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/dashboard/agradecimientos.png}
+  \caption{Página ``acerca de''' de Clúpiter}
+  \label{fig:acercade_clupiter}
+\end{figure}
 
 \subsection{Creación de unidad de systemd}
 Crear una unidad (o \textit{unit}) de systemd es necesario para que el dashboard se inicie con el nodo maestro. Realizar esto es una operación moderadamente sencilla (si bien no tan sencilla como podría ser en otros sistemas de init\footnote{\url{https://wiki.gentoo.org/wiki/Comparison_of_init_systems}}). 
