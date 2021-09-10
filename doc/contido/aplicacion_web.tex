@@ -167,6 +167,9 @@ cd GEI_TFG/app/node/
 # Se instalan las dependencias
 npm install --only=production
 
+# Se juntan los trozos de vídeo
+cat www/video/vid_1.mp4__* > www/video/vid_1.mp4
+
 # Y se ejecuta manualmente una vez para probar con
 node ./index.js
 \end{lstlisting}
