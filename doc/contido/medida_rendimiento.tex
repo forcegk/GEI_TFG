@@ -3,7 +3,7 @@
 
 \lettrine{L}{a} medida del rendimiento y el resultado de la misma es una parte fundamental en la evaluación y relevancia de un supercomputador, hasta el punto en el que se compite por ver cuales desarrollan un mejor resultado\footnote{\url{https://www.top500.org}}.
 
-En este caso, si bien el rendimiento no es una prioridad, es conveniente realizar estas pruebas, especialmente para poder observar el impacto que tiene la red de comunicaciones entre los núcleos de una sola CPU, o entre múltiples CPUs y memorias. En resumen, medir la escalabilidad, que, como se observa en la subsección \ref{ssec:resultados}, no es en absoluto espectacular.
+En este caso, si bien el rendimiento no es una prioridad, es conveniente realizar estas pruebas, especialmente para poder observar el impacto que tiene la red de comunicaciones entre los núcleos de una sola CPU, o entre múltiples CPUs y memorias. En resumen, medir la escalabilidad, que, como se observa en la Subsección \ref{ssec:resultados}, no es en absoluto espectacular.
 
 \section{NAS Parallel Benchmarks}
 Los \acrlong{npb} (\acrshort{npb}) \cite{npb_webpage} son una \textit{suite} de tests de cálculo numérico diseñados por la División de Supercomputación de la NASA para la medida del rendimiento de supercomputadores paralelos.
@@ -201,7 +201,7 @@ Se muestran a continuación los datos expresados en MOPS (\textbf{M}ega/\textbf{
 
 Esta métrica, MOPS, indica para cada benchmark el número de operaciones que realiza el kernel, que no el número de operaciones de la propia CPU. Por esta razón los resultados son muy diferentes y variados entre diferentes kernels \cite{mallon2009npb}.
 
-Finalmente aclarar que en las gráficas se puede encontrar una línea vertical discontinua en los 4 núcleos. Esta línea señala la transición de ejecución en un solo computador (memoria compartida por 4 procesos) a ejecución en múltiples computadores, comunicados a través de Gigabit Ethernet (memoria distribuída en $N_{bloques}$ de 4 procesos, tal que $N_{bloques} = N_{procesos} / 4$). Además, debajo de dichas gráficas se encuentran dos medidores, siendo estos capturas de pantalla del \textit{dashboard} de Clúpiter, el cual se explicará en más detalle en el próximo capítulo. La primera de ellas es para la ejecución en un solo nodo, y la segunda para ejecución en multinodo, siendo esta segunda una captura de un nodo al azar diferente al nodo maestro, ya que todos los nodos muestran un gráfico idéntico.
+Finalmente aclarar que en las gráficas se puede encontrar una línea vertical discontinua en los 4 núcleos. Esta línea señala la transición de ejecución en un solo computador (memoria compartida por 4 procesos) a ejecución en múltiples computadores, comunicados a través de Gigabit Ethernet (memoria distribuida en $N_{bloques}$ de 4 procesos, tal que $N_{bloques} = N_{procesos} / 4$). Además, debajo de dichas gráficas se encuentran dos medidores, siendo estos capturas de pantalla del \textit{dashboard} de Clúpiter, el cual se explicará en más detalle en el próximo capítulo. La primera de ellas es para la ejecución en un solo nodo, y la segunda para ejecución en multinodo, siendo esta segunda una captura de un nodo al azar diferente al nodo maestro, ya que todos los nodos muestran un gráfico idéntico.
 
 Si uno es perspicaz, puede notar que el tráfico del nodo maestro es superior al del resto de nodos cuando el tráfico es muy reducido. Esto es así porque es el nodo maestro el encargado de alojar la página web interactiva y, por tanto, de recabar y enviar la información de monitorización de todos los nodos y mostrarla al usuario. Así, fijándose en alguna figura de un benchmark donde no haya comunicaciones intensivas (Figura \ref{fig:mops__ep}), se puede comprobar que, si el nodo maestro tiene que recibir información de 7 nodos, y estos generan un tráfico de aproximadamente $60$ kbps (Figura \ref{fig:mops_rev_mn__ep}), se puede ver fácilmente por qué en el nodo maestro (Figura \ref{fig:mops_rev_sn__ep}) existe un tráfico de $416 \approx 420 = 60 \cdot 7$ kbps.
 
@@ -211,7 +211,7 @@ En esta subsección se muestran los resultados obtenidos de la ejecución de los
 
 \subsubsection{CG}
 \label{sssec:resultados__cg}
-Como puede apreciarse en la Figura \ref{fig:mops__cg}, el benchnmark CG es un benchmark mixto, en el que se realiza computación y comunicación de forma no diferenciada en el tiempo. Esto no parece ser un problema importante a la hora de entrar en modo de memoria distribuída, donde los MOPS por proceso no solo se estabilizan más o menos en la misma tendencia, sino que debido al dato atípicamente bajo para 4 procesadores en memoria compartida, el rendimiento mejora. Este valor atípicamente bajo podría deberse, como se va a ver posteriormente en múltiples ocasiones, al reducido ancho de banda de la memoria principal.
+Como puede apreciarse en la Figura \ref{fig:mops__cg}, el benchnmark CG es un benchmark mixto, en el que se realiza computación y comunicación de forma no diferenciada en el tiempo. Esto no parece ser un problema importante a la hora de entrar en modo de memoria distribuida, donde los MOPS por proceso no solo se estabilizan más o menos en la misma tendencia, sino que debido al dato atípicamente bajo para 4 procesadores en memoria compartida, el rendimiento mejora. Este valor atípicamente bajo podría deberse, como se va a ver posteriormente en múltiples ocasiones, al reducido ancho de banda de la memoria principal.
 
 \subsubsection{EP}
 \label{sssec:resultados__ep}
@@ -223,7 +223,7 @@ El núcleo (kernel) IS es otro que realiza muy importantes movimientos de datos 
 
 \subsubsection{LU}
 \label{sssec:resultados__lu}
-En el benchmark LU se aprecia un escalado más normal (Figura \ref{fig:mops__lu}), sin tantos datos atípicos, en donde se puede observar una caída de en torno al $60\textasciitilde70\%$ en MOPS por proceso al aumentar el número de procesos en el mismo nodo. Caída en picado que se vuelve más leve cuando se ejecuta en modo de memoria distribuída (multinodo). De nuevo, esta caída en picado es probablemente por la elevada demanda de ancho de banda a la memoria principal, que no puede ser satisfecha por un solo chip.
+En el benchmark LU se aprecia un escalado más normal (Figura \ref{fig:mops__lu}), sin tantos datos atípicos, en donde se puede observar una caída de en torno al $60\textasciitilde70\%$ en MOPS por proceso al aumentar el número de procesos en el mismo nodo. Caída en picado que se vuelve más leve cuando se ejecuta en modo de memoria distribuida (multinodo). De nuevo, esta caída en picado es probablemente por la elevada demanda de ancho de banda a la memoria principal, que no puede ser satisfecha por un solo chip.
 
 \subsubsection{FT}
 \label{sssec:resultados__ft}

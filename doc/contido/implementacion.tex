@@ -66,7 +66,7 @@ Como se comenta en \nameref{ssec:diseño_estructural}, el objetivo es construir 
     \label{fig:testeo_hw}
     \end{figure}
 
-    \item \textbf{Cortado} de las \textbf{láminas adaptadoras} de chapa. Ya con las piezas testeadas, llega el momento de ensamblar todo el sistema. Para ello se cortan con radial planchas de chapa recicladas de una caja antigua de ordenador, se lijan, pintan, y se realizan los agujeros necesarios para acoplar cada capa con la siguiente. En este aspecto, si bien estéticamente podría haber sido mejorable en caso de haber dispuesto de una plegadora, y dado que este proyecto no es de ingeniería industrial, se considera adecuada la solución construída.
+    \item \textbf{Cortado} de las \textbf{láminas adaptadoras} de chapa. Ya con las piezas testeadas, llega el momento de ensamblar todo el sistema. Para ello se cortan con radial planchas de chapa recicladas de una caja antigua de ordenador, se lijan, pintan, y se realizan los agujeros necesarios para acoplar cada capa con la siguiente. En este aspecto, si bien estéticamente podría haber sido mejorable en caso de haber dispuesto de una plegadora, y dado que este proyecto no es de ingeniería industrial, se considera adecuada la solución construida.
 
 
     \item \textbf{Ensamblado final} y cableado. Se integran todos los componentes en la estructura y se realiza el cableado, tanto eléctrico como de red. Este cableado es cortado a medida para un ajuste fino, libre de excedentes que gestionar (Figura \ref{fig:fotos_estructura}).
@@ -305,7 +305,7 @@ echo "mpiuser:mpi" | chpasswd
 \end{lstlisting}
 
 \subsubsection{Permisos de mpiuser}
-Para una mejor manejabilidad del clúster (ver sección \ref{ssec:apagado_impl}), el usuario \texttt{mpiuser} debe tener permiso para apagar los nodos. Este permiso es posible otorgárselo mediante el programa \texttt{sudo}. Para ello, se debe ejecutar en todos los nodos el siguiente comando como root\footnote{La sintaxis del fichero escrito se puede encontrar en \url{https://linux.die.net/man/5/sudoers} o ejecutando \texttt{man 5 sudoers}}:
+Para una mejor manejabilidad del clúster (ver Sección \ref{ssec:apagado_impl}), el usuario \texttt{mpiuser} debe tener permiso para apagar los nodos. Este permiso es posible otorgárselo mediante el programa \texttt{sudo}. Para ello, se debe ejecutar en todos los nodos el siguiente comando como root\footnote{La sintaxis del fichero escrito se puede encontrar en \url{https://linux.die.net/man/5/sudoers} o ejecutando \texttt{man 5 sudoers}}:
 
 \begin{lstlisting}[language=bash]
 echo "mpiuser ALL=(root) NOPASSWD:/usr/bin/poweroff" > /etc/sudoers.d/mpiuser_poweroff

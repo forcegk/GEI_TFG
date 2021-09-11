@@ -37,15 +37,7 @@ La tecnología sobre la que se programa el \textit{\gls{backend}} de la aplicaci
 
 La elección de socket.io se realiza debido a la sencillez y elegancia que aporta al código, el cual se puede programar mediante ``eventos''. Esto es algo fantástico, ya que desde la propia aplicación web se pueden hacer llamadas al \textit{\gls{backend}} con el mismo estilo de programación que en Android, resultando familiar y sencillo.
 
-La página de monitorización (Figura \ref{fig:pagina_monitorizacion}) es la única que se comunica con Clúpiter. En la parte superior se encuentran los medidores de uso de CPU y tráfico de red de cada uno de los nodos. Estos medidores son los que se utilizaron en el capítulo anterior para estudiar el comportamiento de los NPB (Figuras \ref{fig:mops__cg}\textasciitilde\ref{fig:mops__mg}). Debajo de los mismos se encuentran botones para ejecutar cada uno de los benchmarks (en clase \texttt{C}), y observar su salida por terminal, así como ver en tiempo real el impacto que la ejecución de los mismos tiene sobre la carga en los nodos.
-
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.95\textwidth]{img/dashboard/monitoring.png}
-  \caption{Página de monitorización de Clúpiter}
-  \label{fig:pagina_monitorizacion}
-\end{figure}
+La página de monitorización es la única que se comunica con Clúpiter. Desde esta página se pueden ejecutar cada uno de los benchmarks (en clase \texttt{C}), y observar su salida por terminal, así como ver en tiempo real el impacto que la ejecución de los mismos tiene sobre la carga en los nodos.
 
 \subsection{Comunicación socket.io}
 \label{ssec:socket.io_comm}
@@ -134,10 +126,11 @@ switch (bench_name) {
   \item Finalmente, el comando junto con sus argumentos se ejecuta, y la salida estándar se redirige a la interfaz web, como se explica en la sección anterior (\ref{ssec:socket.io_comm}).
 \end{enumerate}
 
-\section{Grabación de vídeos}
-Como se comenta en la sección \ref{sec:contenido_didactico__diseño}, se graban dos vídeos didácticos y divulgativos. El primero de ellos trata de manera muy superficial el concepto de superordenador, se aporta contexto histórico y cifras acerca de lo enorme de estas máquinas de cómputo, y cuales son y han sido sus utilidades y logros. Tras ello se realiza una descripción de Clúpiter y sus partes fundamentales, y se relacionan con sus análogos en un supercomputador real. Este vídeo está claramente orientado a educar en conceptos muy básicos acerca del \acrshort{hpc}, pero también a motivar e inspirar a futuros ingenieros. El vídeo en cuestión puede encontrarse en la dirección \url{https://youtu.be/o76-VP6WFCo}.
+\section{Vídeos didácticos}
+\label{sec:videos_didacticos}
+Como se comenta en la Sección \ref{sec:contenido_didactico__diseño}, se graban dos vídeos didácticos y divulgativos. El primero de ellos trata de manera muy superficial el concepto de superordenador, se aporta contexto histórico y cifras acerca de lo enorme de estas máquinas de cómputo, y cuales son y han sido sus utilidades y logros. Tras ello se realiza una descripción de Clúpiter y sus partes fundamentales, y se relacionan con sus análogos en un supercomputador real. Este vídeo está claramente orientado a educar en conceptos muy básicos acerca del \acrshort{hpc}, pero también a motivar e inspirar a futuros ingenieros. El vídeo en cuestión puede encontrarse en la dirección \url{https://youtu.be/o76-VP6WFCo}.
 
-El segundo vídeo, ya más técnico, habla mediante animaciones ilustradas a mano acerca del funcionamiento interno de un supercomputador, su necesidad en el día a día, y las restricciones que tienen que superar los programas paralelos, mediante analogías y evitando el tecnicismo. Tras ello, se da una breve introducción a las operaciones más básicas de \acrshort{mpi}, y se finaliza el vídeo con una cuestión acerca de cómo ordenar diez mil hojas a mano entre varias personas, un recurso para el expositor que podrá emplear si éste lo considera conveniente. Con esta tarea se pueden explicar de manera intuitiva, e incluso competiva, múltiples conceptos de computación. En concreto se pueden razonar los algoritmos de ordenación y visualizar de primera mano las restricciones de la programación paralela, incluyendo la ralentización que supone el acceso a red, o las diferencias de acceso a memoria uniforme (\acrshort{uma} o \acrlong{uma}) con respecto al no uniforme (\acrshort{numa} o \acrlong{numa}). Dicho vídeo se puede encontrar en la dirección \url{https://youtu.be/if0MWI_9xzM}.
+El segundo vídeo, ya más técnico, habla mediante animaciones ilustradas a mano acerca del funcionamiento interno de un supercomputador, su necesidad en el día a día, y las restricciones que tienen que superar los programas paralelos, mediante analogías y evitando el tecnicismo. Tras ello, se da una breve introducción a las operaciones más básicas de \acrshort{mpi}, y se finaliza el vídeo con una cuestión acerca de cómo ordenar diez mil hojas a mano entre varias personas, un recurso que expositor podrá emplear si lo considera conveniente. Con esta tarea se pueden explicar de manera intuitiva, e incluso competiva, múltiples conceptos de computación. En concreto se pueden razonar los algoritmos de ordenación y visualizar de primera mano las restricciones de la programación paralela, incluyendo la ralentización que supone el acceso a red, o las diferencias de acceso a memoria uniforme (\acrshort{uma} o \acrlong{uma}) con respecto al no uniforme (\acrshort{numa} o \acrlong{numa}). Dicho vídeo se puede encontrar en la dirección \url{https://youtu.be/if0MWI_9xzM}.
 
 Finalmente, destacar que estos vídeos, en su versión alojada en YouTube, cuentan con subtítulos en español en caso de que sean expuestos a personas con discapacidades auditivas.
 
@@ -187,7 +180,9 @@ cat www/video/vid_1.mp4__* > www/video/vid_1.mp4
 node ./index.js
 \end{lstlisting}
 
-Si todo ha funcionado correctamente se podrá acceder a la página principal del dashboard en la dirección web \url{http://192.168.0.220:3000}.\footnote{Si se desea actualizar el software se debe eliminar el directorio del dashboard con \texttt{rm -rf /clupiter\_dashboard}, ejecutar estos comandos de nuevo, y reiniciar la unidad de systemd} En ella, se podrán ver todas las páginas, incluyendo la de inicio (Figura \ref{fig:inicio_clupiter}), monitorización (Figura \ref{fig:pagina_monitorizacion}), y el acerca de (Figura \ref{fig:acercade_clupiter}).
+Si todo ha funcionado correctamente se podrá acceder a la página principal del dashboard en la dirección web \url{http://192.168.0.220:3000}.\footnote{Si se desea actualizar el software se debe eliminar el directorio del dashboard con \texttt{rm -rf /clupiter\_dashboard}, ejecutar estos comandos de nuevo, y reiniciar la unidad de systemd} 
+
+Desde ella se podrá acceder a todas las páginas del dashboard: la de inicio, monitorización y el acerca de. En la página de inicio (Figura \ref{fig:inicio_clupiter}) se muestran los dos videos divulgativos de los que se ha hablado en la Sección \ref{sec:videos_didacticos}. En la página de monitorización (Figura \ref{fig:pagina_monitorizacion}) se encuentran los medidores de uso de CPU y tráfico de red de cada uno de los nodos. Estos medidores son los que se utilizaron en el capítulo anterior para estudiar el comportamiento de los NPB (Figuras \ref{fig:mops__cg}\textasciitilde\ref{fig:mops__mg}). Debajo de los mismos se encuentran botones para ejecutar cada uno de los benchmarks. En la pagina de ``acerca de'' (Figura \ref{fig:acercade_clupiter}) se incluye una breve descripción de Clúpiter y los agradecimientos. 
 
 \begin{figure}[h!]
   \centering
@@ -198,11 +193,18 @@ Si todo ha funcionado correctamente se podrá acceder a la página principal del
 
 \begin{figure}[h!]
   \centering
+  \includegraphics[width=0.95\textwidth]{img/dashboard/monitoring.png}
+  \caption{Página de monitorización de Clúpiter}
+  \label{fig:pagina_monitorizacion}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
   \includegraphics[width=0.9\textwidth]{img/dashboard/agradecimientos.png}
   \caption{Página ``acerca de'' de Clúpiter}
   \label{fig:acercade_clupiter}
 \end{figure}
-
+\FloatBarrier
 \subsection{Creación de unidad de systemd}
 Crear una unidad (o \textit{unit}) de systemd es necesario para que el dashboard se inicie con el nodo maestro. Realizar esto es una operación moderadamente sencilla (si bien no tan sencilla como podría ser en otros sistemas de init\footnote{\url{https://wiki.gentoo.org/wiki/Comparison_of_init_systems}}). 
 
