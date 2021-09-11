@@ -1,6 +1,6 @@
 {
     "name": "clupiter_dashboard",
-    "version": "0.0.1",
+    "version": "1.0",
     "description": "Clupiter Didactical and Monitoring Dashboard",
     "dependencies": {
         "express": "^4.17.1",
