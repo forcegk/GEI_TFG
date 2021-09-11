@@ -180,7 +180,7 @@ cat www/video/vid_1.mp4__* > www/video/vid_1.mp4
 node ./index.js
 \end{lstlisting}
 
-Si todo ha funcionado correctamente se podrá acceder a la página principal del dashboard en la dirección web \url{http://192.168.0.220:3000}.\footnote{Si se desea actualizar el software se debe eliminar el directorio del dashboard con \texttt{rm -rf /clupiter\_dashboard}, ejecutar estos comandos de nuevo, y reiniciar la unidad de systemd} 
+Si todo ha funcionado correctamente se podrá acceder a la página principal del dashboard en la dirección web \url{http://192.168.0.220:3000}.\footnote{Si se desea actualizar el software debería ser suficiente con realizar \texttt{git pull}. En caso de error, lo más cómodo es simplemente eliminar el directorio del dashboard con \texttt{rm -rf /clupiter\_dashboard} y ejecutar estos comandos de nuevo. En cualquier caso, tras la actualización es conveniente reiniciar la unidad de systemd.} 
 
 Desde ella se podrá acceder a todas las páginas del dashboard: la de inicio, monitorización y el acerca de. En la página de inicio (Figura \ref{fig:inicio_clupiter}) se muestran los dos videos divulgativos de los que se ha hablado en la Sección \ref{sec:videos_didacticos}. En la página de monitorización (Figura \ref{fig:pagina_monitorizacion}) se encuentran los medidores de uso de CPU y tráfico de red de cada uno de los nodos. Estos medidores son los que se utilizaron en el capítulo anterior para estudiar el comportamiento de los NPB (Figuras \ref{fig:mops__cg}\textasciitilde\ref{fig:mops__mg}). Debajo de los mismos se encuentran botones para ejecutar cada uno de los benchmarks. En la pagina de ``acerca de'' (Figura \ref{fig:acercade_clupiter}) se incluye una breve descripción de Clúpiter y los agradecimientos. 
 

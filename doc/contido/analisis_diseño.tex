@@ -60,7 +60,7 @@ Este mini-computador, como se comenta previamente en \ref{sec:raspberry_pi_4_mod
 \subsubsection{MicroSD}
 Una parte que puede pasar desapercibida en una primera aproximación, pero que es muy importante, son las tarjetas MicroSD, ya que sin ellas las Raspberry Pis no podrán arrancar ningún sistema operativo.\footnote{Desde la versión 2020-09-14 del bootloader se permite el arranque desde dispositivos USB \cite{rpibootloader20200903}}
 
-Se han elegido las tarjetas Samsung Pro Endurance debido a su alta capacidad de escritura, ya que otros tipos de tarjetas sin este propósito específico podrían sufrir bastante desgaste y llegar al final de su vida útil prematuramente. 
+Se han elegido las tarjetas Samsung Pro Endurance debido a su alta capacidad de escritura, ya que otros tipos de tarjetas sin este propósito específico podrían sufrir un notable desgaste y llegar al final de su vida útil prematuramente. 
 
 La elección de la versión de 32GB de capacidad, a pesar de que no sean necesarios, es trivial, ya que no existen modelos de la misma línea de menor capacidad, y este extra de espacio puede ser bienvenido en hipotéticas futuras iteraciones sobre esta infraestructura.
 
@@ -161,29 +161,29 @@ En cuanto al cableado Ethernet no hay mucho que clarificar. Los cables de 4 pare
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.55\textwidth]{img/TIA-568B-horizontal.png}
+  \includegraphics[width=0.60\textwidth]{img/TIA-568B-horizontal.png}
   \caption{Cable Ethernet según disposición ANSI/TIA-568B}
   \label{fig:TIA-568B-horiz}
 \end{figure}
 
-El cableado eléctrico ha creado importantes problemas, y es que las Raspberry Pi 4 Model B son alimentadas por USB Tipo-C, teniendo una implementación del mismo un tanto particular, por lo que no cualquier cable funciona como podría esperarse. Esto provocó el tener que cambiar los cables originalmente planeados.
+El cableado eléctrico ha creado importantes problemas, y es que las Raspberry Pi 4 Model B son alimentadas por USB Type-C, teniendo una implementación del mismo un tanto particular, por lo que no cualquier cable funciona como podría esperarse. Esto provocó el tener que cambiar los cables originalmente planeados.
 
-En un principio se realizó la compra de 4 cables terminados en USB-C en cada extremo, por lo que al cortarlos por la mitad se podrían obtener 8 cables terminados en USB-C. El principial problema con esta compra es que entregar potencia a través del USB-C tiene su propia especificación, USB Power Delivery (USB-PD). Tras descubrir este detalle después de la compra del material, y tras ver que realizando el arreglo (Figura \ref{fig:usb_pd_schematic} \cite{usb_pd_techforum}), que no resultaría ni caro ni complicado, aún existía la probabilidad de que (debido a la no-estándar implementación de USB-C en este modelo de Raspberry Pi) la entrega de potencia siguiese sin funcionar, se decidió por no seguir por esa vía, y realizar la compra de 8 cables con experiencia positiva previa de otros usuarios.
+En un principio se realizó la compra de 4 cables terminados en USB-C en cada extremo, de tal forma que al cortarlos por la mitad se podrían obtener 8 cables terminados en USB-C. El principial problema con esta aproximación es que entregar potencia a través del USB-C tiene su propia especificación, USB Power Delivery (USB-PD). Tras descubrir este detalle después de la compra del material, y al ver que realizando el arreglo tal como se observa en la Figura \ref{fig:usb_pd_schematic} \cite{usb_pd_techforum} (que no resultaría ni caro ni complicado), aún existía la posibilidad de que, debido a ciertas particularidades en la implementación de USB-C en este modelo de \acrlong{rpi}, la entrega de potencia siguiese sin funcionar, se decidió por no seguir por esa vía, y realizar la compra de 8 cables con experiencia positiva previa de otros usuarios.
 
 \begin{figure}[h!]
-  \vspace*{0.5cm}
+  \vspace*{0.3cm}
   \centering
-  \includegraphics[width=0.8\textwidth]{img/usb_pd_schematic.jpg}
+  \includegraphics[width=0.75\textwidth]{img/usb_pd_schematic.jpg}
   \caption{Esquemático para USB-C Power Delivery 5V y 3A}
   \label{fig:usb_pd_schematic}
   \vspace*{0.1cm}
 \end{figure}
 
-Este nuevo (y el actual) cableado eléctrico es un cable USB-C con terminación magnética y que soporta una corriente de 3A a 5V. Esto permite abstraer los detalles de implementación a nivel eléctrico del USB Tipo-C y expone simplemente los cables de +5V y masa.
+Este nuevo (y actual) cableado eléctrico es un cable USB-C con terminación magnética que soporta una corriente de 3A a 5V. Esto permite abstraer los detalles de implementación a nivel eléctrico del USB Type-C y expone simplemente los cables de +5V y masa.
 
 Un aspecto muy importante a tener en cuenta, y que ha sido un problema de relevancia durante la construcción del clúster, es que debido a la naturaleza de estos cables, el contacto entre la pieza del USB-C y el propio cable debe estar limpio de residuos aislantes o conductores de un diámetro lo suficientemente grande que impidan un buen contacto.
 
-Otra opción que se barajó pero se terminó descartando fue la alimentación directa por los pines +5V y GND del \acrshort{gpio}, pero que se terminó descartando porque realizar la alimentación salta por completo todo el sistema de protección, lo cual podría resultar fatal en caso de fallo en la fuente de alimentación.
+Otra opción que se barajó pero que se terminó descartando fue la alimentación directa por los pines +5V y GND del \acrshort{gpio}. Esta decisión fué tomada debido a que mediante este método se evita por completo todo el sistema de protección, lo cual podría resultar fatal en caso de fallo en la fuente de alimentación.
 
 % TODO INSERTAR IMAGENES CABLES USB INALAMBRICOS Y ANSI-TIA
 % TODO INSERTAR IMAGENES DE PIEZAS
@@ -237,7 +237,7 @@ Además, la puerta de enlace será fija en la dirección 192.168.0.1, pudiendo e
     \item Un ordenador se conecta directamente a Clúpiter, con cualquier IP que no esté en conflicto, y puede realizar SSH a cualquier nodo y acceder a todas sus funciones, pero los nodos del clúster no tendrán acceso a internet.
 \end{itemize}
 
-Esto es posible debido a que virtualmente Clúpiter está conectado a un switch de 9 puertos, como se puede observar en la Figura \ref{fig:raspi_diagram_eth}: \nameref{fig:raspi_diagram_eth}. El esquema lógico de red para el caso en el que existe un host conectado al clúster, en la IP 192.168.0.1, haga de gateway o no (en el diagrama sí es el gateway), se puede ver en la Figura \ref{fig:raspi_diagram_logical}.
+Esto es posible debido a que virtualmente Clúpiter está conectado a un switch de 9 puertos, como se puede observar en la Figura \ref{fig:raspi_diagram_eth}: \nameref{fig:raspi_diagram_eth}. El esquema lógico de red para el caso en el que existe un host conectado al clúster en la IP 192.168.0.1, haga de gateway o no (en el diagrama sí que actúa como gateway), se puede ver en la Figura \ref{fig:raspi_diagram_logical}.
 
 \begin{figure}[h!]
   \centering

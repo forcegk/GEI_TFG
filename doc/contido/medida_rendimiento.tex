@@ -3,7 +3,7 @@
 
 \lettrine{L}{a} medida del rendimiento y el resultado de la misma es una parte fundamental en la evaluación y relevancia de un supercomputador, hasta el punto en el que se compite por ver cuales desarrollan un mejor resultado\footnote{\url{https://www.top500.org}}.
 
-En este caso, si bien el rendimiento no es una prioridad, es conveniente realizar estas pruebas, especialmente para poder observar el impacto que tiene la red de comunicaciones entre los núcleos de una sola CPU, o entre múltiples CPUs y memorias. En resumen, medir la escalabilidad, que, como se observa en la Subsección \ref{ssec:resultados}, no es en absoluto espectacular.
+En este caso, si bien el rendimiento no es una prioridad, es conveniente realizar estas pruebas, especialmente para poder observar el impacto que tiene la red de comunicaciones entre los núcleos de una sola CPU, o entre múltiples CPUs y memorias. En resumen, medir la escalabilidad, que como se observa en la Subsección \ref{ssec:resultados} no es en absoluto espectacular.
 
 \section{NAS Parallel Benchmarks}
 Los \acrlong{npb} (\acrshort{npb}) \cite{npb_webpage} son una \textit{suite} de tests de cálculo numérico diseñados por la División de Supercomputación de la NASA para la medida del rendimiento de supercomputadores paralelos.
@@ -53,7 +53,7 @@ Esta necesidad de ancho de banda a la memoria principal, así como de rápidas c
 
 \subsubsection{LU - Lower-Upper solver}
 \label{sssec:benchmarks__lu}
-La factorización LU es es un método de factorización de una matriz en dos matrices triangulares inferior y superior. Aunque ``factorización de matrices'' pudiera sonar extraño a algún lector, realmente no es nada esotérico: algunas matrices, al igual que algunos números enteros, pueden ser separadas en dos matrices, producto de las cuales se obtiene la matriz original. En la factorización LU de matrices 3x3, éstas tienen una estructura como la que se puede observar en la Figura \ref{fig:factorizacion_lu}.
+La factorización LU es es un método de factorización de una matriz en dos matrices triangulares inferior y superior. Aunque ``factorización de matrices'' pudiera sonar extraño a algún lector, realmente no es nada esotérico: algunas matrices, al igual que algunos números enteros, pueden ser separadas en dos matrices, producto de las cuales se obtiene la matriz original. En la factorización LU de matrices 3$\times$3, éstas tienen una estructura como la que se puede observar en la Figura \ref{fig:factorizacion_lu}.
 
 Esta factorización se emplea en el análisis numérico para la resolución de sistemas de ecuaciones de forma más eficiente, por lo que, de nuevo, se puede apreciar la utilidad de este proceso en aeronáutica.
 
@@ -79,7 +79,7 @@ Esta factorización se emplea en el análisis numérico para la resolución de s
     \end{pmatrix}
     $
 
-  \caption{Factorización LU para matrices 3x3}
+  \caption{Factorización LU para matrices 3$\times$3}
   \label{fig:factorizacion_lu}
   %\vspace*{0.1cm}
 \end{figure}
@@ -92,7 +92,7 @@ La \acrshort{fft} es una implementación eficiente de la transformada discreta d
 Las \acrshort{fft} en 3D son parte muy importante de aplicaciones en mecánica de fluidos, especialmente en simulaciones de torbellinos. Asimismo, la ejecución de estos algoritmos conlleva una importante comunicación entre procesos, lo cual tiene cierto impacto en las cifras de rendimiento, como se puede observar en \nameref{sssec:resultados__ft}.
 
 \subsubsection{MG - MultiGrid}
-Finalmente, el último benchmark que se ejecuta de esta suite es el multigrid. El proceso consiste en la realización de cuatro iteraciones del algoritmo multigrid de ciclo en V, que se emplean para la obtención de una aproximación a la solución $u$ de una ecuación de Poisson discreta, en una malla 256x256x256. Más información para lectores experimentados en este campo está disponible, de nuevo, en \cite[2.2.2]{benchmarks1994technical}.
+Finalmente, el último benchmark que se ejecuta de esta suite es el multigrid. El proceso consiste en la realización de cuatro iteraciones del algoritmo multigrid de ciclo en V, que se emplean para la obtención de una aproximación a la solución $u$ de una ecuación de Poisson discreta, en una malla 256$\times$256$\times$256. Más información para lectores experimentados en este campo está disponible, de nuevo, en \cite[2.2.2]{benchmarks1994technical}.
 
 Este método multigrid se emplea para la resolución de sistemas de ecuaciones diferenciales, y ha sido ampliamente utilizado para la resolución de otros sistemas de ecuaciones más complicados como las ecuaciones de Lamé o las Navier-Stokes. Ambas estas ecuaciones relacionadas con mecánica de fluidos y, por tanto y de nuevo, resultando sencillo visualizar la interconexión de esta carga de trabajo con aquellas empleadas en el campo de la aerodinámica.  
 
@@ -192,7 +192,7 @@ En esta sección se muestran los resultados obtenidos para cada uno de los bench
 \label{ssec:medida_rendimiento_metodologia}
 Una metodología eficaz y depurada es parte muy importante en cualquier medida y análisis de la realidad, ya que permite filtrar y categorizar datos fidedignos, así como prevenir la aparición de datos erróneos casi por completo. En este caso la metodología a seguir es moderadamente sencilla.
 
-Se han realizado 5 ejecuciones de todos los problemas clase C y 9 ejecuciones de los de clases inferiores (A o B). Esto es así ya que, a menor tiempo de ejecución, mayor probabilidad de obtener un dato atípico. Por suerte, y muy probablemente debido a la instalación mínima del sistema operativo, no ha habido variaciones significativas entre ejecuciones.
+Se han realizado 5 ejecuciones de todos los problemas clase \texttt{C} y 9 ejecuciones de los de clases inferiores (\texttt{A} o \texttt{B}). Esto es así ya que, a menor tiempo de ejecución, mayor probabilidad de obtener un dato atípico. Por suerte, y muy probablemente debido a la instalación mínima del sistema operativo, no ha habido variaciones significativas entre ejecuciones.
 
 Tras la recolección de datos, se realiza la media aritmética de los datos de las $N$ ejecuciones. Los resultados de cada ejecución de los benchmarks pueden encontrarse en el Apéndice \ref{chap:bench_values}.
 

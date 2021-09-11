@@ -102,7 +102,7 @@ A continuación se documentan los pasos realizados para llevar los nodos de Clú
 
 \subsection{Instalación base del sistema operativo}
 \label{ssec:instalacion_sistema_operativo}
-Para instalar Arch Linux en las Raspberry Pi 4 se debe acudir a la página web de ArchLinuxARM\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. La instalación, que consiste en la copia del sistema a la microSD, se debe realizar desde un ordenador con Linux. En este caso, al no tener dependencias fuertes en las librerías de 32 bits, se ha optado por la versión de 64 bits, que otorgará considerablemente mayor rendimiento.\footnote{\url{https://matteocroce.medium.com/bd5290d48947}}
+Para instalar Arch Linux en las Raspberry Pi 4 se debe acudir a la página web de ArchLinuxARM\footnote{\url{https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-4}} y seguir las instrucciones. En este caso, al no tener dependencias fuertes en las librerías de 32 bits, se ha optado por la versión de 64 bits, que otorgará considerablemente mayor rendimiento\footnote{\url{https://matteocroce.medium.com/bd5290d48947}}. La instalación, que consiste en la copia del sistema a la microSD, se debe realizar desde un ordenador con Linux.
 
 Así, se comienza por descargar el sistema de archivos raíz\footnote{\texttt{man hier} para más detalle} (\textit{\gls{rootfs}}) desde la web:
 
@@ -161,7 +161,7 @@ sync
 umount boot root
 \end{lstlisting}
 
-Tras ello, se conecta el clúster a la red ya existente (por ejemplo, desconectando una Raspberry del switch y conectando un cable al puerto vacío) y se buscarán las Raspberry Pis, que ya vienen preconfiguradas con las interfaces en DHCP, con el comando:
+Tras ello, se conecta el clúster a la red ya existente (por ejemplo, desconectando una Raspberry del switch y conectando un cable al puerto vacío) y se buscarán las Raspberry Pis, que ya vienen preconfiguradas con las interfaces en \acrshort{dhcp} (\acrlong{dhcp}), con el comando:
 
 \begin{lstlisting}[language=bash]
 nmap -sP -PR 192.168.0.*
@@ -203,12 +203,12 @@ reboot
 \end{lstlisting}
 
 \subsection{Bridging de interfaces}
-Como el switch tiene el mismo número de puertos que el número de \acrshort{rpi}s, como ya se ha comprobado en el apartado anterior, dada la necesidad de realizar la inicialización de las placas en dos pasos, se necesita una forma de conectar el clúster a un ordenador o red externa. Para ello se puentea el adaptador USB 3.0 a Gigabit Ethernet que se podrá conectar en cualquier puerto USB del nodo maestro (rpi0).
+Como el switch tiene el mismo número de puertos que el número de \acrshort{rpi}s, como ya se ha comprobado en el apartado anterior, dada la necesidad de realizar la inicialización de las placas en dos pasos, se necesita una forma de conectar el clúster a un ordenador o red externa. Para ello se puentea el adaptador USB 3.0 a Gigabit Ethernet que se podrá conectar en cualquier puerto USB del nodo maestro (\texttt{rpi0}).
 
 Las configuraciones a realizar en \texttt{/etc/systemd/network} son las siguientes:
 
 \begin{itemize}
-    \item Para los archivos \texttt{en.network} y \texttt{eth.network}, desactivar DHCP comentando las dos líneas a continuación, y activar la pertenencia al bridge maestro en \texttt{br0}:
+    \item Para los archivos \texttt{en.network} y \texttt{eth.network}, desactivar \acrshort{dhcp} comentando las dos líneas a continuación, y activar la pertenencia al bridge maestro en \texttt{br0}:
 \begin{lstlisting}[language=bash]
 ...
 
@@ -239,7 +239,7 @@ Tras realizar estas configuraciones se reinicia \texttt{systemd-networkd} con:
 systemctl restart systemd-networkd
 \end{lstlisting}
 
-Por último, se deberá reconectar la sesión por \acrshort{ssh}, ya que al haber cambiado la \acrshort{mac} de la interfaz, el servidor DHCP en uso le habrá cambiado también la IP asignada a \texttt{rpi0}. Este comportamiento puede cambiarse a preferencia de algún usuario futuro, ya que la dirección \acrshort{mac} que asigna systemd-networkd a la interfaz virtual es personalizable, y por tanto es posible copiar la de la interfaz original \cite{archwiki_systemd-networkd}.
+Por último, se deberá reconectar la sesión por \acrshort{ssh}, ya que al haber cambiado la \acrshort{mac} de la interfaz, el servidor \acrshort{dhcp} en uso le habrá cambiado también la IP asignada a \texttt{rpi0}. Este comportamiento puede cambiarse a preferencia de algún usuario futuro, ya que la dirección \acrshort{mac} que asigna systemd-networkd a la interfaz virtual es personalizable, y por tanto es posible copiar la de la interfaz original \cite{archwiki_systemd-networkd}.
 
 \subsection{Configuración de direcciones IP estáticas}
 \label{ssec:configuracion_ip_estaticas}
@@ -248,7 +248,7 @@ A la hora de administrar el clúster es necesario que las direcciones se asignen
 Para esto, se han de modificar los archivos ubicados en \texttt{/etc/systemd/network/} como se indica a continuación:
 
 \begin{itemize}
-    \item Modificar \texttt{eth.network} en las máquinas 1 a 7, y asignarles una IP estática, siendo la X en \texttt{.22X} el número de la máquina, así \texttt{rpi1} sería \texttt{.221}, etc:
+    \item Modificar \texttt{eth.network} en las máquinas 1 a 7, y asignarles una IP estática, siendo la \texttt{X} en \texttt{.22X} el número de la máquina, así \texttt{rpi1} sería \texttt{.221}, etc:
 \begin{lstlisting}[language=bash]
 [Match]
 Name=eth*
@@ -300,7 +300,7 @@ El uso de la cuenta de superusuario no es recomendable para tareas diferentes a 
 \begin{lstlisting}[language=bash]
 # Crear el usuario mpiuser y su carpeta en /home/mpiuser
 useradd -m mpiuser
-# Y asignar la contraseña 'mpi'}.
+# Y asignar la contraseña 'mpi'
 echo "mpiuser:mpi" | chpasswd
 \end{lstlisting}
 
@@ -372,7 +372,7 @@ echo "rpi0:/ /mpishared nfs defaults,timeo=900,retrans=5,"\
 \end{lstlisting}
 
 \subsubsection{Solución de problemas}
-Hay un sutil problema en esta configuración, cuando se apagan todos los nodos a la vez, dependiendo si rpi0 se apaga primero o no, el resto de nodos pueden quedarse esperando a que responda el share de NFS. Este comportamiento es inofensivo, debido a que eventualmente la espera hace \textit{timeout} y el nodo en espera termina apagándose, pero no se puede negar que es molesto. Para evitarlo se establece un pequeño timeout antes de detener el servidor NFS de, por ejemplo, 10 segundos. Aunque puede que no sea la solución más elegante, es una solución simple que resuelve el problema cuando todos los nodos se apagan a la vez.
+Hay un sutil problema en esta configuración, cuando se apagan todos los nodos a la vez, dependiendo si \texttt{rpi0} se apaga primero o no, el resto de nodos pueden quedarse esperando a que responda el share de NFS. Este comportamiento es inofensivo, debido a que eventualmente la espera hace \textit{timeout} y el nodo en espera termina apagándose, pero no se puede negar que es molesto. Para evitarlo se establece un pequeño timeout antes de detener el servidor NFS de, por ejemplo, 10 segundos. Aunque puede que no sea la solución más elegante, es una solución simple que resuelve el problema cuando todos los nodos se apagan a la vez.
 
 \begin{lstlisting}[language=bash]
 # Extender la unit del servidor nfs
@@ -390,7 +390,7 @@ systemctl daemon-reload
 
 \subsection{Apagado}
 \label{ssec:apagado_impl}
-El apagado tras la implementación del share NFS se complica un poco. Además no siempre se tiene acceso de forma simultánea a todos los nodos, sino que lo habitual es que únicamente se acceda al nodo maestro, rpi0.
+El apagado tras la implementación del share NFS se complica un poco. Además no siempre se tiene acceso de forma simultánea a todos los nodos, sino que lo habitual es que únicamente se acceda al nodo maestro, \texttt{rpi0}.
 
 Por esta razón, es altamente recomendable la creación de un script que permita apagar todos los nodos de forma centralizada. Esto se realiza creando el script \texttt{/usr/local/bin/clupiter\_poweroff} como \texttt{root}, con los comandos:
 
