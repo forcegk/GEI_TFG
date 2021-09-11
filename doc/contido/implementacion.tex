@@ -277,7 +277,7 @@ DNS=8.8.8.8
 \subsection{Escritura del fichero /etc/hosts}
 Para hacer referencia al resto de \acrshort{rpi}s sin necesidad de escribir su dirección IP (lo que será útil más adelante para la ejecución de programas \acrshort{mpi}), es conveniente agregar una entrada por dispositivo a cada una de ellas en el fichero \texttt{/etc/hosts} para poder referenciarlas por su nombre, sin necesidad de configurar un servidor DNS propio.
 
-De esta manera, se ejecuta como root en cada nodo:
+De esta manera, se ejecuta como \texttt{root} en cada nodo:
 \begin{lstlisting}[language=bash]
 cat << EOS >> /etc/hosts
 127.0.0.1       localhost
@@ -313,7 +313,7 @@ echo "mpiuser ALL=(root) NOPASSWD:/usr/bin/poweroff" > /etc/sudoers.d/mpiuser_po
 
 \subsection{Generación de claves SSH}
 \label{ssec:gen_ssh}
-Tras la creación de los usuarios para la ejecución de programas paralelos con \acrshort{mpi}, es necesario configurar la autenticación no interactiva para \acrshort{ssh} mediante el uso de autenticación mediante par de claves pública y privada. La autenticación no interactiva por clave privada es necesaria para que el usuario mpiuser pueda establecer conexiones \acrshort{ssh} de forma desatendida con el resto de nodos durante la ejecución de programas \acrshort{mpi}.
+Tras la creación de los usuarios para la ejecución de programas paralelos con \acrshort{mpi}, es necesario configurar la autenticación no interactiva para \acrshort{ssh} mediante el uso de autenticación mediante par de claves pública y privada. La autenticación no interactiva por clave privada es necesaria para que el usuario \texttt{mpiuser} pueda establecer conexiones \acrshort{ssh} de forma desatendida con el resto de nodos durante la ejecución de programas \acrshort{mpi}.
 
 Sabiendo ya la tarea a realizar, ésta se puede llevar a cabo de forma muy sencilla ejecutando en todos los nodos del clúster como usuario \texttt{mpiuser} (\texttt{su - mpiuser}) el siguiente comando. Es importante no establecer \textit{passphrase}, ya que si no se perdería la no-interactividad.
 \begin{lstlisting}[language=bash]
@@ -341,7 +341,7 @@ Este último comando debería mostrar los hostnames del resto de nodos del clús
 \label{ssec:serv_nfs}
 Debido a que las llamadas a \texttt{mpirun} con múltiples hosts ejecutan el mismo comando en todos ellos, debe existir algún tipo de almacenamiento compartido montado con el mismo nombre en todos los nodos. Para satisfacer esta necesidad de almacenamiento compartido, la elección es NFS.
 
-El servidor será el nodo maestro, y el resto serán clientes. Los pasos a realizar en todos los nodos (como root) son los siguientes:
+El servidor será el nodo maestro, y el resto serán clientes. Los pasos a realizar en todos los nodos (como \texttt{root}) son los siguientes:
 
 \begin{lstlisting}[language=bash]
 # Instalar el paquete de NFS en todos los nodos
@@ -392,7 +392,7 @@ systemctl daemon-reload
 \label{ssec:apagado_impl}
 El apagado tras la implementación del share NFS se complica un poco. Además no siempre se tiene acceso de forma simultánea a todos los nodos, sino que lo habitual es que únicamente se acceda al nodo maestro, rpi0.
 
-Por esta razón, es altamente recomendable la creación de un script que permita apagar todos los nodos de forma centralizada. Esto se realiza creando el script \texttt{/usr/local/bin/clupiter\_poweroff} como root, con los comandos:
+Por esta razón, es altamente recomendable la creación de un script que permita apagar todos los nodos de forma centralizada. Esto se realiza creando el script \texttt{/usr/local/bin/clupiter\_poweroff} como \texttt{root}, con los comandos:
 
 \begin{lstlisting}[language=bash]
 # Escribir el fichero con el script
