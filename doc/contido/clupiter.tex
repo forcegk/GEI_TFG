@@ -101,13 +101,13 @@ Entre las implementaciones disponibles, las más utilizadas son:
   \item\textbf{Intel MPI}\footnote{\url{https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/mpi-library.html}}: Implementación propietaria de \acrshort{mpi} por parte de Intel. Está especializada en productos de la propia marca y optimizada para ellos, por lo que suele arrojar un mayor rendimiento que las contrapartes libres.
 \end{itemize}
 
-La base de \acrshort{mpi} son las primitivas de envío y recepción de datos. Existen dos funciones de envío y recepción \textbf{síncronas} (esto es, la llamada a la función solamente termina cuando todos los miembros involucrados en la ejecución de dicha función han terminado):
+La base de \acrshort{mpi} son las primitivas de envío y recepción de datos. Existen dos funciones de envío y recepción \textbf{bloqueantes} (esto es, la llamada a la función solamente termina cuando todos los miembros involucrados en la ejecución de dicha función han terminado):
 \begin{itemize}
   \item \textbf{MPI\_Send}: Envía un mensaje a destino, y espera a que el receptor esté listo para recibirlo. 
   \item \textbf{MPI\_Recv}: Espera a que llegue un mensaje del origen, y cuando éste está listo para enviarlo, lo recibe.
 \end{itemize}
 
-Estas funciones tienen su contraparte para programación asíncrona, que puede arrojar un mayor rendimiento, pero también requiere un extra de complejidad y puede no ser trivial. Las funciones básicas para realizar programación asíncrona con \acrshort{mpi} son \textbf{MPI\_Isend} y \textbf{MPI\_Irecv}. A su vez son necesarias para chequear el estado de la ejecución asíncrona las funciones \textbf{MPI\_Test} (asíncrona) y \textbf{MPI\_Wait} (síncrona).
+Estas funciones tienen su contraparte para programación no bloqueante, que puede arrojar un mayor rendimiento, pero también requiere un extra de complejidad y puede no ser trivial. Las funciones básicas para realizar programación no bloqueante con \acrshort{mpi} son \textbf{MPI\_Isend} y \textbf{MPI\_Irecv}. A su vez son necesarias para chequear el estado de la ejecución las funciones \textbf{MPI\_Test} (no bloqueante) y \textbf{MPI\_Wait} (bloqueante).
 
 Otra funcionalidad de \acrshort{mpi} ampliamente utilizada son las primitivas de grupo u operaciones colectivas, las cuales permiten la comunicación entre más de 2 procesos.
 
