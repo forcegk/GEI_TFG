@@ -1,4 +1,7 @@
 # Clúpiter
+
+![alt text](https://github.com/forcegk/GEI_TFG/blob/master/logo/logo.svg?raw=true)
+
 ## Resumen
 En un mundo donde la inteligencia artificial y el big data están experimentando una explosión
 en popularidad sin precedentes, cada vez es más importante poseer la capacidad económica
