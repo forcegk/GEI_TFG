@@ -1,6 +1,6 @@
 # Clúpiter
 
-<img src="https://github.com/forcegk/GEI_TFG/blob/master/logo/logo.svg?raw=true" alt="clúpiter logo" width="400px"">
+<img src="https://github.com/forcegk/GEI_TFG/blob/master/logo/logo.svg?raw=true" alt="clúpiter logo" width="40">
 
 ## Resumen
 En un mundo donde la inteligencia artificial y el big data están experimentando una explosión
