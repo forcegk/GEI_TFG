@@ -27,3 +27,8 @@ being disciplines of great interest.
 <p align="center">
 <img src="https://github.com/forcegk/GEI_TFG/blob/master/res/logo/logo.svg?raw=true" alt="clúpiter logo" width="200">
 </p>
+
+## Migration Notice
+As of 2023, May the 23rd, the directory structure of the repository has been updated to make it
+more accessible to English speakers. A migration procedure is needed on the master node, and the
+process is detailed in the file `Migration_Guide_May2023.md`.
