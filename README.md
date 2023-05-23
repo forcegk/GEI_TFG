@@ -25,5 +25,5 @@ being disciplines of great interest.
 - - -
 
 <p align="center">
-<img src="https://github.com/forcegk/GEI_TFG/blob/master/logo/logo.svg?raw=true" alt="clúpiter logo" width="200">
+<img src="https://github.com/forcegk/GEI_TFG/blob/master/res/logo/logo.svg?raw=true" alt="clúpiter logo" width="200">
 </p>
