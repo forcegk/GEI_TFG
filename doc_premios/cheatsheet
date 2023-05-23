@@ -1,9 +1,0 @@
-En general:
-latexmk -pdf -pvc
-
-Para el TFG:
-latexmk -pdf -xelatex -pvc memoria_tfg.tex
-
-
-
-[ MOAR INFO https://mg.readthedocs.io/latexmk.html ]
