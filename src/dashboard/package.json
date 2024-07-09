@@ -4,7 +4,7 @@
     "description": "Clupiter Didactical and Monitoring Dashboard",
     "dependencies": {
         "express": "^4.19.2",
-        "socket.io": "^4.6.2",
+        "socket.io": "^4.7.5",
         "utf8": "^3.0.0"
     }
 }
